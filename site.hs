@@ -50,7 +50,7 @@ main = hakyll $ do
   match "static/*/*"       $ do route idRoute
                                 compile copyFileCompiler
   match (fromList tops)    $ crunchWithCtx siteCtx
-  match "lectures/*"       $ crunchWithCtxCustom "final" postCtx
+  match "lectures/*"       $ crunchWithCtxCustom "lecture" postCtx
   match "assignments/*"    $ crunchWithCtx postCtx
   match "templates/*"      $ compile templateCompiler
 
