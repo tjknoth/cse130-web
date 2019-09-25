@@ -347,10 +347,10 @@ eval (<span class="dt">Var</span> x)         <span class="fu">=</span> <span cla
 <span class="fu">=</span>[x<span class="fu">:</span><span class="dv">17</span>, y<span class="fu">:</span><span class="dv">2</span>]<span class="ot">=&gt;</span> <span class="dv">34</span>
 
 x <span class="fu">*</span> y
-<span class="fu">=</span>[x<span class="fu">:</span><span class="dv">17</span>]<span class="ot">=&gt;</span> <span class="dt">Error</span><span class="fu">:</span> unbound variable y
+<span class="fu">=</span>[x<span class="fu">:</span><span class="dv">17</span>]<span class="ot">=&gt;</span> <span class="fu">???</span>
 
 x <span class="fu">*</span> (<span class="kw">let</span> y <span class="fu">=</span> <span class="dv">2</span> <span class="kw">in</span> y)
-<span class="fu">=</span>[x<span class="fu">:</span><span class="dv">17</span>]<span class="ot">=&gt;</span> <span class="dv">34</span></code></pre></div>
+<span class="fu">=</span>[x<span class="fu">:</span><span class="dv">17</span>]<span class="ot">=&gt;</span> <span class="fu">???</span></code></pre></div>
 <p><br> <br></p>
 <ul>
 <li>How should we represent the environment?</li>
@@ -369,7 +369,7 @@ y</code></pre></div>
 <p><strong>(D)</strong> Error: unbound variable <code class="sourceCode haskell">y</code></p>
 <p><strong>(E)</strong> Error: unbound variable <code class="sourceCode haskell">z</code></p>
 <p><br></p>
-<p><em>Answer:</em> E</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-1">QUIZ</h2>
 <p>What should this evaluate to?</p>
@@ -383,7 +383,7 @@ x <span class="fu">+</span> y</code></pre></div>
 <p><strong>(D)</strong> Error: unbound variable <code class="sourceCode haskell">x</code></p>
 <p><strong>(E)</strong> Error: multiple definitions of <code class="sourceCode haskell">x</code></p>
 <p><br></p>
-<p><em>Answer:</em> A</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="environment-api">Environment: API</h2>
 <p>To evaluate <code class="sourceCode haskell"><span class="kw">let</span> x <span class="fu">=</span> e1 <span class="kw">in</span> e2</code> in <code class="sourceCode haskell">env</code>:</p>
@@ -541,7 +541,7 @@ x <span class="fu">+</span> y</code></pre></div>
 <p><strong>(C)</strong> <code class="sourceCode haskell">y</code></p>
 <p><strong>(D)</strong> <code class="sourceCode haskell">x y</code></p>
 <p><br></p>
-<p><em>Answer:</em> B</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="the-nano-language-2">The Nano Language</h2>
 <p>Features of Nano:</p>
@@ -620,7 +620,7 @@ cTimes <span class="dv">2</span></code></pre></div>
 <span class="kw">let</span> f <span class="fu">=</span> \x <span class="ot">-&gt;</span> \y <span class="ot">-&gt;</span> <span class="dv">2</span> <span class="fu">*</span> (x <span class="fu">+</span> y) <span class="kw">in</span>
 f <span class="dv">5</span>
 <span class="fu">==&gt;</span> <span class="fu">???</span></code></pre></div>
-<p>Conceptually, (1) evaluates to itself (not exactly, see later). while (2) evaluates to something equivalent to <code class="sourceCode haskell">\y <span class="ot">-&gt;</span> <span class="dv">2</span> <span class="fu">*</span> (<span class="dv">5</span> <span class="fu">+</span> y)</code></p>
+
 <p><br> <br> <br> <br> <br> <br></p>
 <p><strong>Now:</strong> a program evaluates to an integer or <em>a lambda abstraction</em> (or fails)</p>
 <ul>
@@ -675,7 +675,7 @@ cTimes <span class="dv">2</span></code></pre></div>
 <p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dv">10</span></code></p>
 <p><strong>(C)</strong> Error: multiple definitions of <code class="sourceCode haskell">c</code></p>
 <p><br></p>
-<p><em>Answer:</em> A</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="static-vs-dynamic-scoping">Static vs Dynamic Scoping</h2>
 <p>What we want:</p>
@@ -781,7 +781,7 @@ cTimes <span class="dv">2</span></code></pre></div>
 <p><strong>(D)</strong> <code class="sourceCode haskell">a y g</code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell">a x y g z</code></p>
 <p><br></p>
-<p><em>Answer:</em> A</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="free-vs-bound-variables-1">Free vs bound variables</h2>
 <ul>
@@ -844,7 +844,7 @@ f <span class="dv">5</span></code></pre></div>
 <p><strong>(D)</strong> Error: unbound variable <code class="sourceCode haskell">y</code></p>
 <p><strong>(E)</strong> Error: unbound variable <code class="sourceCode haskell">f</code></p>
 <p><br></p>
-<p><em>Answer:</em> D</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">   eval []         
      {<span class="kw">let</span> f <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">+</span> y <span class="kw">in</span> <span class="kw">let</span> y <span class="fu">=</span> <span class="dv">10</span> <span class="kw">in</span> f <span class="dv">5</span>}
@@ -865,7 +865,7 @@ f <span class="dv">5</span></code></pre></div>
 <p><strong>(B)</strong> Evaluation does not terminate</p>
 <p><strong>(C)</strong> Error: unbound variable <code class="sourceCode haskell">f</code></p>
 <p><br></p>
-<p><em>Answer:</em> C</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">   eval []         
        {<span class="kw">let</span> f <span class="fu">=</span> \n <span class="ot">-&gt;</span> n <span class="fu">*</span> f (n <span class="fu">-</span> <span class="dv">1</span>) <span class="kw">in</span> f <span class="dv">5</span>}
@@ -1005,7 +1005,7 @@ n[x <span class="fu">:=</span> v]                  <span class="fu">=</span> n
 <p><strong>(D)</strong> A and B</p>
 <p><strong>(E)</strong> All of the above</p>
 <p><br></p>
-<p><em>Answer:</em> A</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="evaluation-relation">Evaluation relation</h2>
 <p>Like in <span class="math inline"><em>λ</em></span>-calculus, we define the <strong>multi-step reduction</strong> relation <code class="sourceCode haskell">e <span class="fu">=*&gt;</span> e'</code>:</p>
@@ -1177,7 +1177,7 @@ e1 <span class="fu">+</span> e2 <span class="ot">=&gt;</span> e1' <span class="f
 <p><strong>(B)</strong> <code class="sourceCode haskell">size e1' <span class="fu">&lt;</span> size e1</code></p>
 <p><strong>(C)</strong> <code class="sourceCode haskell">size (<span class="kw">let</span> x <span class="fu">=</span> e1 <span class="kw">in</span> e2) <span class="fu">&lt;</span> size (<span class="kw">let</span> x <span class="fu">=</span> e1' <span class="kw">in</span> e2)</code></p>
 <p><br></p>
-<p><em>Answer:</em> B</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="theorem-closed-programs-dont-get-stuck">Theorem: Closed Programs don’t Get Stuck</h2>
 <p>First we need to define what are free variables <code class="sourceCode haskell">fv</code> of an expression:</p>
@@ -1282,7 +1282,7 @@ v <span class="ot">::</span><span class="fu">=</span> n                 <span cl
 <p><strong>(D)</strong> <code class="sourceCode haskell">(\y <span class="ot">-&gt;</span> <span class="dv">1</span> <span class="fu">+</span> y) (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>)  <span class="ot">=&gt;</span>  <span class="dv">1</span> <span class="fu">+</span> <span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span></code></p>
 <p><strong>(E)</strong> B and C</p>
 <p><br></p>
-<p><em>Answer:</em> E</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="evaluation-order-1">Evaluation Order</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">   ((\x y <span class="ot">-&gt;</span> x <span class="fu">+</span> y) <span class="dv">1</span>) (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>)
@@ -1315,7 +1315,7 @@ v <span class="ot">::</span><span class="fu">=</span> n                 <span cl
 <p><strong>(C)</strong> 1 is false, 2 is true</p>
 <p><strong>(D)</strong> Both false</p>
 <p><br></p>
-<p><em>Answer:</em> D</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="theorems-about-nano2-1">Theorems about Nano2</h2>
 <ol style="list-style-type: decimal">
