@@ -7,39 +7,40 @@ Lecture schedule is subject to change!
 
 | Date       | Topic                           | Notes                     |  Code         |
 |:----------:|:--------------------------------|:-------------------------:|:-------------:|
-| 1/7        | Hello, World!                   | [html][lec0]              |               |            
-| 1/9        | The Lambda Calculus             | [html][lec1]              |               |
-| 1/11       | contd.                          |                           |               |
-| 1/14       | contd.                          |                           |               |
-| 1/16       | contd.                          |                           |               |
-| 1/18       | contd.                          |                           |               |
-| 1/21       | *No lecture: MLK Day*           |                           |               |
-| 1/23       | A crash course in Haskell       | [html][lec2]              |               |
-| 1/25       | contd.                          |                           |               |
-| 1/28       | contd.                          |                           |               |
-| 1/30       | Datatypes and Recursion         | [html][lec3]              |               |
-| 1/1        | contd.                          |                           |               |
-| 2/4        | contd.                          |                           |               |
-| 2/6        | Higher Order Functions          | [html][lec4]              |               |
-| 2/8        | contd.                          |                           |               |
-| 2/11       | **Midterm**                     | [exam][midterm] [solution][midterm-sol] | |
-| 2/13       | Environments and Closures       | [html][lec5]              |               |
-| 2/15       | contd.                          |                           |               |
-| 2/18       | *No lecture: Presidents' Day*   |                           |               |
-| 2/20       | contd.                          |                           |               |
-| 2/22       | contd.                          |                           |               |
-| 2/25       | Lexing and Parsing              | [html][lec6] [tutorial][parsing]     |    |
-| 2/27       | Polymorphism and Type Inference | [html][lec7]              |               |
-| 3/1        | contd.                          |                           |               |
-| 3/4        | contd.                          |                           |               |
-| 3/6        | Logic Programming               |  [html][lec8]             |               |
-| 3/8        | contd.                          |                           |               |
-| 3/11       | contd.                          |                           |               |
-| 3/13       | contd.                          |                           |               |
-| 3/15       | contd.                          |                           |               |
-| 3/22       | **Final**                       |                           |               |
+| 9/27       | Hello, World!                   | [html][lec0]              |               |            
+| 9/30       | The Lambda Calculus             |                           |               |
+| 10/2       | contd.                          |                           |               |
+| 10/4       | contd.                          |                           |               |
+| 10/7       | contd.                          |                           |               |
+| 10/9       | contd.                          |                           |               |
+| 10/11      | A crash course in Haskell       |                           |               |
+| 10/14      | contd.                          |                           |               |
+| 10/16      | contd.                          |                           |               |
+| 10/18      | Datatypes and Recursion         |                           |               |
+| 10/21      | contd.                          |                           |               |
+| 10/23      | contd.                          |                           |               |
+| 10/25      | contd.                          |                           |               |
+| 10/28      | Higher Order Functions          |                           |               |
+| 10/30      | contd.                          |                           |               |
+| 11/1       | **Midterm**                     |                           |               |
+| 11/4       | Environments and Closures       |                           |               |
+| 11/6       | contd.                          |                           |               |
+| 11/8       | contd.                          |                           |               |
+| 11/11      | Lexing and Parsing              |                           |               |
+| 11/13      | contd.                          |                           |               |
+| 11/15      | Overloading & TypeClasses       |                           |               |
+| 11/18      | contd.                          |                           |               |      
+| 11/20      | contd.                          |                           |               |
+| 11/22      | Monads                          |                           |               |
+| 11/25      | contd.                          |                           |               |
+| 11/27      | Polymorphism and Type Inference |                           |               |
+| 11/29      | *No lecture: Thanksgiving*      |                           |               |
+| 12/2       | contd.                          |                           |               |
+| 12/4       | contd.                          |                           |               |
+| 12/6       | **Final**                       |                           |               |
 
 
+<!--
 ## Discussions
 
 | Date       | Topic                    | Slides        | 
@@ -48,6 +49,7 @@ Lecture schedule is subject to change!
 | 2/25       | Nano: Parsing and Eval   | [pdf][disc5]  |
 | 3/4        | Type checking tips       | [pdf][disc6]  |
 | 3/11       | Final Review             | [pdf][discFinal] |
+-->
 
 
 [lec0]: lectures/00-hello.html
