@@ -46,5 +46,5 @@ headerImg: beach.jpg
   Extra credit for top-20 best participants on Piazza,
   determined by the instruction team.
 
-[clickers]: https://goo.gl/forms/80SF9nYoZzYzCpT22
-[groups]: https://goo.gl/forms/kB7l1hs10lmydSZ73
+[clickers]: https://forms.gle/qCY8ybPaygudvdz2A
+[groups]: https://forms.gle/ytzpRJUqBKFKX5un6
