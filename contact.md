@@ -5,11 +5,11 @@ headerImg: world-map.jpg
 
 ## Course Details
 
-- **Course ID:**         961503
-- **Lectures:**          MWF 1:00-1:50pm in WLH 2005
-- **Section:**           M 8:00-8:50pm in CENTR 109
-- **Final:**             Friday March 22 11:30am-2:30pm
-- **Announcements:**     [Posted on Piazza. Please check often!](https://www.piazza.com/ucsd/winter2019/cse130/)
+- **Course ID:**         984398
+- **Lectures:**          MWF 12:00-12:50pm in WLH 2005
+- **Section:**           M 5:00-5:50pm in CENTR 115
+- **Final:**             Thursday December 12 11:30am-2:30pm
+- **Announcements:**     [Posted on Piazza. Please check often!](https://www.piazza.com/ucsd/fall2019/cse130/)
 
 
 ## Instructor
@@ -18,12 +18,13 @@ headerImg: world-map.jpg
 
 ## Teaching Assistants
 
-* [Sourav Anand](https://www.linkedin.com/in/soanand14/)
-* [David Justo](http://acsweb.ucsd.edu/~djusto/)
-* [Tristan Knoth](https://tjknoth.github.io/)
-
+* [Shraddha Barke](https://shraddhabarke.github.io/)
+* [Michael James](http://michaelbjames.com/)
+* [John Sarracino](http://goto.ucsd.edu/~john/)
 
 ## Tutors
-* [Alan Kuo](https://www.linkedin.com/in/alan-kuo/)
+* [Shivani Doshi](https://github.com/shivanidoshi26)
+* Daniel Wang
 * [Jiaxiao Zhou](https://mossaka.github.io/portfolio/)
+
 
