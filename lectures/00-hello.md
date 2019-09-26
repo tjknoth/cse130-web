@@ -31,13 +31,14 @@ date: 2017-03-28
 
 Teaching assistants:
 
-* [Sourav Anand](https://www.linkedin.com/in/soanand14/)
-* [David Justo](http://acsweb.ucsd.edu/~djusto/)
-* [Tristan Knoth](https://tjknoth.github.io/)
+* [Shraddha Barke](https://shraddhabarke.github.io/)
+* [Michael James](http://michaelbjames.com/)
+* [John Sarracino](http://goto.ucsd.edu/~john/)
 
 Tutors:
 
-* Alan Kuo
+* Shivani Doshi
+* Daniel Wang
 * Jiaxiao (Joe) Zhou
 
 
@@ -83,9 +84,9 @@ Tutors:
 
 Learning... 
 
-- JavaScript in January
-- Haskell in February
-- C++ in March
+- JavaScript in September
+- Haskell in October
+- C++ in November
 - etc. 
 
 ### New languages come (and go ...)
@@ -336,16 +337,10 @@ Yes.
 
 ## Course Syllabus
 
-**Functional Programming**
-
 - Lambda calculus (2 weeks)
-- Haskell (6 weeks)
-
-**Logic Programming**
-
-- Prolog (2 weeks)
-
-
+- Haskell (8 weeks)
+    - learn Haskell
+    - implement a toy language *in* Haksell
 
 <br>
 <br>
@@ -430,7 +425,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 - [webpage](https://nadia-polikarpova.github.io/cse130-web)
     - calendar, lecture notes, programming assignments, ...
-- [piazza](https://piazza.com/ucsd/winter2019/cse130/home)
+- [piazza](https://piazza.com/ucsd/fall2019/cse130/home)
     - to-go place if you have a question or need help
     - email is futile
   
@@ -462,15 +457,15 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 ## Assignments
 
-- 7 programming assignments
+- 6 programming assignments
 - Released [online](https://nadia-polikarpova.github.io/cse130-web/assignments.html), at least a week before due date
-- Due on **Monday at noon** (i.e. before class)
-    - no assignment next Monday
+- Due on **Wednesday at 11:59pm**
+    - no assignment this and next Wednesday
 - Four late days, used as **whole unit**
     - 5 mins late = 1 late day
-- Submit though **ieng6** (instructions in the assignment)
+- Submission instructions in the assignment
 - Solve in **groups of at most two**
-    - register your group [here](https://goo.gl/forms/kB7l1hs10lmydSZ73) 
+    - register your group [here](https://forms.gle/ytzpRJUqBKFKX5un6) 
     - submit **individually**
 
 <br>
@@ -482,9 +477,9 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     
 ## Exams    
 
-- Midterm: in-class on *Feb 11*
+- Midterm: in-class on *Nov 1*
     - subject to change but unlikely 
-- Final: *Mar 22*
+- Final: *Dec 12*
 - 2-sided "cheat sheet"
 - The final is cumulative
 - Midterm grade is calculated as `midterm > 0 ?  max(final, midterm) : 0`
@@ -512,7 +507,7 @@ Clickers Are Not Optional
 +  **Cheap** ones are fine
 +  **Respond** to 75% questions
 
-Register your clicker [here](https://goo.gl/forms/80SF9nYoZzYzCpT22)
+Register your clicker [here](https://forms.gle/qCY8ybPaygudvdz2A)
 
 
 
@@ -526,13 +521,13 @@ Register your clicker [here](https://goo.gl/forms/80SF9nYoZzYzCpT22)
 
 ## TEST QUIZ
 
-Do you have a clicker?
+If you work on a 130 assignment with a partner...
 
-**A.**  Yes
+**A.**  only one of the partners must turn in the solution
 
-**B.**  No
+**B.**  both partners must turn in (potentially the same) solution
 
-**C.**  What's a clicker?
+**C.**  working in pairs is not allowed
 
 
 <br>
@@ -572,11 +567,12 @@ Do you have a clicker?
 
 ## Your Resources
 
-- Discussion section: Mon 8pm, CENTR 109
+- Discussion section: Mon 5pm, CENTR 115
 - Office hours
     - every day, check calendar
 - Piazza
     - we answer during work hours
+    - I expect you to come to my office hours at least once this quarter
 - **No text**        
     - online lecture notes and links
 
@@ -619,7 +615,8 @@ Students requesting accommodations for this course due to a disability or curren
 a current **Authorization for Accommodation (AFA)** letter issued by the Office for Students with Disabilities (OSD) 
 which is located in University Center 202 behind Center Hall.
   
-Students are required to present their AFA letters to Faculty (please make arrangements to contact me privately) and to the CSE OSD Liaison [Christina Rontell](https://cse.ucsd.edu/people/administrative-staff/christina-rontell) in advance so that accommodations may be arranged.
+Students are required to present their AFA letters to Faculty (please make arrangements to contact me privately) 
+and to the CSE OSD Liaison in advance so that accommodations may be arranged.
 
 <br>
 <br>
