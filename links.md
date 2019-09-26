@@ -6,7 +6,7 @@ headerImg: sea.jpg
 ## Text
 
 There is **no text** for CSE 130. We will be using the
-lecture notes, and other course materials such as aticles, 
+lecture notes, and other course materials such as articles, 
 web sites, tutorials, etc. will be made available on
 this site as appropriate.  
 
@@ -45,10 +45,12 @@ that explore various class topics in more depth.
   [Vim](http://projects.haskell.org/haskellmode-vim/)
 
 
+<!--
 ## Prolog
 
 - [Tutorial 1](/static/raw/prolog_tutorial.pdf)
 - [Tutorial 2](http://kti.ms.mff.cuni.cz/~bartak/prolog/learning.html)
+-->
 
 ## Fun Articles
 
