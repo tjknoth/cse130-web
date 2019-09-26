@@ -8,14 +8,14 @@ headerImg: beach.jpg
   [Register here, use your PID `A0XXXXXXXXX`][clickers]
 
 - **Homework Assignments (30%)** :
-  There will be 7 programming assignments,
+  There will be 6 programming assignments,
   assigned every one or two weeks.
   Instructions on turning them in will be posted with
   each assignment.
   
     - You can work on the assignment *in groups of two*.
       [Register your group here][groups].    
-      You have to submit your solution individually.
+      You have to submit your solution *individually*.
       
     - You have a total of *four late days*
       that you can use throughout the quarter as you need them,
@@ -23,12 +23,12 @@ headerImg: beach.jpg
       hours 59 minutes and 59 seconds past a deadline.
 
 - **Midterm (30%)** :
-  Will be held on **Monday February 11** during the lecture.
+  Will be held on **Friday November 1** during the lecture.
   The midterm is **closed book**, but you may use a
   double-sided **"cheat sheet"**.
 
 - **Final (35%)** :
-  Will be held on **Friday March 22nd, from 11:30am -- 2:30pm** in TBD.
+  Will be held on **Thursday December 12, 11:30am -- 2:30pm** in TBD.
   It **must** be taken at the scheduled time and location.
   To turn in your completed final examination, you must
   present a valid UCSD ID at the time the examination

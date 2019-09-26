@@ -28,16 +28,17 @@ Lecture schedule is subject to change!
 | 11/8       | contd.                          |                           |               |
 | 11/11      | Lexing and Parsing              |                           |               |
 | 11/13      | contd.                          |                           |               |
-| 11/15      | Overloading & TypeClasses       |                           |               |
-| 11/18      | contd.                          |                           |               |      
+| 11/15      | contd.                          |                           |               |
+| 11/18      | Overloading & TypeClasses       |                           |               |
 | 11/20      | contd.                          |                           |               |
-| 11/22      | Monads                          |                           |               |
-| 11/25      | contd.                          |                           |               |
-| 11/27      | Polymorphism and Type Inference |                           |               |
+| 11/22      | contd.                          |                           |               |
+| 11/25      | Monads                          |                           |               |
+| 11/27      | contd.                          |                           |               |
 | 11/29      | *No lecture: Thanksgiving*      |                           |               |
-| 12/2       | contd.                          |                           |               |
+| 12/2       | Type Systems                    |                           |               |
 | 12/4       | contd.                          |                           |               |
-| 12/6       | **Final**                       |                           |               |
+| 12/6       | contd.                          |                           |               |
+| 12/12      | **Final**                       |                           |               |
 
 
 <!--
