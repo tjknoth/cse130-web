@@ -6,13 +6,15 @@ headerImg: angles.jpg
 **LATE POLICY:** You have a total of **4** late days
 that can be used in atomic units over the entire
 quarter. By *atomic* I mean, for example, that 35
-mins over the deadline is equal to 1 late day.
+minutes over the deadline is equal to 1 late day.
 
 ## Assignments
 
-- [HW #0](https://github.com/cse130-fa19/00-lambda): The Lambda Calculus (due Wed 10/16 by 11:59pm)
+Will appear here
 
 <!--
+- [HW #0](https://github.com/cse130-fa19/00-lambda): The Lambda Calculus (due Wed 10/16 by 11:59pm)
+
 - [HW #1](https://github.com/cse130-wi19/01-haskell): Introduction to Haskell (due Mon 1/28 by 1pm)
 
 - [HW #2](https://github.com/cse130-wi19/02-random-art): Random Art (due ~~Mon 2/4~~ Wed 2/6 by 1pm)
