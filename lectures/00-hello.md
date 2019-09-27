@@ -570,9 +570,9 @@ If you work on a 130 assignment with a partner...
 - Discussion section: Mon 5pm, CENTR 115
 - Office hours
     - every day, check calendar
+    - I expect you to come to my office hours at least once this quarter
 - Piazza
     - we answer during work hours
-    - I expect you to come to my office hours at least once this quarter
 - **No text**        
     - online lecture notes and links
 
