@@ -23,7 +23,7 @@ headerImg: world-map.jpg
 * [John Sarracino](http://goto.ucsd.edu/~john/)
 
 ## Tutors
-* [Shivani Doshi](https://github.com/shivanidoshi26)
+* [Shivani Doshi](https://shivanidoshi26.github.io/)
 * Daniel Wang
 * [Jiaxiao Zhou](https://mossaka.github.io/portfolio/)
 
