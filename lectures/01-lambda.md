@@ -195,29 +195,29 @@ More precisely, all you can do is:
 <br>
 
 ```haskell
-e ::= x
-    | \x -> e 
-    | e1 e2
+E ::= x
+    | \x -> E
+    | E1 E2
 
 ```
 
 <br>
 
-Programs are **expressions** `e` (also called **$\lambda$-terms**)
+Programs are **expressions** `E` (also called **$\lambda$-terms**)
 of one of three kinds:
 
 - **Variable**
     - `x`, `y`, `z`
 - **Abstraction** (aka _nameless_ function definition)
-    - `\x -> e`
-    - `x` is the _formal_ parameter, `e` is the _body_ 
-    - "for any `x` compute `e`"
+    - `\x -> E`
+    - `x` is the _formal_ parameter, `E` is the _body_ 
+    - "for any `x` compute `E`"
 - **Application** (aka function call)
-    - `e1 e2`
-    - `e1` is the _function_, `e2` is the _argument_
-    - in your favorite language: `e1(e2)`
+    - `E1 E2`
+    - `E1` is the _function_, `E2` is the _argument_
+    - in your favorite language: `E1(E2)`
 
-(Here each of `e`, `e1`, `e2` can itself be a variable, abstraction, or application)
+(Here each of `E`, `E1`, `E2` can itself be a variable, abstraction, or application)
 
 <br>
 <br>
@@ -230,11 +230,19 @@ of one of three kinds:
 <br>
 <br>
 
-## Examples
+## Example Expressions
 
 ```haskell
+apple               -- Variable named "apple"
+
+apple banana        -- Application of variable "apple"
+                    -- to variable "banana"
+
 \x -> x             -- The identity function
                     -- ("for any x compute x")
+                    
+(\x -> x) apple     -- Application of the identity function
+                    -- to variable "apple"                    
 
 \x -> (\y -> y)     -- A function that returns the identity function
  
@@ -384,9 +392,9 @@ How do I apply a function to two arguments?
 
 instead of                |  we write
 :-------------------------|:-------------------------
-`\x -> (\y -> (\z -> e))` | `\x -> \y -> \z -> e`
-`\x -> \y -> \z -> e`     | `\x y z -> e`
-`(((e1 e2) e3) e4)`       |  `e1 e2 e3 e4`
+`\x -> (\y -> (\z -> E))` | `\x -> \y -> \z -> E`
+`\x -> \y -> \z -> E`     | `\x y z -> E`
+`(((E1 E2) E3) E4)`       |  `E1 E2 E3 E4`
 
 <br>
 <br>
@@ -469,13 +477,13 @@ But first we have to talk about **scope**
 
 The part of a program where a **variable is visible**
 
-In the expression `\x -> e`
+In the expression `\x -> E`
 
 - `x` is the newly introduced variable
 
-- `e` is **the scope** of `x`
+- `E` is **the scope** of `x`
 
-- any occurrence of `x` in `\x -> e` is **bound** (by the **binder** `\x`)
+- any occurrence of `x` in `\x -> E` is **bound** (by the **binder** `\x`)
 
 <br>
 
@@ -489,7 +497,7 @@ For example, `x` is bound in:
 <br>
 <br>
 
-An occurrence of `x` in `e` is **free** if it's _not bound_ by an enclosing abstraction
+An occurrence of `x` in `E` is **free** if it's _not bound_ by an enclosing abstraction
 
 <br>
 For example, `x` is free in:
@@ -551,7 +559,7 @@ is `x` _bound_ or _free_?
 
 ## Free Variables
 
-An variable `x` is **free** in `e` if *there exists* a free occurrence of `x` in `e`
+A variable `x` is **free** in `E` if *there exists* a free occurrence of `x` in `E`
 
 <br>
 
@@ -562,16 +570,16 @@ We can formally define the set of _all free variables_ in a term like so:
 
     ```haskell
     FV(x)       = ???
-    FV(\x -> e) = ???
-    FV(e1 e2)   = ???
+    FV(\x -> E) = ???
+    FV(E1 E2)   = ???
     ```
 
 (I) final
 
     ```haskell
     FV(x)       = {x}
-    FV(\x -> e) = FV(e) \ {x}
-    FV(e1 e2)   = FV(e1) + FV(e2)
+    FV(\x -> E) = FV(E) \ {x}
+    FV(E1 E2)   = FV(E1) + FV(E2)
     ```
 
 <br>
@@ -590,7 +598,7 @@ We can formally define the set of _all free variables_ in a term like so:
 
 ## Closed Expressions
 
-If `e` has _no free variables_ it is said to be **closed**
+If `E` has _no free variables_ it is said to be **closed**
 
 - Closed expressions are also called **combinators**
 
@@ -641,11 +649,11 @@ What is the shortest closed expression?
 <br>
 
 ```
-  (\x -> e1) e2   =b>   e1[x := e2]
+  (\x -> E1) E2   =b>   E1[x := E2]
 ```
 <br>
-where `e1[x := e2]` means
-"`e1` with all _free_ occurrences of `x` replaced with `e2`"
+where `E1[x := E2]` means
+"`E1` with all _free_ occurrences of `x` replaced with `E2`"
 
 <br>
 <br>
@@ -656,7 +664,7 @@ Computation by _search-and-replace_:
 take the _body_ of the abstraction and
 replace all free occurrences of the _formal_ by that _argument_
 
-- We say that `(\x -> e1) e2` $\beta$-steps to `e1[x := e2]`
+- We say that `(\x -> E1) E2` $\beta$-steps to `E1[x := E2]`
 
 
 
@@ -848,14 +856,14 @@ are different from the binders in the body.
 We have to fix our definition of $\beta$-reduction:
 
 ```
-  (\x -> e1) e2   =b>   e1[x := e2]
+  (\x -> E1) E2   =b>   E1[x := E2]
 ```
 <br>
-where `e1[x := e2]` means
-~~"`e1` with all _free_ occurrences of `x` replaced with `e2`"~~
+where `E1[x := E2]` means
+~~"`E1` with all _free_ occurrences of `x` replaced with `E2`"~~
 
-  - `e1` with all _free_ occurrences of `x` replaced with `e2`,
-   **as long as** no free variables of `e2` get captured
+  - `E1` with all _free_ occurrences of `x` replaced with `E2`,
+   **as long as** no free variables of `E2` get captured
   - undefined otherwise
 
 <br>  
@@ -863,20 +871,20 @@ where `e1[x := e2]` means
 Formally:
 
 ```haskell
-x[x := e]            = e
-y[x := e]            = y            -- assuming x /= y
-(e1 e2)[x := e]      = (e1[x := e]) (e2[x := e])
-(\x -> e1)[x := e]   = \x -> e1     -- why do we leave `e1` alone?
-(\y -> e1)[x := e] 
-  | not (y in FV(e)) = \y -> e1[x := e]
+x[x := E]            = E
+y[x := E]            = y            -- assuming x /= y
+(E1 E2)[x := E]      = (E1[x := E]) (E2[x := E])
+(\x -> E1)[x := E]   = \x -> E1     -- why do we leave `E1` alone?
+(\y -> E1)[x := E] 
+  | not (y in FV(E)) = \y -> E1[x := E]
   | otherise         = undefined    -- wait, but what do we do then???
 
 ```
 
 (I) final
     
-    *Answer*: We leave `e1` above alone even though it might contain `x`, 
-    because in `\x -> e1` every occurrence of `x` is bound by `\x`
+    *Answer*: We leave `E1` above alone even though it might contain `x`, 
+    because in `\x -> E1` every occurrence of `x` is bound by `\x`
     (hence, there are *no free occurrences* of `x`)
 
 <br>
@@ -918,14 +926,14 @@ y[x := e]            = y            -- assuming x /= y
 <br>
 
 ```haskell
-  \x -> e   =a>   \y -> e[x := y]
-    where not (y in FV(e))
+  \x -> E   =a>   \y -> E[x := y]
+    where not (y in FV(E))
 ```
 <br>
 
 - We can rename a formal parameter and replace all its occurrences in the body
 
-- We say that `\x -> e` $\alpha$-steps to `\y -> e[x := y]`
+- We say that `\x -> E` $\alpha$-steps to `\y -> E[x := y]`
 
 <br>
 <br>
@@ -1029,7 +1037,7 @@ To avoid getting confused, you can always rename formals, so that different vari
 
 A **redex** is a $\lambda$-term of the form
 
-`(\x -> e1) e2`
+`(\x -> E1) E2`
 
 A $\lambda$-term is in **normal form** if it contains no redexes.
 
@@ -1083,17 +1091,17 @@ Which of the following term are **not** in _normal form_ ?
 
 ## Semantics: Evaluation
 
-A $\lambda$-term `e` **evaluates to** `e'` if
+A $\lambda$-term `E` **evaluates to** `E'` if
 
 1. There is a sequence of steps
 ```haskell
-e =?> e_1 =?> ... =?> e_N =?> e'
+E =?> E_1 =?> ... =?> E_N =?> E'
 ```
 
    where each `=?>` is either `=a>` or `=b>` 
    and `N >= 0`
 
-2. `e'` is in _normal form_
+2. `E'` is in _normal form_
 
 
 <br>
@@ -1177,9 +1185,9 @@ ID apple
 
 Evaluation:
 
-- `e1 =*> e2`: `e1` reduces to `e2` in 0 or more steps
+- `E1 =*> E2`: `E1` reduces to `E2` in 0 or more steps
     - where each step is `=a>`, `=b>`, or `=d>`
-- `e1 =~> e2`: `e1` evaluates to `e2`
+- `E1 =~> E2`: `E1` evaluates to `E2`
 
 _What is the difference?_
 
@@ -1290,7 +1298,7 @@ Well, what do we **do** with a Boolean `b`?
 
 Make a *binary choice*
 
-  - `if b then e1 else e2`
+  - `if b then E1 else E2`
 
 <br>
 <br>
@@ -1313,7 +1321,7 @@ ITE TRUE apple banana =~> apple
 ITE FALSE apple banana =~> banana
 ```
 
-(Here, `let NAME = e` means `NAME` is an _abbreviation_ for `e`)
+(Here, `let NAME = E` means `NAME` is an _abbreviation_ for `E`)
 
 
 <br>

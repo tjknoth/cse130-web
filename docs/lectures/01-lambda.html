@@ -320,11 +320,11 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="syntax-what-programs-look-like">Syntax: What Programs <em>Look Like</em></h2>
 <p><br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">e <span class="ot">::</span><span class="fu">=</span> x
-    <span class="fu">|</span> \x <span class="ot">-&gt;</span> e 
-    <span class="fu">|</span> e1 e2</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">E</span> <span class="ot">::</span><span class="fu">=</span> x
+    <span class="fu">|</span> \x <span class="ot">-&gt;</span> <span class="dt">E</span>
+    <span class="fu">|</span> <span class="dt">E1</span> <span class="dt">E2</span></code></pre></div>
 <p><br></p>
-<p>Programs are <strong>expressions</strong> <code class="sourceCode haskell">e</code> (also called <strong><span class="math inline"><em>λ</em></span>-terms</strong>) of one of three kinds:</p>
+<p>Programs are <strong>expressions</strong> <code class="sourceCode haskell"><span class="dt">E</span></code> (also called <strong><span class="math inline"><em>λ</em></span>-terms</strong>) of one of three kinds:</p>
 <ul>
 <li><strong>Variable</strong>
 <ul>
@@ -332,22 +332,30 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 </ul></li>
 <li><strong>Abstraction</strong> (aka <em>nameless</em> function definition)
 <ul>
-<li><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> e</code></li>
-<li><code class="sourceCode haskell">x</code> is the <em>formal</em> parameter, <code class="sourceCode haskell">e</code> is the <em>body</em></li>
-<li>“for any <code class="sourceCode haskell">x</code> compute <code class="sourceCode haskell">e</code>”</li>
+<li><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> <span class="dt">E</span></code></li>
+<li><code class="sourceCode haskell">x</code> is the <em>formal</em> parameter, <code class="sourceCode haskell"><span class="dt">E</span></code> is the <em>body</em></li>
+<li>“for any <code class="sourceCode haskell">x</code> compute <code class="sourceCode haskell"><span class="dt">E</span></code>”</li>
 </ul></li>
 <li><strong>Application</strong> (aka function call)
 <ul>
-<li><code class="sourceCode haskell">e1 e2</code></li>
-<li><code class="sourceCode haskell">e1</code> is the <em>function</em>, <code class="sourceCode haskell">e2</code> is the <em>argument</em></li>
-<li>in your favorite language: <code class="sourceCode haskell">e1(e2)</code></li>
+<li><code class="sourceCode haskell"><span class="dt">E1</span> <span class="dt">E2</span></code></li>
+<li><code class="sourceCode haskell"><span class="dt">E1</span></code> is the <em>function</em>, <code class="sourceCode haskell"><span class="dt">E2</span></code> is the <em>argument</em></li>
+<li>in your favorite language: <code class="sourceCode haskell"><span class="dt">E1</span>(<span class="dt">E2</span>)</code></li>
 </ul></li>
 </ul>
-<p>(Here each of <code class="sourceCode haskell">e</code>, <code class="sourceCode haskell">e1</code>, <code class="sourceCode haskell">e2</code> can itself be a variable, abstraction, or application)</p>
+<p>(Here each of <code class="sourceCode haskell"><span class="dt">E</span></code>, <code class="sourceCode haskell"><span class="dt">E1</span></code>, <code class="sourceCode haskell"><span class="dt">E2</span></code> can itself be a variable, abstraction, or application)</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="examples">Examples</h2>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x             <span class="co">-- The identity function</span>
+<h2 id="example-expressions">Example Expressions</h2>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">apple               <span class="co">-- Variable named &quot;apple&quot;</span>
+
+apple banana        <span class="co">-- Application of variable &quot;apple&quot;</span>
+                    <span class="co">-- to variable &quot;banana&quot;</span>
+
+\x <span class="ot">-&gt;</span> x             <span class="co">-- The identity function</span>
                     <span class="co">-- (&quot;for any x compute x&quot;)</span>
+                    
+(\x <span class="ot">-&gt;</span> x) apple     <span class="co">-- Application of the identity function</span>
+                    <span class="co">-- to variable &quot;apple&quot;                    </span>
 
 \x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> y)     <span class="co">-- A function that returns the identity function</span>
  
@@ -364,7 +372,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br></p>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="examples-1">Examples</h2>
+<h2 id="examples">Examples</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x             <span class="co">-- The identity function</span>
                     <span class="co">-- (&quot;for any x compute x&quot;)</span>
 
@@ -401,16 +409,16 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> (\z <span class="ot">-&gt;</span> e))</code></td>
-<td align="left"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> \y <span class="ot">-&gt;</span> \z <span class="ot">-&gt;</span> e</code></td>
+<td align="left"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> (\z <span class="ot">-&gt;</span> <span class="dt">E</span>))</code></td>
+<td align="left"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> \y <span class="ot">-&gt;</span> \z <span class="ot">-&gt;</span> <span class="dt">E</span></code></td>
 </tr>
 <tr class="even">
-<td align="left"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> \y <span class="ot">-&gt;</span> \z <span class="ot">-&gt;</span> e</code></td>
-<td align="left"><code class="sourceCode haskell">\x y z <span class="ot">-&gt;</span> e</code></td>
+<td align="left"><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> \y <span class="ot">-&gt;</span> \z <span class="ot">-&gt;</span> <span class="dt">E</span></code></td>
+<td align="left"><code class="sourceCode haskell">\x y z <span class="ot">-&gt;</span> <span class="dt">E</span></code></td>
 </tr>
 <tr class="odd">
-<td align="left"><code class="sourceCode haskell">(((e1 e2) e3) e4)</code></td>
-<td align="left"><code class="sourceCode haskell">e1 e2 e3 e4</code></td>
+<td align="left"><code class="sourceCode haskell">(((<span class="dt">E1</span> <span class="dt">E2</span>) <span class="dt">E3</span>) <span class="dt">E4</span>)</code></td>
+<td align="left"><code class="sourceCode haskell"><span class="dt">E1</span> <span class="dt">E2</span> <span class="dt">E3</span> <span class="dt">E4</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -444,18 +452,18 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="semantics-scope-of-a-variable">Semantics: Scope of a Variable</h2>
 <p>The part of a program where a <strong>variable is visible</strong></p>
-<p>In the expression <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> e</code></p>
+<p>In the expression <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> <span class="dt">E</span></code></p>
 <ul>
 <li><p><code class="sourceCode haskell">x</code> is the newly introduced variable</p></li>
-<li><p><code class="sourceCode haskell">e</code> is <strong>the scope</strong> of <code class="sourceCode haskell">x</code></p></li>
-<li><p>any occurrence of <code class="sourceCode haskell">x</code> in <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> e</code> is <strong>bound</strong> (by the <strong>binder</strong> <code class="sourceCode haskell">\x</code>)</p></li>
+<li><p><code class="sourceCode haskell"><span class="dt">E</span></code> is <strong>the scope</strong> of <code class="sourceCode haskell">x</code></p></li>
+<li><p>any occurrence of <code class="sourceCode haskell">x</code> in <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> <span class="dt">E</span></code> is <strong>bound</strong> (by the <strong>binder</strong> <code class="sourceCode haskell">\x</code>)</p></li>
 </ul>
 <p><br></p>
 <p>For example, <code class="sourceCode haskell">x</code> is bound in:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  \x <span class="ot">-&gt;</span> x
   \x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> x)</code></pre></div>
 <p><br> <br></p>
-<p>An occurrence of <code class="sourceCode haskell">x</code> in <code class="sourceCode haskell">e</code> is <strong>free</strong> if it’s <em>not bound</em> by an enclosing abstraction</p>
+<p>An occurrence of <code class="sourceCode haskell">x</code> in <code class="sourceCode haskell"><span class="dt">E</span></code> is <strong>free</strong> if it’s <em>not bound</em> by an enclosing abstraction</p>
 <p><br> For example, <code class="sourceCode haskell">x</code> is free in:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  x y                <span class="co">-- no binders at all!  </span>
   \y <span class="ot">-&gt;</span> x y          <span class="co">-- no \x binder</span>
@@ -473,15 +481,15 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="free-variables">Free Variables</h2>
-<p>An variable <code class="sourceCode haskell">x</code> is <strong>free</strong> in <code class="sourceCode haskell">e</code> if <em>there exists</em> a free occurrence of <code class="sourceCode haskell">x</code> in <code class="sourceCode haskell">e</code></p>
+<p>A variable <code class="sourceCode haskell">x</code> is <strong>free</strong> in <code class="sourceCode haskell"><span class="dt">E</span></code> if <em>there exists</em> a free occurrence of <code class="sourceCode haskell">x</code> in <code class="sourceCode haskell"><span class="dt">E</span></code></p>
 <p><br></p>
 <p>We can formally define the set of <em>all free variables</em> in a term like so:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">FV</span>(x)       <span class="fu">=</span> <span class="fu">???</span>
-<span class="dt">FV</span>(\x <span class="ot">-&gt;</span> e) <span class="fu">=</span> <span class="fu">???</span>
-<span class="dt">FV</span>(e1 e2)   <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<span class="dt">FV</span>(\x <span class="ot">-&gt;</span> <span class="dt">E</span>) <span class="fu">=</span> <span class="fu">???</span>
+<span class="dt">FV</span>(<span class="dt">E1</span> <span class="dt">E2</span>)   <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="closed-expressions">Closed Expressions</h2>
-<p>If <code class="sourceCode haskell">e</code> has <em>no free variables</em> it is said to be <strong>closed</strong></p>
+<p>If <code class="sourceCode haskell"><span class="dt">E</span></code> has <em>no free variables</em> it is said to be <strong>closed</strong></p>
 <ul>
 <li>Closed expressions are also called <strong>combinators</strong></li>
 </ul>
@@ -498,16 +506,16 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="semantics-beta-reduction">Semantics: <span class="math inline"><em>β</em></span>-Reduction</h2>
 <p><br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  (\x <span class="ot">-&gt;</span> e1) e2   <span class="fu">=</span>b<span class="fu">&gt;</span>   e1[x <span class="fu">:=</span> e2]</code></pre></div>
-<p><br> where <code class="sourceCode haskell">e1[x <span class="fu">:=</span> e2]</code> means “<code class="sourceCode haskell">e1</code> with all <em>free</em> occurrences of <code class="sourceCode haskell">x</code> replaced with <code class="sourceCode haskell">e2</code>”</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  (\x <span class="ot">-&gt;</span> <span class="dt">E1</span>) <span class="dt">E2</span>   <span class="fu">=</span>b<span class="fu">&gt;</span>   <span class="dt">E1</span>[x <span class="fu">:=</span> <span class="dt">E2</span>]</code></pre></div>
+<p><br> where <code class="sourceCode haskell"><span class="dt">E1</span>[x <span class="fu">:=</span> <span class="dt">E2</span>]</code> means “<code class="sourceCode haskell"><span class="dt">E1</span></code> with all <em>free</em> occurrences of <code class="sourceCode haskell">x</code> replaced with <code class="sourceCode haskell"><span class="dt">E2</span></code>”</p>
 <p><br> <br></p>
 <p>Computation by <em>search-and-replace</em>:</p>
 <ul>
 <li><p>If you see an <em>abstraction</em> applied to an <em>argument</em>, take the <em>body</em> of the abstraction and replace all free occurrences of the <em>formal</em> by that <em>argument</em></p></li>
-<li><p>We say that <code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> e1) e2</code> <span class="math inline"><em>β</em></span>-steps to <code class="sourceCode haskell">e1[x <span class="fu">:=</span> e2]</code></p></li>
+<li><p>We say that <code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> <span class="dt">E1</span>) <span class="dt">E2</span></code> <span class="math inline"><em>β</em></span>-steps to <code class="sourceCode haskell"><span class="dt">E1</span>[x <span class="fu">:=</span> <span class="dt">E2</span>]</code></p></li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="examples-2">Examples</h2>
+<h2 id="examples-1">Examples</h2>
 <p><br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x) apple     
 <span class="fu">=</span>b<span class="fu">&gt;</span> apple</code></pre></div>
@@ -556,20 +564,20 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="capture-avoiding-substitution">Capture-Avoiding Substitution</h2>
 <p>We have to fix our definition of <span class="math inline"><em>β</em></span>-reduction:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  (\x <span class="ot">-&gt;</span> e1) e2   <span class="fu">=</span>b<span class="fu">&gt;</span>   e1[x <span class="fu">:=</span> e2]</code></pre></div>
-<p><br> where <code class="sourceCode haskell">e1[x <span class="fu">:=</span> e2]</code> means <del>“<code class="sourceCode haskell">e1</code> with all <em>free</em> occurrences of <code class="sourceCode haskell">x</code> replaced with <code class="sourceCode haskell">e2</code>”</del></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  (\x <span class="ot">-&gt;</span> <span class="dt">E1</span>) <span class="dt">E2</span>   <span class="fu">=</span>b<span class="fu">&gt;</span>   <span class="dt">E1</span>[x <span class="fu">:=</span> <span class="dt">E2</span>]</code></pre></div>
+<p><br> where <code class="sourceCode haskell"><span class="dt">E1</span>[x <span class="fu">:=</span> <span class="dt">E2</span>]</code> means <del>“<code class="sourceCode haskell"><span class="dt">E1</span></code> with all <em>free</em> occurrences of <code class="sourceCode haskell">x</code> replaced with <code class="sourceCode haskell"><span class="dt">E2</span></code>”</del></p>
 <ul>
-<li><code class="sourceCode haskell">e1</code> with all <em>free</em> occurrences of <code class="sourceCode haskell">x</code> replaced with <code class="sourceCode haskell">e2</code>, <strong>as long as</strong> no free variables of <code class="sourceCode haskell">e2</code> get captured</li>
+<li><code class="sourceCode haskell"><span class="dt">E1</span></code> with all <em>free</em> occurrences of <code class="sourceCode haskell">x</code> replaced with <code class="sourceCode haskell"><span class="dt">E2</span></code>, <strong>as long as</strong> no free variables of <code class="sourceCode haskell"><span class="dt">E2</span></code> get captured</li>
 <li>undefined otherwise</li>
 </ul>
 <p><br></p>
 <p>Formally:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">x[x <span class="fu">:=</span> e]            <span class="fu">=</span> e
-y[x <span class="fu">:=</span> e]            <span class="fu">=</span> y            <span class="co">-- assuming x /= y</span>
-(e1 e2)[x <span class="fu">:=</span> e]      <span class="fu">=</span> (e1[x <span class="fu">:=</span> e]) (e2[x <span class="fu">:=</span> e])
-(\x <span class="ot">-&gt;</span> e1)[x <span class="fu">:=</span> e]   <span class="fu">=</span> \x <span class="ot">-&gt;</span> e1     <span class="co">-- why do we leave `e1` alone?</span>
-(\y <span class="ot">-&gt;</span> e1)[x <span class="fu">:=</span> e] 
-  <span class="fu">|</span> not (y <span class="kw">in</span> <span class="dt">FV</span>(e)) <span class="fu">=</span> \y <span class="ot">-&gt;</span> e1[x <span class="fu">:=</span> e]
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">x[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class="fu">=</span> <span class="dt">E</span>
+y[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class="fu">=</span> y            <span class="co">-- assuming x /= y</span>
+(<span class="dt">E1</span> <span class="dt">E2</span>)[x <span class="fu">:=</span> <span class="dt">E</span>]      <span class="fu">=</span> (<span class="dt">E1</span>[x <span class="fu">:=</span> <span class="dt">E</span>]) (<span class="dt">E2</span>[x <span class="fu">:=</span> <span class="dt">E</span>])
+(\x <span class="ot">-&gt;</span> <span class="dt">E1</span>)[x <span class="fu">:=</span> <span class="dt">E</span>]   <span class="fu">=</span> \x <span class="ot">-&gt;</span> <span class="dt">E1</span>     <span class="co">-- why do we leave `E1` alone?</span>
+(\y <span class="ot">-&gt;</span> <span class="dt">E1</span>)[x <span class="fu">:=</span> <span class="dt">E</span>] 
+  <span class="fu">|</span> not (y <span class="kw">in</span> <span class="dt">FV</span>(<span class="dt">E</span>)) <span class="fu">=</span> \y <span class="ot">-&gt;</span> <span class="dt">E1</span>[x <span class="fu">:=</span> <span class="dt">E</span>]
   <span class="fu">|</span> otherise         <span class="fu">=</span> undefined    <span class="co">-- wait, but what do we do then???</span></code></pre></div>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
@@ -582,12 +590,12 @@ y[x <span class="fu">:=</span> e]            <span class="fu">=</span> y        
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="semantics-alpha-renaming">Semantics: <span class="math inline"><em>α</em></span>-Renaming</h2>
 <p><br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  \x <span class="ot">-&gt;</span> e   <span class="fu">=</span>a<span class="fu">&gt;</span>   \y <span class="ot">-&gt;</span> e[x <span class="fu">:=</span> y]
-    <span class="kw">where</span> not (y <span class="kw">in</span> <span class="dt">FV</span>(e))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  \x <span class="ot">-&gt;</span> <span class="dt">E</span>   <span class="fu">=</span>a<span class="fu">&gt;</span>   \y <span class="ot">-&gt;</span> <span class="dt">E</span>[x <span class="fu">:=</span> y]
+    <span class="kw">where</span> not (y <span class="kw">in</span> <span class="dt">FV</span>(<span class="dt">E</span>))</code></pre></div>
 <p><br></p>
 <ul>
 <li><p>We can rename a formal parameter and replace all its occurrences in the body</p></li>
-<li><p>We say that <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> e</code> <span class="math inline"><em>α</em></span>-steps to <code class="sourceCode haskell">\y <span class="ot">-&gt;</span> e[x <span class="fu">:=</span> y]</code></p></li>
+<li><p>We say that <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> <span class="dt">E</span></code> <span class="math inline"><em>α</em></span>-steps to <code class="sourceCode haskell">\y <span class="ot">-&gt;</span> <span class="dt">E</span>[x <span class="fu">:=</span> y]</code></p></li>
 </ul>
 <p><br> <br></p>
 <p>Example:</p>
@@ -613,7 +621,7 @@ y[x <span class="fu">:=</span> e]            <span class="fu">=</span> y        
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="normal-forms">Normal Forms</h2>
 <p>A <strong>redex</strong> is a <span class="math inline"><em>λ</em></span>-term of the form</p>
-<p><code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> e1) e2</code></p>
+<p><code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> <span class="dt">E1</span>) <span class="dt">E2</span></code></p>
 <p>A <span class="math inline"><em>λ</em></span>-term is in <strong>normal form</strong> if it contains no redexes.</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-4">QUIZ</h2>
@@ -626,14 +634,14 @@ y[x <span class="fu">:=</span> e]            <span class="fu">=</span> y        
 
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="semantics-evaluation">Semantics: Evaluation</h2>
-<p>A <span class="math inline"><em>λ</em></span>-term <code class="sourceCode haskell">e</code> <strong>evaluates to</strong> <code class="sourceCode haskell">e'</code> if</p>
+<p>A <span class="math inline"><em>λ</em></span>-term <code class="sourceCode haskell"><span class="dt">E</span></code> <strong>evaluates to</strong> <code class="sourceCode haskell"><span class="dt">E'</span></code> if</p>
 <ol style="list-style-type: decimal">
 <li><p>There is a sequence of steps</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">e <span class="fu">=?&gt;</span> e_1 <span class="fu">=?&gt;</span> <span class="fu">...</span> <span class="fu">=?&gt;</span> e_N <span class="fu">=?&gt;</span> e'</code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">E</span> <span class="fu">=?&gt;</span> <span class="dt">E_1</span> <span class="fu">=?&gt;</span> <span class="fu">...</span> <span class="fu">=?&gt;</span> <span class="dt">E_N</span> <span class="fu">=?&gt;</span> <span class="dt">E'</span></code></pre></div></li>
 </ol>
 <p>where each <code class="sourceCode haskell"><span class="fu">=?&gt;</span></code> is either <code class="sourceCode haskell"><span class="fu">=</span>a<span class="fu">&gt;</span></code> or <code class="sourceCode haskell"><span class="fu">=</span>b<span class="fu">&gt;</span></code> and <code class="sourceCode haskell"><span class="dt">N</span> <span class="fu">&gt;=</span> <span class="dv">0</span></code></p>
 <ol start="2" style="list-style-type: decimal">
-<li><code class="sourceCode haskell">e'</code> is in <em>normal form</em></li>
+<li><code class="sourceCode haskell"><span class="dt">E'</span></code> is in <em>normal form</em></li>
 </ol>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="examples-of-evaluation">Examples of Evaluation</h2>
@@ -657,11 +665,11 @@ y[x <span class="fu">:=</span> e]            <span class="fu">=</span> y        
 <p><br> <br></p>
 <p>Evaluation:</p>
 <ul>
-<li><code class="sourceCode haskell">e1 <span class="fu">=*&gt;</span> e2</code>: <code class="sourceCode haskell">e1</code> reduces to <code class="sourceCode haskell">e2</code> in 0 or more steps
+<li><code class="sourceCode haskell"><span class="dt">E1</span> <span class="fu">=*&gt;</span> <span class="dt">E2</span></code>: <code class="sourceCode haskell"><span class="dt">E1</span></code> reduces to <code class="sourceCode haskell"><span class="dt">E2</span></code> in 0 or more steps
 <ul>
 <li>where each step is <code class="sourceCode haskell"><span class="fu">=</span>a<span class="fu">&gt;</span></code>, <code class="sourceCode haskell"><span class="fu">=</span>b<span class="fu">&gt;</span></code>, or <code class="sourceCode haskell"><span class="fu">=</span>d<span class="fu">&gt;</span></code></li>
 </ul></li>
-<li><code class="sourceCode haskell">e1 <span class="fu">=~&gt;</span> e2</code>: <code class="sourceCode haskell">e1</code> evaluates to <code class="sourceCode haskell">e2</code></li>
+<li><code class="sourceCode haskell"><span class="dt">E1</span> <span class="fu">=~&gt;</span> <span class="dt">E2</span></code>: <code class="sourceCode haskell"><span class="dt">E1</span></code> evaluates to <code class="sourceCode haskell"><span class="dt">E2</span></code></li>
 </ul>
 <p><em>What is the difference?</em></p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
@@ -697,7 +705,7 @@ y[x <span class="fu">:=</span> e]            <span class="fu">=</span> y        
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <p>Make a <em>binary choice</em></p>
 <ul>
-<li><code class="sourceCode haskell"><span class="kw">if</span> b <span class="kw">then</span> e1 <span class="kw">else</span> e2</code></li>
+<li><code class="sourceCode haskell"><span class="kw">if</span> b <span class="kw">then</span> <span class="dt">E1</span> <span class="kw">else</span> <span class="dt">E2</span></code></li>
 </ul>
 <p><br> <br> <br></p>
 <h2 id="booleans-api">Booleans: API</h2>
@@ -708,7 +716,7 @@ y[x <span class="fu">:=</span> e]            <span class="fu">=</span> y        
 <p>such that</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">ITE</span> <span class="dt">TRUE</span> apple banana <span class="fu">=~&gt;</span> apple
 <span class="dt">ITE</span> <span class="dt">FALSE</span> apple banana <span class="fu">=~&gt;</span> banana</code></pre></div>
-<p>(Here, <code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">NAME</span> <span class="fu">=</span> e</code> means <code class="sourceCode haskell"><span class="dt">NAME</span></code> is an <em>abbreviation</em> for <code class="sourceCode haskell">e</code>)</p>
+<p>(Here, <code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">NAME</span> <span class="fu">=</span> <span class="dt">E</span></code> means <code class="sourceCode haskell"><span class="dt">NAME</span></code> is an <em>abbreviation</em> for <code class="sourceCode haskell"><span class="dt">E</span></code>)</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="booleans-implementation">Booleans: Implementation</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">TRUE</span>  <span class="fu">=</span> \x y <span class="ot">-&gt;</span> x        <span class="co">-- Returns its first argument</span>

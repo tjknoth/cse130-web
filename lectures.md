@@ -8,7 +8,7 @@ Lecture schedule is subject to change!
 | Date       | Topic                           | Notes                     |  Code         |
 |:----------:|:--------------------------------|:-------------------------:|:-------------:|
 | 9/27       | Hello, World!                   | [html][lec0]              |               |            
-| 9/30       | The Lambda Calculus             |                           |               |
+| 9/30       | The Lambda Calculus             | [html][lec1]              |               |
 | 10/2       | contd.                          |                           |               |
 | 10/4       | contd.                          |                           |               |
 | 10/7       | contd.                          |                           |               |
