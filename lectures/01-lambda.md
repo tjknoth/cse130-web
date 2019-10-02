@@ -432,9 +432,11 @@ Think of middle-school algebra:
 ```haskell
 -- Simplify expression:
 
-  (x + 2)*(3*x - 1)
- =
-  ???
+  (x + 2)*(3x - 1)
+ => -- RULE: mult. polynomials
+  3x^2 - x + 6x - 2
+ => -- RULE: add monomials
+  3x^2 + 5x - 2 -- no more rules to apply  
 ```
 
 <br>
