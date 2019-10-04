@@ -197,7 +197,7 @@ More precisely, all you can do is:
 ```haskell
 E ::= x
     | \x -> E
-    | E1 E2
+    | egg ham
 
 ```
 
@@ -213,11 +213,11 @@ of one of three kinds:
     - `x` is the _formal_ parameter, `E` is the _body_ 
     - "for any `x` compute `E`"
 - **Application** (aka function call)
-    - `E1 E2`
-    - `E1` is the _function_, `E2` is the _argument_
-    - in your favorite language: `E1(E2)`
+    - `egg ham`
+    - `egg` is the _function_, `ham` is the _argument_
+    - in your favorite language: `egg(ham)`
 
-(Here each of `E`, `E1`, `E2` can itself be a variable, abstraction, or application)
+(Here each of `E`, `egg`, `ham` can itself be a variable, abstraction, or application)
 
 <br>
 <br>
@@ -394,7 +394,7 @@ instead of                |  we write
 :-------------------------|:-------------------------
 `\x -> (\y -> (\z -> E))` | `\x -> \y -> \z -> E`
 `\x -> \y -> \z -> E`     | `\x y z -> E`
-`(((E1 E2) E3) E4)`       |  `E1 E2 E3 E4`
+`(((egg ham) E3) E4)`       |  `egg ham E3 E4`
 
 <br>
 <br>
@@ -573,7 +573,7 @@ We can formally define the set of _all free variables_ in a term like so:
     ```haskell
     FV(x)       = ???
     FV(\x -> E) = ???
-    FV(E1 E2)   = ???
+    FV(egg ham)   = ???
     ```
 
 (I) final
@@ -581,7 +581,7 @@ We can formally define the set of _all free variables_ in a term like so:
     ```haskell
     FV(x)       = {x}
     FV(\x -> E) = FV(E) \ {x}
-    FV(E1 E2)   = FV(E1) + FV(E2)
+    FV(egg ham)   = FV(egg) + FV(ham)
     ```
 
 <br>
@@ -651,11 +651,11 @@ What is the shortest closed expression?
 <br>
 
 ```
-  (\x -> E1) E2   =b>   E1[x := E2]
+  (\x -> egg) ham   =b>   egg[x := ham]
 ```
 <br>
-where `E1[x := E2]` means
-"`E1` with all _free_ occurrences of `x` replaced with `E2`"
+where `egg[x := ham]` means
+"`egg` with all _free_ occurrences of `x` replaced with `ham`"
 
 <br>
 <br>
@@ -666,7 +666,7 @@ Computation by _search-and-replace_:
 take the _body_ of the abstraction and
 replace all free occurrences of the _formal_ by that _argument_
 
-- We say that `(\x -> E1) E2` $\beta$-steps to `E1[x := E2]`
+- We say that `(\x -> egg) ham` $\beta$-steps to `egg[x := ham]`
 
 
 
@@ -858,14 +858,14 @@ are different from the binders in the body.
 We have to fix our definition of $\beta$-reduction:
 
 ```
-  (\x -> E1) E2   =b>   E1[x := E2]
+  (\x -> egg) ham   =b>   egg[x := ham]
 ```
 <br>
-where `E1[x := E2]` means
-~~"`E1` with all _free_ occurrences of `x` replaced with `E2`"~~
+where `egg[x := ham]` means
+~~"`egg` with all _free_ occurrences of `x` replaced with `ham`"~~
 
-  - `E1` with all _free_ occurrences of `x` replaced with `E2`,
-   **as long as** no free variables of `E2` get captured
+  - `egg` with all _free_ occurrences of `x` replaced with `ham`,
+   **as long as** no free variables of `ham` get captured
   - undefined otherwise
 
 <br>  
@@ -875,18 +875,18 @@ Formally:
 ```haskell
 x[x := E]            = E
 y[x := E]            = y            -- assuming x /= y
-(E1 E2)[x := E]      = (E1[x := E]) (E2[x := E])
-(\x -> E1)[x := E]   = \x -> E1     -- why do we leave `E1` alone?
-(\y -> E1)[x := E] 
-  | not (y in FV(E)) = \y -> E1[x := E]
+(egg ham)[x := E]      = (egg[x := E]) (ham[x := E])
+(\x -> egg)[x := E]   = \x -> egg     -- why do we leave `egg` alone?
+(\y -> egg)[x := E] 
+  | not (y in FV(E)) = \y -> egg[x := E]
   | otherise         = undefined    -- wait, but what do we do then???
 
 ```
 
 (I) final
     
-    *Answer*: We leave `E1` above alone even though it might contain `x`, 
-    because in `\x -> E1` every occurrence of `x` is bound by `\x`
+    *Answer*: We leave `egg` above alone even though it might contain `x`, 
+    because in `\x -> egg` every occurrence of `x` is bound by `\x`
     (hence, there are *no free occurrences* of `x`)
 
 <br>
@@ -1039,7 +1039,7 @@ To avoid getting confused, you can always rename formals, so that different vari
 
 A **redex** is a $\lambda$-term of the form
 
-`(\x -> E1) E2`
+`(\x -> egg) ham`
 
 A $\lambda$-term is in **normal form** if it contains no redexes.
 
@@ -1218,9 +1218,9 @@ ID apple
 
 Evaluation:
 
-- `E1 =*> E2`: `E1` reduces to `E2` in 0 or more steps
+- `egg =*> ham`: `egg` reduces to `ham` in 0 or more steps
     - where each step is `=a>`, `=b>`, or `=d>`
-- `E1 =~> E2`: `E1` evaluates to `E2`
+- `egg =~> ham`: `egg` evaluates to `ham`
 
 _What is the difference?_
 
@@ -1331,7 +1331,7 @@ Well, what do we **do** with a Boolean `b`?
 
 Make a *binary choice*
 
-  - `if b then E1 else E2`
+  - `if b then egg else ham`
 
 <br>
 <br>
@@ -1399,14 +1399,14 @@ let ITE   = \b x y -> b x y  -- Applies condition to branches
 
 ```haskell
 eval ite_true:
-  ITE TRUE e1 e2
-  =d> (\b x y -> b    x  y) TRUE e1 e2    -- expand def ITE  
-  =b>   (\x y -> TRUE x  y)      e1 e2    -- beta-step
-  =b>     (\y -> TRUE e1 y)         e2    -- beta-step
-  =b>            TRUE e1 e2               -- expand def TRUE
-  =d>     (\x y -> x) e1 e2               -- beta-step
-  =b>       (\y -> e1)   e2               -- beta-step
-  =b> e1
+  ITE TRUE egg ham
+  =d> (\b x y -> b    x   y)  TRUE egg ham    -- expand def ITE  
+  =b>   (\x y -> TRUE x   y)       egg ham    -- beta-step
+  =b>     (\y -> TRUE egg y)           ham    -- beta-step
+  =b>            TRUE egg ham                 -- expand def TRUE
+  =d>     (\x y -> x) egg ham                 -- beta-step
+  =b>     (\y -> egg)     ham                 -- beta-step
+  =b> egg
 ```
 
 
@@ -1429,25 +1429,25 @@ Can you [fill in the blanks to make it happen?][elsa-ite]
 
     ```haskell
     eval ite_false:
-      ITE FALSE e1 e2
+      ITE FALSE egg ham
 
       -- fill the steps in!
 
-      =b> e2  
+      =b> ham  
     ```
 
 (I) final
 
     ```haskell
     eval ite_false:
-      ITE FALSE e1 e2
-      =d> (\b x y -> b     x  y) FALSE e1 e2   -- expand def ITE  
-      =b>   (\x y -> FALSE x  y)       e1 e2   -- beta-step
-      =b>     (\y -> FALSE e1 y)          e2   -- beta-step
-      =b>            FALSE e1 e2               -- expand def FALSE
-      =d>      (\x y -> y) e1 e2               -- beta-step
-      =b>        (\y -> y)    e2               -- beta-step
-      =b> e2
+      ITE FALSE egg ham
+      =d> (\b x y -> b     x   y) FALSE egg ham   -- expand def ITE  
+      =b>   (\x y -> FALSE x   y)       egg ham   -- beta-step
+      =b>     (\y -> FALSE egg y)           ham   -- beta-step
+      =b>            FALSE egg ham                -- expand def FALSE
+      =d>      (\x y -> y) egg ham                -- beta-step
+      =b>        (\y -> y)     ham                -- beta-step
+      =b> ham
     ```
 
 
