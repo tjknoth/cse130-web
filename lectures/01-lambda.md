@@ -197,7 +197,7 @@ More precisely, all you can do is:
 ```haskell
 E ::= x
     | \x -> E
-    | egg ham
+    | E1 E2
 
 ```
 
@@ -213,11 +213,11 @@ of one of three kinds:
     - `x` is the _formal_ parameter, `E` is the _body_ 
     - "for any `x` compute `E`"
 - **Application** (aka function call)
-    - `egg ham`
-    - `egg` is the _function_, `ham` is the _argument_
-    - in your favorite language: `egg(ham)`
+    - `E1 E2`
+    - `E1` is the _function_, `E2` is the _argument_
+    - in your favorite language: `E1(E2)`
 
-(Here each of `E`, `egg`, `ham` can itself be a variable, abstraction, or application)
+(Here each of `E`, `E1`, `E2` can itself be a variable, abstraction, or application)
 
 <br>
 <br>
@@ -394,7 +394,7 @@ instead of                |  we write
 :-------------------------|:-------------------------
 `\x -> (\y -> (\z -> E))` | `\x -> \y -> \z -> E`
 `\x -> \y -> \z -> E`     | `\x y z -> E`
-`(((egg ham) E3) E4)`       |  `egg ham E3 E4`
+`(((E1 E2) E3) E4)`       |  `E1 E2 E3 E4`
 
 <br>
 <br>
@@ -573,7 +573,7 @@ We can formally define the set of _all free variables_ in a term like so:
     ```haskell
     FV(x)       = ???
     FV(\x -> E) = ???
-    FV(egg ham)   = ???
+    FV(E1 E2)   = ???
     ```
 
 (I) final
@@ -581,7 +581,7 @@ We can formally define the set of _all free variables_ in a term like so:
     ```haskell
     FV(x)       = {x}
     FV(\x -> E) = FV(E) \ {x}
-    FV(egg ham)   = FV(egg) + FV(ham)
+    FV(E1 E2)   = FV(E1) + FV(E2)
     ```
 
 <br>
@@ -651,11 +651,11 @@ What is the shortest closed expression?
 <br>
 
 ```
-  (\x -> egg) ham   =b>   egg[x := ham]
+  (\x -> E1) E2   =b>   E1[x := E2]
 ```
 <br>
-where `egg[x := ham]` means
-"`egg` with all _free_ occurrences of `x` replaced with `ham`"
+where `E1[x := E2]` means
+"`E1` with all _free_ occurrences of `x` replaced with `E2`"
 
 <br>
 <br>
@@ -666,7 +666,7 @@ Computation by _search-and-replace_:
 take the _body_ of the abstraction and
 replace all free occurrences of the _formal_ by that _argument_
 
-- We say that `(\x -> egg) ham` $\beta$-steps to `egg[x := ham]`
+- We say that `(\x -> E1) E2` $\beta$-steps to `E1[x := E2]`
 
 
 
@@ -858,14 +858,14 @@ are different from the binders in the body.
 We have to fix our definition of $\beta$-reduction:
 
 ```
-  (\x -> egg) ham   =b>   egg[x := ham]
+  (\x -> E1) E2   =b>   E1[x := E2]
 ```
 <br>
-where `egg[x := ham]` means
-~~"`egg` with all _free_ occurrences of `x` replaced with `ham`"~~
+where `E1[x := E2]` means
+~~"`E1` with all _free_ occurrences of `x` replaced with `E2`"~~
 
-  - `egg` with all _free_ occurrences of `x` replaced with `ham`,
-   **as long as** no free variables of `ham` get captured
+  - `E1` with all _free_ occurrences of `x` replaced with `E2`,
+   **as long as** no free variables of `E2` get captured
   - undefined otherwise
 
 <br>  
@@ -875,18 +875,18 @@ Formally:
 ```haskell
 x[x := E]            = E
 y[x := E]            = y            -- assuming x /= y
-(egg ham)[x := E]      = (egg[x := E]) (ham[x := E])
-(\x -> egg)[x := E]   = \x -> egg     -- why do we leave `egg` alone?
-(\y -> egg)[x := E] 
-  | not (y in FV(E)) = \y -> egg[x := E]
+(E1 E2)[x := E]      = (E1[x := E]) (E2[x := E])
+(\x -> E1)[x := E]   = \x -> E1     -- why do we leave `E1` alone?
+(\y -> E1)[x := E] 
+  | not (y in FV(E)) = \y -> E1[x := E]
   | otherise         = undefined    -- wait, but what do we do then???
 
 ```
 
 (I) final
     
-    *Answer*: We leave `egg` above alone even though it might contain `x`, 
-    because in `\x -> egg` every occurrence of `x` is bound by `\x`
+    *Answer*: We leave `E1` above alone even though it might contain `x`, 
+    because in `\x -> E1` every occurrence of `x` is bound by `\x`
     (hence, there are *no free occurrences* of `x`)
 
 <br>
@@ -1039,7 +1039,7 @@ To avoid getting confused, you can always rename formals, so that different vari
 
 A **redex** is a $\lambda$-term of the form
 
-`(\x -> egg) ham`
+`(\x -> E1) E2`
 
 A $\lambda$-term is in **normal form** if it contains no redexes.
 
@@ -1218,9 +1218,9 @@ ID apple
 
 Evaluation:
 
-- `egg =*> ham`: `egg` reduces to `ham` in 0 or more steps
+- `E1 =*> E2`: `E1` reduces to `E2` in 0 or more steps
     - where each step is `=a>`, `=b>`, or `=d>`
-- `egg =~> ham`: `egg` evaluates to `ham`
+- `E1 =~> E2`: `E1` evaluates to `E2`
 
 _What is the difference?_
 
@@ -1331,7 +1331,7 @@ Well, what do we **do** with a Boolean `b`?
 
 Make a *binary choice*
 
-  - `if b then egg else ham`
+  - `if b then E1 else E2`
 
 <br>
 <br>
