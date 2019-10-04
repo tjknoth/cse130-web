@@ -635,6 +635,16 @@ y[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class
 <p><strong>E.</strong> C and D</p>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-5">QUIZ</h2>
+<p>How many redexes does this expression have?</p>
+<p><code class="sourceCode haskell">(\f <span class="ot">-&gt;</span> (\x <span class="ot">-&gt;</span> x) f) (\x <span class="ot">-&gt;</span> x)</code></p>
+<p><strong>A.</strong> 0</p>
+<p><strong>B.</strong> 1</p>
+<p><strong>C.</strong> 2</p>
+<p><strong>D.</strong> 3</p>
+<p><strong>E.</strong> 4</p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="semantics-evaluation">Semantics: Evaluation</h2>
 <p>A <span class="math inline"><em>λ</em></span>-term <code class="sourceCode haskell"><span class="dt">E</span></code> <strong>evaluates to</strong> <code class="sourceCode haskell"><span class="dt">E'</span></code> if</p>
 <ol style="list-style-type: decimal">
@@ -880,7 +890,7 @@ y[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class
   <span class="fu">=*&gt;</span> \f x <span class="ot">-&gt;</span> f x
   <span class="fu">=</span>d<span class="fu">&gt;</span> <span class="dt">ONE</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-5">QUIZ</h2>
+<h2 id="quiz-6">QUIZ</h2>
 <p>How shall we implement <code class="sourceCode haskell"><span class="dt">ADD</span></code>?</p>
 <p><strong>A.</strong> <code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">ADD</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> n <span class="dt">INC</span> m</code></p>
 <p><strong>B.</strong> <code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">ADD</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> <span class="dt">INC</span> n m</code></p>
@@ -898,7 +908,7 @@ y[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class
   <span class="dt">ADD</span> <span class="dt">ONE</span> <span class="dt">ZERO</span>
   <span class="fu">=~&gt;</span> <span class="dt">ONE</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-6">QUIZ</h2>
+<h2 id="quiz-7">QUIZ</h2>
 <p>How shall we implement <code class="sourceCode haskell"><span class="dt">MULT</span></code>?</p>
 <p><strong>A.</strong> <code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">MULT</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> n <span class="dt">ADD</span> m</code></p>
 <p><strong>B.</strong> <code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">MULT</span> <span class="fu">=</span> \n m <span class="ot">-&gt;</span> n (<span class="dt">ADD</span> m) <span class="dt">ZERO</span></code></p>
@@ -930,7 +940,7 @@ y[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class
 <p>I want to write a function that sums up natural numbers up to <code class="sourceCode haskell">n</code>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\n <span class="ot">-&gt;</span> <span class="fu">...</span>          <span class="co">-- 1 + 2 + ... + n</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-7">QUIZ</h2>
+<h2 id="quiz-8">QUIZ</h2>
 <p>Is this a correct implementation of <code class="sourceCode haskell"><span class="dt">SUM</span></code>?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">SUM</span> <span class="fu">=</span> \n <span class="ot">-&gt;</span> <span class="dt">ITE</span> (<span class="dt">ISZ</span> n) 
             <span class="dt">ZERO</span> 

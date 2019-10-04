@@ -1089,7 +1089,38 @@ Which of the following term are **not** in _normal form_ ?
 <br>
 <br>
 
+## QUIZ
 
+How many redexes does this expression have?
+
+`(\f -> (\x -> x) f) (\x -> x)`
+
+**A.** 0
+
+**B.** 1
+
+**C.** 2
+
+**D.** 3
+
+**E.** 4
+
+(I) final
+     
+    *Answer:* C
+    
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>    
 
 ## Semantics: Evaluation
 
