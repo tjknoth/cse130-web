@@ -1062,19 +1062,19 @@ A $\lambda$-term is in **normal form** if it contains no redexes.
 
 Which of the following term are **not** in _normal form_ ?
 
-**A.** `x`
+**A.** `x y`
 
-**B.** `x y`
+**B.** `(\x -> x) y`
 
-**C.** `(\x -> x) y`
+**C.** `x (\y -> y)`
 
-**D.** `x (\y -> y)`
+**D.** `z ((\x -> x) y)`
 
-**E.** C and D
+**E.** B and D
 
 (I) final
      
-    *Answer:* C
+    *Answer:* E
 
 <br>
 <br>
