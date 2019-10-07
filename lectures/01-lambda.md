@@ -1422,7 +1422,7 @@ eval ite_true:
 Now you try it!
 
 
-Can you [fill in the blanks to make it happen?][elsa-ite]
+<!-- Can you [fill in the blanks to make it happen?][elsa-ite]-->
 
 
 (I) lecture
@@ -1589,19 +1589,19 @@ What do we *do* with a pair?
 We need to define three functions
 
 ```haskell
-let PAIR = \x y -> ???    -- Make a pair with elements x and y 
-                          -- { fst : x, snd : y }
-let FST  = \p -> ???      -- Return first element 
-                          -- p.fst
-let SND  = \p -> ???      -- Return second element
-                          -- p.snd
+let MKPAIR = \x y -> ???    -- Make a pair with elements x and y 
+                            -- { fst : x, snd : y }
+let FST    = \p -> ???      -- Return first element 
+                            -- p.fst
+let SND    = \p -> ???      -- Return second element
+                            -- p.snd
 ```
 
 such that
 
 ```haskell
-FST (PAIR apple banana) =~> apple
-SND (PAIR apple banana) =~> banana
+FST (MKPAIR apple banana) =~> apple
+SND (MKPAIR apple banana) =~> banana
 ```
 
 
@@ -1625,9 +1625,9 @@ A pair of `x` and `y` is just something that lets you pick between `x` and `y`!
 (I.e. a function that takes a boolean and returns either `x` or `y`)  
 
 ```haskell
-let PAIR = \x y -> (\b -> ITE b x y)
-let FST  = \p -> p TRUE   -- call w/ TRUE, get first value
-let SND  = \p -> p FALSE  -- call w/ FALSE, get second value
+let MKPAIR = \x y -> (\b -> ITE b x y)
+let FST    = \p -> p TRUE   -- call w/ TRUE, get first value
+let SND    = \p -> p FALSE  -- call w/ FALSE, get second value
 ```
 
 
@@ -1652,7 +1652,7 @@ How can we implement a record that contains **three** values?
 (I) lecture
 
     ```haskell
-    let TRIPLE = \x y z -> ???
+    let MKTRIPLE = \x y z -> ???
     let FST3  = \t -> ???
     let SND3  = \t -> ???
     let TRD3  = \t -> ???
@@ -1661,7 +1661,7 @@ How can we implement a record that contains **three** values?
 (I) final
 
     ```haskell
-    let TRIPLE = \x y z -> PAIR x (PAIR y z)
+    let MKTRIPLE = \x y z -> MKPAIR x (MKPAIR y z)
     let FST3  = \t -> FST t
     let SND3  = \t -> FST (SND t)
     let TRD3  = \t -> SND (SND t)
