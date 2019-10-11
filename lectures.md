@@ -13,7 +13,7 @@ Lecture schedule is subject to change!
 | 10/4       | contd.                          |                           |               |
 | 10/7       | contd.                          |                           |               |
 | 10/9       | contd.                          |                           |               |
-| 10/11      | A crash course in Haskell       |                           |               |
+| 10/11      | A crash course in Haskell       | [html][lec2]              |               |
 | 10/14      | contd.                          |                           |               |
 | 10/16      | contd.                          |                           |               |
 | 10/18      | Datatypes and Recursion         |                           |               |
