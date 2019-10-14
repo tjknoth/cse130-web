@@ -815,7 +815,33 @@ A pattern is
 
 **Pattern matching** attempts to match *values* against *patterns* and, 
 if desired, *bind* variables to successful matches.
-  
+
+<br>
+<br>
+<br>
+<br>
+<br>  
+
+
+## QUIZ
+
+What happens when we match the pattern `(x:xs)` against the value `[1]`?
+
+**A.** Does not match
+
+**B.** `x` is bound to `1`, and `xs` is unbound
+
+**C.** `xs` is bound to `[1]`, and `x` is unbound
+
+**D.** `x` is bound to `1`, `xs` is bound to `[]`
+
+**E.** `x` is bound to `1`, `xs` is bound to `[1]`
+
+<br>
+
+(I) final
+
+    _Answer:_ **D**
   
 <br>
 <br>

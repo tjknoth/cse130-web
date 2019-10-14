@@ -573,8 +573,18 @@ length (_<span class="fu">:</span>xs) <span class="fu">=</span> <span class="dv"
 </ul>
 <p><br> <br></p>
 <p><strong>Pattern matching</strong> attempts to match <em>values</em> against <em>patterns</em> and, if desired, <em>bind</em> variables to successful matches.</p>
-<p><br> <br> <br> <br> <br> <br></p>
+<p><br> <br> <br> <br> <br></p>
 <h2 id="quiz-2">QUIZ</h2>
+<p>What happens when we match the pattern <code class="sourceCode haskell">(x<span class="fu">:</span>xs)</code> against the value <code class="sourceCode haskell">[<span class="dv">1</span>]</code>?</p>
+<p><strong>A.</strong> Does not match</p>
+<p><strong>B.</strong> <code class="sourceCode haskell">x</code> is bound to <code class="sourceCode haskell"><span class="dv">1</span></code>, and <code class="sourceCode haskell">xs</code> is unbound</p>
+<p><strong>C.</strong> <code class="sourceCode haskell">xs</code> is bound to <code class="sourceCode haskell">[<span class="dv">1</span>]</code>, and <code class="sourceCode haskell">x</code> is unbound</p>
+<p><strong>D.</strong> <code class="sourceCode haskell">x</code> is bound to <code class="sourceCode haskell"><span class="dv">1</span></code>, <code class="sourceCode haskell">xs</code> is bound to <code class="sourceCode haskell">[]</code></p>
+<p><strong>E.</strong> <code class="sourceCode haskell">x</code> is bound to <code class="sourceCode haskell"><span class="dv">1</span></code>, <code class="sourceCode haskell">xs</code> is bound to <code class="sourceCode haskell">[<span class="dv">1</span>]</code></p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-3">QUIZ</h2>
 <p>Which of the following is <strong>not</strong> a pattern?</p>
 <p><strong>A.</strong> <code class="sourceCode haskell">(<span class="dv">1</span><span class="fu">:</span>xs)</code></p>
 <p><strong>B.</strong> <code class="sourceCode haskell">(_<span class="fu">:</span>_<span class="fu">:</span>_)</code></p>
