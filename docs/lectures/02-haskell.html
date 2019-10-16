@@ -548,7 +548,7 @@ myList''' <span class="fu">=</span> []</code></pre></div>
 <h2 id="functions-on-lists-range">Functions on lists: range</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | List of integers from n upto m</span>
 <span class="ot">upto ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> [<span class="dt">Int</span>]
-upto n m <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+upto l u <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
 <p><br> <br> <br> <br> <br></p>
 <p>There’s also syntactic sugar for this!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dv">1</span><span class="fu">..</span><span class="dv">7</span>]    <span class="co">-- [1,2,3,4,5,6,7]</span>
@@ -711,7 +711,7 @@ sort (x<span class="fu">:</span>xs) <span class="fu">=</span> sort ls <span clas
   calls++;                         <span class="co">// side effect!</span>
   System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;calling f&quot;</span>); <span class="co">// side effect!</span>
   <span class="fu">launchMissile</span>();                 <span class="co">// side effect!</span>
-  <span class="kw">return</span> x * <span class="dv">2</span>;      
+  <span class="kw">return</span> calls;
 }</code></pre></div></li>
 <li><p>in Haskell, a function of type <code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code> computes a <em>single integer output</em> from a <em>single integer input</em> and does <strong>nothing else</strong></p></li>
 </ul>

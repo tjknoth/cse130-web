@@ -733,7 +733,7 @@ myList = [1,2,3,4]
     ```haskell
     -- | List of integers from n upto m
     upto :: Int -> Int -> [Int]
-    upto n m = ???
+    upto l u = ???
     ```
     
 (I) final    
@@ -741,9 +741,9 @@ myList = [1,2,3,4]
     ```haskell
     -- | List of integers from n upto m
     upto :: Int -> Int -> [Int]
-    upto n m
-      | n > m     = []
-      | otherwise = n : (upto (n + 1) m)
+    upto l hi
+      | l > u     = []
+      | otherwise = l : (upto (l + 1) u)
     ```
 
 <br>
@@ -1104,7 +1104,7 @@ or is *ill-typed* and rejected at compile time
       calls++;                         // side effect!
       System.out.println("calling f"); // side effect!
       launchMissile();                 // side effect!
-      return x * 2;      
+      return calls;
     }
     ```
     

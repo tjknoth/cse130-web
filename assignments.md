@@ -27,22 +27,28 @@ minutes over the deadline is equal to 1 late day.
 -->
 
 
-## Sample Exam Questions
+## Past Exams
 
-Note: 2018 exams are the most representative. 
+- [Midterm Wi 19](/static/raw/130-midterm-wi19.pdf) ([solution](/static/raw/130-midterm-wi19-solution.pdf)),
+  [Midterm Sp 18](/static/raw/130-midterm-sp18.pdf) ([solution](/static/raw/130-midterm-sp18-solution.pdf)).
+
+- [Final Wi 19](/static/raw/130-final-wi19.pdf) ([solution](/static/raw/130-final-wi19-solution.pdf)),
+  [Final Sp 18](/static/raw/130-final-sp18.pdf) ([solution](/static/raw/130-final-sp18-solution.pdf)).
+  
 Older exams use OCaml instead of Haskell.
 Check out these [lecture notes](https://ucsd-cse130.github.io/web/lectures/02-haskell.html) 
 for a comparison between the two languages.
 
-- [Midterm Sp 18](/static/raw/130-midterm-sp18.pdf) ([solution](/static/raw/130-midterm-sp18-solution.pdf)),
-  [Midterm Sp 15](/static/raw/midterm-sp15.pdf),
+- [Midterm Sp 15](/static/raw/midterm-sp15.pdf),
   [Midterm Sp 14](/static/raw/midterm-sp14.pdf),
   [Midterm Sp 12](/static/raw/midterm-sp12.pdf),
   [Midterm Wi 12](/static/raw/midterm-wi12.pdf).
 
-- [Final Sp 18](/static/raw/130-final-sp18.pdf) ([solution](/static/raw/130-final-sp18-solution.pdf)),
-  [Final Sp 14](/static/raw/final-sp14.pdf),
+- [Final Sp 14](/static/raw/final-sp14.pdf),
   [Final Fa 12](/static/raw/final-fa12.pdf),
   [Final Sp 12](/static/raw/final-sp12.pdf),
   [Final Fa 11](/static/raw/final-fa11.pdf),
   [Final Wi 11](/static/raw/final-wi11.pdf).
+
+
+  
