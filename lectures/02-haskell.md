@@ -972,7 +972,7 @@ f x ((k,v) : ps)
 
 (I) final
 
-    _Answer:_ a lsit of pairs represents key-value pairs in a dictionary; 
+    _Answer:_ a list of pairs represents key-value pairs in a dictionary; 
     `f` performs lookup by key
 
 
@@ -1009,6 +1009,35 @@ my4tuple = (pi, sin pi, cos pi, sqrt 2)
 myUnit   :: ()
 myUnit   = ()
 ```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## QUIZ
+
+Which of the following terms is *ill-typed*?
+
+You can assume that `(+) :: Int -> Int -> Int`.
+
+**A.** `(\(x,y,z) -> x + y + z) (1, 2, True)`
+
+**B.** `(\(x,y,z) -> x + y + z) (1, 2, 3, 4)`
+
+**C.** `(\(x,y,z) -> x + y + z) [1, 2, 3]`
+
+**D.** `(\x y z -> x + y + z) (1, 2, 3)`
+
+**E.**  all of the above
+
+<br>
+
+(I) final
+
+    _Answer:_ **E**. If we do not assume tthat `+` only works on integers, D is actually well-typed: it's a function that expects two more triples and will add them together.
 
 <br>
 <br>

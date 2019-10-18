@@ -667,6 +667,17 @@ my4tuple <span class="fu">=</span> (pi, sin pi, cos pi, sqrt <span class="dv">2<
 <span class="ot">myUnit   ::</span> ()
 myUnit   <span class="fu">=</span> ()</code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-4">QUIZ</h2>
+<p>Which of the following terms is <em>ill-typed</em>?</p>
+<p>You can assume that <code class="sourceCode haskell"><span class="ot">(+) ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code>.</p>
+<p><strong>A.</strong> <code class="sourceCode haskell">(\(x,y,z) <span class="ot">-&gt;</span> x <span class="fu">+</span> y <span class="fu">+</span> z) (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">True</span>)</code></p>
+<p><strong>B.</strong> <code class="sourceCode haskell">(\(x,y,z) <span class="ot">-&gt;</span> x <span class="fu">+</span> y <span class="fu">+</span> z) (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</code></p>
+<p><strong>C.</strong> <code class="sourceCode haskell">(\(x,y,z) <span class="ot">-&gt;</span> x <span class="fu">+</span> y <span class="fu">+</span> z) [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</code></p>
+<p><strong>D.</strong> <code class="sourceCode haskell">(\x y z <span class="ot">-&gt;</span> x <span class="fu">+</span> y <span class="fu">+</span> z) (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</code></p>
+<p><strong>E.</strong> all of the above</p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br></p>
 <h2 id="list-comprehensions">List comprehensions</h2>
 <p>A convenient way to construct lists from other lists:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> s]  <span class="co">-- Convert string s to upper case</span>

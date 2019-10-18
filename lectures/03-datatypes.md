@@ -87,7 +87,7 @@ Tuples can do the job but there are two problems...
 
 ```haskell
 deadlineDate :: (Int, Int, Int)
-deadlineDate = (2, 4, 2019)
+deadlineDate = (10, 30, 2019)
 
 deadlineTime :: (Int, Int, Int)
 deadlineTime = (11, 59, 59)
@@ -115,7 +115,7 @@ type Date = (Int, Int, Int)
 type Time = (Int, Int, Int)
 
 deadlineDate :: Date
-deadlineDate = (2, 4, 2019)
+deadlineDate = (10, 30, 2019)
 
 deadlineTime :: Time
 deadlineTime = (11, 59, 59)
@@ -150,7 +150,7 @@ data Time = Time Int Int Int
 -- constructor^   ^parameter types
 
 deadlineDate :: Date
-deadlineDate = Date 2 4 2019
+deadlineDate = Date 10 30 2019
 
 deadlineTime :: Time
 deadlineTime = Time 11 59 59
@@ -189,7 +189,7 @@ Haskell's **record syntax** allows you to *name* the constructor parameters:
   * then you can do:
   
     ```
-    deadlineDate = Date 2 4 2019
+    deadlineDate = Date 10 30 2019
     
     dealineMonth = month deadlineDate -- use field name as a function
     ```
