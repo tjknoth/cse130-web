@@ -1037,7 +1037,7 @@ You can assume that `(+) :: Int -> Int -> Int`.
 
 (I) final
 
-    _Answer:_ **E**. If we do not assume tthat `+` only works on integers, D is actually well-typed: it's a function that expects two more triples and will add them together.
+    _Answer:_ **E**. If we do not assume that `+` only works on integers, D is actually well-typed: it's a function that expects two more triples and will add them together.
 
 <br>
 <br>

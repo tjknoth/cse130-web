@@ -16,8 +16,8 @@ Lecture schedule is subject to change!
 | 10/11      | A crash course in Haskell       | [html][lec2]              |               |
 | 10/14      | contd.                          |                           |               |
 | 10/16      | contd.                          |                           |               |
-| 10/18      | Datatypes and Recursion         | [html][lec3]              |               |
-| 10/21      | contd.                          |                           |               |
+| 10/18      | contd.                          |                           |               |
+| 10/21      | Datatypes and Recursion         | [html][lec3]              |               |
 | 10/23      | contd.                          |                           |               |
 | 10/25      | contd.                          |                           |               |
 | 10/28      | Higher Order Functions          |                           |               |
