@@ -482,7 +482,10 @@ html (<span class="dt">List</span> ord items) <span class="fu">=</span>    <span
   <span class="kw">let</span> 
    ltag <span class="fu">=</span> <span class="kw">if</span> ord <span class="kw">then</span> <span class="st">&quot;ol&quot;</span> <span class="kw">else</span> <span class="st">&quot;ul&quot;</span>
    litems <span class="fu">=</span> [unwords [open <span class="st">&quot;li&quot;</span>, i, close <span class="st">&quot;li&quot;</span>] <span class="fu">|</span> i <span class="ot">&lt;-</span> items]
-  <span class="kw">in</span> unlines ([open ltag] <span class="fu">++</span> litems <span class="fu">++</span> [close ltag])</code></pre></div>
+  <span class="kw">in</span> unlines ([open ltag] <span class="fu">++</span> litems <span class="fu">++</span> [close ltag])
+  
+open t <span class="fu">=</span> <span class="st">&quot;&lt;&quot;</span> <span class="fu">++</span> t <span class="fu">++</span> <span class="st">&quot;&gt;&quot;</span>
+close t <span class="fu">=</span> <span class="st">&quot;&lt;/&quot;</span> <span class="fu">++</span> t <span class="fu">++</span> <span class="st">&quot;&gt;&quot;</span>  </code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h3 id="dangers-of-pattern-matching-1">Dangers of pattern matching (1)</h3>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">html ::</span> <span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">String</span>

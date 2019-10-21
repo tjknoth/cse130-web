@@ -497,6 +497,9 @@ html (List ord items) =    -- It's a list! Get ordered and items
    ltag = if ord then "ol" else "ul"
    litems = [unwords [open "li", i, close "li"] | i <- items]
   in unlines ([open ltag] ++ litems ++ [close ltag])
+  
+open t = "<" ++ t ++ ">"
+close t = "</" ++ t ++ ">"  
 ```
 
 <br>
