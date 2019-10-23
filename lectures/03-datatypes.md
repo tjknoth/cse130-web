@@ -1003,7 +1003,7 @@ What is the right *inductive strategy* for appending two lists?
 
 ## Trees
 
-Lists are *unary trees* with elements stored in the nodes:
+Lists are *unary trees*:
 
 ```
 1 - 2 - 3 - ()
@@ -1013,7 +1013,7 @@ Lists are *unary trees* with elements stored in the nodes:
 data List = Nil | Cons Int List
 ```
 
-How do we represent *binary trees* with elements stored in the nodes?
+How do we represent *binary trees*?
 
 ```
 1 - 2 - 3 - ()
@@ -1035,7 +1035,7 @@ How do we represent *binary trees* with elements stored in the nodes?
 
 ## QUIZ: Binary trees I
 
-What is a Haskell datatype for *binary trees* with elements stored in the nodes?
+What is a Haskell datatype that can represent this *binary tree*?
 
 ```
 1 - 2 - 3 - ()
@@ -1096,6 +1096,33 @@ t1234 = Node 1
 <br>
 <br>
 
+BTW, answer D is also a binary tree, but with elements stored in leaves!
+
+```
+() - () - () - 1
+   |    |    \ 2
+   |    \ 3
+   \ () - 4
+        \ 5  
+```
+
+```haskell
+data Tree = Leaf Int | Node Tree Tree
+
+t12345 = Node
+          (Node (Node (Leaf 1) (Leaf 2)) (Leaf 3))
+          (Node (Leaf 4) (Leaf 5))
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## Functions on trees
 
 (I) lecture
@@ -1121,68 +1148,6 @@ t1234 = Node 1
 <br>
 <br>
 
-## QUIZ: Binary trees II
-
-What is a Haskell datatype for *binary trees* with elements stored in the leaves?
-
-```
-() - () - () - 1
-   |    |    \ 2
-   |    \ 3
-   \ () - 4
-        \ 5  
-```
-
-**(A)** `data Tree = Leaf | Node Int Tree`
-
-**(B)** `data Tree = Leaf | Node Tree Tree`
-
-**(C)** `data Tree = Leaf | Node Int Tree Tree`
-
-**(D)** `data Tree = Leaf Int | Node Tree Tree`
-
-**(E)** `data Tree = Leaf Int | Node Int Tree Tree`
-
-<br>
-
-I) final
-
-    *Answer:* D
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-```
-() - () - () - 1
-   |    |    \ 2
-   |    \ 3
-   \ () - 4
-        \ 5  
-```
-
-```haskell
-data Tree = Leaf Int | Node Tree Tree
-
-t12345 = Node
-          (Node (Node (Leaf 1) (Leaf 2)) (Leaf 3))
-          (Node (Leaf 4) (Leaf 5))
-```
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 ## Example: Calculator
 

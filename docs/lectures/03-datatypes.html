@@ -695,10 +695,10 @@ length (<span class="dt">Cons</span> _ xs) <span class="fu">=</span> <span class
 append xs ys <span class="fu">=</span> <span class="fu">??</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="trees">Trees</h2>
-<p>Lists are <em>unary trees</em> with elements stored in the nodes:</p>
+<p>Lists are <em>unary trees</em>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dv">1</span> <span class="fu">-</span> <span class="dv">2</span> <span class="fu">-</span> <span class="dv">3</span> <span class="fu">-</span> ()</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">List</span> <span class="fu">=</span> <span class="dt">Nil</span> <span class="fu">|</span> <span class="dt">Cons</span> <span class="dt">Int</span> <span class="dt">List</span></code></pre></div>
-<p>How do we represent <em>binary trees</em> with elements stored in the nodes?</p>
+<p>How do we represent <em>binary trees</em>?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dv">1</span> <span class="fu">-</span> <span class="dv">2</span> <span class="fu">-</span> <span class="dv">3</span> <span class="fu">-</span> ()
   <span class="fu">|</span>   <span class="fu">|</span>   \ ()
   <span class="fu">|</span>   \ ()
@@ -706,7 +706,7 @@ append xs ys <span class="fu">=</span> <span class="fu">??</span></code></pre></
       \ ()  </code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-binary-trees-i">QUIZ: Binary trees I</h2>
-<p>What is a Haskell datatype for <em>binary trees</em> with elements stored in the nodes?</p>
+<p>What is a Haskell datatype that can represent this <em>binary tree</em>?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dv">1</span> <span class="fu">-</span> <span class="dv">2</span> <span class="fu">-</span> <span class="dv">3</span> <span class="fu">-</span> ()
   <span class="fu">|</span>   <span class="fu">|</span>   \ ()
   <span class="fu">|</span>   \ ()
@@ -731,25 +731,7 @@ t1234 <span class="fu">=</span> <span class="dt">Node</span> <span class="dv">1<
           (<span class="dt">Node</span> <span class="dv">2</span> (<span class="dt">Node</span> <span class="dv">3</span> <span class="dt">Leaf</span> <span class="dt">Leaf</span>) <span class="dt">Leaf</span>) 
           (<span class="dt">Node</span> <span class="dv">4</span> <span class="dt">Leaf</span> <span class="dt">Leaf</span>)</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="functions-on-trees">Functions on trees</h2>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">depth ::</span> <span class="dt">Tree</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-depth t <span class="fu">=</span> <span class="fu">??</span></code></pre></div>
-<p><br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-binary-trees-ii">QUIZ: Binary trees II</h2>
-<p>What is a Haskell datatype for <em>binary trees</em> with elements stored in the leaves?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">() <span class="fu">-</span> () <span class="fu">-</span> () <span class="fu">-</span> <span class="dv">1</span>
-   <span class="fu">|</span>    <span class="fu">|</span>    \ <span class="dv">2</span>
-   <span class="fu">|</span>    \ <span class="dv">3</span>
-   \ () <span class="fu">-</span> <span class="dv">4</span>
-        \ <span class="dv">5</span>  </code></pre></div>
-<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> <span class="fu">=</span> <span class="dt">Leaf</span> <span class="fu">|</span> <span class="dt">Node</span> <span class="dt">Int</span> <span class="dt">Tree</span></code></p>
-<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> <span class="fu">=</span> <span class="dt">Leaf</span> <span class="fu">|</span> <span class="dt">Node</span> <span class="dt">Tree</span> <span class="dt">Tree</span></code></p>
-<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> <span class="fu">=</span> <span class="dt">Leaf</span> <span class="fu">|</span> <span class="dt">Node</span> <span class="dt">Int</span> <span class="dt">Tree</span> <span class="dt">Tree</span></code></p>
-<p><strong>(D)</strong> <code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> <span class="fu">=</span> <span class="dt">Leaf</span> <span class="dt">Int</span> <span class="fu">|</span> <span class="dt">Node</span> <span class="dt">Tree</span> <span class="dt">Tree</span></code></p>
-<p><strong>(E)</strong> <code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> <span class="fu">=</span> <span class="dt">Leaf</span> <span class="dt">Int</span> <span class="fu">|</span> <span class="dt">Node</span> <span class="dt">Int</span> <span class="dt">Tree</span> <span class="dt">Tree</span></code></p>
-<p><br></p>
-
-<p><br> <br> <br> <br> <br> <br> <br></p>
+<p>BTW, answer D is also a binary tree, but with elements stored in leaves!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">() <span class="fu">-</span> () <span class="fu">-</span> () <span class="fu">-</span> <span class="dv">1</span>
    <span class="fu">|</span>    <span class="fu">|</span>    \ <span class="dv">2</span>
    <span class="fu">|</span>    \ <span class="dv">3</span>
@@ -760,7 +742,11 @@ depth t <span class="fu">=</span> <span class="fu">??</span></code></pre></div>
 t12345 <span class="fu">=</span> <span class="dt">Node</span>
           (<span class="dt">Node</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">1</span>) (<span class="dt">Leaf</span> <span class="dv">2</span>)) (<span class="dt">Leaf</span> <span class="dv">3</span>))
           (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">4</span>) (<span class="dt">Leaf</span> <span class="dv">5</span>))</code></pre></div>
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="functions-on-trees">Functions on trees</h2>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">depth ::</span> <span class="dt">Tree</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+depth t <span class="fu">=</span> <span class="fu">??</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="example-calculator">Example: Calculator</h2>
 <p>I want to implement an arithmetic calculator to evaluate expressions like:</p>
 <ul>
