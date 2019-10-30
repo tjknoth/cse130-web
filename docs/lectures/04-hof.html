@@ -576,7 +576,7 @@ foldr (<span class="fu">:</span>) [] [<span class="dv">1</span>,<span class="dv"
 <p>Accumulate the values from the <strong>right</strong></p>
 <p>For example:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldr (<span class="fu">+</span>) <span class="dv">0</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]
-  <span class="fu">==&gt;</span> <span class="dv">1</span> <span class="fu">+</span> (foldr (<span class="fu">+</span>) <span class="dv">1</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])
+  <span class="fu">==&gt;</span> <span class="dv">1</span> <span class="fu">+</span> (foldr (<span class="fu">+</span>) <span class="dv">0</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])
   <span class="fu">==&gt;</span> <span class="dv">1</span> <span class="fu">+</span> (<span class="dv">2</span> <span class="fu">+</span> (foldr (<span class="fu">+</span>) <span class="dv">0</span> [<span class="dv">3</span>, <span class="dv">4</span>]))
   <span class="fu">==&gt;</span> <span class="dv">1</span> <span class="fu">+</span> (<span class="dv">2</span> <span class="fu">+</span> (<span class="dv">3</span> <span class="fu">+</span> (foldr (<span class="fu">+</span>) <span class="dv">0</span> [<span class="dv">4</span>])))
   <span class="fu">==&gt;</span> <span class="dv">1</span> <span class="fu">+</span> (<span class="dv">2</span> <span class="fu">+</span> (<span class="dv">3</span> <span class="fu">+</span> (<span class="dv">4</span> <span class="fu">+</span> (foldr (<span class="fu">+</span>) <span class="dv">0</span> []))))
