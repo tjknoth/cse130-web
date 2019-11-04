@@ -251,113 +251,268 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <h2 id="the-nano-language">The Nano Language</h2>
 <p>Features of Nano:</p>
 <ol style="list-style-type: decimal">
-<li>Arithmetic expressions</li>
-<li>Variables and let-bindings</li>
+<li>Arithmetic</li>
+<li>Variables</li>
+<li>Let-bindings</li>
 <li>Functions</li>
 <li>Recursion</li>
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="reminder-calculator">Reminder: Calculator</h2>
-<p>Arithmetic expressions:</p>
+<h2 id="nano-arithmetic">1. Nano: Arithmetic</h2>
+<p>A grammar of arithmetic expressions:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">e <span class="ot">::</span><span class="fu">=</span> n
     <span class="fu">|</span> e1 <span class="fu">+</span> e2
     <span class="fu">|</span> e1 <span class="fu">-</span> e2
     <span class="fu">|</span> e1 <span class="fu">*</span> e2</code></pre></div>
 <p><br></p>
-<p>Example:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dv">4</span> <span class="fu">+</span> <span class="dv">13</span>
-
-<span class="fu">==&gt;</span> <span class="dv">17</span></code></pre></div>
-<p><br> <br></p>
-<p>Haskell datatype to <em>represent</em> arithmetic expressions:</p>
+<p>Examples:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Expression</th>
+<th align="left"></th>
+<th align="left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code class="sourceCode haskell"><span class="dv">4</span></code></td>
+<td align="left"><code class="sourceCode haskell"><span class="fu">==&gt;</span></code></td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left"><code class="sourceCode haskell"><span class="dv">4</span> <span class="fu">+</span> <span class="dv">12</span></code></td>
+<td align="left"><code class="sourceCode haskell"><span class="fu">==&gt;</span></code></td>
+<td align="left">16</td>
+</tr>
+<tr class="odd">
+<td align="left"><code class="sourceCode haskell">(<span class="dv">4</span> <span class="fu">+</span> <span class="dv">12</span>) <span class="fu">-</span> <span class="dv">5</span></code></td>
+<td align="left"><code class="sourceCode haskell"><span class="fu">==&gt;</span></code></td>
+<td align="left">11</td>
+</tr>
+</tbody>
+</table>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="representing-expressions-and-values">Representing Expressions and Values</h2>
+<p>Let’s <em>represent</em> arithmetic expressions as a type:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span> <span class="fu">=</span> <span class="dt">Num</span> <span class="dt">Int</span>
           <span class="fu">|</span> <span class="dt">Add</span> <span class="dt">Expr</span> <span class="dt">Expr</span>
           <span class="fu">|</span> <span class="dt">Sub</span> <span class="dt">Expr</span> <span class="dt">Expr</span>
           <span class="fu">|</span> <span class="dt">Mul</span> <span class="dt">Expr</span> <span class="dt">Expr</span></code></pre></div>
 <p><br> <br></p>
-<p>Haskell function to <em>evaluate</em> an expression:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+<p>Let’s <em>represent</em> arithmetic values as a type:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Value</span> <span class="fu">=</span> <span class="dt">Int</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="evaluating-arithmetic-expressions">Evaluating Arithmetic Expressions</h2>
+<p>We can now write a Haskell function to <em>evaluate</em> an expression:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span>
 eval (<span class="dt">Num</span> n)     <span class="fu">=</span> n
 eval (<span class="dt">Add</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">+</span> eval e2
 eval (<span class="dt">Sub</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">-</span> eval e2
 eval (<span class="dt">Mul</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">*</span> eval e2</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<p>Alternative representation:</p>
+<h2 id="alternative-representation">Alternative representation</h2>
+<p>Let’s factor out the operators into a separate type</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Binop</span> <span class="fu">=</span> <span class="dt">Add</span> <span class="fu">|</span> <span class="dt">Sub</span> <span class="fu">|</span> <span class="dt">Mul</span>
 
 <span class="kw">data</span> <span class="dt">Expr</span> <span class="fu">=</span> <span class="dt">Num</span> <span class="dt">Int</span>              <span class="co">-- number</span>
           <span class="fu">|</span> <span class="dt">Bin</span> <span class="dt">Binop</span> <span class="dt">Expr</span> <span class="dt">Expr</span>  <span class="co">-- binary expression</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz">QUIZ</h2>
 <p>Evaluator for alternative representation:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span>
 eval (<span class="dt">Num</span> n)        <span class="fu">=</span> n
-eval (<span class="dt">Bin</span> <span class="dt">Add</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">+</span> eval e2
-eval (<span class="dt">Bin</span> <span class="dt">Sub</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">-</span> eval e2
-eval (<span class="dt">Bin</span> <span class="dt">Mul</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">*</span> eval e2</code></pre></div>
+eval (<span class="dt">Bin</span> op e1 e2) <span class="fu">=</span> evalOp op (eval e1) (eval e2)</code></pre></div>
+<p>What’s a suitable type for <code class="sourceCode haskell">evalOp</code>?</p>
+<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="dt">Binop</span> <span class="ot">-&gt;</span> <span class="dt">Value</span></code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dt">Binop</span> <span class="ot">-&gt;</span> <span class="dt">Value</span> <span class="ot">-&gt;</span> <span class="dt">Value</span> <span class="ot">-&gt;</span> <span class="dt">Value</span></code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="dt">Binop</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span></code></p>
+<p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dt">Binop</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span></code></p>
+<p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dt">Binop</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span></code></p>
+<p><br></p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="the-nano-language-1">The Nano Language</h2>
 <p>Features of Nano:</p>
 <ol style="list-style-type: decimal">
-<li>Arithmetic expressions <strong>[done]</strong></li>
-<li>Variables and let-bindings</li>
+<li>Arithmetic <strong>[done]</strong></li>
+<li>Variables</li>
+<li>Let-bindings</li>
 <li>Functions</li>
 <li>Recursion</li>
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="extension-variables">Extension: variables</h2>
-<p>Let’s add variables and <code class="sourceCode haskell"><span class="kw">let</span></code> bindings!</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">e <span class="ot">::</span><span class="fu">=</span> n <span class="fu">|</span> x
-    <span class="fu">|</span> e1 <span class="fu">+</span> e2 <span class="fu">|</span> e1 <span class="fu">-</span> e2 <span class="fu">|</span> e1 <span class="fu">*</span> e2
-    <span class="fu">|</span> <span class="kw">let</span> x <span class="fu">=</span> e1 <span class="kw">in</span> e2    </code></pre></div>
-<p><br></p>
-<p>Example:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> x <span class="fu">=</span> <span class="dv">4</span> <span class="fu">+</span> <span class="dv">13</span> <span class="kw">in</span>  <span class="co">-- 17 </span>
-<span class="kw">let</span> y <span class="fu">=</span> <span class="dv">7</span> <span class="fu">-</span> <span class="dv">5</span> <span class="kw">in</span>   <span class="co">-- 2</span>
-x <span class="fu">*</span> y
-
-<span class="fu">==&gt;</span> <span class="dv">34</span></code></pre></div>
-<p><br> <br></p>
-<p>Haskell representation:</p>
+<h2 id="nano-variables">2. Nano: Variables</h2>
+<p>Let’s add variables!</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">e <span class="ot">::</span><span class="fu">=</span> n        <span class="co">-- OLD</span>
+    <span class="fu">|</span> e1 <span class="fu">+</span> e2 
+    <span class="fu">|</span> e1 <span class="fu">-</span> e2 
+    <span class="fu">|</span> e1 <span class="fu">*</span> e2
+    <span class="fu">|</span> x        <span class="co">-- NEW</span></code></pre></div>
+<p><br> <br> <br> <br></p>
+<p>Let’s extend the representation of expressions:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span> <span class="fu">=</span> <span class="dt">Num</span> <span class="dt">Int</span>              <span class="co">-- number</span>
-          <span class="fu">|</span> <span class="fu">???</span>                  <span class="co">-- variable</span>
           <span class="fu">|</span> <span class="dt">Bin</span> <span class="dt">Binop</span> <span class="dt">Expr</span> <span class="dt">Expr</span>  <span class="co">-- binary expression</span>
-          <span class="fu">|</span> <span class="fu">???</span>                  <span class="co">-- let expression</span></code></pre></div>
+          <span class="fu">|</span> <span class="fu">???</span>                  <span class="co">-- variable</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Id</span> <span class="fu">=</span> <span class="dt">String</span>
 
 <span class="kw">data</span> <span class="dt">Expr</span> <span class="fu">=</span> <span class="dt">Num</span> <span class="dt">Int</span>              <span class="co">-- number</span>
-          <span class="fu">|</span> <span class="dt">Var</span> <span class="dt">Id</span>               <span class="co">-- variable</span>
           <span class="fu">|</span> <span class="dt">Bin</span> <span class="dt">Binop</span> <span class="dt">Expr</span> <span class="dt">Expr</span>  <span class="co">-- binary expression</span>
-          <span class="fu">|</span> <span class="dt">Let</span> <span class="dt">Id</span> <span class="dt">Expr</span> <span class="dt">Expr</span>     <span class="co">-- let expression</span></code></pre></div>
-<p><br> <br></p>
-<p>Haskell function to <em>evaluate</em> an expression:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-eval (<span class="dt">Num</span> n)         <span class="fu">=</span> n
-eval (<span class="dt">Var</span> x)         <span class="fu">=</span> <span class="fu">???</span>
-<span class="fu">...</span></code></pre></div>
+          <span class="fu">|</span> <span class="dt">Var</span> <span class="dt">Id</span>               <span class="co">-- variable</span></code></pre></div>
+<p><br> <br> <br> <br></p>
+<p>Now let’s extend the evaluation function!</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-1">QUIZ</h2>
+<p>What should the following expression evaluate to?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">x <span class="fu">+</span> <span class="dv">1</span></code></pre></div>
+<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="dv">0</span></code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dv">1</span></code></p>
+<p><strong>(C)</strong> Runtime error</p>
 <p><br></p>
-<p>How do we evaluate a variable?</p>
-<p><br> <br></p>
-<p>We have to remember which <em>value</em> it was bound to!</p>
-<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="environment">Environment</h2>
-<p>An expression is evaluated in an <strong>environment</strong>, which maps all its <em>free variables</em> to <em>values</em></p>
-<p><br></p>
-<p>Examples:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">x <span class="fu">*</span> y 
-<span class="fu">=</span>[x<span class="fu">:</span><span class="dv">17</span>, y<span class="fu">:</span><span class="dv">2</span>]<span class="ot">=&gt;</span> <span class="dv">34</span>
-
-x <span class="fu">*</span> y
-<span class="fu">=</span>[x<span class="fu">:</span><span class="dv">17</span>]<span class="ot">=&gt;</span> <span class="fu">???</span>
-
-x <span class="fu">*</span> (<span class="kw">let</span> y <span class="fu">=</span> <span class="dv">2</span> <span class="kw">in</span> y)
-<span class="fu">=</span>[x<span class="fu">:</span><span class="dv">17</span>]<span class="ot">=&gt;</span> <span class="fu">???</span></code></pre></div>
-<p><br> <br></p>
+<p>An expression is evaluated in an <strong>environment</strong></p>
 <ul>
-<li>How should we represent the environment?</li>
-<li>Which operations does it support?</li>
+<li>It’s like a phone book that maps <em>variables</em> to <em>values</em></li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;x&quot;</span> <span class="fu">:=</span> <span class="dv">0</span>, <span class="st">&quot;y&quot;</span> <span class="fu">:=</span> <span class="dv">12</span>, <span class="fu">...</span>]</code></pre></div>
+<p><br></p>
+<p>We can <em>represent</em> an environment using the following type:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Env</span> <span class="fu">=</span> [(<span class="dt">Id</span>, <span class="dt">Value</span>)]</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz">QUIZ</h2>
+<h2 id="evaluation-in-an-environment">Evaluation in an Environment</h2>
+<p>We write</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">eval env expr  <span class="fu">==&gt;</span> value</code></pre></div>
+<p>To mean that evaluating <code class="sourceCode haskell">expr</code> <em>in the environment</em> <code class="sourceCode haskell">env</code> returns <code class="sourceCode haskell">value</code></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-2">QUIZ</h2>
+<p>What should the result of?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">eval [<span class="st">&quot;x&quot;</span> <span class="fu">:=</span> <span class="dv">0</span>, <span class="st">&quot;y&quot;</span> <span class="fu">:=</span> <span class="dv">12</span>, <span class="fu">...</span>] (x <span class="fu">+</span> <span class="dv">1</span>)</code></pre></div>
+<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="dv">0</span></code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dv">1</span></code></p>
+<p><strong>(C)</strong> Runtime error</p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<p>To evaluate a variable, <strong>look up</strong> its value in the environment!</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Environment</th>
+<th align="left">Expression</th>
+<th align="left"></th>
+<th align="left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code class="sourceCode haskell">[<span class="st">&quot;x&quot;</span> <span class="fu">:=</span> <span class="dv">5</span>]</code></td>
+<td align="left"><code class="sourceCode haskell">x</code></td>
+<td align="left"><code class="sourceCode haskell"><span class="fu">==&gt;</span></code></td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left"><code class="sourceCode haskell">[<span class="st">&quot;x&quot;</span> <span class="fu">:=</span> <span class="dv">5</span>]</code></td>
+<td align="left"><code class="sourceCode haskell">x <span class="fu">+</span> <span class="dv">12</span></code></td>
+<td align="left"><code class="sourceCode haskell"><span class="fu">==&gt;</span></code></td>
+<td align="left">17</td>
+</tr>
+<tr class="odd">
+<td align="left"><code class="sourceCode haskell">[<span class="st">&quot;x&quot;</span> <span class="fu">:=</span> <span class="dv">5</span>]</code></td>
+<td align="left"><code class="sourceCode haskell">y <span class="fu">-</span> <span class="dv">5</span></code></td>
+<td align="left"><code class="sourceCode haskell"><span class="fu">==&gt;</span></code></td>
+<td align="left">error</td>
+</tr>
+</tbody>
+</table>
+<p><br> <br> <br> <br></p>
+<h2 id="evaluating-variables">Evaluating Variables</h2>
+<p>We need to update our evaluation function to take the environment <em>as an argument</em>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span>
+eval env (<span class="dt">Num</span> n)        <span class="fu">=</span> <span class="fu">???</span>
+eval env (<span class="dt">Bin</span> op e1 e2) <span class="fu">=</span> <span class="fu">???</span>
+eval env (<span class="dt">Var</span> x)        <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span>
+eval env (<span class="dt">Num</span> n)        <span class="fu">=</span> n
+eval env (<span class="dt">Bin</span> op e1 e2) <span class="fu">=</span> evalOp op (eval e1) (eval e2)
+eval env (<span class="dt">Var</span> x)        <span class="fu">=</span> lookup x env</code></pre></div>
+<p><br> <br> <br></p>
+<p>But how do variables get into the environment?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="the-nano-language-2">The Nano Language</h2>
+<p>Features of Nano:</p>
+<ol style="list-style-type: decimal">
+<li>Arithmetic expressions <strong>[done]</strong></li>
+<li>Variables <strong>[done]</strong></li>
+<li>Let-bindings</li>
+<li>Functions</li>
+<li>Recursion</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="extension-let-bindings">Extension: let bindings</h2>
+<p>Let’s add let bindings!</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">e <span class="ot">::</span><span class="fu">=</span> n                <span class="co">-- OLD</span>
+    <span class="fu">|</span> e1 <span class="fu">+</span> e2 
+    <span class="fu">|</span> e1 <span class="fu">-</span> e2 
+    <span class="fu">|</span> e1 <span class="fu">*</span> e2
+    <span class="fu">|</span> x
+    <span class="fu">|</span> <span class="kw">let</span> x <span class="fu">=</span> e1 <span class="kw">in</span> e2 <span class="co">-- NEW</span></code></pre></div>
+<p><br></p>
+<p>Example:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Environment</th>
+<th align="left">Expression</th>
+<th align="left"></th>
+<th align="left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code class="sourceCode haskell">[]</code></td>
+<td align="left"><code class="sourceCode haskell"><span class="kw">let</span> x <span class="fu">=</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">3</span> <span class="kw">in</span> x <span class="fu">*</span> <span class="dv">2</span></code></td>
+<td align="left"><code class="sourceCode haskell"><span class="fu">==&gt;</span></code></td>
+<td align="left">10</td>
+</tr>
+</tbody>
+</table>
+<p><br> <br> <br> <br></p>
+<p>Let’s extend the representation of expressions:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span> <span class="fu">=</span> <span class="dt">Num</span> <span class="dt">Int</span>              <span class="co">-- number</span>
+          <span class="fu">|</span> <span class="dt">Bin</span> <span class="dt">Binop</span> <span class="dt">Expr</span> <span class="dt">Expr</span>  <span class="co">-- binary expression</span>
+          <span class="fu">|</span> <span class="dt">Var</span> x                <span class="co">-- variable</span>
+          <span class="fu">|</span> <span class="fu">???</span>                  <span class="co">-- let binding</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span> <span class="fu">=</span> <span class="dt">Num</span> <span class="dt">Int</span>              <span class="co">-- number</span>
+          <span class="fu">|</span> <span class="dt">Bin</span> <span class="dt">Binop</span> <span class="dt">Expr</span> <span class="dt">Expr</span>  <span class="co">-- binary expression</span>
+          <span class="fu">|</span> <span class="dt">Var</span> <span class="dt">Id</span>               <span class="co">-- variable</span>
+          <span class="fu">|</span> <span class="dt">Let</span> <span class="dt">Id</span> <span class="dt">Expr</span> <span class="dt">Expr</span>     <span class="co">-- let binding</span></code></pre></div>
+<p><br> <br> <br> <br></p>
+<p>Now let’s extend the evaluation function!</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span>
+eval env (<span class="dt">Num</span> n)          <span class="fu">=</span> n
+eval env (<span class="dt">Bin</span> op e1 e2)   <span class="fu">=</span> evalOp op (eval e1) (eval e2)
+eval env (<span class="dt">Var</span> x)          <span class="fu">=</span> lookup x env
+eval env (<span class="dt">Let</span> x def body) <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-3">QUIZ</h2>
+<p>What should this evaluate to?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> x <span class="fu">=</span> <span class="dv">5</span> <span class="kw">in</span>
+<span class="kw">let</span> y <span class="fu">=</span> x <span class="fu">+</span> <span class="dv">1</span> <span class="kw">in</span>
+x <span class="fu">*</span> y</code></pre></div>
+<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="dv">5</span></code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dv">6</span></code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="dv">30</span></code></p>
+<p><strong>(D)</strong> Error: unbound variable <code class="sourceCode haskell">x</code></p>
+<p><strong>(E)</strong> Error: unbound variable <code class="sourceCode haskell">y</code></p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-4">QUIZ</h2>
 <p>What should this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> x <span class="fu">=</span> <span class="dv">5</span> <span class="kw">in</span>
 <span class="kw">let</span> y <span class="fu">=</span> x <span class="fu">+</span> z <span class="kw">in</span>
@@ -371,158 +526,40 @@ y</code></pre></div>
 <p><br></p>
 
 <p><br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-1">QUIZ</h2>
-<p>What should this evaluate to?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> x <span class="fu">=</span> <span class="dv">1</span> <span class="kw">in</span>
-<span class="kw">let</span> y <span class="fu">=</span> (<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">2</span> <span class="kw">in</span> <span class="dv">2</span> <span class="fu">*</span> x) <span class="fu">+</span> x <span class="kw">in</span>
-<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span>
-x <span class="fu">+</span> y</code></pre></div>
-<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="dv">8</span></code></p>
-<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dv">9</span></code></p>
-<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="dv">12</span></code></p>
-<p><strong>(D)</strong> Error: unbound variable <code class="sourceCode haskell">x</code></p>
-<p><strong>(E)</strong> Error: multiple definitions of <code class="sourceCode haskell">x</code></p>
-<p><br></p>
-
-<p><br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="environment-api">Environment: API</h2>
+<h2 id="evaluating-let-expressions">Evaluating let expressions</h2>
 <p>To evaluate <code class="sourceCode haskell"><span class="kw">let</span> x <span class="fu">=</span> e1 <span class="kw">in</span> e2</code> in <code class="sourceCode haskell">env</code>:</p>
-<ul>
-<li>evaluate <code class="sourceCode haskell">e2</code> in an <strong>extended</strong> environment <code class="sourceCode haskell">env <span class="fu">+</span> [x<span class="fu">:</span>v]</code></li>
-<li>where <code class="sourceCode haskell">v</code> is the result of evaluating <code class="sourceCode haskell">e1</code></li>
-</ul>
-<p>To evaluate <code class="sourceCode haskell">x</code> in <code class="sourceCode haskell">env</code>:</p>
-<ul>
-<li><strong>lookup</strong> the most recently added binding for <code class="sourceCode haskell">x</code></li>
-</ul>
-<p><br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Value</span> <span class="fu">=</span> <span class="dt">Int</span>
-
-<span class="kw">data</span> <span class="dt">Env</span> <span class="fu">=</span> <span class="fu">...</span> <span class="co">-- representation not that important</span>
-
-<span class="co">-- | Add a new binding</span>
-<span class="ot">add    ::</span> <span class="dt">Id</span> <span class="ot">-&gt;</span> <span class="dt">Value</span> <span class="ot">-&gt;</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">Env</span>
-
-<span class="co">-- | Lookup the most recently added binding</span>
-lookup<span class="ot"> ::</span> <span class="dt">Id</span> <span class="ot">-&gt;</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">Value</span></code></pre></div>
-<p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="evaluating-expressions">Evaluating expressions</h2>
-<p>Back to our expressions… now with environments!</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span> <span class="fu">=</span> <span class="dt">Num</span> <span class="dt">Int</span>              <span class="co">-- number</span>
-          <span class="fu">|</span> <span class="dt">Var</span> <span class="dt">Id</span>               <span class="co">-- variable</span>
-          <span class="fu">|</span> <span class="dt">Bin</span> <span class="dt">Binop</span> <span class="dt">Expr</span> <span class="dt">Expr</span>  <span class="co">-- binary expression</span>
-          <span class="fu">|</span> <span class="dt">Let</span> <span class="dt">Id</span> <span class="dt">Expr</span> <span class="dt">Expr</span>     <span class="co">-- let expression</span></code></pre></div>
-<p><br> <br></p>
-<p>Haskell function to <em>evaluate</em> an expression:</p>
+<ol style="list-style-type: decimal">
+<li>Evaluate <code class="sourceCode haskell">e1</code> in <code class="sourceCode haskell">env</code> to <code class="sourceCode haskell">val</code></li>
+<li><em>Extend</em> <code class="sourceCode haskell">env</code> with a mapping <code class="sourceCode haskell">[<span class="st">&quot;x&quot;</span> <span class="fu">:=</span> val]</code></li>
+<li>Evaluate <code class="sourceCode haskell">e2</code> in this extended environment</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span>
-eval env (<span class="dt">Num</span> n)         <span class="fu">=</span> n
-eval env (<span class="dt">Var</span> x)         <span class="fu">=</span> lookup x env
-eval env (<span class="dt">Bin</span> op e1 e2)  <span class="fu">=</span> f v1 v2
-  <span class="kw">where</span>
-    v1 <span class="fu">=</span> eval env e1
-    v2 <span class="fu">=</span> eval env e2
-    f <span class="fu">=</span> <span class="kw">case</span> op <span class="kw">of</span>
-          <span class="dt">Add</span> <span class="ot">-&gt;</span> (<span class="fu">+</span>)
-          <span class="dt">Sub</span> <span class="ot">-&gt;</span> (<span class="fu">-</span>)
-          <span class="dt">Mul</span> <span class="ot">-&gt;</span> (<span class="fu">*</span>)
-eval env (<span class="dt">Let</span> x e1 e2)   <span class="fu">=</span> eval env' e2
+eval env (<span class="dt">Num</span> n)          <span class="fu">=</span> n
+eval env (<span class="dt">Bin</span> op e1 e2)   <span class="fu">=</span> evalOp op (eval e1) (eval e2)
+eval env (<span class="dt">Var</span> x)          <span class="fu">=</span> lookup x env
+eval env (<span class="dt">Let</span> x e1 e2)    <span class="fu">=</span> eval env' e2
   <span class="kw">where</span>
     v    <span class="fu">=</span> eval env e1
     env' <span class="fu">=</span> add x v env    </code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="example-evaluation">Example evaluation</h2>
-<p>Nano expression</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> x <span class="fu">=</span> <span class="dv">1</span> <span class="kw">in</span>
-<span class="kw">let</span> y <span class="fu">=</span> (<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">2</span> <span class="kw">in</span> x) <span class="fu">+</span> x <span class="kw">in</span>
-<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span>
-x <span class="fu">+</span> y</code></pre></div>
-<p>is represented in Haskell as:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">exp1 <span class="fu">=</span> 
-  <span class="dt">Let</span> <span class="st">&quot;x&quot;</span> 
-    (<span class="dt">Num</span> <span class="dv">1</span>) 
-    (<span class="dt">Let</span> <span class="st">&quot;y&quot;</span> 
-      (<span class="dt">Add</span> 
-        (<span class="dt">Let</span> <span class="st">&quot;x&quot;</span> (<span class="dt">Num</span> <span class="dv">2</span>) (<span class="dt">Var</span> x)) 
-        (<span class="dt">Var</span> x))
-      (<span class="dt">Let</span> <span class="st">&quot;x&quot;</span> 
-        (<span class="dt">Num</span> <span class="dv">3</span>) 
-        (<span class="dt">Add</span> (<span class="dt">Var</span> x) (<span class="dt">Var</span> y))))</code></pre></div>
-<p>is evaluated as:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">eval [] exp1
-<span class="ot">=&gt;</span> eval []                      (<span class="dt">Let</span> <span class="st">&quot;x&quot;</span> (<span class="dt">Num</span> <span class="dv">1</span>) exp2)
-<span class="ot">=&gt;</span> eval [(<span class="st">&quot;x&quot;</span>,eval [] (<span class="dt">Num</span> <span class="dv">1</span>))] exp2
-<span class="ot">=&gt;</span> eval [(<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] 
-    (<span class="dt">Let</span> <span class="st">&quot;y&quot;</span> (<span class="dt">Add</span> exp3 exp4) exp2)
-<span class="ot">=&gt;</span> eval [(<span class="st">&quot;y&quot;</span>,(eval [(<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] (<span class="dt">Add</span> exp3 exp4))), (<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] 
-    exp2
-<span class="ot">=&gt;</span> eval [(<span class="st">&quot;y&quot;</span>,(eval [(<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] (<span class="dt">Let</span> <span class="st">&quot;x&quot;</span> (<span class="dt">Num</span> <span class="dv">2</span>) (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>)) 
-             <span class="fu">+</span> eval [(<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>))), (<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] 
-    exp2
-<span class="ot">=&gt;</span> eval [(<span class="st">&quot;y&quot;</span>,(eval [(<span class="st">&quot;x&quot;</span>,<span class="dv">2</span>), (<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>) <span class="co">-- new binding for x</span>
-             <span class="fu">+</span> <span class="dv">1</span>)), (<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)]
-    exp2
-<span class="ot">=&gt;</span> eval [(<span class="st">&quot;y&quot;</span>,(<span class="dv">2</span>  <span class="co">-- use latest binding for x          </span>
-             <span class="fu">+</span> <span class="dv">1</span>)), (<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] 
-    exp2
-<span class="ot">=&gt;</span> eval [(<span class="st">&quot;y&quot;</span>,<span class="dv">3</span>), (<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] 
-    (<span class="dt">Let</span> <span class="st">&quot;x&quot;</span> (<span class="dt">Num</span> <span class="dv">3</span>) (<span class="dt">Add</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>) (<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)))
-<span class="ot">=&gt;</span> eval [(<span class="st">&quot;x&quot;</span>,<span class="dv">3</span>), (<span class="st">&quot;y&quot;</span>,<span class="dv">3</span>), (<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)]              <span class="co">-- new binding for x</span>
-    (<span class="dt">Add</span> (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>) (<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>))
-<span class="ot">=&gt;</span> eval [(<span class="st">&quot;x&quot;</span>,<span class="dv">3</span>), (<span class="st">&quot;y&quot;</span>,<span class="dv">3</span>), (<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] (<span class="dt">Var</span> <span class="st">&quot;x&quot;</span>) 
- <span class="fu">+</span> eval [(<span class="st">&quot;x&quot;</span>,<span class="dv">3</span>), (<span class="st">&quot;y&quot;</span>,<span class="dv">3</span>), (<span class="st">&quot;x&quot;</span>,<span class="dv">1</span>)] (<span class="dt">Var</span> <span class="st">&quot;y&quot;</span>)
-<span class="ot">=&gt;</span> <span class="dv">3</span> <span class="fu">+</span> <span class="dv">3</span>
-<span class="ot">=&gt;</span> <span class="dv">6</span></code></pre></div>
+<h2 id="quiz-5">QUIZ</h2>
+<p>Which of the following locations inside <code class="sourceCode haskell">eval</code> <strong>could fail</strong>?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span>
+eval env (<span class="dt">Num</span> n)          <span class="fu">=</span> n                              <span class="co">-- (A)</span>
+eval env (<span class="dt">Bin</span> op e1 e2)   <span class="fu">=</span> evalOp op (eval e1) (eval e2)  <span class="co">-- (B)</span>
+eval env (<span class="dt">Var</span> x)          <span class="fu">=</span> lookup x env                   <span class="co">-- (C)</span>
+eval env (<span class="dt">Let</span> x e1 e2)    <span class="fu">=</span> eval env' e2                   <span class="co">-- (D)</span>
+  <span class="kw">where</span>
+    v    <span class="fu">=</span> eval env e1
+    env' <span class="fu">=</span> add x v env
+                                                           <span class="co">-- (E): none    </span></code></pre></div>
 <p><br></p>
-<p>Same evaluation in a simplified format (Haskell <code class="sourceCode haskell"><span class="dt">Expr</span></code> terms replaced by their “pretty-printed version”):</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">   eval []
-   {<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">1</span> <span class="kw">in</span> <span class="kw">let</span> y <span class="fu">=</span> (<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">2</span> <span class="kw">in</span> x) <span class="fu">+</span> x <span class="kw">in</span> <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span> x <span class="fu">+</span> y}
-<span class="ot">=&gt;</span> eval [x<span class="fu">:</span>(eval [] <span class="dv">1</span>)]
-                {<span class="kw">let</span> y <span class="fu">=</span> (<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">2</span> <span class="kw">in</span> x) <span class="fu">+</span> x <span class="kw">in</span> <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span> x <span class="fu">+</span> y}
-<span class="ot">=&gt;</span> eval [x<span class="fu">:</span><span class="dv">1</span>]
-                {<span class="kw">let</span> y <span class="fu">=</span> (<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">2</span> <span class="kw">in</span> x) <span class="fu">+</span> x <span class="kw">in</span> <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span> x <span class="fu">+</span> y}
-<span class="ot">=&gt;</span> eval [y<span class="fu">:</span>(eval [x<span class="fu">:</span><span class="dv">1</span>] {(<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">2</span> <span class="kw">in</span> x) <span class="fu">+</span> x}), x<span class="fu">:</span><span class="dv">1</span>] 
-                                                {<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span> x <span class="fu">+</span> y}
-<span class="ot">=&gt;</span> eval [y<span class="fu">:</span>(eval [x<span class="fu">:</span><span class="dv">1</span>]  {<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">2</span> <span class="kw">in</span> x} <span class="fu">+</span> eval [x<span class="fu">:</span><span class="dv">1</span>] {x}), x<span class="fu">:</span><span class="dv">1</span>] 
-                                                {<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span> x <span class="fu">+</span> y}
-         <span class="co">-- new binding for x:</span>
-<span class="ot">=&gt;</span> eval [y<span class="fu">:</span>(eval [x<span class="fu">:</span><span class="dv">2</span>,x<span class="fu">:</span><span class="dv">1</span>] {x}           <span class="fu">+</span> eval [x<span class="fu">:</span><span class="dv">1</span>] {x}), x<span class="fu">:</span><span class="dv">1</span>] 
-                                                {<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span> x <span class="fu">+</span> y}
-    <span class="co">-- use latest binding for x:</span>
-<span class="ot">=&gt;</span> eval [y<span class="fu">:</span>(                <span class="dv">2</span>            <span class="fu">+</span> eval [x<span class="fu">:</span><span class="dv">1</span>] {x}), x<span class="fu">:</span><span class="dv">1</span>] 
-                                                {<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span> x <span class="fu">+</span> y}
-                                                
-<span class="ot">=&gt;</span> eval [y<span class="fu">:</span>(                <span class="dv">2</span>            <span class="fu">+</span> <span class="dv">1</span>)             , x<span class="fu">:</span><span class="dv">1</span>] 
-                                                {<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span> x <span class="fu">+</span> y}
-<span class="ot">=&gt;</span> eval [y<span class="fu">:</span><span class="dv">3</span>, x<span class="fu">:</span><span class="dv">1</span>] 
-                                                {<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span> x <span class="fu">+</span> y}
-   <span class="co">-- new binding for x:</span>
-<span class="ot">=&gt;</span> eval [x<span class="fu">:</span><span class="dv">3</span>, y<span class="fu">:</span><span class="dv">3</span>, x<span class="fu">:</span><span class="dv">1</span>] 
-                                                             {x <span class="fu">+</span> y}
-<span class="ot">=&gt;</span> eval [x<span class="fu">:</span><span class="dv">3</span>, y<span class="fu">:</span><span class="dv">3</span>, x<span class="fu">:</span><span class="dv">1</span>] x <span class="fu">+</span> eval [x<span class="fu">:</span><span class="dv">3</span>, y<span class="fu">:</span><span class="dv">3</span>, x<span class="fu">:</span><span class="dv">1</span>] y
-   <span class="co">-- use latest binding for x: </span>
-<span class="ot">=&gt;</span> <span class="dv">3</span> <span class="fu">+</span> <span class="dv">3</span>
-<span class="ot">=&gt;</span> <span class="dv">6</span></code></pre></div>
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+
+<p><br> <br> <br> <br> <br> <br></p>
 <h2 id="runtime-errors">Runtime errors</h2>
-<p>Haskell function to <em>evaluate</em> an expression:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span>
-eval env (<span class="dt">Num</span> n)         <span class="fu">=</span> n
-eval env (<span class="dt">Var</span> x)         <span class="fu">=</span> lookup x env <span class="co">-- can fail!</span>
-eval env (<span class="dt">Bin</span> op e1 e2)  <span class="fu">=</span> f v1 v2
-  <span class="kw">where</span>
-    v1 <span class="fu">=</span> eval env e1
-    v2 <span class="fu">=</span> eval env e2
-    f <span class="fu">=</span> <span class="kw">case</span> op <span class="kw">of</span>
-          <span class="dt">Add</span> <span class="ot">-&gt;</span> (<span class="fu">+</span>)
-          <span class="dt">Sub</span> <span class="ot">-&gt;</span> (<span class="fu">-</span>)
-          <span class="dt">Mul</span> <span class="ot">-&gt;</span> (<span class="fu">*</span>)
-eval env (<span class="dt">Let</span> x e1 e2)   <span class="fu">=</span> eval env' e2
-  <span class="kw">where</span>
-    v    <span class="fu">=</span> eval env e1
-    env' <span class="fu">=</span> add x v env    </code></pre></div>
-<p><br> <br></p>
-<p>How do we make sure <code class="sourceCode haskell">lookup</code> doesn’t cause a run-time error?</p>
-<p><br> <br> <br> <br></p>
+<p>How do we make sure that <code class="sourceCode haskell">eval</code> never fails?</p>
+<p><br> <br> <br> <br> <br> <br></p>
 <h2 id="free-vs-bound-variables">Free vs bound variables</h2>
 <p>In <code class="sourceCode haskell">eval env e</code>, <code class="sourceCode haskell">env</code> must contain bindings for <em>all free variables</em> of <code class="sourceCode haskell">e</code>!</p>
 <ul>
@@ -531,7 +568,7 @@ eval env (<span class="dt">Let</span> x e1 e2)   <span class="fu">=</span> eval 
 <li>evaluation succeeds when an expression is <strong>closed</strong>!</li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-2">QUIZ</h2>
+<h2 id="quiz-6">QUIZ</h2>
 <p>Which variables are free in the expression?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> y <span class="fu">=</span> (<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">2</span> <span class="kw">in</span> x) <span class="fu">+</span> x <span class="kw">in</span>
 <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> <span class="kw">in</span>
@@ -543,11 +580,12 @@ x <span class="fu">+</span> y</code></pre></div>
 <p><br></p>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="the-nano-language-2">The Nano Language</h2>
+<h2 id="the-nano-language-3">The Nano Language</h2>
 <p>Features of Nano:</p>
 <ol style="list-style-type: decimal">
-<li>Arithmetic expressions <strong>[done]</strong></li>
-<li>Variables and let-bindings <strong>[done]</strong></li>
+<li>Arithmetic <strong>[done]</strong></li>
+<li>Variables <strong>[done]</strong></li>
+<li>Let binding <strong>[done]</strong></li>
 <li>Functions</li>
 <li>Recursion</li>
 </ol>
@@ -665,7 +703,7 @@ cTimes <span class="dv">2</span></code></pre></div>
 <p><br></p>
 <p>Looks good… can you spot a problem?</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-3">QUIZ</h2>
+<h2 id="quiz-7">QUIZ</h2>
 <p>What should this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> c <span class="fu">=</span> <span class="dv">42</span> <span class="kw">in</span>
 <span class="kw">let</span> cTimes <span class="fu">=</span> \x <span class="ot">-&gt;</span> c <span class="fu">*</span> x <span class="kw">in</span> <span class="co">-- but which c???</span>
@@ -767,7 +805,7 @@ cTimes <span class="dv">2</span></code></pre></div>
 <span class="ot">=&gt;</span>                                                        <span class="dv">42</span> <span class="fu">*</span> <span class="dv">2</span>
 <span class="ot">=&gt;</span>                                                        <span class="dv">84</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-4">QUIZ</h2>
+<h2 id="quiz-8">QUIZ</h2>
 <p>Which variables should be saved in the closure environment of <code class="sourceCode haskell">f</code>?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> a <span class="fu">=</span> <span class="dv">20</span> <span class="kw">in</span>
 <span class="kw">let</span> f <span class="fu">=</span> 
@@ -833,7 +871,7 @@ eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval bo
     (<span class="dt">VClos</span> closEnv x body) <span class="fu">=</span> eval env fun <span class="co">-- eval function to closure</span>
     vArg                   <span class="fu">=</span> eval env arg <span class="co">-- eval argument</span>
     bodyEnv                <span class="fu">=</span> add x vArg closEnv</code></pre></div>
-<h2 id="quiz-5">QUIZ</h2>
+<h2 id="quiz-9">QUIZ</h2>
 <p>With <code class="sourceCode haskell">eval</code> as defined above, what does this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> f <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">+</span> y <span class="kw">in</span>
 <span class="kw">let</span> y <span class="fu">=</span> <span class="dv">10</span> <span class="kw">in</span>
@@ -857,7 +895,7 @@ f <span class="dv">5</span></code></pre></div>
 <span class="ot">=&gt;</span> eval [x<span class="fu">:</span><span class="dv">5</span>] <span class="co">-- env got replaced by closure env + formal!</span>
                                      {x <span class="fu">+</span> y}  <span class="co">-- y is unbound!</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-6">QUIZ</h2>
+<h2 id="quiz-10">QUIZ</h2>
 <p>With <code class="sourceCode haskell">eval</code> as defined above, what does this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> f <span class="fu">=</span> \n <span class="ot">-&gt;</span> n <span class="fu">*</span> f (n <span class="fu">-</span> <span class="dv">1</span>) <span class="kw">in</span>
 f <span class="dv">5</span></code></pre></div>
@@ -877,7 +915,7 @@ f <span class="dv">5</span></code></pre></div>
                          {n <span class="fu">*</span> f (n <span class="fu">-</span> <span class="dv">1</span>)} <span class="co">-- f is unbound!</span></code></pre></div>
 <p><strong>Lesson learned:</strong> to support recursion, we need a different way of constructing the closure environment!</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="the-nano-language-3">The Nano Language</h2>
+<h2 id="the-nano-language-4">The Nano Language</h2>
 <p>Features of Nano:</p>
 <ol style="list-style-type: decimal">
 <li>Arithmetic expressions <strong>[done]</strong></li>
@@ -992,7 +1030,7 @@ n[x <span class="fu">:=</span> v]                  <span class="fu">=</span> n
 [<span class="fu">???</span>] <span class="fu">-----------------------------------</span>
       (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> (<span class="dv">4</span> <span class="fu">+</span> <span class="dv">5</span>)  <span class="ot">=&gt;</span>  (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">9</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-7">QUIZ</h2>
+<h2 id="quiz-11">QUIZ</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                        e1 <span class="ot">=&gt;</span> e1'
 [<span class="dt">Let</span><span class="fu">-</span><span class="dt">Def</span>] <span class="fu">--------------------------------------</span>
           <span class="kw">let</span> x <span class="fu">=</span> e1 <span class="kw">in</span> e2 <span class="ot">=&gt;</span> <span class="kw">let</span> x <span class="fu">=</span> e1' <span class="kw">in</span> e2
@@ -1168,7 +1206,7 @@ e1 <span class="fu">+</span> e2 <span class="ot">=&gt;</span> e1' <span class="f
 <p><em>Inductive case</em> <code class="sourceCode haskell">[<span class="dt">Let</span><span class="fu">-</span><span class="dt">Def</span>]</code>. Try at home</p>
 <p><strong>QED.</strong></p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-8">QUIZ</h2>
+<h2 id="quiz-12">QUIZ</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                        e1 <span class="ot">=&gt;</span> e1'
 [<span class="dt">Let</span><span class="fu">-</span><span class="dt">Def</span>] <span class="fu">--------------------------------------</span>
           <span class="kw">let</span> x <span class="fu">=</span> e1 <span class="kw">in</span> e2 <span class="ot">=&gt;</span> <span class="kw">let</span> x <span class="fu">=</span> e1' <span class="kw">in</span> e2</code></pre></div>
@@ -1274,7 +1312,7 @@ v <span class="ot">::</span><span class="fu">=</span> n                 <span cl
         v e <span class="ot">=&gt;</span> v e'        
         
 [<span class="dt">App</span>]   (\x <span class="ot">-&gt;</span> e) v <span class="ot">=&gt;</span> e[x <span class="fu">:=</span> v]          </code></pre></div>
-<h3 id="quiz-9">QUIZ</h3>
+<h3 id="quiz-13">QUIZ</h3>
 <p>With rules defined above, which reductions are valid?</p>
 <p><strong>(A)</strong> <code class="sourceCode haskell">(\x y <span class="ot">-&gt;</span> x <span class="fu">+</span> y) <span class="dv">1</span> (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>)  <span class="ot">=&gt;</span>  (\x y <span class="ot">-&gt;</span> x <span class="fu">+</span> y) <span class="dv">1</span> <span class="dv">3</span></code></p>
 <p><strong>(B)</strong> <code class="sourceCode haskell">(\x y <span class="ot">-&gt;</span> x <span class="fu">+</span> y) <span class="dv">1</span> (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>)  <span class="ot">=&gt;</span>  (\y <span class="ot">-&gt;</span> <span class="dv">1</span> <span class="fu">+</span> y) (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>)</code></p>
@@ -1308,7 +1346,7 @@ v <span class="ot">::</span><span class="fu">=</span> n                 <span cl
 <li>Every Nano2 program terminates (?)</li>
 <li>Closed Nano2 programs don’t get stuck (?)</li>
 </ol>
-<h3 id="quiz-10">QUIZ</h3>
+<h3 id="quiz-14">QUIZ</h3>
 <p>Are these theorems still true?</p>
 <p><strong>(A)</strong> Both true</p>
 <p><strong>(B)</strong> 1 is true, 2 is false</p>
