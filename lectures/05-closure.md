@@ -742,6 +742,8 @@ x + y
 <br>
 <br>
 
+TODO: add quiz with repeated definitions of x, then ask if our current implementation works
+
 
 ## The Nano Language
 
