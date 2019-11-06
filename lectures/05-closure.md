@@ -418,7 +418,7 @@ eval env (Var x)        = ???
 ```haskell
 eval :: Env -> Expr -> Value
 eval env (Num n)        = n
-eval env (Bin op e1 e2) = evalOp op (eval e1) (eval e2)
+eval env (Bin op e1 e2) = evalOp op (eval env e1) (eval env e2)
 eval env (Var x)        = lookup x env
 ```
 
@@ -462,7 +462,7 @@ Features of Nano:
 <br>
 
 
-## Extension: let bindings
+## 3. Nano: Let Bindings
 
 Let's add let bindings!
 
@@ -526,12 +526,15 @@ Now let's extend the evaluation function!
 ```haskell
 eval :: Env -> Expr -> Value
 eval env (Num n)          = n
-eval env (Bin op e1 e2)   = evalOp op (eval e1) (eval e2)
+eval env (Bin op e1 e2)   = evalOp op (eval env e1) (eval env e2)
 eval env (Var x)          = lookup x env
 eval env (Let x def body) = ???
 ```
 
 <br>
+
+Let's develop intuition with examples!
+
 <br>
 <br>
 <br>
@@ -544,9 +547,45 @@ eval env (Let x def body) = ???
 What should this evaluate to?
 
 ```haskell
-let x = 5 in
-let y = x + 1 in
-x * y
+let x = 5 
+in
+  x + 1
+```
+
+**(A)** `1`
+
+**(B)** `5`
+
+**(C)** `6`
+
+**(D)** Error: unbound variable `x`
+
+**(E)** Error: unbound variable `y`
+
+
+<br>
+
+(I) final
+
+    *Answer:* C
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## QUIZ
+
+What should this evaluate to?
+
+```haskell
+let x = 5 
+in
+  let y = x + 1 
+  in
+    x * y
 ```
 
 **(A)** `5`
@@ -575,33 +614,51 @@ x * y
 <br>
 <br>
 
+    
 ## QUIZ
 
 What should this evaluate to?
 
 ```haskell
-let x = 5 in
-let y = x + z in
-let z = 10 in
-y
+let x = 0 
+in
+  (let x = 100 
+   in
+     x + 1
+  ) + x
 ```
 
-**(A)** `15`
+**(A)** `1`
 
-**(B)** `5`
+**(B)** `101`
 
-**(C)** Error: unbound variable `x`
+**(C)** `202`
 
-**(D)** Error: unbound variable `y`
+**(D)** `2`
 
-**(E)** Error: unbound variable `z`
+**(E)** Error: multiple definitions of `x`
 
 
 <br>
 
 (I) final
 
-    *Answer:* E
+    *Answer:* B
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Principle: Static (Lexical) Scoping
+    
+Every variable *use* (occurrence) gets its value from the most local *definition* (binding)
+
+  - in a *pure* language, the value never changes once defined
+  - easy to tell by looking at the program, where a variable's value came from!
     
 <br>
 <br>
@@ -611,7 +668,61 @@ y
 <br>
 <br>
 
-## Evaluating let expressions
+## Implementing Lexical Scoping
+
+**Example 1**:
+
+```haskell
+            -- environment:
+let x = 5   -- []
+in          -- [x := 5]
+  x + 1
+```
+
+<br>
+<br>
+
+**Example 2**:
+
+```haskell
+                 -- environment:
+let x = 5        -- []
+in               -- [x := 5]
+  let y = x + 1
+  in             -- [y := 6, x := 5]
+    x * y
+```
+
+*Note:* `[y := 6]` got *added* to the environment
+
+<br>
+<br>
+
+**Example 3**:
+
+```haskell
+                 -- environment:
+let x = 0 
+in               -- [x := 0]
+  (let x = 100 
+   in            -- [x := 100, x := 0]
+     x + 1
+  ) 
+  + x            -- [x := 0]
+```
+
+*Note:* `[x := 100]` was only added for the inner scope
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Evaluating let Expressions
 
 To evaluate `let x = e1 in e2` in `env`:
 
@@ -713,9 +824,14 @@ In `eval env e`, `env` must contain bindings for *all free variables* of `e`!
 Which variables are free in the expression?
 
 ```haskell
-let y = (let x = 2 in x) + x in
-let x = 3 in
-x + y
+let y = (let x = 2 
+         in 
+           x
+        ) + x 
+in
+  let x = 3 
+  in
+    x + y
 ```    
 
 **(A)** None
@@ -724,7 +840,7 @@ x + y
 
 **(C)** `y`
 
-**(D)** `x y`
+**(D)** `x, y`
 
 <br>
 
@@ -741,11 +857,6 @@ x + y
 <br>
 <br>
 <br>
-
-<!--
-TODO: add quiz with repeated definitions of x, then ask if our current implementation works
--->
-
 
 ## The Nano Language
 
@@ -768,16 +879,24 @@ Features of Nano:
 
 
 
-## Extension: functions
+## 4. Nano: Functions
 
-Let's add lambda abstraction and function application!
+Let's add:
+ 
+  - lambda abstraction (aka function definitions) 
+  - applications (aka function calls)
+
 
 ```haskell
-e ::= n | x
-    | e1 + e2 | e1 - e2 | e1 * e2
+e ::= n                -- OLD
+    | e1 + e2 
+    | e1 - e2 
+    | e1 * e2
+    | x
     | let x = e1 in e2
+                       -- NEW
     | \x -> e  -- abstraction
-    | e1 e2    -- application    
+    | e1 e2    -- application        
 ```
 
 <br>
@@ -785,22 +904,63 @@ e ::= n | x
 Example:
 
 ```haskell
-let c = 42 in
-let cTimes = \x -> c * x in 
-cTimes 2
-
-==> 84
+let inc = \x -> x + 1 in 
+inc 10
 ```
 
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-Haskell representation:
+## QUIZ
+
+What should this evaluate to?
+
+```haskell
+let inc = \x -> x + 1 in 
+inc 10
+```    
+
+**(A)** Undefined variable `x`
+
+**(B)** Undefined variable `inc`
+
+**(C)** `1`
+
+**(D)** `10`
+
+**(E)** `11`
+
+<br>
+
+(I) final
+
+    *Answer:* E
+    
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Representing functions
+
+Let's extend the representation of expressions:
 
 ```haskell
 data Expr = Num Int              -- number
-          | Var Id               -- variable
           | Bin Binop Expr Expr  -- binary expression
+          | Var Id               -- variable
           | Let Id Expr Expr     -- let expression
           | ???                  -- abstraction
           | ???                  -- application
@@ -819,11 +979,11 @@ data Expr = Num Int              -- number
 
 ```haskell
 data Expr = Num Int              -- number
-          | Var Id               -- variable
           | Bin Binop Expr Expr  -- binary expression
+          | Var Id               -- variable
           | Let Id Expr Expr     -- let expression
-          | Lam Id Expr          -- abstraction
-          | App Expr Expr        -- application
+          | Lam Id Expr          -- abstraction: formal + body
+          | App Expr Expr        -- application: function + actual
 ```
 
 <br>
@@ -831,40 +991,37 @@ data Expr = Num Int              -- number
 Example:
 
 ```haskell
-let c = 42 in
-let cTimes = \x -> c * x in 
-cTimes 2
+let inc = \x -> x + 1 in 
+inc 10
 ```
 
 represented as:
 
 ```haskell
-Let "c" 
-  (Num 42)
-  (Let "cTimes" 
-    (Lam "x" (Mul (Var "c") (Var "x")))
-    (App (Var "cTimes") (Num 2)))
+Let "inc" 
+  (Lam "x" (Bin Add (Var "x") (Num 1)))
+  (App (Var "inc") (Num 10))
 ```
 
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
 
-How should we evaluate this expression?
-
+## Evaluating Functions
 
 ```haskell
-   eval []         
-    {let c = 42 in let cTimes = \x -> c * x in cTimes 2}
-=> eval [c:42] 
-                  {let cTimes = \x -> c * x in cTimes 2}
-=> eval [cTimes:???, c:42] 
-                                              {cTimes 2}
+                      -- environment  
+let inc = \x -> x + 1 
+in                    -- [inc := ???]
+  inc 10              -- use the value of inc to evaluate this
 ```
 
 <br>
 
-
-What is the **value** of `cTimes`???
+What is the **value** of `inc`???
 
 <br>
 <br>
@@ -895,19 +1052,18 @@ What do these programs evaluate to?
 
 ```haskell
 (1)
-\x -> 2 * x
+\x -> x + 1
 ==> ???
 
 (2)
-let f = \x -> \y -> 2 * (x + y) in
-f 5
+let f = \x y -> x + y in
+f 1
 ==> ???
 ```
 
 (I) final
 
-    Conceptually, (1) evaluates to itself (not exactly, see later).
-    while (2) evaluates to something equivalent to `\y -> 2 * (5 + y)`
+    Conceptually, they both evaluate to a function that increments its argument
     
 
 <br>
@@ -917,7 +1073,7 @@ f 5
 <br>
 <br>
 
-**Now:** a program evaluates to an integer or *a lambda abstraction* (or fails)
+**Now:** a program evaluates to an integer or *a function* (or fails)
 
   - Remember: functions are *first-class* values
   
@@ -927,7 +1083,7 @@ Let's change our definition of values!
 
 ```haskell
 data Value = VNum Int
-           | VLam ??? -- What info do we need to store?
+           | VFun ??? -- What info do we need to store?
            
 -- Other types stay the same
 type Env = [(Id, Value)]
@@ -949,23 +1105,38 @@ eval :: Env -> Expr -> Value
 How should we represent a function value?
 
 ```haskell
-let c = 42 in
-let cTimes = \x -> c * x in 
-cTimes 2
+let inc = \x -> x + 1 in 
+inc 10
 ```
 
-We need to store enough information about `cTimes`
-so that we can later evaluate any *application* of `cTimes`
-(like `cTimes 2`)!
+We need to store enough information about `inc`
+so that we can later evaluate any *application* of `inc`
+(like `inc 0`, `inc 5`, `inc 10`, `inc (factorial 100)`)
 
 <br>
 <br>
+<br>
+<br>
+
+The **value** of a function is its **code**!
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Representing Function Values
 
 First attempt:
 
 ```haskell
 data Value = VNum Int
-           | VLam Id Expr -- formal + body
+           | VFun Id Expr -- formal + body
 ```
 
 <br>
@@ -974,27 +1145,85 @@ data Value = VNum Int
 Let's try this!
 
 ```haskell
-   eval []         
-    {let c = 42 in let cTimes = \x -> c * x in cTimes 2}
-=> eval [c:42] 
-                  {let cTimes = \x -> c * x in cTimes 2}
-=> eval [cTimes:(\x -> c*x), c:42] 
-                                              {cTimes 2}
-    -- evaluate the function:
-=> eval [cTimes:(\x -> c*x), c:42]
-                                       {(\x -> c * x) 2} 
-    -- evaluate the argument, bind to x, evaluate body:
-=> eval [x:2, cTimes:(\x -> c*x), c:42] 
-                                              {c * x}
-=>                                            42 * 2
-=>                                            84
+                      -- environment  
+let inc = \x -> x + 1 
+in                    -- [inc := <x, x + 1>]
+  inc 10              -- how do we evaluate this?
 ```
 
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-Looks good... can you spot a problem?
+## Evaluating applications
+
+```haskell
+                      -- environment  
+let inc = \x -> x + 1 
+in                    -- [inc := <x, x + 1>]
+  inc 10              -- how do we evaluate this?
+```
+
+To evaluate `inc 10`:
+  
+  1. Evaluate `inc`, get `<x, x + 1>` 
+  2. Evaluate `10`, get `10`
+  3. Evaluate `x + 1` in an environment *extended* with `[x := 10]`
+
 
 <br>
+<br>
+<br>
+<br>
+<br>
+
+Let's extend our `eval` function!
+
+```haskell
+eval :: Env -> Expr -> Value
+eval env (Num n)          = ???
+eval env (Bin op e1 e2)   = ???
+eval env (Var x)          = ???
+eval env (Let x e1 e2)    = ???
+eval env (Lam x e)        = ???
+eval env (App e1 e2)      = ???    
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```haskell
+eval :: Env -> Expr -> Value
+eval env (Num n)        = VNum n
+eval env (Var x)        = lookup x env
+eval env (Bin op e1 e2) = VNum (evalOp op v1 v2)
+  where
+    (VNum v1) = eval env e1
+    (VNum v2) = eval env e2
+eval env (Let x e1 e2) = eval env' e2
+  where
+    v = eval env e1
+    env' = add x v env
+eval env (Lam x body) = VFun x body
+eval env (App fun arg) = eval env' body
+  where
+    VFun x body = eval env fun
+    vArg        = eval env arg
+    env'        = add x vArg env
+```
+
 <br>
 <br>
 <br>
@@ -1009,23 +1238,63 @@ Looks good... can you spot a problem?
 What should this evaluate to?
 
 ```haskell
-let c = 42 in
-let cTimes = \x -> c * x in -- but which c???
-let c = 5 in
-cTimes 2
+let c = 1 
+in
+  let inc = \x -> x + c
+  in
+    inc 10
 ```
 
-**(A)** `84`
+**(A)** Undefined variable `x`
 
-**(B)** `10`
+**(B)** Undefined variable `c`
 
-**(C)** Error: multiple definitions of `c`
+**(C)** `1`
+
+**(D)** `10`
+
+**(E)** `11`
 
 <br>
 
 (I) final
 
-    *Answer:* A
+    *Answer:* E
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## QUIZ
+
+And what should this evaluate to?
+
+```haskell
+let c = 1 
+in
+  let inc = \x -> x + c
+  in
+    let c = 100
+    in
+      inc 10
+```
+
+**(A)** Error: multiple definitions of `c`
+
+**(B)** `11`
+
+**(C)** `110`
+
+<br>
+
+(I) final
+
+    *Answer:* B
 
 <br>
 <br>
@@ -1041,12 +1310,15 @@ cTimes 2
 What we want:
 
 ```haskell
-let c = 42 in
-let cTimes = \x -> c * x in
-let c = 5 in
-cTimes 2
-
-=> 84
+let c = 1 
+in
+  let inc = \x -> x + c
+  in
+    let c = 100
+    in
+      inc 10
+      
+=> 11
 ```
 
 **Lexical** (or **static**) scoping:
