@@ -1084,17 +1084,17 @@ eval env (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span cla
                <span class="co">--   ==&gt; 101</span>
       <span class="fu">+</span> 
       add10 <span class="dv">1000</span> <span class="co">-- eval [&quot;y&quot; := 1000, &quot;x&quot; := 10] (x + y) </span>
-                 <span class="co">--  ==&gt; 1010</span></code></pre></div>
+                 <span class="co">--  ==&gt; 1010</span>
+
+<span class="fu">==&gt;</span> <span class="dv">1111</span>                 </code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-13">QUIZ</h2>
 <p>What should the following evaluate to?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> add <span class="fu">=</span> \x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> x <span class="fu">+</span> y)
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> inc <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>
 <span class="kw">in</span>
-  <span class="kw">let</span> add1 <span class="fu">=</span> add <span class="dv">1</span>
+  <span class="kw">let</span> doTwice <span class="fu">=</span> \f <span class="ot">-&gt;</span> (\x <span class="ot">-&gt;</span> f (f x))
   <span class="kw">in</span>
-    <span class="kw">let</span> doTwice <span class="fu">=</span> \f <span class="ot">-&gt;</span> (\x <span class="ot">-&gt;</span> f (f x))
-    <span class="kw">in</span>
-      doTwice add1 <span class="dv">10</span></code></pre></div>
+    doTwice inc <span class="dv">10</span></code></pre></div>
 <p><strong>(A)</strong> Runtime error</p>
 <p><strong>(B)</strong> 11</p>
 <p><strong>(C)</strong> 12</p>
@@ -1103,14 +1103,21 @@ eval env (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span cla
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="higher-order-functions-achieved">Higher-order Functions Achieved</h2>
 <p>Closures support functions taking functions as arguments!</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> add <span class="fu">=</span> \x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> x <span class="fu">+</span> y)
-<span class="kw">in</span> <span class="co">-- env1 = [&quot;add&quot; := &lt;[], x, \y -&gt; x + y&gt;]</span>
-  <span class="kw">let</span> add1 <span class="fu">=</span> add <span class="dv">1</span>
-  <span class="kw">in</span> <span class="co">-- env2 = [&quot;add1&quot; := &lt;[&quot;x&quot; := 1], y, x + y&gt;, &quot;add&quot; := ...]</span>
-    <span class="kw">let</span> doTwice <span class="fu">=</span> \f <span class="ot">-&gt;</span> (\x <span class="ot">-&gt;</span> f (f x))
-    <span class="kw">in</span>  <span class="co">-- env3 = [&quot;doTwice&quot; := &lt;env2, f, \x -&gt; f (f x)&gt;, &quot;add1&quot; := ...]</span>
-      doTwice add1 <span class="dv">10</span>
-        <span class="co">-- how does this evaluate? try at home!      </span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> inc <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>                                <span class="co">-- env0 = []</span>
+<span class="kw">in</span>                              <span class="co">-- env1 = [inc := &lt;[], x, x + 1&gt;]</span>
+  <span class="kw">let</span> doTwice <span class="fu">=</span> \f <span class="ot">-&gt;</span> (\x <span class="ot">-&gt;</span> f (f x))
+  <span class="kw">in</span>  <span class="co">-- env2 = [doTwice := &lt;env1, f, \x -&gt; f (f x)&gt;, inc := ...]</span>
+    ((doTwice inc) <span class="co">-- eval (&quot;f&quot; := &lt;[], x, x + 1&gt; : env1) (\x -&gt; f (f x))</span>
+                   <span class="co">-- ==&gt; &lt;(&quot;f&quot; := &lt;[], x, x + 1&gt; : env1), x, f (f x)&gt;</span>
+                   
+      <span class="dv">10</span>)          <span class="co">-- eval [&quot;x&quot; := 10, &quot;f&quot; := &lt;[], x, x + 1&gt;, ...] f (f x)</span>
+      
+<span class="co">-- f   ==&gt; &lt;[], x, x + 1&gt;</span>
+<span class="co">-- x   ==&gt; 10</span>
+<span class="co">-- &lt;[], x, x + 1&gt; 10 ==&gt; eval [&quot;x&quot; := 10] x + 1 ==&gt; 11</span>
+<span class="co">-- &lt;[], x, x + 1&gt; 11 ==&gt; eval [&quot;x&quot; := 11] x + 1 ==&gt; 12</span>
+    
+<span class="fu">==&gt;</span> <span class="dv">12</span>    </code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-14">QUIZ</h2>
 <p>What does this evaluate to?</p>

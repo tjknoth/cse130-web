@@ -1764,6 +1764,8 @@ in                         -- env1 = ["add" := <[], x, \y -> x + y>]
       + 
       add10 1000 -- eval ["y" := 1000, "x" := 10] (x + y) 
                  --  ==> 1010
+
+==> 1111                 
 ```
 
 <br>
@@ -1781,13 +1783,11 @@ in                         -- env1 = ["add" := <[], x, \y -> x + y>]
 What should the following evaluate to?
 
 ```haskell
-let add = \x -> (\y -> x + y)
+let inc = \x -> x + 1
 in
-  let add1 = add 1
+  let doTwice = \f -> (\x -> f (f x))
   in
-    let doTwice = \f -> (\x -> f (f x))
-    in
-      doTwice add1 10
+    doTwice inc 10
 ```
 
 **(A)** Runtime error
@@ -1816,14 +1816,21 @@ in
 Closures support functions taking functions as arguments!
 
 ```haskell
-let add = \x -> (\y -> x + y)
-in -- env1 = ["add" := <[], x, \y -> x + y>]
-  let add1 = add 1
-  in -- env2 = ["add1" := <["x" := 1], y, x + y>, "add" := ...]
-    let doTwice = \f -> (\x -> f (f x))
-    in  -- env3 = ["doTwice" := <env2, f, \x -> f (f x)>, "add1" := ...]
-      doTwice add1 10
-        -- how does this evaluate? try at home!      
+let inc = \x -> x + 1                                -- env0 = []
+in                              -- env1 = [inc := <[], x, x + 1>]
+  let doTwice = \f -> (\x -> f (f x))
+  in  -- env2 = [doTwice := <env1, f, \x -> f (f x)>, inc := ...]
+    ((doTwice inc) -- eval ("f" := <[], x, x + 1> : env1) (\x -> f (f x))
+                   -- ==> <("f" := <[], x, x + 1> : env1), x, f (f x)>
+                   
+      10)          -- eval ["x" := 10, "f" := <[], x, x + 1>, ...] f (f x)
+      
+-- f   ==> <[], x, x + 1>
+-- x   ==> 10
+-- <[], x, x + 1> 10 ==> eval ["x" := 10] x + 1 ==> 11
+-- <[], x, x + 1> 11 ==> eval ["x" := 11] x + 1 ==> 12
+    
+==> 12    
 ```
 
 <br>
