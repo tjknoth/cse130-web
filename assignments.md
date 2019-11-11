@@ -29,7 +29,8 @@ minutes over the deadline is equal to 1 late day.
 
 ## Past Exams
 
-- [Midterm Wi 19](/static/raw/130-midterm-wi19.pdf) ([solution](/static/raw/130-midterm-wi19-solution.pdf)),
+- [Midterm Fa 19](/static/raw/130-midterm-fa19.pdf) ([solution](/static/raw/130-midterm-fa19-solution.pdf)),
+  [Midterm Wi 19](/static/raw/130-midterm-wi19.pdf) ([solution](/static/raw/130-midterm-wi19-solution.pdf)),
   [Midterm Sp 18](/static/raw/130-midterm-sp18.pdf) ([solution](/static/raw/130-midterm-sp18-solution.pdf)).
 
 - [Final Wi 19](/static/raw/130-final-wi19.pdf) ([solution](/static/raw/130-final-wi19-solution.pdf)),
