@@ -224,10 +224,11 @@ data Token
 Next we describe the format of each kind of token using a rule:
 
 ```haskell
-  [\+]                          { \p _ -> PLUS   p }
-  [\-]                          { \p _ -> MINUS  p }
-  [\*]                          { \p _ -> MUL    p }
-  [\/]                          { \p _ -> DIV    p }
+-- Regex:                       Function: AlexPosn -> String -> Token
+  \+                            { \p _ -> PLUS   p }
+  \-                            { \p _ -> MINUS  p }
+  \*                            { \p _ -> MUL    p }
+  \/                            { \p _ -> DIV    p }
   \(                            { \p _ -> LPAREN p }
   \)                            { \p _ -> RPAREN p }
   $alpha [$alpha $digit \_ \']* { \p s -> ID     p s }
@@ -324,10 +325,10 @@ and write `[a-z A-Z] [a-z A-Z 0-9]*` as `$alpha [$alpha $digit]*`
 <br>
 
 ```haskell
-  [\+]                          { \p _ -> PLUS   p }
-  [\-]                          { \p _ -> MINUS  p }
-  [\*]                          { \p _ -> MUL    p }
-  [\/]                          { \p _ -> DIV    p }
+  \+                            { \p _ -> PLUS   p }
+  \-                            { \p _ -> MINUS  p }
+  \*                            { \p _ -> MUL    p }
+  \/                            { \p _ -> DIV    p }
   \(                            { \p _ -> LPAREN p }
   \)                            { \p _ -> RPAREN p }
   $alpha [$alpha $digit \_ \']* { \p s -> ID     p s }
@@ -372,12 +373,12 @@ We can test the function like so:
 
 ```haskell
 λ> parseTokens "23 + 4 / off -"
-Right [ NUM (AlexPn 0 1 1) 23
-      , PLUS (AlexPn 3 1 4)
-      , NUM (AlexPn 5 1 6) 4
-      , DIV (AlexPn 7 1 8)
-      , ID (AlexPn 9 1 10) "off"
-      , MINUS (AlexPn 13 1 14) 
+Right [ NUM (AlexPosn 0 1 1) 23
+      , PLUS (AlexPosn 3 1 4)
+      , NUM (AlexPosn 5 1 6) 4
+      , DIV (AlexPosn 7 1 8)
+      , ID (AlexPosn 9 1 10) "off"
+      , MINUS (AlexPosn 13 1 14) 
       ]      
 ```
 
@@ -478,9 +479,9 @@ A grammar is made of:
     - i.e. what children each nonterminal can have:
 
 ```haskell 
-Aexpr :   -- NT Aexpr can have as children:
+Aexpr :   -- NT Aexpr can be either
+  | TNUM             { ... } -- Terminal of format "number", or
   | Aexpr '+' Aexpr  { ... } -- NT Aexpr, T '+', and NT Aexpr, or 
-  | Aexpr '-' AExpr  { ... } -- NT Aexpr, T '-', and NT Aexpr, or 
   | ...
 ```
 
@@ -501,15 +502,15 @@ In the `.y` file, we have to declare with terminals in the rules
 correspond to which tokens from the `Token` datatype:
 
 ```haskell
-%token
-    TNUM  { NUM _ $$ }
-    ID    { ID _ $$  }
-    '+'   { PLUS _   }
-    '-'   { MINUS _  }
-    '*'   { MUL _    }
-    '/'   { DIV _    }
-    '('   { LPAREN _ }
-    ')'   { RPAREN _ }
+-- Terminals:   Tokens from lexer:
+    TNUM        { NUM _ $$ }
+    ID          { ID _ $$  }
+    '+'         { PLUS _   }
+    '-'         { MINUS _  }
+    '*'         { MUL _    }
+    '/'         { DIV _    }
+    '('         { LPAREN _ }
+    ')'         { RPAREN _ }
 ```
 
 * Each thing on the left is terminal (as appears in the production rules)

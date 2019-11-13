@@ -344,10 +344,11 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="token-rules">Token rules</h2>
 <p>Next we describe the format of each kind of token using a rule:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  [\<span class="fu">+</span>]                          { \p _ <span class="ot">-&gt;</span> <span class="dt">PLUS</span>   p }
-  [\<span class="fu">-</span>]                          { \p _ <span class="ot">-&gt;</span> <span class="dt">MINUS</span>  p }
-  [\<span class="fu">*</span>]                          { \p _ <span class="ot">-&gt;</span> <span class="dt">MUL</span>    p }
-  [\<span class="fu">/</span>]                          { \p _ <span class="ot">-&gt;</span> <span class="dt">DIV</span>    p }
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Regex:                       Function: AlexPosn -&gt; String -&gt; Token</span>
+  \<span class="fu">+</span>                            { \p _ <span class="ot">-&gt;</span> <span class="dt">PLUS</span>   p }
+  \<span class="fu">-</span>                            { \p _ <span class="ot">-&gt;</span> <span class="dt">MINUS</span>  p }
+  \<span class="fu">*</span>                            { \p _ <span class="ot">-&gt;</span> <span class="dt">MUL</span>    p }
+  \<span class="fu">/</span>                            { \p _ <span class="ot">-&gt;</span> <span class="dt">DIV</span>    p }
   \(                            { \p _ <span class="ot">-&gt;</span> <span class="dt">LPAREN</span> p }
   \)                            { \p _ <span class="ot">-&gt;</span> <span class="dt">RPAREN</span> p }
   <span class="fu">$</span>alpha [<span class="fu">$</span>alpha <span class="fu">$</span>digit \_ \<span class="ch">']* { \p s -&gt; ID     p s }</span>
@@ -402,10 +403,10 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span class="fu">$</span>alpha <span class="fu">=</span> [a<span class="fu">-</span>z <span class="dt">A</span><span class="fu">-</span><span class="dt">Z</span>]</code></pre></div>
 <p>and write <code class="sourceCode haskell">[a<span class="fu">-</span>z <span class="dt">A</span><span class="fu">-</span><span class="dt">Z</span>] [a<span class="fu">-</span>z <span class="dt">A</span><span class="fu">-</span><span class="dt">Z</span> <span class="dv">0</span><span class="fu">-</span><span class="dv">9</span>]<span class="fu">*</span></code> as <code class="sourceCode haskell"><span class="fu">$</span>alpha [<span class="fu">$</span>alpha <span class="fu">$</span>digit]<span class="fu">*</span></code></p>
 <p><br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  [\<span class="fu">+</span>]                          { \p _ <span class="ot">-&gt;</span> <span class="dt">PLUS</span>   p }
-  [\<span class="fu">-</span>]                          { \p _ <span class="ot">-&gt;</span> <span class="dt">MINUS</span>  p }
-  [\<span class="fu">*</span>]                          { \p _ <span class="ot">-&gt;</span> <span class="dt">MUL</span>    p }
-  [\<span class="fu">/</span>]                          { \p _ <span class="ot">-&gt;</span> <span class="dt">DIV</span>    p }
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  \<span class="fu">+</span>                            { \p _ <span class="ot">-&gt;</span> <span class="dt">PLUS</span>   p }
+  \<span class="fu">-</span>                            { \p _ <span class="ot">-&gt;</span> <span class="dt">MINUS</span>  p }
+  \<span class="fu">*</span>                            { \p _ <span class="ot">-&gt;</span> <span class="dt">MUL</span>    p }
+  \<span class="fu">/</span>                            { \p _ <span class="ot">-&gt;</span> <span class="dt">DIV</span>    p }
   \(                            { \p _ <span class="ot">-&gt;</span> <span class="dt">LPAREN</span> p }
   \)                            { \p _ <span class="ot">-&gt;</span> <span class="dt">RPAREN</span> p }
   <span class="fu">$</span>alpha [<span class="fu">$</span>alpha <span class="fu">$</span>digit \_ \<span class="ch">']* { \p s -&gt; ID     p s }</span>
@@ -430,12 +431,12 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br></p>
 <p>We can test the function like so:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> parseTokens <span class="st">&quot;23 + 4 / off -&quot;</span>
-<span class="dt">Right</span> [ <span class="dt">NUM</span> (<span class="dt">AlexPn</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span>) <span class="dv">23</span>
-      , <span class="dt">PLUS</span> (<span class="dt">AlexPn</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">4</span>)
-      , <span class="dt">NUM</span> (<span class="dt">AlexPn</span> <span class="dv">5</span> <span class="dv">1</span> <span class="dv">6</span>) <span class="dv">4</span>
-      , <span class="dt">DIV</span> (<span class="dt">AlexPn</span> <span class="dv">7</span> <span class="dv">1</span> <span class="dv">8</span>)
-      , <span class="dt">ID</span> (<span class="dt">AlexPn</span> <span class="dv">9</span> <span class="dv">1</span> <span class="dv">10</span>) <span class="st">&quot;off&quot;</span>
-      , <span class="dt">MINUS</span> (<span class="dt">AlexPn</span> <span class="dv">13</span> <span class="dv">1</span> <span class="dv">14</span>) 
+<span class="dt">Right</span> [ <span class="dt">NUM</span> (<span class="dt">AlexPosn</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span>) <span class="dv">23</span>
+      , <span class="dt">PLUS</span> (<span class="dt">AlexPosn</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">4</span>)
+      , <span class="dt">NUM</span> (<span class="dt">AlexPosn</span> <span class="dv">5</span> <span class="dv">1</span> <span class="dv">6</span>) <span class="dv">4</span>
+      , <span class="dt">DIV</span> (<span class="dt">AlexPosn</span> <span class="dv">7</span> <span class="dv">1</span> <span class="dv">8</span>)
+      , <span class="dt">ID</span> (<span class="dt">AlexPosn</span> <span class="dv">9</span> <span class="dv">1</span> <span class="dv">10</span>) <span class="st">&quot;off&quot;</span>
+      , <span class="dt">MINUS</span> (<span class="dt">AlexPosn</span> <span class="dv">13</span> <span class="dv">1</span> <span class="dv">14</span>) 
       ]      </code></pre></div>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> parseTokens <span class="st">&quot;%&quot;</span>
 <span class="dt">Left</span> <span class="st">&quot;lexical error at 1 line, 1 column&quot;</span></code></pre></div>
@@ -484,23 +485,23 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>i.e. what children each nonterminal can have:</li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Aexpr</span> <span class="fu">:</span>   <span class="co">-- NT Aexpr can have as children:</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Aexpr</span> <span class="fu">:</span>   <span class="co">-- NT Aexpr can be either</span>
+  <span class="fu">|</span> <span class="dt">TNUM</span>             { <span class="fu">...</span> } <span class="co">-- Terminal of format &quot;number&quot;, or</span>
   <span class="fu">|</span> <span class="dt">Aexpr</span> <span class="ch">'+'</span> <span class="dt">Aexpr</span>  { <span class="fu">...</span> } <span class="co">-- NT Aexpr, T '+', and NT Aexpr, or </span>
-  <span class="fu">|</span> <span class="dt">Aexpr</span> <span class="ch">'-'</span> <span class="dt">AExpr</span>  { <span class="fu">...</span> } <span class="co">-- NT Aexpr, T '-', and NT Aexpr, or </span>
   <span class="fu">|</span> <span class="fu">...</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="terminals">Terminals</h2>
 <p>Terminals correspond to the <em>tokens</em> returned by the lexer</p>
 <p>In the <code class="sourceCode haskell"><span class="fu">.</span>y</code> file, we have to declare with terminals in the rules correspond to which tokens from the <code class="sourceCode haskell"><span class="dt">Token</span></code> datatype:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">%</span>token
-    <span class="dt">TNUM</span>  { <span class="dt">NUM</span> _ <span class="fu">$$</span> }
-    <span class="dt">ID</span>    { <span class="dt">ID</span> _ <span class="fu">$$</span>  }
-    <span class="ch">'+'</span>   { <span class="dt">PLUS</span> _   }
-    <span class="ch">'-'</span>   { <span class="dt">MINUS</span> _  }
-    <span class="ch">'*'</span>   { <span class="dt">MUL</span> _    }
-    <span class="ch">'/'</span>   { <span class="dt">DIV</span> _    }
-    <span class="ch">'('</span>   { <span class="dt">LPAREN</span> _ }
-    <span class="ch">')'</span>   { <span class="dt">RPAREN</span> _ }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Terminals:   Tokens from lexer:</span>
+    <span class="dt">TNUM</span>        { <span class="dt">NUM</span> _ <span class="fu">$$</span> }
+    <span class="dt">ID</span>          { <span class="dt">ID</span> _ <span class="fu">$$</span>  }
+    <span class="ch">'+'</span>         { <span class="dt">PLUS</span> _   }
+    <span class="ch">'-'</span>         { <span class="dt">MINUS</span> _  }
+    <span class="ch">'*'</span>         { <span class="dt">MUL</span> _    }
+    <span class="ch">'/'</span>         { <span class="dt">DIV</span> _    }
+    <span class="ch">'('</span>         { <span class="dt">LPAREN</span> _ }
+    <span class="ch">')'</span>         { <span class="dt">RPAREN</span> _ }</code></pre></div>
 <ul>
 <li><p>Each thing on the left is terminal (as appears in the production rules)</p></li>
 <li><p>Each thing on the right is a Haskell pattern for datatype <code class="sourceCode haskell"><span class="dt">Token</span></code></p></li>
