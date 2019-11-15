@@ -44,7 +44,6 @@ data Aexpr
   | APlus   Aexpr Aexpr
   | AMinus  Aexpr Aexpr
   | AMul    Aexpr Aexpr
-  | ADiv    Aexpr Aexpr    
 ```
 
 <br>
@@ -92,8 +91,8 @@ For example:
 λ> parse "2 + 6"
 APlus (AConst 2) (AConst 6)
 
-λ> parse "(x - y) / 2"
-ADiv (AMinus (AVar "x") (AVar "y")) (AConst 2)
+λ> parse "(x - y) * 2"
+AMul (AMinus (AVar "x") (AVar "y")) (AConst 2)
 
 λ> parse "2 +"
 *** Exception: Error {errMsg = "Syntax error"}
@@ -432,13 +431,13 @@ Input to `happy`: a `.y` file that describes the *grammar*
 Wait, wasn't this the grammar?
 
 ```haskell
+-- Abstract Syntax Tree for expressions
 data Aexpr 
   = AConst  Int
   | AVar    Id
   | APlus   Aexpr Aexpr
   | AMinus  Aexpr Aexpr
   | AMul    Aexpr Aexpr
-  | ADiv    Aexpr Aexpr    
 ```
 
 This was *abstract syntax*
@@ -460,10 +459,7 @@ Now we need to describe *concrete syntax*
 
 ## Grammars
 
-A grammar is a recursive definition of a set of trees
-
-  - each tree is a *parse tree* for some string
-  - *parse* a string `s` = find a parse tree for `s` that belongs to the grammar
+A grammar is a recursive definition of a set of *parse trees*
   
 <br>
 <br>  
@@ -479,10 +475,35 @@ A grammar is made of:
     - i.e. what children each nonterminal can have:
 
 ```haskell 
-Aexpr :   -- NT Aexpr can be either
-  | TNUM             { ... } -- Terminal of format "number", or
-  | Aexpr '+' Aexpr  { ... } -- NT Aexpr, T '+', and NT Aexpr, or 
-  | ...
+Aexpr :      -- Non-term Aexpr can be either:
+  | TNUM             -- Term of format "number", or
+  | ID               -- Term of format "identifier", or
+  | '(' Aexpr ')'    -- Term '(', non-term Aexpr, term ')'
+  | Aexpr '*' Aexpr  -- Non-term Aexpr, term '*', non-term Aexpr
+  | Aexpr '+' Aexpr  -- Non-term Aexpr, term '+', non-term Aexpr
+  | Aexpr '-' Aexpr  -- Non-term Aexpr, term '-', non-term Aexpr
+```
+
+<br>
+<br>
+
+**Parse** a string `s` = find a parse tree from the grammar, whose leaves spell out `s`
+
+  - here "string" means "list of tokens" (output of the lexer)
+
+<br>
+<br>
+
+**Example:** Here is a parse tree for the string `(x + 2)`:
+```        
+        Aexpr
+      /   |   \      
+   '('    |    ')'
+        Aexpr
+     /    |    \
+  Aexpr  '+'  Aexpr
+    |           |
+ 'x' (ID)   '2' (TNUM)
 ```
 
 <br>
@@ -493,6 +514,116 @@ Aexpr :   -- NT Aexpr can be either
 <br>
 <br>
 <br>
+
+## QUIZ
+
+Which string *cannot* be parsed as `Aexpr`?
+
+```haskell
+Aexpr : TNUM
+      | ID
+      | '(' Aexpr ')'
+      | Aexpr '*' Aexpr
+      | Aexpr '+' Aexpr
+      | Aexpr '-' Aexpr
+```
+
+**(A)** `x`
+
+**(B)** `x 5`
+
+**(C)** `(x +) 5`
+
+**(D)** `x + 5 + 1`
+
+**(E)** B and C
+
+
+<br>
+
+(I) final
+
+    *Answer:* E
+    
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Attribute Grammars
+
+*So far:* grammar tells us whether a string is syntactically correct or not
+
+*We want more:* convert a string into an AST
+
+```
+parse :: String -> AExpr
+```
+
+<br>
+<br>
+
+An **attribute grammar** associates a *value* with each node in the parse tree
+
+  - each production is annotated with a *rule* 
+  - a rule for computes the *value* of a non-terminal from the *values* of its children
+  - here *value = AST* (i.e. Haskell value of type `AExpr`) 
+  
+<br>
+<br>
+
+Attribute grammar for arithmetic expressions:
+
+```haskell
+--      Format                    Value
+Aexpr : TNUM                    { AConst $1    }
+      | ID                      { AVar   $1    }
+      | '(' Aexpr ')'           { $2           }
+      | Aexpr '*' Aexpr         { AMul   $1 $3 }
+      | Aexpr '+' Aexpr         { APlus  $1 $3 } 
+      | Aexpr '-' Aexpr         { AMinus $1 $3 }
+```
+
+- `$1` refers to the *value* of the first child
+- `$2` refers to the *value* of the second child
+- ...
+  
+<br>
+<br>
+
+**Example:** Computing the value (AST) of `(x + 2)`:
+```        
+                     Aexpr  ===> APlus (AVar "x") (AConst 2)
+                    /  |  \   
+                 '('   |  ')'
+                     Aexpr  ===> APlus (AVar "x") (AConst 2)
+                    /  |  \
+AVar "x" <===  Aexpr  '+'  Aexpr  ===> AConst 2
+                 |           |
+             'x' (ID)   '2' (TNUM)
+```
+    
+<br>
+<br>
+
+How do we compute the *value* of a terminal?
+  - How do we map terminal `'x'` to string `"x"`?
+  - How do we map terminal `'2'` to integer `2`?
+    
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    
+
 
 ## Terminals
 
@@ -513,57 +644,14 @@ correspond to which tokens from the `Token` datatype:
     ')'         { RPAREN _ }
 ```
 
-* Each thing on the left is terminal (as appears in the production rules)
+- Each thing on the left is terminal (as appears in the production rules)
 
-* Each thing on the right is a Haskell pattern for datatype `Token`
+- Each thing on the right is a Haskell pattern for datatype `Token`
 
-* We use `$$` to designate one parameter of a token constructor as the **value** of that token
+- We use `$$` to designate one parameter of a token constructor as the **value** of that token
 
-    * we will refer back to it from the production rules
-    
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-## Production rules
-
-Next we define productions for our language:
-
-```haskell
-Aexpr : TNUM                    { AConst $1    }
-      | ID                      { AVar   $1    }
-      | '(' Aexpr ')'           { $2           }
-      | Aexpr '*' Aexpr         { AMul   $1 $3 }
-      | Aexpr '+' Aexpr         { APlus  $1 $3 } 
-      | Aexpr '-' Aexpr         { AMinus $1 $3 }
-```
-
-The expression on the right computes the *value* of this node
-
-  * `$1 $2 $3` refer to the *values* of the respective child nodes
-  
-<br>
-<br>  
-  
-**Example:** parsing `(2)` as `AExpr`:
-
-  1. Lexer returns a sequence of `Token`s: `[LPAREN, NUM 2, RPAREN]` 
-  
-  2. `LPAREN` is the token for terminal `'('`, so let's pick production `'(' Aexpr ')'`
-  
-  3. Now we have to parse `NUM 2` as `Aexpr` and `RPAREN` as `')'`
-
-  4. `NUM 2` is a token for nonterminal `TNUM`, so let's pick production `TNUM`
-
-  5. The value of this `Aexpr` node is `AConst 2`, since the value of `TNUM` is `2`
-  
-  6. The value of the top-level `Aexpr` node is also `AConst 2` (see the `'(' Aexpr ')'` production)
-  
+    - we will refer back to it from the production rules
+      
 <br>
 <br>
 <br>
@@ -618,7 +706,8 @@ First, we should tell the parser that the top-level non-terminal is `AExpr`:
 %name aexpr
 ```
 
-From the production rules and this line, `happy` generates a function `aexpr` that tries to parse a sequence of tokens as `AExpr`
+From the production rules and this line, 
+`happy` generates a function `aexpr` that tries to parse a sequence of tokens as `AExpr`
 
 We package this function together with the lexer and the evaluator into a handy function
 
@@ -684,11 +773,22 @@ The problem is that our grammar is **ambiguous**!
 
 There are multiple ways of parsing the string `2 * 5 + 5`, namely
 
-- `APlus (AMul (AConst 2) (AConst 5)) (AConst 5)` (good)
-- `AMul  (AConst 2) (APlus (AConst 5) (AConst 5))` (bad!)
+```
+--         Good:                    Bad:
+
+           Aexpr                   Aexpr
+          /  |  \                 /  |  \
+     Aexpr  '+'  Aexpr       Aexpr  '*'   Aexpr
+    /  |  \        |           |         /  |  \
+Aexpr '*' Aexpr   '5'         '2'    Aexpr '+' Aexpr
+ |          |                          |         |
+'2'        '5'                        '5'       '5'
+```
 
 *Wanted:* tell `happy` that `*` has higher **precedence** than `+`!
 
+<br>
+<br>
 <br>
 <br>
 
@@ -700,8 +800,17 @@ There are multiple ways of parsing the string `2 * 5 + 5`, namely
 
 There are multiple ways of parsing `2 - 1 - 1`, namely
 
-- `AMinus (AMinus (AConst 2) (AConst 1)) (AConst 1)`  (good)
-- `AMinus (AConst 2) (AMinus (AConst 1) (AConst 1))` (bad!)
+```
+--         Good:                    Bad:
+
+           Aexpr                   Aexpr
+          /  |  \                 /  |  \
+     Aexpr  '-'  Aexpr       Aexpr  '-'   Aexpr
+    /  |  \        |           |         /  |  \
+Aexpr '-' Aexpr   '1'         '2'    Aexpr '-' Aexpr
+ |          |                          |         |
+'2'        '1'                        '1'       '1'
+```
 
 *Wanted:* tell `happy` that `-` is **left-associative**!
 
@@ -736,15 +845,40 @@ Aexpr3 : TNUM
 Intuition: `AExpr2` "binds tighter" than `AExpr`, and `AExpr3` is the tightest
 
 
-Now I cannot parse the string `2 * 5 + 5` as
+Now the only way to parse `2 * 5 + 5` is:
 
-- `AMul  (AConst 2) (APlus (AConst 5) (AConst 5))`
+```
+--           Good:
 
-- Why?
+             Aexpr
+          /    |    \
+       Aexpr  '+'   Aexpr2
+         |            |
+       Aexpr2       Aexpr3
+    /    |    \       |
+Aexpr2  '*'  Aexpr3  '5' 
+  |            | 
+Aexpr3        '5'  
+  |
+ '2'
+```
 
-(I) final
+If we start parsing the wrong way, we get!
 
-    Because the RHS of `*` has to be `AExpr3`, while `5 + 5` is *not* an `AExpr3` (it's an `AExpr`)
+```
+--     Bad???
+
+       Aexpr
+         |
+       Aexpr2
+    /    |    \
+Aexpr2  '*'  Aexpr3
+  |            | 
+Aexpr3    -- cannot parse "5 + 5" as Aexpr3!
+  |
+ '2'
+```
+
 
 
 <br>
