@@ -29,10 +29,10 @@ Lecture schedule is subject to change!
 | 11/11      | *No lecture: Veterans day*      |                           |               |
 | 11/13      | Lexing and Parsing              |  [html][lec6] [tutorial][parsing] |       |
 | 11/15      | contd.                          |                           |               |
-| 11/18      | Overloading & TypeClasses       |                           |               |
+| 11/18      | Overloading & TypeClasses       |  [html][lec7]             |               |
 | 11/20      | contd.                          |                           |               |
-| 11/22      | contd.                          |                           |               |
-| 11/25      | Monads                          |                           |               |
+| 11/22      | Monads                          |                           |               |
+| 11/25      | contd.                          |                           |               |
 | 11/27      | contd.                          |                           |               |
 | 11/29      | *No lecture: Thanksgiving*      |                           |               |
 | 12/2       | Type Systems                    |                           |               |
@@ -60,7 +60,7 @@ Lecture schedule is subject to change!
 [lec4]: lectures/04-hof.html
 [lec5]: lectures/05-closure.html
 [lec6]: lectures/06-parsing.html
-[lec7]: lectures/07-types.html
+[lec7]: lectures/07-classes.html
 [lec8]: lectures/08-prolog.html
 
 [disc1]: /static/raw/disc1-lambda_calc.pdf
