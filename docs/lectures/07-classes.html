@@ -233,10 +233,10 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<h2 id="past-two-weeks">Past two Weeks</h2>
-<p>How to <em>implement</em> language constructs?</p>
+<p>How to <em>implement</em> a language?</p>
 <ul>
-<li>Local variables and scope</li>
-<li>Environments and Closures</li>
+<li>Interpreter</li>
+<li>Parser</li>
 </ul>
 <h2 id="next-two-weeks">Next two Weeks</h2>
 <p>Modern language features for structuring programs</p>
@@ -244,6 +244,17 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>Type classes</li>
 <li>Monads</li>
 </ul>
+<p>Will help us add cool features to the Nano interpreter!</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="type-classes-outline">Type Classes: Outline</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Why type classes?</strong></li>
+<li>Standard type classes</li>
+<li>Creating new instances</li>
+<li>Using type classes</li>
+<li>Creating new type classes</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="overloading-operators-arithmetic">Overloading Operators: Arithmetic</h2>
 <p>The <code class="sourceCode haskell"><span class="fu">+</span></code> operator works for a bunch of different types.</p>
 <p>For <code class="sourceCode haskell"><span class="dt">Integer</span></code>:</p>
@@ -252,7 +263,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>for <code class="sourceCode haskell"><span class="dt">Double</span></code> precision floats:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="fl">2.9</span> <span class="fu">+</span> <span class="fl">3.5</span>
 <span class="fl">6.4</span></code></pre></div>
-<p><br> <br> <br> <br> <br></p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="overloading-comparisons">Overloading Comparisons</h2>
 <p>Similarly we can <em>compare</em> different types of values</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="dv">2</span> <span class="fu">==</span> <span class="dv">3</span>
@@ -266,76 +277,107 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 
 λ<span class="fu">&gt;</span> (<span class="st">&quot;cat&quot;</span>, <span class="dv">10</span>) <span class="fu">&lt;</span> (<span class="st">&quot;cat&quot;</span>, <span class="dv">20</span>)
 <span class="dt">True</span></code></pre></div>
-<h2 id="ad-hoc-overloading">Ad-Hoc Overloading</h2>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="operator-overloading">Operator Overloading</h2>
 <p>Seems unremarkable?</p>
-<p>Languages since the dawn of time have supported “operator overloading”</p>
-<ul>
-<li><p>To support this kind of <strong>ad–hoc polymorphism</strong></p></li>
-<li><p>Ad-hoc: “created or done for a particular purpose as necessary.”</p></li>
-</ul>
-<p>You really <strong>need</strong> to <em>add</em> and <em>compare</em> values of <em>multiple</em> types!</p>
+<p>Languages have supported “operator overloading” since the dawn of time</p>
 <p><br> <br> <br> <br> <br></p>
 <h2 id="haskell-has-no-caste-system">Haskell has no caste system</h2>
 <p>No distinction between operators and functions</p>
 <ul>
 <li>All are first class citizens!</li>
 </ul>
-<p>But then, what type do we give to <em>functions</em> like <code class="sourceCode haskell"><span class="fu">+</span></code> and <code class="sourceCode haskell"><span class="fu">==</span></code> ?</p>
+<p>You can implement <em>functions</em> like <code class="sourceCode haskell">(<span class="fu">+</span>)</code> and <code class="sourceCode haskell">(<span class="fu">==</span>)</code> yourself from scratch!</p>
+<ul>
+<li>But then, what type do we give them?</li>
+</ul>
 <p><br> <br> <br> <br> <br></p>
 <h2 id="quiz">QUIZ</h2>
-<p>Which of the following would be appropriate types for <code class="sourceCode haskell">(<span class="fu">+</span>)</code> ?</p>
-<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="ot">(+) ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span></code></p>
-<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="ot">(+) ::</span> <span class="dt">Double</span>  <span class="ot">-&gt;</span> <span class="dt">Double</span>  <span class="ot">-&gt;</span> <span class="dt">Double</span></code></p>
-<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="ot">(+) ::</span> a       <span class="ot">-&gt;</span> a       <span class="ot">-&gt;</span> a</code></p>
-<p><strong>(D)</strong> <em>All</em> of the above</p>
+<p>Which of the following type annotations would work for <code class="sourceCode haskell">(<span class="fu">+</span>)</code> ?</p>
+<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="ot">(+) ::</span> <span class="dt">Int</span>    <span class="ot">-&gt;</span> <span class="dt">Int</span>    <span class="ot">-&gt;</span> <span class="dt">Int</span></code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="ot">(+) ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span></code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="ot">(+) ::</span> a      <span class="ot">-&gt;</span> a      <span class="ot">-&gt;</span> a</code></p>
+<p><strong>(D)</strong> <em>Any</em> of the above</p>
 <p><strong>(E)</strong> <em>None</em> of the above</p>
+<p><br></p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<p><code class="sourceCode haskell"><span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span></code> is bad because?</p>
+<p><code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code> is bad because?</p>
 <ul>
 <li>Then we cannot add <code class="sourceCode haskell"><span class="dt">Double</span></code>s!</li>
 </ul>
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <p><code class="sourceCode haskell"><span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span></code> is bad because?</p>
 <ul>
-<li>Then we cannot add <code class="sourceCode haskell"><span class="dt">Double</span></code>s!</li>
+<li>Then we cannot add <code class="sourceCode haskell"><span class="dt">Int</span></code>s!</li>
 </ul>
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <p><code class="sourceCode haskell">a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a</code> is bad because?</p>
 <ul>
-<li>That doesn’t make sense, e.g. to add two <code class="sourceCode haskell"><span class="dt">Bool</span></code> or two <code class="sourceCode haskell">[<span class="dt">Int</span>]</code> or two functions!</li>
+<li><p>I don’t know how to implement this</p></li>
+<li><p>For some <code class="sourceCode haskell">a</code>s it doesn’t make sense: how do I add two <code class="sourceCode haskell"><span class="dt">Bool</span></code>s? Or two <code class="sourceCode haskell"><span class="dt">Char</span></code>s?</p></li>
 </ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="ad-hoc-polymorphism">Ad-hoc Polymorphism</h2>
+<p>We have seen <strong>parametric polymorphism</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Append two lists:</span>
+<span class="ot">(++) ::</span> [a] <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+(<span class="fu">++</span>) []     ys <span class="fu">=</span> ys
+(<span class="fu">++</span>) (x<span class="fu">:</span>xs) ys <span class="fu">=</span> x<span class="fu">:</span>(xs <span class="fu">++</span> ys)</code></pre></div>
+<p><code class="sourceCode haskell">(<span class="fu">++</span>)</code> works for all list types</p>
+<ul>
+<li><p><em>Doesn’t care</em> what the list elements are</p></li>
+<li><p><em>The same</em> implementation works for <code class="sourceCode haskell">a <span class="fu">=</span> <span class="dt">Int</span></code>, <code class="sourceCode haskell">a <span class="fu">=</span> <span class="dt">Bool</span></code>, etc.</p></li>
+</ul>
+<p><br> <br></p>
+<p>Now we need <strong>ad-hoc polymorphism</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">(+) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a <span class="co">-- Almost, but not really </span>
+(<span class="fu">+</span>) x y <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p><code class="sourceCode haskell">(<span class="fu">+</span>)</code> should work for many (but not all) types</p>
+<ul>
+<li><em>Different</em> implementation for <code class="sourceCode haskell">a <span class="fu">=</span> <span class="dt">Int</span></code>, <code class="sourceCode haskell">a <span class="fu">=</span> <span class="dt">Double</span></code>, etc.</li>
+</ul>
+<p><em>Ad-hoc</em> means “created or done for a particular purpose as necessary.”</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="type-classes-for-ad-hoc-polymorphism">Type Classes for Ad Hoc Polymorphism</h2>
-<p>Haskell solves this problem with an <em>insanely slick</em> mechanism called typeclasses, introduced by <a href="http://portal.acm.org/citation.cfm?id=75283">Wadler and Blott</a></p>
+<p>Haskell solves this problem with a mechanism called <em>type classes</em></p>
+<ul>
+<li>Introduced by <a href="http://portal.acm.org/citation.cfm?id=75283">Wadler and Blott</a></li>
+</ul>
 <div class="figure">
-<img src="../static/img/blott-wadler.png" alt="Paper" id="fig:paper" style="width:70.0%" />
-<p class="caption">Paper</p>
+<img src="../static/img/blott-wadler.png" />
+
 </div>
-<p><strong>BTW:</strong> The paper is one of the clearest examples of academic writing I have seen. The next time you hear a curmudgeon say all the best CS was done in the 60s, just point them to the above.</p>
-<p><br> <br> <br> <br> <br> <br></p>
-<h2 id="qualified-types">Qualified Types</h2>
-<p>To see the right type, lets ask:</p>
+<p>This is a very cool and well-written paper! Read it!</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="constrained-types">Constrained Types</h2>
+<p>Let’s ask GHCi:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="fu">:</span><span class="kw">type</span> (<span class="fu">+</span>)
 <span class="ot">(+) ::</span> (<span class="dt">Num</span> a) <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a</code></pre></div>
-<p>We call the above a <strong>qualified type</strong>. Read it as <code class="sourceCode haskell"><span class="fu">+</span></code></p>
+<p>We call this a <strong>constrained</strong> (or <strong>qualified</strong>) type</p>
+<p><br> <br></p>
+<p>Read it as:</p>
 <ul>
-<li>takes in two <code class="sourceCode haskell">a</code> values and returns an <code class="sourceCode haskell">a</code> value</li>
+<li><code class="sourceCode haskell">(<span class="fu">+</span>)</code> takes in two <code class="sourceCode haskell">a</code> values and returns an <code class="sourceCode haskell">a</code> value<br />
+</li>
+<li>for any type <code class="sourceCode haskell">a</code> that</li>
+<li><em>is an instance of</em> the <code class="sourceCode haskell"><span class="dt">Num</span></code> type class
+<ul>
+<li>or, in Java terms: <em>implements</em> the <code class="sourceCode haskell"><span class="dt">Num</span></code> interface</li>
+</ul></li>
 </ul>
-<p>for any type <code class="sourceCode haskell">a</code> that</p>
+<p>The “<code class="sourceCode haskell">(<span class="dt">Num</span> a) <span class="ot">=&gt;</span></code>” part is called the <em>constraint</em></p>
+<p><br> <br> <br> <br> <br></p>
+<p>Some types are <code class="sourceCode haskell"><span class="dt">Num</span></code>s:</p>
 <ul>
-<li><em>is a</em> <code class="sourceCode haskell"><span class="dt">Num</span></code> or</li>
-<li><em>implements</em> the <code class="sourceCode haskell"><span class="dt">Num</span></code> interface or</li>
-<li><em>is an instance of</em> a <code class="sourceCode haskell"><span class="dt">Num</span></code>.</li>
+<li>For example, <code class="sourceCode haskell"><span class="dt">Int</span></code>, <code class="sourceCode haskell"><span class="dt">Integer</span></code>, <code class="sourceCode haskell"><span class="dt">Double</span></code></li>
+<li>Values of those types can be passed to <code class="sourceCode haskell">(<span class="fu">+</span>)</code>:</li>
 </ul>
-<p>The name <code class="sourceCode haskell"><span class="dt">Num</span></code> can be thought of as a <em>predicate</em> or <em>constraint</em> over types.</p>
-<h2 id="some-types-are-nums">Some types <em>are</em> <code class="sourceCode haskell"><span class="dt">Num</span></code>s</h2>
-<p>Examples include <code class="sourceCode haskell"><span class="dt">Integer</span></code>, <code class="sourceCode haskell"><span class="dt">Double</span></code> etc</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">3</span>
+<span class="dv">5</span></code></pre></div>
+<p><br> <br></p>
+<p>Other types <em>are not</em> <code class="sourceCode haskell"><span class="dt">Num</span></code>s:</p>
 <ul>
-<li>Any such values of those types can be passed to <code class="sourceCode haskell"><span class="fu">+</span></code>.</li>
-</ul>
-<h2 id="other-types-are-not-nums">Other types <em>are not</em> <code class="sourceCode haskell"><span class="dt">Num</span></code>s</h2>
-<p>Examples include <code class="sourceCode haskell"><span class="dt">Char</span></code>, <code class="sourceCode haskell"><span class="dt">String</span></code>, functions etc,</p>
-<ul>
-<li>Values of those types <em>cannot</em> be passed to <code class="sourceCode haskell"><span class="fu">+</span></code>.</li>
+<li>For example, <code class="sourceCode haskell"><span class="dt">Bool</span></code>, <code class="sourceCode haskell"><span class="dt">Char</span></code>, <code class="sourceCode haskell"><span class="dt">String</span></code>, function types, …</li>
+<li>Values of those types <em>cannot</em> be passed to <code class="sourceCode haskell">(<span class="fu">+</span>)</code>:</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="dt">True</span> <span class="fu">+</span> <span class="dt">False</span>
 
@@ -343,26 +385,75 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
     <span class="dt">No</span> <span class="kw">instance</span> for (<span class="dt">Num</span> <span class="dt">Bool</span>) arising from a use <span class="kw">of</span> ‘<span class="fu">+</span>’
     <span class="dt">In</span> the expression<span class="fu">:</span> <span class="dt">True</span> <span class="fu">+</span> <span class="dt">False</span>
     <span class="dt">In</span> an equation for ‘it’<span class="fu">:</span> it <span class="fu">=</span> <span class="dt">True</span> <span class="fu">+</span> <span class="dt">False</span></code></pre></div>
+<p><br> <br></p>
 <p><strong>Aha!</strong> <em>Now</em> those <code class="sourceCode haskell">no <span class="kw">instance</span> for</code> error messages should make sense!</p>
 <ul>
 <li>Haskell is complaining that <code class="sourceCode haskell"><span class="dt">True</span></code> and <code class="sourceCode haskell"><span class="dt">False</span></code> are of type <code class="sourceCode haskell"><span class="dt">Bool</span></code></li>
-<li>and that <code class="sourceCode haskell"><span class="dt">Bool</span></code> is <em>not</em> an instance of <code class="sourceCode haskell"><span class="dt">Num</span></code>.</li>
+<li>and that <code class="sourceCode haskell"><span class="dt">Bool</span></code> is <em>not</em> an instance of <code class="sourceCode haskell"><span class="dt">Num</span></code></li>
 </ul>
-<h2 id="type-class-is-a-set-of-operations">Type Class is a Set of Operations</h2>
-<p>A typeclass is a collection of operations (functions) that must exist for the underlying type.</p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-1">QUIZ</h2>
+<p>What would be a reasonable type for the equality operator?</p>
+<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="ot">(==) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a</code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="ot">(==) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span></code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="ot">(==) ::</span> (<span class="dt">Eq</span> a) <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a</code></p>
+<p><strong>(D)</strong> <code class="sourceCode haskell"><span class="ot">(==) ::</span> (<span class="dt">Eq</span> a) <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span></code></p>
+<p><strong>(E)</strong> None of the above</p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="type-classes-outline-1">Type Classes: Outline</h2>
+<ol style="list-style-type: decimal">
+<li>Why type classes? [done]</li>
+<li><strong>Standard type classes</strong></li>
+<li>Creating new instances</li>
+<li>Using type classes</li>
+<li>Creating new type classes</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="what-is-a-type-class">What is a type class?</h2>
+<p>A type class is a <em>collection of methods</em> (functions, operations) that must exist for every instance</p>
+<p><br> <br> <br></p>
+<p>What are some useful type classes in the Haskell standard library?</p>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="the-eq-type-class">The <code class="sourceCode haskell"><span class="dt">Eq</span></code> Type Class</h2>
-<p>The simplest typeclass is perhaps, <code class="sourceCode haskell"><span class="dt">Eq</span></code></p>
+<p>The simplest typeclass is <code class="sourceCode haskell"><span class="dt">Eq</span></code>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span>  <span class="dt">Eq</span> a  <span class="kw">where</span>
 <span class="ot">  (==) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
 <span class="ot">  (/=) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span></code></pre></div>
-<p>A type <code class="sourceCode haskell">a</code> is <em>an instance of</em> <code class="sourceCode haskell"><span class="dt">Eq</span></code> if there are two functions</p>
+<p>A type <code class="sourceCode haskell"><span class="dt">T</span></code> is <em>an instance of</em> <code class="sourceCode haskell"><span class="dt">Eq</span></code> if there are two functions</p>
 <ul>
-<li><code class="sourceCode haskell"><span class="fu">==</span></code> and <code class="sourceCode haskell"><span class="fu">/=</span></code></li>
+<li><code class="sourceCode haskell"><span class="ot">(==) ::</span> <span class="dt">T</span> <span class="ot">-&gt;</span> <span class="dt">T</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></code> that determines if two <code class="sourceCode haskell"><span class="dt">T</span></code> values are <em>equal</em></li>
+<li><code class="sourceCode haskell"><span class="ot">(/=)  ::</span> <span class="dt">T</span> <span class="ot">-&gt;</span> <span class="dt">T</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></code> that determines if two <code class="sourceCode haskell"><span class="dt">T</span></code> values are <em>disequal</em></li>
 </ul>
-<p>That determine if two <code class="sourceCode haskell">a</code> values are respectively <em>equal</em> or <em>disequal</em>.</p>
+<p><br> <br></p>
+<p><em>Lifehack:</em> You can ask GHCi about a type class and it will tell you</p>
+<ul>
+<li>its methods</li>
+<li>all the instances it knows</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="fu">:</span>info <span class="dt">Eq</span>
+<span class="kw">class</span>  <span class="dt">Eq</span> a  <span class="kw">where</span>
+<span class="ot">  (==) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+<span class="ot">  (/=) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+<span class="fu">...</span>
+<span class="kw">instance</span> <span class="dt">Eq</span> <span class="dt">Int</span>
+<span class="kw">instance</span> <span class="dt">Eq</span> <span class="dt">Double</span>
+<span class="fu">...</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br></p>
+<h2 id="the-num-type-class">The <code class="sourceCode haskell"><span class="dt">Num</span></code> Type Class</h2>
+<p>The type class <code class="sourceCode haskell"><span class="dt">Num</span></code> requires that instances define a bunch of arithmetic operations</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Num</span> a <span class="kw">where</span>
+<span class="ot">  (+) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a
+<span class="ot">  (-) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a
+<span class="ot">  (*) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a
+<span class="ot">  negate ::</span> a <span class="ot">-&gt;</span> a
+<span class="ot">  abs ::</span> a <span class="ot">-&gt;</span> a
+<span class="ot">  signum ::</span> a <span class="ot">-&gt;</span> a
+<span class="ot">  fromInteger ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> a</code></pre></div>
+<p><br> <br> <br> <br> <br> <br></p>
 <h2 id="the-show-type-class">The <code class="sourceCode haskell"><span class="dt">Show</span></code> Type Class</h2>
-<p>The typeclass <code class="sourceCode haskell"><span class="dt">Show</span></code> requires that instances be convertible to <code class="sourceCode haskell"><span class="dt">String</span></code> (which can then be printed out)</p>
+<p>The type class <code class="sourceCode haskell"><span class="dt">Show</span></code> requires that instances be convertible to <code class="sourceCode haskell"><span class="dt">String</span></code></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span>  <span class="dt">Show</span> a  <span class="kw">where</span>
 <span class="ot">  show ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre></div>
 <p>Indeed, we can test this on different (built-in) types</p>
@@ -374,104 +465,129 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 
 λ<span class="fu">&gt;</span> show (<span class="dv">1</span>, <span class="st">&quot;two&quot;</span>, ([],[],[]))
 <span class="st">&quot;(1,\&quot;two\&quot;,([],[],[]))&quot;</span></code></pre></div>
-<p>(Hey, whats up with the funny <code class="sourceCode haskell">\<span class="st">&quot;</span></code>?)</p>
-<p>When we type an expression into ghci, it computes the value and then calls <code class="sourceCode haskell">show</code> on the result. Thus, if we create a <em>new</em> type by</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Unshowable</span> <span class="fu">=</span> <span class="dt">A</span> <span class="fu">|</span> <span class="dt">B</span> <span class="fu">|</span> <span class="dt">C</span></code></pre></div>
-<p>and then create values of the type,</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="kw">let</span> x <span class="fu">=</span> <span class="dt">A</span>
-λ<span class="fu">&gt;</span> <span class="fu">:</span><span class="kw">type</span> x
-<span class="ot">x ::</span> <span class="dt">Unshowable</span></code></pre></div>
-<p>but then we <strong>cannot view</strong> them</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> x
-
-<span class="fu">&lt;</span>interactive<span class="fu">&gt;:</span><span class="dv">1</span><span class="fu">:</span><span class="dv">0</span><span class="fu">:</span>
-    <span class="dt">No</span> <span class="kw">instance</span> for (<span class="dt">Show</span> <span class="dt">Unshowable</span>)
-      arising from a use <span class="kw">of</span> <span class="ot">`print' at &lt;interactive&gt;:1:0</span>
-<span class="ot">    Possible fix: add an instance declaration for (Show Unshowable)</span>
-<span class="ot">    In a stmt of a 'do' expression: print it</span></code></pre></div>
-<p>and we <strong>cannot compare</strong> them!</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> x <span class="fu">==</span> x
-
-<span class="fu">&lt;</span>interactive<span class="fu">&gt;:</span><span class="dv">1</span><span class="fu">:</span><span class="dv">0</span><span class="fu">:</span>
-    <span class="dt">No</span> <span class="kw">instance</span> for (<span class="dt">Eq</span> <span class="dt">Unshowable</span>)
-      arising from a use <span class="kw">of</span> <span class="ot">`==' at &lt;interactive&gt;:1:0-5</span>
-<span class="ot">    Possible fix: add an instance declaration for (Eq Unshowable)</span>
-<span class="ot">    In the expression: x == x</span>
-<span class="ot">    In the definition of `</span>it'<span class="fu">:</span> it <span class="fu">=</span> x <span class="fu">==</span> x</code></pre></div>
-<p>Again, the previously incomprehensible type error message should make sense to you.</p>
-<h2 id="creating-instances">Creating Instances</h2>
-<p>Tell Haskell how to show or compare values of type <code class="sourceCode haskell"><span class="dt">Unshowable</span></code></p>
-<p>By <strong>creating instances</strong> of <code class="sourceCode haskell"><span class="dt">Eq</span></code> and <code class="sourceCode haskell"><span class="dt">Show</span></code> for that type:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Eq</span> <span class="dt">Unshowable</span> <span class="kw">where</span>
-  (<span class="fu">==</span>) <span class="dt">A</span> <span class="dt">A</span> <span class="fu">=</span> <span class="dt">True</span>           <span class="co">-- True if both inputs are A</span>
-  (<span class="fu">==</span>) <span class="dt">B</span> <span class="dt">B</span> <span class="fu">=</span> <span class="dt">True</span>           <span class="co">-- ...or B</span>
-  (<span class="fu">==</span>) <span class="dt">C</span> <span class="dt">C</span> <span class="fu">=</span> <span class="dt">True</span>           <span class="co">-- .. or C</span>
-  (<span class="fu">==</span>) _ _ <span class="fu">=</span> <span class="dt">False</span>          <span class="co">-- otherwise</span>
-
-  (<span class="fu">/=</span>) x y <span class="fu">=</span> not (x <span class="fu">==</span> y)   <span class="co">-- Test if `x == y` and negate result!</span></code></pre></div>
-<p><strong>EXERCISE</strong> Lets <em>create</em> an <code class="sourceCode haskell"><span class="kw">instance</span></code> for <code class="sourceCode haskell"><span class="dt">Show</span> <span class="dt">Unshowable</span></code></p>
-<h2 id="automatic-derivation">Automatic Derivation</h2>
-<p>This is silly: we <em>should</em> be able to compare and view <code class="sourceCode haskell"><span class="dt">Unshowble</span></code> “automatically”!</p>
-<p>Haskell lets us <em>automatically derive</em> functions for some classes in the standard library.</p>
-<p>To do so, we simply dress up the data type definition with</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Showable</span> <span class="fu">=</span> <span class="dt">A'</span> <span class="fu">|</span> <span class="dt">B'</span> <span class="fu">|</span> <span class="dt">C'</span>
-  <span class="kw">deriving</span> (<span class="dt">Eq</span>, <span class="dt">Show</span>) <span class="co">-- tells Haskell to automatically generate instances</span></code></pre></div>
-<p>Now we have</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="kw">let</span> x' <span class="fu">=</span> <span class="dt">A'</span>
-
-λ<span class="fu">&gt;</span> <span class="fu">:</span><span class="kw">type</span> x'
-<span class="ot">x' ::</span> <span class="dt">Showable</span>
-
-λ<span class="fu">&gt;</span> x'
-<span class="dt">A'</span>
-
-λ<span class="fu">&gt;</span> x' <span class="fu">==</span> x'
-<span class="dt">True</span>
-
-λ<span class="fu">&gt;</span> x' <span class="fu">==</span> <span class="dt">B'</span>
-<span class="dt">False</span></code></pre></div>
-<h2 id="standard-typeclass-hierarchy">Standard Typeclass Hierarchy</h2>
-<p>Let us now peruse the definition of the <code class="sourceCode haskell"><span class="dt">Num</span></code> typeclass.</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="fu">:</span>info <span class="dt">Num</span>
-<span class="kw">class</span> (<span class="dt">Eq</span> a, <span class="dt">Show</span> a) <span class="ot">=&gt;</span> <span class="dt">Num</span> a <span class="kw">where</span>
-<span class="ot">  (+) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a
-<span class="ot">  (*) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a
-<span class="ot">  (-) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a
-<span class="ot">  negate ::</span> a <span class="ot">-&gt;</span> a
-<span class="ot">  abs ::</span> a <span class="ot">-&gt;</span> a
-<span class="ot">  signum ::</span> a <span class="ot">-&gt;</span> a
-<span class="ot">  fromInteger ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> a</code></pre></div>
-<p>A type <code class="sourceCode haskell">a</code> <em>is an instance of</em> (i.e. <em>implements</em>) <code class="sourceCode haskell"><span class="dt">Num</span></code> if</p>
-<ol style="list-style-type: decimal">
-<li>The type is <em>also</em> an instance of <code class="sourceCode haskell"><span class="dt">Eq</span></code> and <code class="sourceCode haskell"><span class="dt">Show</span></code>, and</li>
-<li>There are functions for adding, multiplying, subtracting, negating etc values of that type.</li>
-</ol>
-<p>In other words in addition to the “arithmetic” operations, we can compare two <code class="sourceCode haskell"><span class="dt">Num</span></code> values and we can view them (as a <code class="sourceCode haskell"><span class="dt">String</span></code>.)</p>
-<p>Haskell comes equipped with a rich set of built-in classes.</p>
-<div class="figure">
-<img src="../static/img/haskell98-classes.png" alt="Standard Typeclass Hierarchy" />
-<p class="caption">Standard Typeclass Hierarchy</p>
-</div>
-<p>In the above picture, there is an edge from <code class="sourceCode haskell"><span class="dt">Eq</span></code> and <code class="sourceCode haskell"><span class="dt">Show</span></code> to <code class="sourceCode haskell"><span class="dt">Num</span></code> because for something to be a <code class="sourceCode haskell"><span class="dt">Num</span></code> it must also be an <code class="sourceCode haskell"><span class="dt">Eq</span></code> and <code class="sourceCode haskell"><span class="dt">Show</span></code>.</p>
+<p><br> <br> <br> <br> <br> <br></p>
 <h2 id="the-ord-typeclass">The <code class="sourceCode haskell"><span class="dt">Ord</span></code> Typeclass</h2>
-<p>Another typeclass you’ve used already is the one for <code class="sourceCode haskell"><span class="dt">Ord</span></code>ering values:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="fu">:</span>info (<span class="fu">&lt;</span>)
-<span class="kw">class</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> <span class="dt">Ord</span> a <span class="kw">where</span>
-  <span class="fu">...</span>
-<span class="ot">  (&lt;) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
-  <span class="fu">...</span></code></pre></div>
+<p>The type class <code class="sourceCode haskell"><span class="dt">Ord</span></code> is for totally ordered values:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> <span class="dt">Ord</span> a <span class="kw">where</span>
+<span class="ot">  (&lt;)  ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+<span class="ot">  (&lt;=) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+<span class="ot">  (&gt;)  ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+<span class="ot">  (&gt;=) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span></code></pre></div>
 <p>For example:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="dv">2</span> <span class="fu">&lt;</span> <span class="dv">3</span>
 <span class="dt">True</span>
 
 λ<span class="fu">&gt;</span> <span class="st">&quot;cat&quot;</span> <span class="fu">&lt;</span> <span class="st">&quot;dog&quot;</span>
 <span class="dt">True</span></code></pre></div>
-<h2 id="quiz-1">QUIZ</h2>
-<p>Recall the datatype:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Showable</span> <span class="fu">=</span> <span class="dt">A'</span> <span class="fu">|</span> <span class="dt">B'</span> <span class="fu">|</span> <span class="dt">C'</span> <span class="kw">deriving</span> (<span class="dt">Eq</span>, <span class="dt">Show</span>)</code></pre></div>
+<p><br> <br></p>
+<p>Note <code class="sourceCode haskell"><span class="dt">Eq</span> a <span class="ot">=&gt;</span></code> in the class definition!</p>
+<p>A type <code class="sourceCode haskell"><span class="dt">T</span></code> <em>is an instance of</em> <code class="sourceCode haskell"><span class="dt">Ord</span></code> if</p>
+<ol style="list-style-type: decimal">
+<li><code class="sourceCode haskell"><span class="dt">T</span></code> is <em>also</em> an instance of <code class="sourceCode haskell"><span class="dt">Eq</span></code>, and</li>
+<li>It defines functions for comparing values for inequality</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br></p>
+<h2 id="standard-typeclass-hierarchy">Standard Typeclass Hierarchy</h2>
+<p>Haskell comes equipped with a rich set of built-in classes.</p>
+<div class="figure">
+<img src="../static/img/haskell98-classes.png" alt="Standard Typeclass Hierarchy" />
+<p class="caption">Standard Typeclass Hierarchy</p>
+</div>
+<p>In the above picture, there is an edge from <code class="sourceCode haskell"><span class="dt">Eq</span></code> to <code class="sourceCode haskell"><span class="dt">Ord</span></code> because for something to be an <code class="sourceCode haskell"><span class="dt">Ord</span></code> it must also be an <code class="sourceCode haskell"><span class="dt">Eq</span></code>.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="type-classes-outline-2">Type Classes: Outline</h2>
+<ol style="list-style-type: decimal">
+<li>Why type classes? [done]</li>
+<li>Standard type classes [done]</li>
+<li><strong>Creating new instances</strong></li>
+<li>Using type classes</li>
+<li>Creating new type classes</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="showing-your-colors">Showing Your Colors</h2>
+<p>Let’s create a new datatype:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Color</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Green</span></code></pre></div>
+<p>and play with it in GHCi:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="kw">let</span> col <span class="fu">=</span> <span class="dt">Red</span>
+λ<span class="fu">&gt;</span> <span class="fu">:</span><span class="kw">type</span> col
+<span class="ot">x ::</span> <span class="dt">Color</span></code></pre></div>
+<p>So far, so good… but we <strong>cannot view</strong> them!</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> col
+
+<span class="fu">&lt;</span>interactive<span class="fu">&gt;:</span><span class="dv">1</span><span class="fu">:</span><span class="dv">0</span><span class="fu">:</span>
+    <span class="dt">No</span> <span class="kw">instance</span> for (<span class="dt">Show</span> <span class="dt">Color</span>)
+      arising from a use <span class="kw">of</span> <span class="ot">`print' at &lt;interactive&gt;:1:0</span>
+<span class="ot">    Possible fix: add an instance declaration for (Show Color)</span>
+<span class="ot">    In a stmt of a 'do' expression: print it</span></code></pre></div>
+<p>Why is this happening?</p>
+<p><br> <br> <br></p>
+<p>When we type an expression into GHCi it:</p>
+<ol style="list-style-type: decimal">
+<li>evaluates it to a value, then</li>
+<li>calls <code class="sourceCode haskell">show</code> on that value to convert it to a string</li>
+</ol>
+<p>But our new type is <em>not an instance</em> of <code class="sourceCode haskell"><span class="dt">Show</span></code>!</p>
+<p><br> <br> <br> <br> <br> <br></p>
+<p>We also <strong>cannot compare</strong> colors!</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> col <span class="fu">==</span> <span class="dt">Green</span>
+
+<span class="fu">&lt;</span>interactive<span class="fu">&gt;:</span><span class="dv">1</span><span class="fu">:</span><span class="dv">0</span><span class="fu">:</span>
+    <span class="dt">No</span> <span class="kw">instance</span> for (<span class="dt">Eq</span> <span class="dt">Color</span>)
+      arising from a use <span class="kw">of</span> <span class="ot">`==' at &lt;interactive&gt;:1:0-5</span>
+<span class="ot">    Possible fix: add an instance declaration for (Eq Color)</span>
+<span class="ot">    In the expression: col == Green</span>
+<span class="ot">    In the definition of `</span>it'<span class="fu">:</span> it <span class="fu">=</span> col <span class="fu">==</span> <span class="dt">Green</span></code></pre></div>
+<p><br> <br></p>
+<p>How do we <em>add an instance declaration</em> for <code class="sourceCode haskell"><span class="dt">Show</span> <span class="dt">Color</span></code> and <code class="sourceCode haskell"><span class="dt">Eq</span> <span class="dt">Color</span></code>?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="creating-instances">Creating Instances</h2>
+<p>To tell Haskell how to show or compare values of type <code class="sourceCode haskell"><span class="dt">Color</span></code></p>
+<ul>
+<li><strong>create instances</strong> of <code class="sourceCode haskell"><span class="dt">Eq</span></code> and <code class="sourceCode haskell"><span class="dt">Show</span></code> for that type:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Show</span> <span class="dt">Color</span> <span class="kw">where</span>
+  show <span class="dt">Red</span>   <span class="fu">=</span> <span class="st">&quot;Red&quot;</span>
+  show <span class="dt">Green</span> <span class="fu">=</span> <span class="st">&quot;Green&quot;</span>
+  
+<span class="kw">instance</span> <span class="dt">Eq</span> <span class="dt">Color</span> <span class="kw">where</span>
+  <span class="fu">???</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="automatic-derivation">Automatic Derivation</h2>
+<p>This is silly: we <em>should</em> be able to compare and view <code class="sourceCode haskell"><span class="dt">Color</span></code>s “automatically”!</p>
+<p>Haskell lets us <em>automatically derive</em> functions for some classes in the standard library.</p>
+<p>To do so, we simply dress up the data type definition with</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Color</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Green</span>
+  <span class="kw">deriving</span> (<span class="dt">Eq</span>, <span class="dt">Show</span>) <span class="co">-- please generate instances automatically!</span></code></pre></div>
+<p>Now we have</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="kw">let</span> col <span class="fu">=</span> <span class="dt">Red</span>
+
+λ<span class="fu">&gt;</span> col
+<span class="dt">Red</span>
+
+λ<span class="fu">&gt;</span> col <span class="fu">==</span> <span class="dt">Red</span>
+<span class="dt">True</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-2">QUIZ</h2>
+<p>With the definition</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Color</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Green</span> 
+  <span class="kw">deriving</span> (<span class="dt">Eq</span>, <span class="dt">Show</span>)</code></pre></div>
 <p>What is the result of:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="dt">A'</span> <span class="fu">&lt;</span> <span class="dt">B'</span></code></pre></div>
-<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="dt">True</span></code> <strong>(B)</strong> <code class="sourceCode haskell"><span class="dt">False</span></code> <strong>(C)</strong> Type error <strong>(D)</strong> Run-time exception</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="dt">Red</span> <span class="fu">&lt;</span> <span class="dt">Green</span></code></pre></div>
+<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="dt">True</span></code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dt">False</span></code></p>
+<p><strong>(C)</strong> Type error</p>
+<p><strong>(D)</strong> Run-time exception</p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="type-classes-outline-3">Type Classes: Outline</h2>
+<ol style="list-style-type: decimal">
+<li>Why type classes? [done]</li>
+<li>Standard type classes [done]</li>
+<li>Creating new instances [done]</li>
+<li><strong>Using type classes</strong></li>
+<li>Creating new type classes</li>
+</ol>
 <h2 id="using-typeclasses">Using Typeclasses</h2>
 <p>Typeclasses integrate with the rest of Haskell’s type system.</p>
 <p>Lets build a small library for <em>Environments</em> mapping keys <code class="sourceCode haskell">k</code> to values <code class="sourceCode haskell">v</code></p>
@@ -527,7 +643,7 @@ get key env <span class="fu">=</span> <span class="fu">???</span></code></pre></
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">read<span class="ot"> ::</span> (<span class="dt">Read</span> a) <span class="ot">=&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> a</code></pre></div>
 <p>which can parse a string and turn it into an <code class="sourceCode haskell">a</code>.</p>
 <p>That is, <code class="sourceCode haskell"><span class="dt">Read</span></code> is the <em>opposite</em> of <code class="sourceCode haskell"><span class="dt">Show</span></code>.</p>
-<h2 id="quiz-2">Quiz</h2>
+<h2 id="quiz-3">Quiz</h2>
 <p>What does the expression <code class="sourceCode haskell">read <span class="st">&quot;2&quot;</span></code> evaluate to?</p>
 <p><strong>(A)</strong> compile time error</p>
 <p><strong>(B)</strong> <code class="sourceCode haskell"><span class="st">&quot;2&quot;</span><span class="ot"> ::</span> <span class="dt">String</span></code></p>
@@ -548,6 +664,7 @@ get key env <span class="fu">=</span> <span class="fu">???</span></code></pre></
 λ<span class="fu">&gt;</span> (read <span class="st">&quot;2&quot;</span>)<span class="ot"> ::</span> <span class="dt">Float</span>
 <span class="fl">2.0</span></code></pre></div>
 <p>Note the different results due to the different types.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="creating-typeclasses">Creating Typeclasses</h2>
 <p>Typeclasses are useful for <em>many</em> different things.</p>
 <p>We will see some of those over the next few lectures.</p>

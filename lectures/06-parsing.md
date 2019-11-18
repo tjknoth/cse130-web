@@ -611,7 +611,9 @@ AVar "x" <===  Aexpr  '+'  Aexpr  ===> AConst 2
 <br>
 
 How do we compute the *value* of a terminal?
+
   - How do we map terminal `'x'` to string `"x"`?
+  
   - How do we map terminal `'2'` to integer `2`?
     
 <br>
