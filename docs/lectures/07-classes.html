@@ -454,7 +454,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="the-show-type-class">The <code class="sourceCode haskell"><span class="dt">Show</span></code> Type Class</h2>
 <p>The type class <code class="sourceCode haskell"><span class="dt">Show</span></code> requires that instances be convertible to <code class="sourceCode haskell"><span class="dt">String</span></code></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span>  <span class="dt">Show</span> a  <span class="kw">where</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Show</span> a  <span class="kw">where</span>
 <span class="ot">  show ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre></div>
 <p>Indeed, we can test this on different (built-in) types</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> show <span class="dv">2</span>
@@ -505,6 +505,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="showing-your-colors">Showing Your Colors</h2>
+<!-- Add parameters? Nice to show deriving -->
 <p>Let’s create a new datatype:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Color</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Green</span></code></pre></div>
 <p>and play with it in GHCi:</p>
@@ -580,6 +581,60 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br></p>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-3">QUIZ</h2>
+<p>Which of the following <code class="sourceCode haskell"><span class="dt">Eq</span></code> instances for <code class="sourceCode haskell"><span class="dt">Color</span></code> are valid?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- (A)</span>
+<span class="kw">instance</span> <span class="dt">Eq</span> <span class="dt">Color</span> <span class="kw">where</span>
+  (<span class="fu">==</span>) <span class="dt">Red</span>   <span class="dt">Red</span>   <span class="fu">=</span> <span class="dt">True</span>
+  (<span class="fu">==</span>) <span class="dt">Green</span> <span class="dt">Green</span> <span class="fu">=</span> <span class="dt">True</span>
+  (<span class="fu">==</span>) _     _     <span class="fu">=</span> <span class="dt">False</span>
+
+<span class="co">-- (B)</span>
+<span class="kw">instance</span> <span class="dt">Eq</span> <span class="dt">Color</span> <span class="kw">where</span>
+  (<span class="fu">/=</span>) <span class="dt">Red</span>   <span class="dt">Red</span>   <span class="fu">=</span> <span class="dt">False</span>
+  (<span class="fu">/=</span>) <span class="dt">Green</span> <span class="dt">Green</span> <span class="fu">=</span> <span class="dt">False</span>
+  (<span class="fu">/=</span>) _     _     <span class="fu">=</span> <span class="dt">True</span>
+
+<span class="co">-- (C) Neither of the above</span>
+
+<span class="co">-- (D) Either of the above</span></code></pre></div>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="default-method-implementations">Default Method Implementations</h2>
+<p>The <code class="sourceCode haskell"><span class="dt">Eq</span></code> class is actually defined like this:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span>  <span class="dt">Eq</span> a  <span class="kw">where</span>
+<span class="ot">  (==) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+  (<span class="fu">==</span>) x y <span class="fu">=</span> not (x <span class="fu">/=</span> y) <span class="co">-- Default implementation!</span>
+  
+<span class="ot">  (/=) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+  (<span class="fu">/=</span>) x y <span class="fu">=</span> not (x <span class="fu">==</span> y) <span class="co">-- Default implementation!</span></code></pre></div>
+<p><br> <br></p>
+<p>The class provides <strong>default implementations</strong> for its methods</p>
+<ul>
+<li><p>An instance can define <em>any</em> of the two methods and get the other one for free</p></li>
+<li><p>Use <code class="sourceCode haskell"><span class="fu">:</span>info</code> to find out which methods you have to define:</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="fu">:</span>info <span class="dt">Eq</span>
+<span class="kw">class</span>  <span class="dt">Eq</span> a  <span class="kw">where</span>
+<span class="ot">  (==) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+<span class="ot">  (/=) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+  <span class="ot">{-# MINIMAL (==) | (/=) #-}</span> <span class="co">-- HERE HERE!!!</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-4">QUIZ</h2>
+<p>If you define:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Eq</span> <span class="dt">Color</span> <span class="kw">where</span>
+  <span class="co">-- Nothing here!</span></code></pre></div>
+<p>what will the following evaluate to?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="dt">Red</span> <span class="fu">==</span> <span class="dt">Green</span></code></pre></div>
+<p><strong>(A)</strong> Type error</p>
+<p><strong>(B)</strong> Runtime error</p>
+<p><strong>(C)</strong> Runs forever</p>
+<p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dt">False</span></code></p>
+<p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dt">True</span></code></p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="type-classes-outline-3">Type Classes: Outline</h2>
 <ol style="list-style-type: decimal">
 <li>Why type classes? [done]</li>
@@ -588,15 +643,25 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li><strong>Using type classes</strong></li>
 <li>Creating new type classes</li>
 </ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="using-typeclasses">Using Typeclasses</h2>
-<p>Typeclasses integrate with the rest of Haskell’s type system.</p>
-<p>Lets build a small library for <em>Environments</em> mapping keys <code class="sourceCode haskell">k</code> to values <code class="sourceCode haskell">v</code></p>
+<p>Now let’s see how to write code that uses type classes!</p>
+<p><br> <br></p>
+<p>Let’s build a small library for <em>Environments</em> mapping keys <code class="sourceCode haskell">k</code> to values <code class="sourceCode haskell">v</code></p>
+<ul>
+<li><p>In Nano, we represented environments as <code class="sourceCode haskell">[(<span class="dt">Id</span>, <span class="dt">Value</span>)]</code></p></li>
+<li><p>But what if I want to have keys that are <em>not</em> <code class="sourceCode haskell"><span class="dt">Id</span></code> and values that are <em>not</em> <code class="sourceCode haskell"><span class="dt">Value</span></code>?</p></li>
+<li><p>What if I want to change the representation to something more <em>efficient</em>?</p></li>
+</ul>
+<p><br> <br></p>
+<p>Let’s define a new <em>polymorphic</em> datatype <code class="sourceCode haskell"><span class="dt">Env</span></code>!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Env</span> k v
-  <span class="fu">=</span> <span class="dt">Def</span>  v              <span class="co">-- default value `v` to be used for &quot;missing&quot; keys</span>
+  <span class="fu">=</span> <span class="dt">Def</span>  v              <span class="co">-- default value to be used for missing keys</span>
   <span class="fu">|</span> <span class="dt">Bind</span> k v (<span class="dt">Env</span> k v)  <span class="co">-- bind key `k` to the value `v`</span>
   <span class="kw">deriving</span> (<span class="dt">Show</span>)</code></pre></div>
-<h2 id="an-api-for-env">An API for <code class="sourceCode haskell"><span class="dt">Env</span></code></h2>
-<p>Lets write a small API for <code class="sourceCode haskell"><span class="dt">Env</span></code></p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="the-api">The API</h2>
+<p>We want to be able to do the following with <code class="sourceCode haskell"><span class="dt">Env</span></code>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; let env0 = add &quot;cat&quot; 10.0 (add &quot;dog&quot; 20.0 (Def 0))</span>
 
 <span class="co">-- &gt;&gt;&gt; get &quot;cat&quot; env0</span>
@@ -607,22 +672,25 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 
 <span class="co">-- &gt;&gt;&gt; get &quot;horse&quot; env0</span>
 <span class="co">-- 0</span></code></pre></div>
-<p>Ok, lets implement!</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | 'add key val env' returns a new env that additionally maps `key` to `val`</span>
+<p><br> <br></p>
+<p>Okay, lets implement!</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | 'add key val env' returns a new env </span>
+<span class="co">-- | that additionally maps `key` to `val`</span>
 <span class="ot">add ::</span> k <span class="ot">-&gt;</span> v <span class="ot">-&gt;</span> <span class="dt">Env</span> k v <span class="ot">-&gt;</span> <span class="dt">Env</span> k v
 add key val env <span class="fu">=</span> <span class="fu">???</span>
 
-<span class="co">-- | 'get key env' returns the value of `key` and the &quot;default&quot; if no value is found</span>
-
+<span class="co">-- | 'get key env' returns the value of `key` </span>
+<span class="co">-- | and the &quot;default&quot; if no value is found</span>
 <span class="ot">get ::</span> k <span class="ot">-&gt;</span> <span class="dt">Env</span> k v <span class="ot">-&gt;</span> v
 get key env <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
-<p><br> <br> <br> <br> <br></p>
-<p>Oops, y u no check?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p>But we get a type error!</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="constraint-propagation">Constraint Propagation</h2>
 <p>Lets <em>delete</em> the types of <code class="sourceCode haskell">add</code> and <code class="sourceCode haskell">get</code> and see what Haskell says their types are!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="fu">:</span><span class="kw">type</span> get
 <span class="ot">get ::</span> (<span class="dt">Eq</span> k) <span class="ot">=&gt;</span> k <span class="ot">-&gt;</span> v <span class="ot">-&gt;</span> <span class="dt">Env</span> k v <span class="ot">-&gt;</span> <span class="dt">Env</span> k v</code></pre></div>
-<p>Haskell tells us that we can use any <code class="sourceCode haskell">k</code> value as a <em>key</em> as long as the value is an instance of the <code class="sourceCode haskell"><span class="dt">Eq</span></code> typeclass.</p>
+<p>Haskell tells us that we can use any <code class="sourceCode haskell">k</code> type as a <em>key</em> as long as this type is an instance of the <code class="sourceCode haskell"><span class="dt">Eq</span></code> typeclass.</p>
 <p>How, did GHC figure this out?</p>
 <ul>
 <li>If you look at the code for <code class="sourceCode haskell">get</code> you’ll see that we check if two keys <em>are equal</em>!</li>
@@ -631,25 +699,35 @@ get key env <span class="fu">=</span> <span class="fu">???</span></code></pre></
 <h2 id="exercise">Exercise</h2>
 <p>Write an optimized version of</p>
 <ul>
-<li><code class="sourceCode haskell">add</code> that ensures the keys are in <em>increasing</em> order,</li>
-<li><code class="sourceCode haskell">get</code> that gives up and returns the “default” the moment we see a key thats larger than the one we’re looking for.</li>
+<li><code class="sourceCode haskell">add</code> that ensures the keys are in <em>increasing</em> order</li>
+<li><code class="sourceCode haskell">get</code> that gives up and returns the “default” the moment we see a key that’s larger than the one we’re looking for</li>
 </ul>
 <p><em>(How) do you need to change the type of <code class="sourceCode haskell"><span class="dt">Env</span></code>?</em></p>
 <p><em>(How) do you need to change the types of <code class="sourceCode haskell">get</code> and <code class="sourceCode haskell">add</code>?</em></p>
-<p><br> <br> <br> <br> <br> <br></p>
-<h2 id="explicit-signatures">Explicit Signatures</h2>
-<p>While Haskell is pretty good about inferring types in general, there are cases when the use of type classes requires explicit annotations (which change the behavior of the code.)</p>
-<p>For example, <code class="sourceCode haskell"><span class="dt">Read</span></code> is a built-in typeclass, where any instance <code class="sourceCode haskell">a</code> of <code class="sourceCode haskell"><span class="dt">Read</span></code> has a function</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">read<span class="ot"> ::</span> (<span class="dt">Read</span> a) <span class="ot">=&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> a</code></pre></div>
-<p>which can parse a string and turn it into an <code class="sourceCode haskell">a</code>.</p>
-<p>That is, <code class="sourceCode haskell"><span class="dt">Read</span></code> is the <em>opposite</em> of <code class="sourceCode haskell"><span class="dt">Show</span></code>.</p>
-<h2 id="quiz-3">Quiz</h2>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="explicit-type-annotations">Explicit Type Annotations</h2>
+<!-- Move this up to standard type classes -->
+<p>Consider the standard typeclass <code class="sourceCode haskell"><span class="dt">Read</span></code>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Not the actual definition, but almost:</span>
+<span class="kw">class</span> <span class="dt">Read</span> a <span class="kw">where</span>
+<span class="ot">  read ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> a</code></pre></div>
+<p><code class="sourceCode haskell"><span class="dt">Read</span></code> is the <em>opposite</em> of <code class="sourceCode haskell"><span class="dt">Show</span></code></p>
+<ul>
+<li><p>It requires that every instance <code class="sourceCode haskell"><span class="dt">T</span></code> can parse a string and turn it into <code class="sourceCode haskell"><span class="dt">T</span></code></p></li>
+<li><p>Just like with <code class="sourceCode haskell"><span class="dt">Show</span></code>, most standard type are instances of <code class="sourceCode haskell"><span class="dt">Read</span></code>:</p>
+<ul>
+<li><code class="sourceCode haskell"><span class="dt">Int</span></code>, <code class="sourceCode haskell"><span class="dt">Integer</span></code>, <code class="sourceCode haskell"><span class="dt">Double</span></code>, <code class="sourceCode haskell"><span class="dt">Char</span></code>, <code class="sourceCode haskell"><span class="dt">Bool</span></code>, etc</li>
+</ul></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br><br />
+<br> <br></p>
+<h2 id="quiz-5">QUIZ</h2>
 <p>What does the expression <code class="sourceCode haskell">read <span class="st">&quot;2&quot;</span></code> evaluate to?</p>
-<p><strong>(A)</strong> compile time error</p>
-<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="st">&quot;2&quot;</span><span class="ot"> ::</span> <span class="dt">String</span></code></p>
-<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="dv">2</span><span class="ot">   ::</span> <span class="dt">Integer</span></code></p>
-<p><strong>(D)</strong> <code class="sourceCode haskell"><span class="fl">2.0</span><span class="ot"> ::</span> <span class="dt">Double</span></code></p>
-<p><strong>(E)</strong> run-time exception</p>
+<p><strong>(A)</strong> Type error</p>
+<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="st">&quot;2&quot;</span></code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="dv">2</span></code></p>
+<p><strong>(D)</strong> <code class="sourceCode haskell"><span class="fl">2.0</span></code></p>
+<p><strong>(E)</strong> Run-time error</p>
 <p><br> <br> <br> <br> <br> <br></p>
 <p>Haskell is foxed!</p>
 <ul>
@@ -657,36 +735,56 @@ get key env <span class="fu">=</span> <span class="fu">???</span></code></pre></
 <li>Doesn’t know <em>which</em> of the <code class="sourceCode haskell">read</code> functions to run!</li>
 </ul>
 <p>Did we want an <code class="sourceCode haskell"><span class="dt">Int</span></code> or a <code class="sourceCode haskell"><span class="dt">Double</span></code> or maybe something else altogether?</p>
+<p><br> <br></p>
 <p>Thus, here an <strong>explicit type annotation</strong> is needed to tell Haskell what to convert the string to:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> (read <span class="st">&quot;2&quot;</span>)<span class="ot"> ::</span> <span class="dt">Int</span>
 <span class="dv">2</span>
 
 λ<span class="fu">&gt;</span> (read <span class="st">&quot;2&quot;</span>)<span class="ot"> ::</span> <span class="dt">Float</span>
-<span class="fl">2.0</span></code></pre></div>
+<span class="fl">2.0</span>
+
+λ<span class="fu">&gt;</span> (read <span class="st">&quot;2&quot;</span>)<span class="ot"> ::</span> <span class="dt">String</span>
+<span class="fu">???</span></code></pre></div>
 <p>Note the different results due to the different types.</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="type-classes-outline-4">Type Classes: Outline</h2>
+<ol style="list-style-type: decimal">
+<li>Why type classes? [done]</li>
+<li>Standard type classes [done]</li>
+<li>Creating new instances [done]</li>
+<li>Using type classes [done]</li>
+<li><strong>Creating new type classes</strong></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="creating-typeclasses">Creating Typeclasses</h2>
-<p>Typeclasses are useful for <em>many</em> different things.</p>
-<p>We will see some of those over the next few lectures.</p>
-<p>Lets conclude today’s class with a quick example that provides a small taste.</p>
+<p>Typeclasses are useful for <em>many</em> different things</p>
+<ul>
+<li>Improve readability</li>
+<li>Promote code reuse</li>
+</ul>
+<p>We will see some very interesting use cases over the next few lectures.</p>
+<p><br> <br></p>
+<p>Lets conclude today’s class with a quick example that provides a taste.</p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="json">JSON</h2>
 <p><em>JavaScript Object Notation</em> or <a href="http://www.json.org/">JSON</a> is a simple format for transferring data around. Here is an example:</p>
-<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span> <span class="dt">&quot;name&quot;</span>    <span class="fu">:</span> <span class="st">&quot;Ranjit&quot;</span>
-<span class="fu">,</span> <span class="dt">&quot;age&quot;</span>     <span class="fu">:</span> <span class="fl">41.0</span>
-<span class="fu">,</span> <span class="dt">&quot;likes&quot;</span>   <span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;guacamole&quot;</span><span class="ot">,</span> <span class="st">&quot;coffee&quot;</span><span class="ot">,</span> <span class="st">&quot;bacon&quot;</span><span class="ot">]</span>
-<span class="fu">,</span> <span class="dt">&quot;hates&quot;</span>   <span class="fu">:</span> <span class="ot">[</span> <span class="st">&quot;waiting&quot;</span> <span class="ot">,</span> <span class="st">&quot;grapefruit&quot;</span><span class="ot">]</span>
-<span class="fu">,</span> <span class="dt">&quot;lunches&quot;</span> <span class="fu">:</span> <span class="ot">[</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;monday&quot;</span><span class="fu">,</span>    <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;zanzibar&quot;</span><span class="fu">}</span>
-              <span class="ot">,</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;tuesday&quot;</span><span class="fu">,</span>   <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;farmers market&quot;</span><span class="fu">}</span>
-              <span class="ot">,</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;wednesday&quot;</span><span class="fu">,</span> <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;harekrishna&quot;</span><span class="fu">}</span>
-              <span class="ot">,</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;thursday&quot;</span><span class="fu">,</span>  <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;faculty club&quot;</span><span class="fu">}</span>
-              <span class="ot">,</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;friday&quot;</span><span class="fu">,</span>    <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;coffee cart&quot;</span><span class="fu">}</span> <span class="ot">]</span>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span> <span class="dt">&quot;name&quot;</span>    <span class="fu">:</span> <span class="st">&quot;Nadia&quot;</span>
+<span class="fu">,</span> <span class="dt">&quot;age&quot;</span>     <span class="fu">:</span> <span class="fl">34.0</span>
+<span class="fu">,</span> <span class="dt">&quot;likes&quot;</span>   <span class="fu">:</span> <span class="ot">[</span> <span class="st">&quot;poke&quot;</span><span class="ot">,</span> <span class="st">&quot;coffee&quot;</span><span class="ot">,</span> <span class="st">&quot;pasta&quot;</span> <span class="ot">]</span>
+<span class="fu">,</span> <span class="dt">&quot;hates&quot;</span>   <span class="fu">:</span> <span class="ot">[</span> <span class="st">&quot;beets&quot;</span> <span class="ot">,</span> <span class="st">&quot;milk&quot;</span> <span class="ot">]</span>
+<span class="fu">,</span> <span class="dt">&quot;lunches&quot;</span> <span class="fu">:</span> <span class="ot">[</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;mon&quot;</span><span class="fu">,</span> <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;rubios&quot;</span><span class="fu">}</span>
+              <span class="ot">,</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;tue&quot;</span><span class="fu">,</span> <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;farmers market&quot;</span><span class="fu">}</span>
+              <span class="ot">,</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;wed&quot;</span><span class="fu">,</span> <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;seed and sprout&quot;</span><span class="fu">}</span>
+              <span class="ot">,</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;thu&quot;</span><span class="fu">,</span> <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;home&quot;</span><span class="fu">}</span>
+              <span class="ot">,</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;fri&quot;</span><span class="fu">,</span> <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;lemongrass&quot;</span><span class="fu">}</span> <span class="ot">]</span>
 <span class="fu">}</span></code></pre></div>
-<p>In brief, each JSON object is either</p>
+<p>Each JSON object is either</p>
 <ul>
 <li><p>a <em>base</em> value like a string, a number or a boolean,</p></li>
 <li><p>an (ordered) <em>array</em> of objects, or</p></li>
 <li><p>a set of <em>string-object</em> pairs.</p></li>
 </ul>
+<p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="a-json-datatype">A JSON Datatype</h2>
 <p>We can represent (a subset of) JSON values with the Haskell datatype</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">JVal</span>
@@ -696,26 +794,34 @@ get key env <span class="fu">=</span> <span class="fu">???</span></code></pre></
   <span class="fu">|</span> <span class="dt">JObj</span>  [(<span class="dt">String</span>, <span class="dt">JVal</span>)]
   <span class="fu">|</span> <span class="dt">JArr</span>  [<span class="dt">JVal</span>]
   <span class="kw">deriving</span> (<span class="dt">Eq</span>, <span class="dt">Ord</span>, <span class="dt">Show</span>)</code></pre></div>
-<p>Thus, the above JSON value would be represented by the <code class="sourceCode haskell"><span class="dt">JVal</span></code></p>
+<p><br> <br></p>
+<p>The above JSON value would be represented by the <code class="sourceCode haskell"><span class="dt">JVal</span></code></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">js1 <span class="fu">=</span>
-  <span class="dt">JObj</span> [(<span class="st">&quot;name&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;Ranjit&quot;</span>)
-       ,(<span class="st">&quot;age&quot;</span>,  <span class="dt">JNum</span> <span class="fl">41.0</span>)
-       ,(<span class="st">&quot;likes&quot;</span>,   <span class="dt">JArr</span> [ <span class="dt">JStr</span> <span class="st">&quot;guacamole&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;coffee&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;bacon&quot;</span>])
-       ,(<span class="st">&quot;hates&quot;</span>,   <span class="dt">JArr</span> [ <span class="dt">JStr</span> <span class="st">&quot;waiting&quot;</span>  , <span class="dt">JStr</span> <span class="st">&quot;grapefruit&quot;</span>])
-       ,(<span class="st">&quot;lunches&quot;</span>, <span class="dt">JArr</span> [ <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;monday&quot;</span>)
-                                ,(<span class="st">&quot;loc&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;zanzibar&quot;</span>)]
-                         , <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;tuesday&quot;</span>)
+  <span class="dt">JObj</span> [(<span class="st">&quot;name&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;Nadia&quot;</span>)
+       ,(<span class="st">&quot;age&quot;</span>,  <span class="dt">JNum</span> <span class="fl">34.0</span>)
+       ,(<span class="st">&quot;likes&quot;</span>,   <span class="dt">JArr</span> [ <span class="dt">JStr</span> <span class="st">&quot;poke&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;coffee&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;pasta&quot;</span>])
+       ,(<span class="st">&quot;hates&quot;</span>,   <span class="dt">JArr</span> [ <span class="dt">JStr</span> <span class="st">&quot;beets&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;milk&quot;</span>])
+       ,(<span class="st">&quot;lunches&quot;</span>, <span class="dt">JArr</span> [ <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;mon&quot;</span>)
+                                ,(<span class="st">&quot;loc&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;rubios&quot;</span>)]
+                         , <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;tue&quot;</span>)
                                 ,(<span class="st">&quot;loc&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;farmers market&quot;</span>)]
-                         , <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;wednesday&quot;</span>)
-                                ,(<span class="st">&quot;loc&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;hare krishna&quot;</span>)]
-                         , <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;thursday&quot;</span>)
-                                ,(<span class="st">&quot;loc&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;faculty club&quot;</span>)]
-                         , <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;friday&quot;</span>)
-                                ,(<span class="st">&quot;loc&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;coffee cart&quot;</span>)]
+                         , <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;wed&quot;</span>)
+                                ,(<span class="st">&quot;loc&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;seed and sprout&quot;</span>)]
+                         , <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;thu&quot;</span>)
+                                ,(<span class="st">&quot;loc&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;home&quot;</span>)]
+                         , <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;fri&quot;</span>)
+                                ,(<span class="st">&quot;loc&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;lemongrass&quot;</span>)]
                          ])
-       ]</code></pre></div>
+       ]  </code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="serializing-haskell-values-to-json">Serializing Haskell Values to JSON</h2>
-<p>Lets write a small library to <em>serialize</em> Haskell values as JSON.</p>
+<p>Lets write a small library to <em>serialize</em> Haskell values as JSON</p>
+<ul>
+<li>Base types <code class="sourceCode haskell"><span class="dt">String</span></code>, <code class="sourceCode haskell"><span class="dt">Double</span></code>, <code class="sourceCode haskell"><span class="dt">Bool</span></code> are serialized as base JSON values</li>
+<li>Lists are serialized into JSON arrays</li>
+<li>Lists of key-value pairs are serialized into JSON objects</li>
+</ul>
+<p><br> <br></p>
 <p>We could write a bunch of functions like</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">doubleToJSON ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">JVal</span>
 doubleToJSON <span class="fu">=</span> <span class="dt">JNum</span>
@@ -725,7 +831,8 @@ stringToJSON <span class="fu">=</span> <span class="dt">JStr</span>
 
 <span class="ot">boolToJSON   ::</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">JVal</span>
 boolToJSON   <span class="fu">=</span> <span class="dt">JBool</span></code></pre></div>
-<h2 id="serializing-collections">Serializing Collections</h2>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="serializing-lists">Serializing Lists</h2>
 <p>But what about collections, namely <em>lists</em> of things?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">doublesToJSON    ::</span> [<span class="dt">Double</span>] <span class="ot">-&gt;</span> <span class="dt">JVal</span>
 doublesToJSON xs <span class="fu">=</span> <span class="dt">JArr</span> (map doubleToJSON xs)
@@ -735,38 +842,42 @@ boolsToJSON xs   <span class="fu">=</span> <span class="dt">JArr</span> (map boo
 
 <span class="ot">stringsToJSON    ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> <span class="dt">JVal</span>
 stringsToJSON xs <span class="fu">=</span> <span class="dt">JArr</span> (map stringToJSON xs)</code></pre></div>
+<p><br> <br></p>
 <p>This is <strong>getting rather tedious</strong></p>
 <ul>
-<li>We are rewriting the same code :(</li>
+<li>Lot’s of repetition :(</li>
 </ul>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="serializing-collections-refactored-with-hofs">Serializing Collections (refactored with HOFs)</h2>
-<p>You could abstract by making the <em>individual-element-converter</em> a parameter</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">xsToJSON ::</span> (a <span class="ot">-&gt;</span> <span class="dt">JVal</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">JVal</span>
-xsToJSON f xs <span class="fu">=</span> <span class="dt">JArr</span> (map f xs)
+<p>You could abstract by making the <em>element-converter</em> a parameter</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">listToJSON ::</span> (a <span class="ot">-&gt;</span> <span class="dt">JVal</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">JVal</span>
+listToJSON f xs <span class="fu">=</span> <span class="dt">JArr</span> (map f xs)
 
-<span class="ot">xysToJSON ::</span> (a <span class="ot">-&gt;</span> <span class="dt">JVal</span>) <span class="ot">-&gt;</span> [(<span class="dt">String</span>, a)] <span class="ot">-&gt;</span> <span class="dt">JVal</span>
-xysToJSON f kvs <span class="fu">=</span> <span class="dt">JObj</span> [ (k, f v) <span class="fu">|</span> (k, v) <span class="ot">&lt;-</span> kvs ]</code></pre></div>
-<p>But this is *still rather tedious** as you have to pass in the individual data converter (yuck)</p>
+<span class="ot">mapToJSON ::</span> (a <span class="ot">-&gt;</span> <span class="dt">JVal</span>) <span class="ot">-&gt;</span> [(<span class="dt">String</span>, a)] <span class="ot">-&gt;</span> <span class="dt">JVal</span>
+mapToJSON f kvs <span class="fu">=</span> <span class="dt">JObj</span> [ (k, f v) <span class="fu">|</span> (k, v) <span class="ot">&lt;-</span> kvs ]</code></pre></div>
+<p><br> <br></p>
+<p>But this is <em>still rather tedious</em> as you have to pass in the individual data converter (yuck)</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> doubleToJSON <span class="dv">4</span>
 <span class="dt">JNum</span> <span class="fl">4.0</span>
 
-λ<span class="fu">&gt;</span> xsToJSON stringToJSON [<span class="st">&quot;coffee&quot;</span>, <span class="st">&quot;guacamole&quot;</span>, <span class="st">&quot;bacon&quot;</span>]
-<span class="dt">JArr</span> [<span class="dt">JStr</span> <span class="st">&quot;coffee&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;guacamole&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;bacon&quot;</span>]
+λ<span class="fu">&gt;</span> listToJSON stringToJSON [<span class="st">&quot;poke&quot;</span>, <span class="st">&quot;coffee&quot;</span>, <span class="st">&quot;pasta&quot;</span>]
+<span class="dt">JArr</span> [<span class="dt">JStr</span> <span class="st">&quot;poke&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;coffee&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;pasta&quot;</span>]
 
-λ<span class="fu">&gt;</span> xysToJSON stringToJSON [(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;monday&quot;</span>), (<span class="st">&quot;loc&quot;</span>, <span class="st">&quot;zanzibar&quot;</span>)]
-<span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;monday&quot;</span>),(<span class="st">&quot;loc&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;zanzibar&quot;</span>)]</code></pre></div>
+λ<span class="fu">&gt;</span> mapToJSON stringToJSON [(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;mon&quot;</span>), (<span class="st">&quot;loc&quot;</span>, <span class="st">&quot;rubios&quot;</span>)]
+<span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;mon&quot;</span>),(<span class="st">&quot;loc&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;rubios&quot;</span>)]</code></pre></div>
+<p><br> <br></p>
 <p>This gets more hideous when you have richer objects like</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">lunches <span class="fu">=</span> [ [(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;monday&quot;</span>),    (<span class="st">&quot;loc&quot;</span>, <span class="st">&quot;zanzibar&quot;</span>)]
-          , [(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;tuesday&quot;</span>),   (<span class="st">&quot;loc&quot;</span>, <span class="st">&quot;farmers market&quot;</span>)]
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">lunches <span class="fu">=</span> [ [(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;mon&quot;</span>), (<span class="st">&quot;loc&quot;</span>, <span class="st">&quot;rubios&quot;</span>)]
+          , [(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;tue&quot;</span>), (<span class="st">&quot;loc&quot;</span>, <span class="st">&quot;farmers market&quot;</span>)]
           ]</code></pre></div>
 <p>because we have to go through gymnastics like</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> xsToJSON (xysToJSON stringToJSON) lunches
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> listToJSON (mapToJSON stringToJSON) lunches
 <span class="dt">JArr</span> [ <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;monday&quot;</span>)   ,(<span class="st">&quot;loc&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;zanzibar&quot;</span>)]
      , <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;tuesday&quot;</span>)  ,(<span class="st">&quot;loc&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;farmers market&quot;</span>)]
      ]</code></pre></div>
 <p>Yikes. So much for <em>readability</em></p>
 <p>Is it too much to ask for a magical <code class="sourceCode haskell">toJSON</code> that <em>just works?</em></p>
+<p><br> <br> <br> <br> <br> <br></p>
 <h2 id="typeclasses-to-the-rescue">Typeclasses To The Rescue</h2>
 <p>Lets <em>define</em> a typeclass that describes types <code class="sourceCode haskell">a</code> that can be converted to JSON.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">JSON</span> a <span class="kw">where</span>
@@ -789,6 +900,7 @@ xysToJSON f kvs <span class="fu">=</span> <span class="dt">JObj</span> [ (k, f v
 
 λ<span class="fu">&gt;</span> toJSON <span class="st">&quot;guacamole&quot;</span>
 <span class="dt">JStr</span> <span class="st">&quot;guacamole&quot;</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br></p>
 <h2 id="bootstrapping-instances">Bootstrapping Instances</h2>
 <p>The real fun begins when we get Haskell to automatically bootstrap the above functions to work for lists and key-value lists!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">JSON</span> a <span class="ot">=&gt;</span> <span class="dt">JSON</span> [a] <span class="kw">where</span>
@@ -810,6 +922,7 @@ xysToJSON f kvs <span class="fu">=</span> <span class="dt">JObj</span> [ (k, f v
 <span class="dt">JArr</span> [ <span class="dt">JObj</span> [ (<span class="st">&quot;day&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;monday&quot;</span>), (<span class="st">&quot;loc&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;zanzibar&quot;</span>)]
      , <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;tuesday&quot;</span>), (<span class="st">&quot;loc&quot;</span>,<span class="dt">JStr</span> <span class="st">&quot;farmers market&quot;</span>)]
      ]</code></pre></div>
+<p><br> <br> <br></p>
 <p>It is also useful to bootstrap the serialization for tuples (upto some fixed size) so we can easily write “non-uniform” JSON objects where keys are bound to values with different shapes.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> (<span class="dt">JSON</span> a, <span class="dt">JSON</span> b) <span class="ot">=&gt;</span> <span class="dt">JSON</span> ((<span class="dt">String</span>, a), (<span class="dt">String</span>, b)) <span class="kw">where</span>
   toJSON ((k1, v1), (k2, v2)) <span class="fu">=</span>
@@ -835,6 +948,7 @@ xysToJSON f kvs <span class="fu">=</span> <span class="dt">JObj</span> [ (k, f v
      )</code></pre></div>
 <p>which is a Haskell value that describes our running JSON example, and can convert it directly like so</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">js2 <span class="fu">=</span> toJSON hs</code></pre></div>
+<p><br> <br> <br> <br> <br> <br></p>
 <h2 id="serializing-environments">Serializing Environments</h2>
 <p>To wrap everything up, lets write a routine to serialize our <code class="sourceCode haskell"><span class="dt">Env</span></code></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">JSON</span> (<span class="dt">Env</span> k v) <span class="kw">where</span>
@@ -848,8 +962,8 @@ xysToJSON f kvs <span class="fu">=</span> <span class="dt">JObj</span> [ (k, f v
      , (<span class="st">&quot;dog&quot;</span>, <span class="dt">JNum</span> <span class="fl">20.0</span>)
      , (<span class="st">&quot;def&quot;</span>, <span class="dt">JNum</span> <span class="fl">0.0</span>)
      ]</code></pre></div>
-<p>Thats it for today.</p>
-<p>We will see much more typeclass awesomeness in the next few lectures…</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<p>That’s all folks!</p>
                 <hr>
             </div>
         </div>
