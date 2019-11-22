@@ -61,7 +61,7 @@ Lecture schedule is subject to change!
 [lec5]: lectures/05-closure.html
 [lec6]: lectures/06-parsing.html
 [lec7]: lectures/07-classes.html
-[lec8]: lectures/08-prolog.html
+[lec8]: lectures/08-monads.html
 
 [disc1]: /static/raw/disc1-lambda_calc.pdf
 [disc5]: /static/raw/disc5-parsing.pdf
