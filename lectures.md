@@ -31,7 +31,7 @@ Lecture schedule is subject to change!
 | 11/15      | contd.                          |                           |               |
 | 11/18      | Overloading & TypeClasses       |  [html][lec7]             |               |
 | 11/20      | contd.                          |                           |               |
-| 11/22      | Monads                          |                           |               |
+| 11/22      | Monads                          |  [html][lec8]             |               |
 | 11/25      | contd.                          |                           |               |
 | 11/27      | contd.                          |                           |               |
 | 11/29      | *No lecture: Thanksgiving*      |                           |               |

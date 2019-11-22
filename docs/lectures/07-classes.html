@@ -950,8 +950,8 @@ mapToJSON f kvs <span class="fu">=</span> <span class="dt">JObj</span> [ (k, f v
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">js2 <span class="fu">=</span> toJSON hs</code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="serializing-environments">Serializing Environments</h2>
-<p>To wrap everything up, lets write a routine to serialize our <code class="sourceCode haskell"><span class="dt">Env</span></code></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">JSON</span> (<span class="dt">Env</span> k v) <span class="kw">where</span>
+<p>To wrap everything up, lets write a serializer for environments <code class="sourceCode haskell"><span class="dt">Env</span></code> with <code class="sourceCode haskell"><span class="dt">String</span></code> keys:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">JSON</span> (<span class="dt">Env</span> <span class="dt">String</span> v) <span class="kw">where</span>
   toJSON env <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
 <p>and presto! our serializer <em>just works</em></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> env0

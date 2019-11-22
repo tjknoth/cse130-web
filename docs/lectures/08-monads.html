@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <!--
+      loads the http over https ssl -
+      welcome to my website!
+
+	this theme is based off the Ice & Fire theme created by Lucas Gatsas
+      https://www.twitter.com/LucasGatsas
+      www.lucasgatsas.ch - switzerland.
+  -->
+
+
+<!-- Microsoft Internet Explorer documentMode compatMode setting IE Modus -->
+<script type="text/javascript">
+var IE = null;
+if (window.navigator.appName == "Microsoft Internet Explorer") {
+  if (document.documentMode) {
+
+    IE = document.documentMode;
+    } else {
+
+        IE = 5;
+          if (document.compatMode) {
+      if (document.compatMode == "CSS1Compat")
+      IE = 11;
+      }
+    }
+  }
+</script>
+
+    <meta charset="utf-8">
+    <!-- X-UA -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link rel="author" title="Ranjit Jhala" href="http://ranjitjhala.github.io" />
+
+    <meta name="google" content="notranslate" />
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- index ROBOTS follow -->
+    <meta name="robots" content="index, follow" />
+    <!-- Site Desciption -->
+    <meta name="description" content="UCSD CSE 130">
+    <!-- Site Desciption -->
+    <meta name="keywords" content="haskell, refinement types, liquid types, formal methods, type systems">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://nadia-polikarpova.github.io/cse130-web/static/img/ico.png" type="image/x-icon" />
+    <!-- Blog Title -->
+    <title>cse130</title>
+
+    <!--     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+-->
+    <!-- Property Metas -->
+    <meta property="og:image" content="https://nadia-polikarpova.github.io/cse130-web/static/img/ix.png" />
+    <meta property="og:title" content="UCSD CSE 130" />
+    <meta property="og:site_name" content="UCSD CSE 130" />
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseUrl | prepend: site.url }}">
+    <!-- StyleSheet -->
+    <link rel="stylesheet" href="https://nadia-polikarpova.github.io/cse130-web/static/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://nadia-polikarpova.github.io/cse130-web/static/css/spaceg.stylesheets.css"> -->
+    <link rel="stylesheet" href="https://nadia-polikarpova.github.io/cse130-web/static/css/ronacher.css" type="text/css">
+
+    <link rel="stylesheet" href="https://nadia-polikarpova.github.io/cse130-web/static/css/syntax.css">
+    <link rel="stylesheet" href="https://nadia-polikarpova.github.io/cse130-web/static/css/liquid-light.css">
+
+    <!-- Fonts
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+	#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:url("/static/img/preloader.gif"); /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	ul, ol {margin-top: 0;margin-bottom: 10px;}
+	.navbar-inverse {background-color: #FFF;border-color: #FFFFFF;}
+</style>
+<!--link rel="stylesheet" href="https://nadia-polikarpova.github.io/cse130-web/static/css/prettify.css"-->
+<style>
+  /* HEADER IMAGE */
+  header.intro-header {background: #6f5499;background: no-repeat center center;background-attachment: scroll;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;}
+
+	/* Preloader */#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:; /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	li {list-style: none;}
+            body.modal-open
+            {overflow: hidden;padding-right: 0px;
+        }
+	article li {list-style: inherit;}
+	article .figure {text-align: center}
+    </style>
+    <!-- end Loading front stylesheet here -->
+    </head>
+
+    <body>
+	    
+	<!-- 	
+        <div id="preloader">
+	    <div id="status">
+	    </div>
+	</div>  
+	-->
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://nadia-polikarpova.github.io/cse130-web" id="blog-title-left-top">cse130</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://nadia-polikarpova.github.io/cse130-web/calendar.html">Calendar</a></li>
+                <li><a href="https://nadia-polikarpova.github.io/cse130-web/contact.html">Contact</a></li>
+                <li><a href="https://nadia-polikarpova.github.io/cse130-web/grades.html">Grades</a></li>
+                <li><a href="https://nadia-polikarpova.github.io/cse130-web/lectures.html">Lectures</a></li>
+                <li><a href="https://nadia-polikarpova.github.io/cse130-web/assignments.html">Assignments</a></li>
+                <li><a href="https://nadia-polikarpova.github.io/cse130-web/links.html">Links</a></li>
+                <li><a href="https://www.piazza.com/ucsd/fall2019/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <img src="https://nadia-polikarpova.github.io/cse130-web/static/img/ico.png" class="img-responsive img-centered" alt title>
+                            <p class="font-style-inline-small">
+                                <a href="https://www.twitter.com/polikarn" target="_blank">follow me</a>. <br>
+                                <a href="https://www.github.com/nadia-polikarpova" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                                <a href="https://www.twitter.com/polikarn" target="_blank"><i class="fa fa-twitter" id="spaceg-social-modal"></i> </a>
+                                <a href="https://plus.google.com/u/0/104385825850161331469" target="_blank"> <i class="fa fa-google-plus" id="spaceg-social-modal"></i></a>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Menu Modals Add New Sa.21.Feb.2015 03:22:25 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Nadia Polikarpova</h1>
+                            <hr class="star-primary">
+                            <p class="font-style-inline-small">
+                              <a href="https://www.twitter.com/polikarn" target="_blank">follow</a>. <br>
+                              <a href="https://www.github.com/nadia-polikarpova" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                              <li><a href="https://nadia-polikarpova.github.io/cse130-web/calendar.html">Calendar</a></li>
+                              <li><a href="https://nadia-polikarpova.github.io/cse130-web/contact.html">Contact</a></li>
+                              <li><a href="https://nadia-polikarpova.github.io/cse130-web/grades.html">Grades</a></li>
+                              <li><a href="https://nadia-polikarpova.github.io/cse130-web/lectures.html">Lectures</a></li>
+                              <li><a href="https://nadia-polikarpova.github.io/cse130-web/assignments.html">Assignments</a></li>
+                              <li><a href="https://nadia-polikarpova.github.io/cse130-web/links.html">Links</a></li>
+                              <li><a href="https://www.piazza.com/ucsd/fall2019/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div id="content">
+            <!-- Post Header -->
+    <header class="intro-header" style="background-image: url('https://nadia-polikarpova.github.io/cse130-web/static/img/books.jpg')" alt title>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Monads</h1>
+                    
+                    <span class="meta">
+		    
+		    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<h2 id="the-mantra">The Mantra</h2>
+<p><strong>Don’t Repeat Yourself</strong></p>
+<p>In this lecture we will see advanced ways to <em>abstract code patterns</em></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="outline">Outline</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Functors</strong></li>
+<li>Monads</li>
+<li>Writing apps with monads</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="recall-hof">Recall: HOF</h2>
+<p>Recall how we used higher-order functions to abstract code patters</p>
+<h3 id="iterating-trough-lists">Iterating Trough Lists</h3>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">List</span> a
+  <span class="fu">=</span> []
+  <span class="fu">|</span> (<span class="fu">:</span>) a (<span class="dt">List</span> a)</code></pre></div>
+<p><br> <br> <br></p>
+<p><strong>Rendering the Values of a List</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; showList [1, 2, 3]</span>
+<span class="co">-- [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</span>
+
+showList<span class="ot">        ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+showList []     <span class="fu">=</span>  []
+showList (n<span class="fu">:</span>ns) <span class="fu">=</span>  show n <span class="fu">:</span> showList ns</code></pre></div>
+<p><br> <br> <br></p>
+<p><strong>Squaring the values of a list</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; sqrList [1, 2, 3]</span>
+<span class="co">-- 1, 4, 9</span>
+
+<span class="ot">sqrList        ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>]
+sqrList []     <span class="fu">=</span>  []
+sqrList (n<span class="fu">:</span>ns) <span class="fu">=</span>  n<span class="fu">^</span><span class="dv">2</span> <span class="fu">:</span> sqrList ns</code></pre></div>
+<p><br> <br> <br></p>
+<p><strong>Common Pattern:</strong> <code class="sourceCode haskell">map</code> over a list</p>
+<p>Refactor iteration into <code class="sourceCode haskell">mapList</code></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mapList ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [b]
+mapList f []     <span class="fu">=</span> []
+mapList f (x<span class="fu">:</span>xs) <span class="fu">=</span> f x <span class="fu">:</span> mapList f xs</code></pre></div>
+<p><br> <br></p>
+<p>Reuse <code class="sourceCode haskell">mapList</code> to implement <code class="sourceCode haskell">showList</code> and <code class="sourceCode haskell">sqrList</code></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">showList xs <span class="fu">=</span> mapList (\n <span class="ot">-&gt;</span> show n) xs
+
+sqrList  xs <span class="fu">=</span> mapList (\n <span class="ot">-&gt;</span> n <span class="fu">^</span> <span class="dv">2</span>)  xs</code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="iterating-trough-trees">Iterating Trough Trees</h3>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> a
+  <span class="fu">=</span> <span class="dt">Leaf</span>
+  <span class="fu">|</span> <span class="dt">Node</span> a (<span class="dt">Tree</span> a) (<span class="dt">Tree</span> a)</code></pre></div>
+<p><br> <br> <br></p>
+<p><strong>Rendering the Values of a Tree</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; showTree (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf))</span>
+<span class="co">-- (Node &quot;2&quot; (Node &quot;1&quot; Leaf Leaf) (Node &quot;3&quot; Leaf Leaf))</span>
+
+<span class="ot">showTree ::</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">String</span>
+showTree <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="fu">???</span>
+showTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p><br> <br> <br></p>
+<p><strong>Squaring the values of a Tree</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; sqrTree (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf))</span>
+<span class="co">-- (Node 4 (Node 1 Leaf Leaf) (Node 9 Leaf Leaf))</span>
+
+<span class="ot">sqrTree ::</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">Int</span>
+sqrTree <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="fu">???</span>
+sqrTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="quiz-mapping-over-a-tree">QUIZ: Mapping over a Tree</h3>
+<p>If we refactor iteration into <code class="sourceCode haskell">mapTree</code>, what should its type be?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mapTree ::</span> <span class="fu">???</span>
+
+showTree t <span class="fu">=</span> mapTree (\n <span class="ot">-&gt;</span> show n) t
+sqrTree  t <span class="fu">=</span> mapTree (\n <span class="ot">-&gt;</span> n <span class="fu">^</span> <span class="dv">2</span>)  t</code></pre></div>
+<p><strong>(A)</strong> <code class="sourceCode haskell">(<span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>)    <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">Int</span></code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell">(<span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">String</span></code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell">(<span class="dt">Int</span> <span class="ot">-&gt;</span> a)      <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> a</code></p>
+<p><strong>(D)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> a)        <span class="ot">-&gt;</span> <span class="dt">Tree</span> a   <span class="ot">-&gt;</span> <span class="dt">Tree</span> a</code></p>
+<p><strong>(E)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> b)        <span class="ot">-&gt;</span> <span class="dt">Tree</span> a   <span class="ot">-&gt;</span> <span class="dt">Tree</span> b</code></p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="mapping-over-trees">Mapping over Trees</h3>
+<p>Let’s write <code class="sourceCode haskell">mapTree</code>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mapTree ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> b
+mapTree f <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="fu">???</span>
+mapTree f (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="abstracting-across-datatypes">Abstracting across Datatypes</h3>
+<p>Wait, this looks familiar…</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">List</span> a <span class="fu">=</span> [a]
+<span class="ot">mapList ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">List</span> a <span class="ot">-&gt;</span> <span class="dt">List</span> b    <span class="co">-- List</span>
+<span class="ot">mapTree ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> b    <span class="co">-- Tree</span></code></pre></div>
+<p><br></p>
+<p>Can I write a generic function?</p>
+<p><br></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">map<span class="ot">    ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> t a    <span class="ot">-&gt;</span> t b</code></pre></div>
+<p><br> <br> <br> <br> <br></p>
+<p>Not quite! Not all datatypes support mapping over, only <em>some</em> of them do.</p>
+<p>So let’s make a typeclass for it!</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Functor</span> t <span class="kw">where</span>
+<span class="ot">  fmap ::</span> <span class="fu">???</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="quiz">QUIZ</h3>
+<p>What type should we give to <code class="sourceCode haskell">fmap</code>?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Functor</span> t <span class="kw">where</span>
+<span class="ot">  fmap ::</span> <span class="fu">???</span></code></pre></div>
+<p><strong>(A)</strong> <code class="sourceCode haskell">(b <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> t b    <span class="ot">-&gt;</span> t a</code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> t a    <span class="ot">-&gt;</span> t a</code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> [a]    <span class="ot">-&gt;</span> [b]</code></p>
+<p><strong>(D)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> t a    <span class="ot">-&gt;</span> t b</code></p>
+<p><strong>(E)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> b</code></p>
+<p><br> <br> <br> <br> <br> <br></p>
+<h3 id="reuse-iteration-across-types">Reuse Iteration Across Types</h3>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Functor</span> [] <span class="kw">where</span>
+  fmap <span class="fu">=</span> mapList
+
+<span class="kw">instance</span> <span class="dt">Functor</span> <span class="dt">Tree</span> <span class="kw">where</span>
+  fmap <span class="fu">=</span> mapTree</code></pre></div>
+<p>And now we can do</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; fmap show [1,2,3]</span>
+<span class="co">-- [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</span>
+
+
+<span class="co">-- &gt;&gt;&gt; fmap (^2) (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf))</span>
+<span class="co">-- (Node 4 (Node 1 Leaf Leaf) (Node 9 Leaf Leaf))</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="exercise">Exercise</h3>
+<p>Write a <code class="sourceCode haskell"><span class="dt">Functor</span></code> instance for <code class="sourceCode haskell"><span class="dt">Result</span></code>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Result</span>  a
+  <span class="fu">=</span> <span class="dt">Error</span> <span class="dt">String</span>
+  <span class="fu">|</span> <span class="dt">Ok</span>    a
+
+<span class="kw">instance</span> <span class="dt">Functor</span> <span class="dt">Result</span> <span class="kw">where</span>
+  fmap f (<span class="dt">Error</span> msg) <span class="fu">=</span> <span class="fu">???</span>
+  fmap f (<span class="dt">Ok</span> val)    <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p>When you’re done you should see</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; fmap (^ 2) (Ok 3)</span>
+<span class="dt">Ok</span> <span class="dv">9</span>
+
+<span class="co">-- &gt;&gt;&gt; fmap (^ 2) (Error &quot;oh no&quot;)</span>
+<span class="dt">Error</span> <span class="st">&quot;oh no&quot;</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="outline-1">Outline</h2>
+<ol style="list-style-type: decimal">
+<li>Functors</li>
+<li><strong>Monads</strong></li>
+<li>Writing apps with monads</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="next-a-class-for-sequencing">Next: A Class for Sequencing</h2>
+<p>Recall our old <code class="sourceCode haskell"><span class="dt">Expr</span></code> datatype</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span>
+  <span class="fu">=</span> <span class="dt">Number</span> <span class="dt">Int</span>
+  <span class="fu">|</span> <span class="dt">Plus</span>   <span class="dt">Expr</span> <span class="dt">Expr</span>
+  <span class="fu">|</span> <span class="dt">Div</span>    <span class="dt">Expr</span> <span class="dt">Expr</span>
+  <span class="kw">deriving</span> (<span class="dt">Show</span>)
+
+<span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+eval (<span class="dt">Number</span> n)   <span class="fu">=</span> n
+eval (<span class="dt">Plus</span> e1 e2) <span class="fu">=</span> eval e1   <span class="fu">+</span>   eval e2
+eval (<span class="dt">Div</span>  e1 e2) <span class="fu">=</span> eval e1 <span class="ot">`div`</span> eval e2
+
+<span class="co">-- &gt;&gt;&gt; eval (Div (Number 6) (Number 2))</span>
+<span class="co">-- 3</span></code></pre></div>
+<h3 id="but-what-is-the-result">But, what is the result</h3>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; eval (Div (Number 6) (Number 0))</span>
+<span class="co">-- *** Exception: divide by zero</span></code></pre></div>
+<p>A crash! Lets look at an alternative approach to avoid dividing by zero.</p>
+<p>The idea is to return a <code class="sourceCode haskell"><span class="dt">Result</span> <span class="dt">Int</span></code> (instead of a plain <code class="sourceCode haskell"><span class="dt">Int</span></code>)</p>
+<ul>
+<li>If a <em>sub-expression</em> had a divide by zero, return <code class="sourceCode haskell"><span class="dt">Error</span> <span class="st">&quot;...&quot;</span></code></li>
+<li>If all sub-expressions were safe, then return the actual <code class="sourceCode haskell"><span class="dt">Result</span> v</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Result</span> <span class="dt">Int</span>
+eval (<span class="dt">Number</span> n)   <span class="fu">=</span> <span class="dt">Value</span> n
+eval (<span class="dt">Plus</span> e1 e2) <span class="fu">=</span> <span class="kw">case</span> e1 <span class="kw">of</span>
+                      <span class="dt">Error</span> err1 <span class="ot">-&gt;</span> <span class="dt">Error</span> err1
+                      <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">case</span> e2 <span class="kw">of</span>
+                                      <span class="dt">Error</span> err2 <span class="ot">-&gt;</span> <span class="dt">Error</span> err2
+                                      <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="dt">Result</span> (v1 <span class="fu">+</span> v2)
+eval (<span class="dt">Div</span> e1 e2)  <span class="fu">=</span> <span class="kw">case</span> e1 <span class="kw">of</span>
+                      <span class="dt">Error</span> err1 <span class="ot">-&gt;</span> <span class="dt">Error</span> err1
+                      <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">case</span> e2 <span class="kw">of</span>
+                                      <span class="dt">Error</span> err2 <span class="ot">-&gt;</span> <span class="dt">Error</span> err2
+                                      <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">if</span> v2 <span class="fu">==</span> <span class="dv">0</span> 
+                                                      <span class="kw">then</span> <span class="dt">Error</span> (<span class="st">&quot;yikes dbz:&quot;</span> <span class="fu">++</span> show e2)
+                                                      <span class="kw">else</span> <span class="dt">Value</span> (v1 <span class="ot">`div`</span> v2)</code></pre></div>
+<p>The <strong>good news</strong>, no nasty exceptions, just a plain <code class="sourceCode haskell"><span class="dt">Error</span></code> result</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> eval (<span class="dt">Div</span> (<span class="dt">Number</span> <span class="dv">6</span>) (<span class="dt">Number</span> <span class="dv">2</span>))
+<span class="dt">Value</span> <span class="dv">3</span>
+λ<span class="fu">&gt;</span> eval (<span class="dt">Div</span> (<span class="dt">Number</span> <span class="dv">6</span>) (<span class="dt">Number</span> <span class="dv">0</span>))
+<span class="dt">Error</span> <span class="st">&quot;yikes dbz:Number 0&quot;</span>
+λ<span class="fu">&gt;</span> eval (<span class="dt">Div</span> (<span class="dt">Number</span> <span class="dv">6</span>) (<span class="dt">Plus</span> (<span class="dt">Number</span> <span class="dv">2</span>) (<span class="dt">Number</span> (<span class="fu">-</span><span class="dv">2</span>))))
+<span class="dt">Error</span> <span class="st">&quot;yikes dbz:Plus (Number 2) (Number (-2))&quot;</span></code></pre></div>
+<p>The <strong>bad news</strong>: the code is super duper <strong>gross</strong></p>
+<h2 id="lets-spot-a-pattern">Lets spot a Pattern</h2>
+<p>The code is gross because we have these cascading blocks</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">case</span> e1 <span class="kw">of</span>
+  <span class="dt">Error</span> err1 <span class="ot">-&gt;</span> <span class="dt">Error</span> err1
+  <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">case</span> e2 <span class="kw">of</span>
+                  <span class="dt">Error</span> err2 <span class="ot">-&gt;</span> <span class="dt">Error</span> err2
+                  <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="dt">Result</span> (v1 <span class="fu">+</span> v2)</code></pre></div>
+<p>but really both blocks have something <strong>common pattern</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">case</span> e <span class="kw">of</span>
+  <span class="dt">Error</span> err <span class="ot">-&gt;</span> <span class="dt">Error</span> err
+  <span class="dt">Value</span> v   <span class="ot">-&gt;</span> <span class="co">{- do stuff with v -}</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Evaluate <code class="sourceCode haskell">e</code></li>
+<li>If the result is an <code class="sourceCode haskell"><span class="dt">Error</span></code> then <em>return</em> that error.</li>
+<li>If the result is a <code class="sourceCode haskell"><span class="dt">Value</span> v</code> then <em>do some further processing</em> on <code class="sourceCode haskell">v</code>.</li>
+</ol>
+<p>Lets <strong>bottle</strong> that common structure in two functions:</p>
+<ul>
+<li><code class="sourceCode haskell"><span class="fu">&gt;&gt;=</span></code> (pronounced <em>bind</em>)</li>
+<li><code class="sourceCode haskell">return</code> (pronounced <em>return</em>)</li>
+</ul>
+<div class="figure">
+<img src="../static/img/fairy.png" alt="Bottling a Magic Pattern" id="fig:types" class="align-center" style="width:20.0%" />
+<p class="caption">Bottling a Magic Pattern</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">(&gt;&gt;=) ::</span> <span class="dt">Result</span> a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Result</span> b) <span class="ot">-&gt;</span> <span class="dt">Result</span> b
+(<span class="dt">Error</span> err) <span class="fu">&gt;&gt;=</span> _       <span class="fu">=</span> <span class="dt">Error</span> err
+(<span class="dt">Value</span> v)   <span class="fu">&gt;&gt;=</span> process <span class="fu">=</span> process v
+
+return<span class="ot"> ::</span> a <span class="ot">-&gt;</span> <span class="dt">Result</span> a
+return v <span class="fu">=</span> <span class="dt">Value</span> v</code></pre></div>
+<p><strong>NOTE:</strong> <code class="sourceCode haskell">return</code> is <em>not</em> a keyword; it is just the name of a function!</p>
+<h2 id="a-cleaned-up-evaluator">A Cleaned up Evaluator</h2>
+<p>The magic bottle lets us clean up our <code class="sourceCode haskell">eval</code></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Result</span> <span class="dt">Int</span>
+eval (<span class="dt">Number</span> n)   <span class="fu">=</span> return n
+eval (<span class="dt">Plus</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">&gt;&gt;=</span> \v1 <span class="ot">-&gt;</span>
+                    eval e2 <span class="fu">&gt;&gt;=</span> \v2 <span class="ot">-&gt;</span>
+                    return (v1 <span class="fu">+</span> v2)
+eval (<span class="dt">Div</span> e1 e2)  <span class="fu">=</span> eval e1 <span class="fu">&gt;&gt;=</span> \v1 <span class="ot">-&gt;</span>
+                    eval e2 <span class="fu">&gt;&gt;=</span> \v2 <span class="ot">-&gt;</span>
+                    <span class="kw">if</span> v2 <span class="fu">==</span> <span class="dv">0</span>
+                      <span class="kw">then</span> <span class="dt">Error</span> (<span class="st">&quot;yikes dbz:&quot;</span> <span class="fu">++</span> show e2)
+                      <span class="kw">else</span> return (v1 <span class="ot">`div`</span> v2)</code></pre></div>
+<p><strong>The gross <em>pattern matching</em> is all hidden inside <code class="sourceCode haskell"><span class="fu">&gt;&gt;=</span></code></strong></p>
+<p>Notice the <code class="sourceCode haskell"><span class="fu">&gt;&gt;=</span></code> takes <em>two</em> inputs of type:</p>
+<ul>
+<li><code class="sourceCode haskell"><span class="dt">Result</span> <span class="dt">Int</span></code> (e.g. <code class="sourceCode haskell">eval e1</code> or <code class="sourceCode haskell">eval e2</code>)</li>
+<li><code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Result</span> <span class="dt">Int</span></code> (e.g. The <em>processing</em> function that takes the <code class="sourceCode haskell">v</code> and does stuff with it)</li>
+</ul>
+<p>In the above, the processing functions are written using <code class="sourceCode haskell">\v1 <span class="ot">-&gt;</span> <span class="fu">...</span></code> and <code class="sourceCode haskell">\v2 <span class="ot">-&gt;</span> <span class="fu">...</span></code></p>
+<p><strong>NOTE:</strong> It is <em>crucial</em> that you understand what the code above is doing, and why it is actually just a “shorter” version of the (gross) nested-case-of <code class="sourceCode haskell">eval</code>.</p>
+<h2 id="a-class-for">A Class for <code class="sourceCode haskell"><span class="fu">&gt;&gt;=</span></code></h2>
+<p>Like <code class="sourceCode haskell">fmap</code> or <code class="sourceCode haskell">show</code> or <code class="sourceCode haskell">jval</code> or <code class="sourceCode haskell"><span class="fu">==</span></code>, the <code class="sourceCode haskell"><span class="fu">&gt;&gt;=</span></code> operator is useful across many types, so we capture it in an interface/typeclass:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Monad</span> m <span class="kw">where</span>
+<span class="ot">  (&gt;&gt;=)  ::</span> m a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> m b) <span class="ot">-&gt;</span> m b
+<span class="ot">  return ::</span> a <span class="ot">-&gt;</span> m a</code></pre></div>
+<p>Notice how the definitions for <code class="sourceCode haskell"><span class="dt">Result</span></code> fit the above, with <code class="sourceCode haskell">m <span class="fu">=</span> <span class="dt">Result</span></code></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">Result</span> <span class="kw">where</span>
+<span class="ot">  (&gt;&gt;=) ::</span> <span class="dt">Either</span> a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Either</span> b) <span class="ot">-&gt;</span> <span class="dt">Either</span> b
+  (<span class="dt">Error</span> err) <span class="fu">&gt;&gt;=</span> _       <span class="fu">=</span> <span class="dt">Error</span> err
+  (<span class="dt">Value</span> v)   <span class="fu">&gt;&gt;=</span> process <span class="fu">=</span> process v
+
+<span class="ot">  return ::</span> a <span class="ot">-&gt;</span> <span class="dt">Result</span> a
+  return v <span class="fu">=</span> <span class="dt">Value</span> v</code></pre></div>
+<h2 id="syntax-for">Syntax for <code class="sourceCode haskell"><span class="fu">&gt;&gt;=</span></code></h2>
+<p>In fact <code class="sourceCode haskell"><span class="fu">&gt;&gt;=</span></code> is <em>so</em> useful there is special syntax for it.</p>
+<p>Instead of writing</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">e1 <span class="fu">&gt;&gt;=</span> \v1 <span class="ot">-&gt;</span>
+e2 <span class="fu">&gt;&gt;=</span> \v2 <span class="ot">-&gt;</span>
+e3 <span class="fu">&gt;&gt;=</span> \v3 <span class="ot">-&gt;</span>
+e</code></pre></div>
+<p>you can write</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">do</span> v1 <span class="ot">&lt;-</span> e1
+   v2 <span class="ot">&lt;-</span> e2
+   v3 <span class="ot">&lt;-</span> e3
+   e
+<span class="fu">...</span></code></pre></div>
+<p>Thus, we can further simplify our <code class="sourceCode haskell">eval</code> to:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Result</span> <span class="dt">Int</span>
+eval (<span class="dt">Number</span> n)   <span class="fu">=</span> return n
+eval (<span class="dt">Plus</span> e1 e2) <span class="fu">=</span> <span class="kw">do</span> v1 <span class="ot">&lt;-</span> eval e1
+                       v2 <span class="ot">&lt;-</span> eval e2
+                       return (v1 <span class="fu">+</span> v2)
+eval (<span class="dt">Div</span> e1 e2)  <span class="fu">=</span> <span class="kw">do</span> v1 <span class="ot">&lt;-</span> eval e1
+                       v2 <span class="ot">&lt;-</span> eval e2
+                       <span class="kw">if</span> v2 <span class="fu">==</span> <span class="dv">0</span>
+                         <span class="kw">then</span> <span class="dt">Error</span> (<span class="st">&quot;yikes dbz:&quot;</span> <span class="fu">++</span> show e2)
+                         <span class="kw">else</span> return (v1 <span class="ot">`div`</span> v2)</code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="writing-applications">Writing Applications</h2>
+<p>In most language related classes, we <em>start</em> with a “Hello world!” program.</p>
+<p>With 130, we will <em>end</em> with it.</p>
+<!-- 
+For example, in Python you may write:
+
+```python
+def main():
+    print "hello, world!"
+
+main()
+```
+
+and then you can run it:
+
+```sh
+$ python hello.py
+hello world!
+```
+-->
+<h2 id="purity-and-the-immutability-principle">Purity and the Immutability Principle</h2>
+<p>Haskell is a <strong>pure</strong> language. Not a <em>value</em> judgment, but a precise <em>technical</em> statement:</p>
+<p><strong>The “Immutability Principle”:</strong></p>
+<ul>
+<li><p>A function must <em>always</em> return the same output for a given input</p></li>
+<li><p>A function’s behavior should <em>never change</em></p></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="no-side-effects">No Side Effects</h2>
+<div class="figure">
+<img src="../static/img/trinity.png" id="fig:types" class="align-center" style="width:60.0%" />
+
+</div>
+<p>Haskell’s most radical idea: <code class="sourceCode haskell">expression <span class="fu">==&gt;</span> value</code></p>
+<ul>
+<li>When you evaluate an expression you get a value and <strong>nothing else happens</strong></li>
+</ul>
+<p>Specifically, evaluation must not have an <strong>side effects</strong></p>
+<ul>
+<li><p><em>change</em> a global variable or</p></li>
+<li><p><em>print</em> to screen or</p></li>
+<li><p><em>read</em> a file or</p></li>
+<li><p><em>send</em> an email or</p></li>
+<li><p><em>launch</em> a missile.</p></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="purity">Purity</h2>
+<p>Means <em>functions may depend only on their inputs</em></p>
+<ul>
+<li>i.e. <strong>functions should give the same output for the same input every time.</strong></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="but-how-to-write-hello-world">But… how to write “Hello, world!”</h2>
+<p>But, we <em>want</em> to …</p>
+<ul>
+<li>print to screen</li>
+<li>read a file</li>
+<li>send an email</li>
+</ul>
+<p>A language that only lets you write <code class="sourceCode haskell">factorial</code> and <code class="sourceCode haskell">fibonacci</code> is … <em>not very useful</em>!</p>
+<p>Thankfully, you <em>can</em> do all the above via a very clever idea: <code class="sourceCode haskell"><span class="dt">Recipe</span></code></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="recipes">Recipes</h2>
+<p><a href="https://www.seas.upenn.edu/~cis194/fall16/lectures/06-io-and-monads.html">This analogy is due to Joachim Brietner</a></p>
+<p>Haskell has a special type called <code class="sourceCode haskell"><span class="dt">IO</span></code> – which you can think of as <code class="sourceCode haskell"><span class="dt">Recipe</span></code></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Recipe</span> a <span class="fu">=</span> <span class="dt">IO</span> a</code></pre></div>
+<p>A <em>value</em> of type <code class="sourceCode haskell"><span class="dt">Recipe</span> a</code> is</p>
+<ul>
+<li><p>a <strong>description</strong> of an effectful computations</p></li>
+<li><p>when <strong>when executed</strong> (possibly) perform some effectful I/O operations to</p></li>
+<li><p><strong>produce</strong> a value of type <code class="sourceCode haskell">a</code>.</p></li>
+</ul>
+<h2 id="recipes-have-no-effects">Recipes have No Effects</h2>
+<p>A value of type <code class="sourceCode haskell"><span class="dt">Recipe</span> a</code> is</p>
+<ul>
+<li><p>Just a <strong>description</strong> of an effectful computation</p></li>
+<li><p>An inert, perfectly safe thing with <strong>no effects</strong>.</p></li>
+</ul>
+<div class="figure">
+<img src="../static/img/cake.png" alt="Cake vs. Recipe" id="fig:types" class="align-center" style="width:80.0%" />
+<p class="caption">Cake vs. Recipe</p>
+</div>
+<p><strong>(L)</strong> chocolate <em>cake</em>, <strong>(R)</strong> a <em>sequence of instructions</em> on how to make a cake.</p>
+<p>They are different (<em>hint</em>: only one of them is delicious.)</p>
+<p>Merely having a <code class="sourceCode haskell"><span class="dt">Recipe</span> <span class="dt">Cake</span></code> has no effects: holding the recipe</p>
+<ul>
+<li><p>Does not make your oven <em>hot</em></p></li>
+<li><p>Does not make your your floor <em>dirty</em></p></li>
+</ul>
+<h2 id="executing-recipes">Executing Recipes</h2>
+<p>There is <strong>only one way</strong> to execute a <code class="sourceCode haskell"><span class="dt">Recipe</span> a</code></p>
+<p>Haskell looks for a special value</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">Recipe</span> ()</code></pre></div>
+<p>The value associated with <code class="sourceCode haskell">main</code> is handed to the <strong>runtime system and executed</strong></p>
+<div class="figure">
+<img src="../static/img/baker-aker.jpg" alt="Baker Aker" id="fig:types" class="align-center" style="width:70.0%" />
+<p class="caption">Baker Aker</p>
+</div>
+<p>The Haskell runtime is a <em>master chef</em> who is the only one allowed to cook!</p>
+<h2 id="how-to-write-an-app-in-haskell">How to write an App in Haskell</h2>
+<p>Make a <code class="sourceCode haskell"><span class="dt">Recipe</span> ()</code> that is handed off to the master chef <code class="sourceCode haskell">main</code>.</p>
+<ul>
+<li><p><code class="sourceCode haskell">main</code> can be arbitrarily complicated</p></li>
+<li><p>will be composed of <em>many smaller</em> recipes</p></li>
+</ul>
+<h2 id="hello-world">Hello World</h2>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">putStrLn<span class="ot"> ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()</code></pre></div>
+<p>The function <code class="sourceCode haskell">putStrLn</code></p>
+<ul>
+<li>takes as input a <code class="sourceCode haskell"><span class="dt">String</span></code></li>
+<li>returns as output a <code class="sourceCode haskell"><span class="dt">Recipe</span> ()</code></li>
+</ul>
+<p><code class="sourceCode haskell">putStrLn msg</code> is a <code class="sourceCode haskell"><span class="dt">Recipe</span> ()</code> <em>when executed</em> prints out <code class="sourceCode haskell">msg</code> on the screen.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">Recipe</span> ()
+main <span class="fu">=</span> putStrLn <span class="st">&quot;Hello, world!&quot;</span></code></pre></div>
+<p>… and we can compile and run it</p>
+<pre class="sh"><code>$ ghc --make hello.hs
+$ ./hello
+Hello, world!</code></pre>
+<h2 id="quiz-combining-recipes">QUIZ: Combining Recipes</h2>
+<p>Next, lets write a program that prints multiple things:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> combine (putStrLn <span class="st">&quot;Hello,&quot;</span>) (putStrLn <span class="st">&quot;World!&quot;</span>)
+
+<span class="co">-- putStrLn :: String -&gt; Recipe ()</span>
+<span class="co">-- combine  :: ???</span></code></pre></div>
+<p>What must the <em>type</em> of <code class="sourceCode haskell">combine</code> be?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">{- A -}</span><span class="ot"> combine ::</span> () <span class="ot">-&gt;</span> () <span class="ot">-&gt;</span> ()
+<span class="co">{- B -}</span><span class="ot"> combine ::</span> <span class="dt">Recipe</span> () <span class="ot">-&gt;</span> <span class="dt">Recipe</span> () <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()
+<span class="co">{- C -}</span><span class="ot"> combine ::</span> <span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a
+<span class="co">{- D -}</span><span class="ot"> combine ::</span> <span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b
+<span class="co">{- E -}</span><span class="ot"> combine ::</span> <span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a</code></pre></div>
+<p><br> <br> <br> <br></p>
+<h2 id="using-intermediate-results">Using Intermediate Results</h2>
+<p>Next, lets write a program that</p>
+<ol style="list-style-type: decimal">
+<li><strong>Asks</strong> for the user’s <code class="sourceCode haskell">name</code> using</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">    getLine ::</span> <span class="dt">Recipe</span> <span class="dt">String</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Prints</strong> out a greeting with that <code class="sourceCode haskell">name</code> using</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">    putStrLn ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()</code></pre></div>
+<p><strong>Problem:</strong> How to pass the <strong>output</strong> of <em>first</em> recipe into the <em>second</em> recipe?</p>
+<p><br> <br> <br> <br></p>
+<h2 id="quiz-using-yolks-to-make-batter">QUIZ: Using Yolks to Make Batter</h2>
+<p>Suppose you have two recipes</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">crack     ::</span> <span class="dt">Recipe</span> <span class="dt">Yolk</span>
+<span class="ot">eggBatter ::</span> <span class="dt">Yolk</span> <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span></code></pre></div>
+<p>and we want to get</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mkBatter ::</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>
+mkBatter <span class="fu">=</span> crack <span class="ot">`combineWithResult`</span> eggBatter</code></pre></div>
+<p>What must the type of <code class="sourceCode haskell">combineWithResult</code> be?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">{- A -}</span> <span class="dt">Yolk</span> <span class="ot">-&gt;</span> <span class="dt">Batter</span> <span class="ot">-&gt;</span> <span class="dt">Batter</span>
+<span class="co">{- B -}</span> <span class="dt">Recipe</span> <span class="dt">Yolk</span> <span class="ot">-&gt;</span> (<span class="dt">Yolk</span>  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>
+<span class="co">{- C -}</span> <span class="dt">Recipe</span> a    <span class="ot">-&gt;</span> (a     <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a     ) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a
+<span class="co">{- D -}</span> <span class="dt">Recipe</span> a    <span class="ot">-&gt;</span> (a     <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b     ) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b
+<span class="co">{- E -}</span> <span class="dt">Recipe</span> <span class="dt">Yolk</span> <span class="ot">-&gt;</span> (<span class="dt">Yolk</span>  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()</code></pre></div>
+<p><br> <br> <br> <br></p>
+<h2 id="looks-familar">Looks Familar</h2>
+<p>Wait a bit, the signature looks familiar!</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">combineWithResult ::</span> <span class="dt">Recipe</span> a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b</code></pre></div>
+<p>Remember this</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">(&gt;&gt;=)             ::</span> <span class="dt">Result</span> a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Result</span> b) <span class="ot">-&gt;</span> <span class="dt">Result</span> b</code></pre></div>
+<h2 id="recipe-is-an-instance-of-monad"><code class="sourceCode haskell"><span class="dt">Recipe</span></code> is an instance of <code class="sourceCode haskell"><span class="dt">Monad</span></code></h2>
+<p>In fact, in the standard library</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">Recipe</span> <span class="kw">where</span>
+  (<span class="fu">&gt;&gt;=</span>) <span class="fu">=</span> <span class="co">{-... combineWithResult... -}</span></code></pre></div>
+<p>So we can put this together with <code class="sourceCode haskell">putStrLn</code> to get:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">Recipe</span> ()
+main <span class="fu">=</span> getLine <span class="fu">&gt;&gt;=</span> \name <span class="ot">-&gt;</span> putStrLn (<span class="st">&quot;Hello, &quot;</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">&quot;!&quot;</span>)</code></pre></div>
+<p>or, using <code class="sourceCode haskell"><span class="kw">do</span></code> notation the above becomes</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">Recipe</span> ()
+main <span class="fu">=</span> <span class="kw">do</span> name <span class="ot">&lt;-</span> getLine
+          putStrLn (<span class="st">&quot;Hello, &quot;</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">&quot;!&quot;</span>)</code></pre></div>
+<p><strong>Exercise</strong></p>
+<ol style="list-style-type: decimal">
+<li><em>Compile</em> and run to make sure its ok!</li>
+<li><em>Modify</em> the above to repeatedly ask for names.</li>
+<li><em>Extend</em> the above to print a “prompt” that tells you how many iterations have occurred.</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="monads-are-amazing">Monads are Amazing</h2>
+<p>Monads have had a <em>revolutionary</em> influence in PL, well beyond Haskell, some recent examples</p>
+<ul>
+<li><p><strong>Error handling</strong> in <code class="sourceCode haskell">go</code> e.g. <a href="https://speakerdeck.com/rebeccaskinner/monadic-error-handling-in-go">1</a> and <a href="https://www.innoq.com/en/blog/golang-errors-monads/">2</a></p></li>
+<li><p><strong>Asynchrony</strong> in JavaScript e.g. <a href="https://gist.github.com/MaiaVictor/bc0c02b6d1fbc7e3dbae838fb1376c80">1</a> and <a href="https://medium.com/@dtipson/building-a-better-promise-3dd366f80c16">2</a></p></li>
+<li><p><strong>Big data</strong> pipelines e.g. <a href="https://www.microsoft.com/en-us/research/project/dryadlinq/">LinQ</a> and <a href="https://www.tensorflow.org/">TensorFlow</a></p></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="a-silly-app-to-end-cse-130">A Silly App to End CSE 130</h2>
+<p>Lets write an app called <a href="../static/raw/moo.hs">moo</a> inspired by <a href="https://medium.com/@jasonrigden/cowsay-is-the-most-important-unix-like-command-ever-35abdbc22b7f">cowsay</a></p>
+<p><strong>A Command Line App</strong></p>
+<div class="figure">
+<img src="../static/img/moo1.png" alt="moo" id="fig:types" class="align-center" style="width:70.0%" />
+<p class="caption"><code class="sourceCode haskell">moo</code></p>
+</div>
+<p><strong><code class="sourceCode haskell">moo</code> works with pipes</strong></p>
+<div class="figure">
+<img src="../static/img/moo2.png" alt="Thanks, and good luck for the final!" id="fig:types" class="align-center" style="width:70.0%" />
+<p class="caption">Thanks, and good luck for the final!</p>
+</div>
+<!--
+![](/static/img/moo3.png){#fig:types .align-center width=70%}
+
+```sh
+$ ./moo Jhala, y u no make final easy!
+
+ --------------------------------
+< Jhala, y u no make final easy! >
+ --------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+or even using unix pipes
+
+```txt
+$ ./moo Thats all folks, thanks!
+
+ ------------------------------------
+< 00-intro.pdf 01-lambda.pdf         >
+< 03-datatypes.pdf 04-hof.pdf        >
+< 05-environments.pdf 06-parsing.pdf >
+< 07-classes.pdf 08-monads.pdf       >
+ ------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+Thats all, folks.
+
+-->
+                <hr>
+            </div>
+        </div>
+    </div>
+</article>
+
+        </div>
+        <div id="footer">
+        </div>
+      <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://nadia-polikarpova.github.io/cse130-web/feed.xml" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/polikarn" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://plus.google.com/u/0/104385825850161331469" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://github.com/nadia-polikarpova" target="_blank">
+                            <span class="fa-stack fa-lg">
+
+                              <i class="fa fa-arrow-circle-o-down"></i>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+		    
+                </ul>
+                <p class="copyright text-muted">
+                
+                  Generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>,
+                  template by <a href="http://lucumr.pocoo.org">Armin Ronacher</a>,
+                  suggest improvements <a href="https://github.com/ucsd-progsys/liquidhaskell-blog/">here</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="https://nadia-polikarpova.github.io/cse130-web/static/js/jquery.min.js"></script>
+<script src="https://nadia-polikarpova.github.io/cse130-web/static/js/spaceg.stylesheets.min.js"></script>
+<script src="https://nadia-polikarpova.github.io/cse130-web/static/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://nadia-polikarpova.github.io/cse130-web/static/js/anim.js"></script>
+<script src="https://nadia-polikarpova.github.io/cse130-web/static/js/scripts.js"></script>
+
+    </body>
+</html>
