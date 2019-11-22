@@ -327,7 +327,8 @@ mapTree f (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span c
 <p>Can I write a generic function?</p>
 <p><br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">map<span class="ot">    ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> t a    <span class="ot">-&gt;</span> t b</code></pre></div>
-<p><br> <br> <br> <br> <br></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="a-class-for-mapping">A Class for Mapping</h3>
 <p>Not quite! Not all datatypes support mapping over, only <em>some</em> of them do.</p>
 <p>So let’s make a typeclass for it!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Functor</span> t <span class="kw">where</span>
@@ -381,51 +382,76 @@ mapTree f (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span c
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="next-a-class-for-sequencing">Next: A Class for Sequencing</h2>
-<p>Recall our old <code class="sourceCode haskell"><span class="dt">Expr</span></code> datatype</p>
+<p>Consider a simplified <code class="sourceCode haskell"><span class="dt">Expr</span></code> datatype</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span>
-  <span class="fu">=</span> <span class="dt">Number</span> <span class="dt">Int</span>
+  <span class="fu">=</span> <span class="dt">Num</span>    <span class="dt">Int</span>
   <span class="fu">|</span> <span class="dt">Plus</span>   <span class="dt">Expr</span> <span class="dt">Expr</span>
   <span class="fu">|</span> <span class="dt">Div</span>    <span class="dt">Expr</span> <span class="dt">Expr</span>
   <span class="kw">deriving</span> (<span class="dt">Show</span>)
 
 <span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-eval (<span class="dt">Number</span> n)   <span class="fu">=</span> n
+eval (<span class="dt">Num</span> n)      <span class="fu">=</span> n
 eval (<span class="dt">Plus</span> e1 e2) <span class="fu">=</span> eval e1   <span class="fu">+</span>   eval e2
 eval (<span class="dt">Div</span>  e1 e2) <span class="fu">=</span> eval e1 <span class="ot">`div`</span> eval e2
 
-<span class="co">-- &gt;&gt;&gt; eval (Div (Number 6) (Number 2))</span>
+<span class="co">-- &gt;&gt;&gt; eval (Div (Num 6) (Num 2))</span>
 <span class="co">-- 3</span></code></pre></div>
-<h3 id="but-what-is-the-result">But, what is the result</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; eval (Div (Number 6) (Number 0))</span>
+<p><br> <br> <br> <br></p>
+<p>But what is the result of</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; eval (Div (Num 6) (Num 0))</span>
 <span class="co">-- *** Exception: divide by zero</span></code></pre></div>
-<p>A crash! Lets look at an alternative approach to avoid dividing by zero.</p>
-<p>The idea is to return a <code class="sourceCode haskell"><span class="dt">Result</span> <span class="dt">Int</span></code> (instead of a plain <code class="sourceCode haskell"><span class="dt">Int</span></code>)</p>
+<p><br> <br></p>
+<p>My interpreter crashes!</p>
+<ul>
+<li>What if I’m implementing GHCi?</li>
+<li>I don’t want GHCi to <em>crash</em> every time you enter <code class="sourceCode haskell">div <span class="dv">5</span> <span class="dv">0</span></code></li>
+<li>I want it to process the error and move on with its life</li>
+</ul>
+<p>How can we achieve this behavior?</p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="error-handling-take-one">Error Handling: Take One</h3>
+<p>Let’s introduce a new type for evaluation results:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Result</span>  a
+  <span class="fu">=</span> <span class="dt">Error</span> <span class="dt">String</span>
+  <span class="fu">|</span> <span class="dt">Value</span> a</code></pre></div>
+<p>Our <code class="sourceCode haskell">eval</code> will now return <code class="sourceCode haskell"><span class="dt">Result</span> <span class="dt">Int</span></code> instead of <code class="sourceCode haskell"><span class="dt">Int</span></code></p>
 <ul>
 <li>If a <em>sub-expression</em> had a divide by zero, return <code class="sourceCode haskell"><span class="dt">Error</span> <span class="st">&quot;...&quot;</span></code></li>
-<li>If all sub-expressions were safe, then return the actual <code class="sourceCode haskell"><span class="dt">Result</span> v</code></li>
+<li>If all sub-expressions were safe, then return the actual <code class="sourceCode haskell"><span class="dt">Value</span> v</code></li>
 </ul>
+<p><br> <br> <br> <br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Result</span> <span class="dt">Int</span>
-eval (<span class="dt">Number</span> n)   <span class="fu">=</span> <span class="dt">Value</span> n
-eval (<span class="dt">Plus</span> e1 e2) <span class="fu">=</span> <span class="kw">case</span> e1 <span class="kw">of</span>
-                      <span class="dt">Error</span> err1 <span class="ot">-&gt;</span> <span class="dt">Error</span> err1
-                      <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">case</span> e2 <span class="kw">of</span>
-                                      <span class="dt">Error</span> err2 <span class="ot">-&gt;</span> <span class="dt">Error</span> err2
-                                      <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="dt">Result</span> (v1 <span class="fu">+</span> v2)
-eval (<span class="dt">Div</span> e1 e2)  <span class="fu">=</span> <span class="kw">case</span> e1 <span class="kw">of</span>
-                      <span class="dt">Error</span> err1 <span class="ot">-&gt;</span> <span class="dt">Error</span> err1
-                      <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">case</span> e2 <span class="kw">of</span>
-                                      <span class="dt">Error</span> err2 <span class="ot">-&gt;</span> <span class="dt">Error</span> err2
-                                      <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">if</span> v2 <span class="fu">==</span> <span class="dv">0</span> 
-                                                      <span class="kw">then</span> <span class="dt">Error</span> (<span class="st">&quot;yikes dbz:&quot;</span> <span class="fu">++</span> show e2)
-                                                      <span class="kw">else</span> <span class="dt">Value</span> (v1 <span class="ot">`div`</span> v2)</code></pre></div>
-<p>The <strong>good news</strong>, no nasty exceptions, just a plain <code class="sourceCode haskell"><span class="dt">Error</span></code> result</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> eval (<span class="dt">Div</span> (<span class="dt">Number</span> <span class="dv">6</span>) (<span class="dt">Number</span> <span class="dv">2</span>))
+eval (<span class="dt">Num</span> n)      <span class="fu">=</span> <span class="fu">???</span>
+eval (<span class="dt">Plus</span> e1 e2) <span class="fu">=</span> <span class="fu">???</span>
+eval (<span class="dt">Div</span> e1 e2)  <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Result</span> <span class="dt">Int</span>
+eval (<span class="dt">Num</span> n)      <span class="fu">=</span> <span class="dt">Value</span> n
+eval (<span class="dt">Plus</span> e1 e2) <span class="fu">=</span> 
+  <span class="kw">case</span> eval e1 <span class="kw">of</span>
+    <span class="dt">Error</span> err1 <span class="ot">-&gt;</span> <span class="dt">Error</span> err1
+    <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">case</span> eval e2 <span class="kw">of</span>
+                    <span class="dt">Error</span> err2 <span class="ot">-&gt;</span> <span class="dt">Error</span> err2
+                    <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="dt">Result</span> (v1 <span class="fu">+</span> v2)
+eval (<span class="dt">Div</span> e1 e2)  <span class="fu">=</span> 
+  <span class="kw">case</span> eval e1 <span class="kw">of</span>
+    <span class="dt">Error</span> err1 <span class="ot">-&gt;</span> <span class="dt">Error</span> err1
+    <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">case</span> eval e2 <span class="kw">of</span>
+                    <span class="dt">Error</span> err2 <span class="ot">-&gt;</span> <span class="dt">Error</span> err2
+                    <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">if</span> v2 <span class="fu">==</span> <span class="dv">0</span> 
+                                    <span class="kw">then</span> <span class="dt">Error</span> (<span class="st">&quot;DBZ: &quot;</span> <span class="fu">++</span> show e2)
+                                    <span class="kw">else</span> <span class="dt">Value</span> (v1 <span class="ot">`div`</span> v2)</code></pre></div>
+<p><br> <br></p>
+<p>The <strong>good news</strong>: interpreter doesn’t crash, just returns <code class="sourceCode haskell"><span class="dt">Error</span> msg</code>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> eval (<span class="dt">Div</span> (<span class="dt">Num</span> <span class="dv">6</span>) (<span class="dt">Num</span> <span class="dv">2</span>))
 <span class="dt">Value</span> <span class="dv">3</span>
-λ<span class="fu">&gt;</span> eval (<span class="dt">Div</span> (<span class="dt">Number</span> <span class="dv">6</span>) (<span class="dt">Number</span> <span class="dv">0</span>))
-<span class="dt">Error</span> <span class="st">&quot;yikes dbz:Number 0&quot;</span>
-λ<span class="fu">&gt;</span> eval (<span class="dt">Div</span> (<span class="dt">Number</span> <span class="dv">6</span>) (<span class="dt">Plus</span> (<span class="dt">Number</span> <span class="dv">2</span>) (<span class="dt">Number</span> (<span class="fu">-</span><span class="dv">2</span>))))
-<span class="dt">Error</span> <span class="st">&quot;yikes dbz:Plus (Number 2) (Number (-2))&quot;</span></code></pre></div>
+λ<span class="fu">&gt;</span> eval (<span class="dt">Div</span> (<span class="dt">Num</span> <span class="dv">6</span>) (<span class="dt">Num</span> <span class="dv">0</span>))
+<span class="dt">Error</span> <span class="st">&quot;DBZ: Num 0&quot;</span>
+λ<span class="fu">&gt;</span> eval (<span class="dt">Div</span> (<span class="dt">Num</span> <span class="dv">6</span>) (<span class="dt">Plus</span> (<span class="dt">Num</span> <span class="dv">2</span>) (<span class="dt">Num</span> (<span class="fu">-</span><span class="dv">2</span>))))
+<span class="dt">Error</span> <span class="st">&quot;DBZ: Plus (Num 2) (Num (-2))&quot;</span></code></pre></div>
+<p><br> <br></p>
 <p>The <strong>bad news</strong>: the code is super duper <strong>gross</strong></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="lets-spot-a-pattern">Lets spot a Pattern</h2>
 <p>The code is gross because we have these cascading blocks</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">case</span> e1 <span class="kw">of</span>
@@ -461,7 +487,7 @@ return v <span class="fu">=</span> <span class="dt">Value</span> v</code></pre><
 <h2 id="a-cleaned-up-evaluator">A Cleaned up Evaluator</h2>
 <p>The magic bottle lets us clean up our <code class="sourceCode haskell">eval</code></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Result</span> <span class="dt">Int</span>
-eval (<span class="dt">Number</span> n)   <span class="fu">=</span> return n
+eval (<span class="dt">Num</span> n)      <span class="fu">=</span> return n
 eval (<span class="dt">Plus</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">&gt;&gt;=</span> \v1 <span class="ot">-&gt;</span>
                     eval e2 <span class="fu">&gt;&gt;=</span> \v2 <span class="ot">-&gt;</span>
                     return (v1 <span class="fu">+</span> v2)
@@ -506,7 +532,7 @@ e</code></pre></div>
 <span class="fu">...</span></code></pre></div>
 <p>Thus, we can further simplify our <code class="sourceCode haskell">eval</code> to:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Result</span> <span class="dt">Int</span>
-eval (<span class="dt">Number</span> n)   <span class="fu">=</span> return n
+eval (<span class="dt">Num</span> n)      <span class="fu">=</span> return n
 eval (<span class="dt">Plus</span> e1 e2) <span class="fu">=</span> <span class="kw">do</span> v1 <span class="ot">&lt;-</span> eval e1
                        v2 <span class="ot">&lt;-</span> eval e2
                        return (v1 <span class="fu">+</span> v2)
