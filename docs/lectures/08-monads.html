@@ -893,9 +893,9 @@ hello world!
 <p><br> <br> <br> <br> <br> <br></p>
 <h3 id="haskell-is-pure">Haskell is pure</h3>
 <p>Haskell programs don’t <strong>do</strong> things!</p>
-<p>When you evaluate a program you get a value and <strong>nothing else happens</strong></p>
+<p>A program is an expression that evaluates to a value (and <em>nothing else happens</em>)</p>
 <ul>
-<li><p>In Haskell, a function of type <code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code> computes a <em>single integer output</em> from a <em>single integer input</em> and does <strong>nothing else</strong></p></li>
+<li><p>A function of type <code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code> computes a <em>single integer output</em> from a <em>single integer input</em> and does <strong>nothing else</strong></p></li>
 <li><p>Moreover, it always returns the same output given the same input (<em>referential transparency</em>)</p></li>
 </ul>
 <p>Specifically, evaluation must not have any <strong>side effects</strong></p>
@@ -925,8 +925,8 @@ hello world!
 <p>A <em>value</em> of type <code class="sourceCode haskell"><span class="dt">Recipe</span> a</code> is</p>
 <ul>
 <li><p>a <strong>description</strong> of a computation</p></li>
-<li><p>that <strong>when executed</strong> (possibly) perform side effects and</p></li>
-<li><p><strong>produces</strong> a value of type <code class="sourceCode haskell">a</code>.</p></li>
+<li><p>that <strong>when executed</strong> (possibly) performs side effects and</p></li>
+<li><p><strong>produces</strong> a value of type <code class="sourceCode haskell">a</code></p></li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="recipes-are-pure">Recipes are Pure</h2>
@@ -940,8 +940,7 @@ hello world!
 <img src="../static/img/cake.png" alt="Cake vs. Recipe" id="fig:types" class="align-center" style="width:80.0%" />
 <p class="caption">Cake vs. Recipe</p>
 </div>
-<p><em>(L)</em> chocolate <em>cake</em>, <em>(R)</em> a <em>sequence of instructions</em> on how to make a cake.</p>
-<p><strong>But</strong> Merely writing down a cake recipe does not cause any side effects</p>
+<p><em>But:</em> merely writing down a cake recipe does not cause any side effects</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="executing-recipes">Executing Recipes</h2>
 <p>When executing a program, Haskell looks for a special value:</p>
@@ -958,7 +957,15 @@ hello world!
 <p class="caption">Baker Aker</p>
 </div>
 <p>The Haskell runtime is a <em>master chef</em> who is the only one allowed to produce effects!</p>
+<p><br> <br></p>
+<p>Importantly:</p>
+<ul>
+<li><p>A function of type <code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code> <strong>still</strong> computes a <em>single integer output</em> from a <em>single integer input</em> and does <strong>nothing else</strong></p></li>
+<li><p>A function of type <code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Int</span></code> computes an <code class="sourceCode haskell"><span class="dt">Int</span></code>-recipe from a single integer input and does <strong>nothing else</strong></p></li>
+<li><p>Only if I hand this recipe to <code class="sourceCode haskell">main</code> will any effects be produced</p></li>
+</ul>
 <p><br> <br> <br></p>
+<h2 id="writing-apps">Writing Apps</h2>
 <p>To write an app in Haskell, you define your own recipe <code class="sourceCode haskell">main</code>!</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="hello-world">Hello World</h2>
@@ -1056,7 +1063,8 @@ main <span class="fu">=</span> <span class="kw">do</span> name <span class="ot">
 <h2 id="monads-are-amazing">Monads are Amazing</h2>
 <p>Monads have had a <em>revolutionary</em> influence in PL, well beyond Haskell, some recent examples</p>
 <ul>
-<li><p><strong>Error handling</strong> in <code class="sourceCode haskell">go</code> e.g. <a href="https://speakerdeck.com/rebeccaskinner/monadic-error-handling-in-go">1</a> and <a href="https://www.innoq.com/en/blog/golang-errors-monads/">2</a></p></li>
+<li><p><strong>Error handling</strong> in <code class="sourceCode haskell">go</code> e.g. <a href="https://speakerdeck.com/rebeccaskinner/monadic-error-handling-in-go">1</a><br />
+and <a href="https://www.innoq.com/en/blog/golang-errors-monads/">2</a></p></li>
 <li><p><strong>Asynchrony</strong> in JavaScript e.g. <a href="https://gist.github.com/MaiaVictor/bc0c02b6d1fbc7e3dbae838fb1376c80">1</a> and <a href="https://medium.com/@dtipson/building-a-better-promise-3dd366f80c16">2</a></p></li>
 <li><p><strong>Big data</strong> pipelines e.g. <a href="https://www.microsoft.com/en-us/research/project/dryadlinq/">LinQ</a> and <a href="https://www.tensorflow.org/">TensorFlow</a></p></li>
 </ul>

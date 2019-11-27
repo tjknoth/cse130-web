@@ -1491,9 +1491,9 @@ hello world!
 
 Haskell programs don't **do** things!
 
-When you evaluate a program you get a value and **nothing else happens**
+A program is an expression that evaluates to a value (and *nothing else happens*)
     
-  - In Haskell, a function of type `Int -> Int`
+  - A function of type `Int -> Int`
     computes a *single integer output* from a *single integer input*
     and does **nothing else**
     
@@ -1562,9 +1562,9 @@ A _value_ of type `Recipe a` is
 
 - a **description** of a computation
 
-- that **when executed** (possibly) perform side effects and
+- that **when executed** (possibly) performs side effects and
 
-- **produces** a value of type `a`.
+- **produces** a value of type `a`
 
 <br>
 <br>
@@ -1587,10 +1587,8 @@ Baking a cake can have side effects:
 
 ![Cake vs. Recipe](/static/img/cake.png){#fig:types .align-center width=80%}
 
-*(L)* chocolate _cake_, *(R)* a _sequence of instructions_ on how to make a cake.
+*But:* merely writing down a cake recipe does not cause any side effects
 
-
-**But** Merely writing down a cake recipe does not cause any side effects
 
 <br>
 <br>
@@ -1626,7 +1624,24 @@ The Haskell runtime is a _master chef_ who is the only one allowed to produce ef
 
 <br>
 <br>
+
+Importantly:
+
+  - A function of type `Int -> Int`
+    **still** computes a *single integer output* from a *single integer input*
+    and does **nothing else**
+    
+  - A function of type `Int -> Recipe Int`
+    computes an `Int`-recipe from a single integer input
+    and does **nothing else**
+    
+  - Only if I hand this recipe to `main` will any effects be produced
+
 <br>
+<br>
+<br>
+
+## Writing Apps
 
 To write an app in Haskell, you define your own recipe `main`!
 
