@@ -1,0 +1,1832 @@
+---
+title: Monads 
+date: 2019-06-5
+headerImg: books.jpg
+---
+
+## The Mantra
+
+**Don't Repeat Yourself**
+
+In this lecture we will see advanced ways to *abstract code patterns*
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Outline
+
+1. **Functors**
+2. Monads
+3. Writing apps with monads
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Recall: HOF
+
+Recall how we used higher-order functions to abstract code patters
+
+
+### Iterating Through Lists
+
+```haskell
+data List a
+  = []
+  | (:) a (List a)
+```
+
+<br>
+<br>
+<br>
+
+**Rendering the Values of a List**
+
+```haskell
+-- >>> showList [1, 2, 3]
+-- ["1", "2", "3"]
+
+showList        :: [Int] -> [String]
+showList []     =  []
+showList (n:ns) =  show n : showList ns
+```
+
+<br>
+<br>
+<br>
+
+**Squaring the values of a list**
+
+```haskell
+-- >>> sqrList [1, 2, 3]
+-- 1, 4, 9
+
+sqrList        :: [Int] -> [Int]
+sqrList []     =  []
+sqrList (n:ns) =  n^2 : sqrList ns
+```
+
+<br>
+<br>
+<br>
+
+**Common Pattern:** `map` over a list
+
+Refactor iteration into `mapList`
+
+```haskell
+mapList :: (a -> b) -> [a] -> [b]
+mapList f []     = []
+mapList f (x:xs) = f x : mapList f xs
+```
+
+<br>
+<br>
+
+Reuse `mapList` to implement `showList` and `sqrList`
+
+```haskell
+showList xs = mapList (\n -> show n) xs
+
+sqrList  xs = mapList (\n -> n ^ 2)  xs
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Iterating Trough Trees
+
+```haskell
+data Tree a
+  = Leaf
+  | Node a (Tree a) (Tree a)
+```
+
+<br>
+<br>
+<br>
+
+**Rendering the Values of a Tree**
+
+```haskell
+-- >>> showTree (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf))
+-- (Node "2" (Node "1" Leaf Leaf) (Node "3" Leaf Leaf))
+
+showTree :: Tree Int -> Tree String
+showTree Leaf         = ???
+showTree (Node v l r) = ???
+```
+
+<br>
+<br>
+<br>
+
+**Squaring the values of a Tree**
+
+```haskell
+-- >>> sqrTree (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf))
+-- (Node 4 (Node 1 Leaf Leaf) (Node 9 Leaf Leaf))
+
+sqrTree :: Tree Int -> Tree Int
+sqrTree Leaf         = ???
+sqrTree (Node v l r) = ???
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+### QUIZ: Mapping over a Tree
+
+If we refactor iteration into `mapTree`, 
+what should its type be?
+
+```haskell
+mapTree :: ???
+
+showTree t = mapTree (\n -> show n) t
+sqrTree  t = mapTree (\n -> n ^ 2)  t
+```
+
+**(A)** `(Int -> Int)    -> Tree Int -> Tree Int`
+
+**(B)** `(Int -> String) -> Tree Int -> Tree String`
+
+**(C)** `(Int -> a)      -> Tree Int -> Tree a`
+
+**(D)** `(a -> a)        -> Tree a   -> Tree a`
+
+**(E)** `(a -> b)        -> Tree a   -> Tree b`
+
+<br>
+
+(I) final
+
+    *Answer:* E
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Mapping over Trees
+
+Let's write `mapTree`:
+
+```haskell
+mapTree :: (a -> b) -> Tree a -> Tree b
+mapTree f Leaf         = ???
+mapTree f (Node v l r) = ???
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Abstracting across Datatypes
+
+Wait, this looks familiar...
+
+```haskell
+type List a = [a]
+mapList :: (a -> b) -> List a -> List b    -- List
+mapTree :: (a -> b) -> Tree a -> Tree b    -- Tree
+```
+
+<br>
+
+Can I write a generic function?
+
+<br>
+
+```
+map    :: (a -> b) -> t a    -> t b
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### A Class for Mapping
+
+Not quite! Not all datatypes support mapping over, only *some* of them do.
+
+So let's make a typeclass for it!
+
+```haskell
+class Functor t where
+  fmap :: ???
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+### QUIZ
+
+What type should we give to `fmap`?
+
+```haskell
+class Functor t where
+  fmap :: ???
+```
+
+**(A)** `(b -> a) -> t b    -> t a`
+
+**(B)** `(a -> a) -> t a    -> t a`
+
+**(C)** `(a -> b) -> [a]    -> [b]`
+
+**(D)** `(a -> b) -> t a    -> t b`
+
+**(E)** `(a -> b) -> Tree a -> Tree b`
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Reuse Iteration Across Types
+
+```haskell
+instance Functor [] where
+  fmap = mapList
+
+instance Functor Tree where
+  fmap = mapTree
+```
+
+And now we can do
+
+```haskell
+-- >>> fmap show [1,2,3]
+-- ["1", "2", "3"]
+
+
+-- >>> fmap (^2) (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf))
+-- (Node 4 (Node 1 Leaf Leaf) (Node 9 Leaf Leaf))
+
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Exercise
+
+Write a `Functor` instance for `Result`:
+
+```haskell
+data Result  a
+  = Error String
+  | Ok    a
+
+instance Functor Result where
+  fmap f (Error msg) = ???
+  fmap f (Ok val)    = ???
+```
+
+When you're done you should see
+
+```haskell
+-- >>> fmap (^ 2) (Ok 3)
+Ok 9
+
+-- >>> fmap (^ 2) (Error "oh no")
+Error "oh no"
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Outline
+
+1. Functors [done]
+2. Monads for
+
+    2.1. **Error Handling**
+    
+    2.2. Mutable State
+    
+    2.3. Nondeterminism
+
+3. Writing apps with monads
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Next: A Class for Sequencing
+
+Consider a simplified `Expr` datatype
+
+```haskell
+data Expr
+  = Num    Int
+  | Plus   Expr Expr
+  | Div    Expr Expr
+  deriving (Show)
+
+eval :: Expr -> Int
+eval (Num n)      = n
+eval (Plus e1 e2) = eval e1   +   eval e2
+eval (Div  e1 e2) = eval e1 `div` eval e2
+
+-- >>> eval (Div (Num 6) (Num 2))
+-- 3
+```
+
+<br>
+<br>
+<br>
+<br>
+
+But what is the result of
+
+```haskell
+-- >>> eval (Div (Num 6) (Num 0))
+-- *** Exception: divide by zero
+```
+
+<br>
+<br>
+
+My interpreter crashes!
+
+  - What if I'm implementing GHCi?
+  - I don't want GHCi to *crash* every time you enter `div 5 0`
+  - I want it to process the error and move on with its life
+
+How can we achieve this behavior?
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Error Handling: Take One
+
+Let's introduce a new type for evaluation results:
+
+```haskell
+data Result  a
+  = Error String
+  | Value a
+```
+
+Our `eval` will now return `Result Int` instead of `Int`
+
+  - If a _sub-expression_ had a divide by zero, return `Error "..."`
+  - If all sub-expressions were safe, then return the actual `Value v`
+  
+<br>
+<br>
+<br>
+<br>
+<br>  
+
+```haskell
+eval :: Expr -> Result Int
+eval (Num n)      = ???
+eval (Plus e1 e2) = ???
+eval (Div e1 e2)  = ???
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```haskell
+eval :: Expr -> Result Int
+eval (Num n)      = Value n
+eval (Plus e1 e2) = 
+  case eval e1 of
+    Error err1 -> Error err1
+    Value v1   -> case eval e2 of
+                    Error err2 -> Error err2
+                    Value v1   -> Value (v1 + v2)
+eval (Div e1 e2)  = 
+  case eval e1 of
+    Error err1 -> Error err1
+    Value v1   -> case eval e2 of
+                    Error err2 -> Error err2
+                    Value v1   -> if v2 == 0 
+                                    then Error ("DBZ: " ++ show e2)
+                                    else Value (v1 `div` v2)
+```
+
+<br>
+<br>
+
+The **good news**: interpreter doesn't crash, just returns `Error msg`:
+
+```haskell
+λ> eval (Div (Num 6) (Num 2))
+Value 3
+λ> eval (Div (Num 6) (Num 0))
+Error "DBZ: Num 0"
+λ> eval (Div (Num 6) (Plus (Num 2) (Num (-2))))
+Error "DBZ: Plus (Num 2) (Num (-2))"
+```
+
+<br>
+<br>
+
+The **bad news**: the code is super duper **gross**
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Lets spot a Pattern
+
+The code is gross because we have these cascading blocks
+
+```haskell
+case eval e1 of
+  Error err1 -> Error err1
+  Value v1   -> case eval e2 of
+                  Error err2 -> Error err2
+                  Value v1   -> Value (v1 + v2)
+```
+
+<br>
+<br>
+
+But these blocks have a **common pattern**:
+
+- First do `eval e` and get result `res`
+- If `res` is an `Error`, just return that error
+- If `res` is a `Value v` then _do further processing_ on `v`
+
+<br>
+<br>
+
+```haskell
+case res of
+  Error err -> Error err
+  Value v   -> process v -- do more stuff with v
+```
+
+<br>
+<br>
+
+![Bottling a Magic Pattern](/static/img/fairy.png){#fig:types .align-center}
+
+Lets **bottle** that common structure in a function `>>=` (pronounced _bind_):
+
+```haskell
+(>>=) :: Result a -> (a -> Result b) -> Result b
+(Error err) >>= _       = Error err
+(Value v)   >>= process = process v
+```
+
+<br>
+<br>
+
+Notice the `>>=` takes *two* inputs:
+
+- `Result a`: result of the first evaluation
+- `a -> Result b`: in case the first evaluation produced a *value*, what to do *next* with that value
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+### QUIZ: Bind 1
+
+With `>>=` defined as before:
+
+```haskell
+(>>=) :: Result a -> (a -> Result b) -> Result b
+(Error msg) >>= _       = Error msg
+(Value v)   >>= process = process v
+
+```
+
+What does the following evaluate to?
+
+```haskell
+λ> eval (Num 5)   >>=   \v -> Value (v + 1)
+```
+
+**(A)** Type Error
+
+**(B)** `5`
+
+**(C)** `Value 5`
+
+**(D)** `Value 6`
+
+**(E)** `Error msg`
+
+<br>
+
+(I) final
+
+    *Answer:* D
+    
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+### QUIZ: Bind 2
+
+With `>>=` defined as before:
+
+```haskell
+(>>=) :: Result a -> (a -> Result b) -> Result b
+(Error msg) >>= _       = Error msg
+(Value v)   >>= process = process v
+
+```
+
+What does the following evaluate to?
+
+```haskell
+λ> Error "nope"   >>=   \v -> Value (v + 1)
+```
+
+**(A)** Type Error
+
+**(B)** `5`
+
+**(C)** `Value 5`
+
+**(D)** `Value 6`
+
+**(E)** `Error "nope"`
+
+<br>
+
+(I) final
+
+    *Answer:* E
+    
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## A Cleaned up Evaluator
+
+The magic bottle lets us clean up our `eval`:
+
+```haskell
+eval :: Expr -> Result Int
+eval (Num n)      = Value n
+eval (Plus e1 e2) = eval e1 >>= \v1 ->
+                    eval e2 >>= \v2 ->
+                    Value (v1 + v2)
+eval (Div e1 e2)  = eval e1 >>= \v1 ->
+                    eval e2 >>= \v2 ->
+                    if v2 == 0
+                      then Error ("DBZ: " ++ show e2)
+                      else Value (v1 `div` v2)
+```
+
+The gross _pattern matching_ is all hidden inside `>>=`!
+
+<br>
+<br>
+
+**NOTE:** It is _crucial_ that you understand what the code above
+is doing, and why it is actually just a "shorter" version of the
+(gross) nested-case-of `eval`.
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## A Class for bind
+
+Like `fmap` or `show` or `==`, 
+the `>>=` operator turns out to be useful across many types 
+(not just `Result`)
+
+<br>
+<br>
+
+Let's create a typeclass for it!
+
+```haskell
+class Monad m where
+  (>>=)  :: m a -> (a -> m b) -> m b -- bind
+  return :: a -> m a                 -- return
+```
+
+<br>
+<br>
+
+`return` tells you how to wrap an `a` value in the monad
+
+  - Useful for writing code that works across multiple monads
+  
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Monad instance for Result  
+
+Let's make `Result` an instance of `Monad`! 
+
+```haskell
+class Monad m where
+  (>>=)  :: m a -> (a -> m b) -> m b
+  return :: a -> m a
+
+instance Monad Result where
+  (>>=) :: Result a -> (a -> Result b) -> Result b
+  (Error msg) >>= _       = Error msg
+  (Value v)   >>= process = process v
+
+  return :: a -> Result a
+  return v = ??? -- How do we make a `Result a` from an `a`?
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```haskell
+instance Monad Result where
+  (>>=) :: Result a -> (a -> Result b) -> Result b
+  (Error msg) >>= _       = Error msg
+  (Value v)   >>= process = process v
+
+  return :: a -> Result a
+  return v = Value v
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Syntactic Sugar
+
+In fact `>>=` is *so* useful there is special syntax for it!
+
+  - It's called *the `do` notation*
+
+<br>
+<br>
+
+Instead of writing
+
+```haskell
+e1 >>= \v1 ->
+e2 >>= \v2 ->
+e3 >>= \v3 ->
+e
+```
+
+you can write
+
+```haskell
+do v1 <- e1
+   v2 <- e2
+   v3 <- e3
+   e
+```
+
+<br>
+<br>
+<br>
+<br>
+
+Thus, we can further simplify our `eval` to:
+
+```haskell
+eval :: Expr -> Result Int
+eval (Num n)      = return n
+eval (Plus e1 e2) = do v1 <- eval e1
+                       v2 <- eval e2
+                       return (v1 + v2)
+eval (Div e1 e2)  = do v1 <- eval e1
+                       v2 <- eval e2
+                       if v2 == 0
+                         then Error ("DBZ: " ++ show e2)
+                         else return (v1 `div` v2)
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## The Either Monad
+
+Error handling is a very common task!
+
+Instead of defining your own type `Result`,
+you can use `Either` from the Haskell standard library:
+
+```haskell
+data Either a b = 
+    Left  a  -- something has gone wrong
+  | Right b  -- everything has gone RIGHT
+```
+
+`Either` is already an instance of `Monad`,
+so no need to define your own `>>=`!
+
+<br>
+<br>
+
+Now we can simply define
+
+```haskell
+type Result a = Either String a
+```
+
+and the `eval` above will just work out of the box!
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Outline
+
+1. Functors [done]
+2. Monads for
+
+    2.1. Error Handling [done]
+    
+    2.2. **Mutable State**
+    
+    2.3. Nondeterminism
+
+3. Writing apps with monads
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Expressions with a Counter
+
+Consider implementing expressions with a counter:
+
+```haskell
+data Expr
+  = Num    Int
+  | Plus   Expr Expr
+  | Next   -- counter value
+  deriving (Show)
+```
+
+Behavior we want:
+
+- `eval` is given the initial counter value
+- every time we evaluate `Next` (within the call to `eval`), the value of the counter increases:
+
+```
+--        0
+λ> eval 0 Next
+0
+
+--              0    1
+λ> eval 0 (Plus Next Next)
+1
+
+--              0          1    2
+λ> eval 0 (Plus Next (Plus Next Next))
+3
+```
+
+<br>
+<br>
+
+How should we implement `eval`?
+
+```
+eval (Num n)      cnt = ???
+eval Next         cnt = ???
+eval (Plus e1 e2) cnt = ???
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+### QUIZ: State: Take 1
+
+If we implement `eval` like this:
+
+```haskell
+eval (Num n)      cnt = n
+eval Next         cnt = cnt
+eval (Plus e1 e2) cnt = eval e1 cnt + eval e2 cnt
+```
+What would be the result of the following?
+
+```haskell
+λ> eval (Plus Next Next) 0
+```
+
+**(A)** Type error
+
+**(B)** `0`
+
+**(C)** `1`
+
+**(D)** `2`
+
+<br>
+
+(I) final
+
+    *Answer:* B
+                
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+It's going to be `0` because we never increment the counter!
+
+   - We need to increment it every time we do `eval Next`
+   - So `eval` needs to return the new counter
+   
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Evaluating Expressions with Counter
+
+```haskell
+type Cnt = Int
+  
+eval :: Expr -> Cnt -> (Cnt, Int)
+eval (Num n)      cnt = (cnt, n)
+eval Next         cnt = (cnt + 1, cnt)
+eval (Plus e1 e2) cnt = let (cnt1, v1) = eval e1 cnt
+                        in 
+                          let (cnt2, v2) = eval e2 cnt1
+                          in
+                            (cnt2, v1 + v2)
+                       
+topEval :: Expr -> Int
+topEval e = snd (eval e 0)
+```
+
+<br>
+<br>
+
+The **good news**: we get the right result:
+
+```haskell
+λ> topEval (Plus Next Next)
+1
+
+λ> topEval (Plus Next (Plus Next Next))
+3
+```
+
+<br>
+<br>
+
+The **bad news**: the code is super duper **gross**.
+
+The `Plus` case has to "thread" the counter through the recursive calls:
+
+```haskell
+let (cnt1, v1) = eval e1 cnt
+  in 
+    let (cnt2, v2) = eval e2 cnt1
+    in
+      (cnt2, v1 + v2)
+```
+
+  1. Easy to make a mistake, e.g. pass `cnt` instead of `cnt1` into the second `eval`!
+  2. The logic of addition is obscured by all the counter-passing
+  
+So unfair, since `Plus` doesn't even care about the counter!
+
+<br>
+<br>
+<br>
+<br>
+
+Is it *too much to ask* that `eval` looks like this?
+
+```haskell
+eval (Num n)      = return n
+eval (Plus e1 e2) = do v1 <- eval e1
+                       v2 <- eval e2
+                       return (v1 + v2)
+...                       
+```
+  
+  - Cases that don't care about the counter (`Num`, `Plus`), don't even have to mention it!
+  - The counter is somehow threaded through automatically behind the scenes
+  - Looks *just like* in the error handing evaluator
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Lets spot a Pattern
+
+```haskell
+let (cnt1, v1) = eval e1 cnt
+  in 
+    let (cnt2, v2) = eval e2 cnt1
+    in
+      (cnt2, v1 + v2)
+```
+
+These blocks have a **common pattern**:
+
+- Perform first step (`eval e`) using initial counter `cnt`
+- Get a result `(cnt', v)`
+- Then do further processing on `v` using the new counter `cnt'`
+
+```haskell
+let (cnt', v) = step cnt
+in process v cnt' -- do things with v and cnt'
+```
+
+<br>
+<br>
+
+Can we **bottle** this common pattern as a `>>=`?
+
+```haskell
+(>>=) step process cnt = let (cnt', v) = step cnt
+                         in process v cnt'
+```
+<br>
+<br>
+
+But what is the type of this `>>=`?
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```haskell
+(>>=) :: (Cnt -> (Cnt, a)) 
+         -> (a -> Cnt -> (Cnt, b)) 
+         -> Cnt 
+         -> (Cnt, b)
+(>>=) step process cnt = let (cnt', v) = step cnt
+                         in process v cnt'
+```
+
+Wait, but this type signature looks nothing like the `Monad`'s bind!
+
+```haskell
+(>>=)  :: m a -> (a -> m b) -> m b
+```
+
+<br>
+<br>
+<br>
+<br>
+
+... or does it???
+
+```haskell
+type Counting a = Cnt -> (Cnt, a)
+
+(>>=) :: Counting a 
+         -> (a -> Counting b) 
+         -> Counting b
+(>>=) step process = \cnt -> let (cnt', v) = step cnt
+                             in process v cnt'
+```
+
+Mind blown.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+### QUIZ: Return for Counting
+
+How should we define `return` for `Counting`?
+
+```haskell
+type Counting a = Cnt -> (Cnt, a)
+
+-- | Represent value x as a counting computation,
+-- don't actually touch the counter
+return :: a -> Counting a
+return x = ???
+```
+
+**(A)** `x`
+
+**(B)** `(0, x)`
+
+**(C)** `\c -> (0, x)`
+
+**(D)** `\c -> (c, x)`
+
+**(E)** `\c -> (c + 1, x)`
+
+<br>
+
+(I) final
+
+    *Answer:* D
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Cleaned-up evaluator
+
+```haskell
+eval :: Expr -> Counting Int
+eval (Num n)      = return n
+eval (Plus e1 e2) = eval e1 >>= \v1 ->
+                    eval e2 >>= \v2 ->
+                    return (v1 + v2)
+eval Next         = \cnt -> (cnt + 1, cnt)
+```
+
+Hooray! We rid the poor `Num` and `Plus` from the pesky counters!
+
+<br>
+<br>
+
+The `Next` case has to deal with counters
+
+  - but can we somehow hide the representation of `Counting a`?
+  - and make it look more like we just have mutable state that we can `get` and `set`?
+  - i.e. write:
+  
+```haskell
+eval Next         = get         >>= \c ->
+                    set (c + 1) >>= \_ ->
+                    return c
+```
+
+<br>
+<br>
+
+How should we define these?
+
+```haskell
+-- | Computation whose return value is the current counter value
+get :: Counting Cnt
+get = ???
+
+-- | Computation that updates the counter value to `newCnt`
+set :: Cnt -> Counting ()
+set newCnt = ???
+```
+  
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+```haskell
+-- | Computation whose return value is the current counter value
+get :: Counting Cnt
+get = \cnt -> (cnt, cnt)
+
+-- | Computation that updates the counter value to `newCnt`
+set :: Cnt -> Counting ()
+set newCnt = \_ -> (newCnt, ())
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Monad instance for Counting  
+
+Let's make `Counting` an instance of `Monad`!
+
+  - To do that, we need to make it a new datatype 
+
+```haskell
+data Counting a = C (Cnt -> (Cnt, a))
+
+instance Monad Counting where
+  (>>=) :: Counting a -> (a -> Counting b) -> Counting b
+  (>>=) (C step) process = C final
+    where
+      final cnt = let 
+                    (cnt', v) = step cnt
+                    C nextStep = process v      
+                  in nextStep cnt' 
+
+  return :: a -> Result a
+  return v = C (\cnt -> (cnt, v))
+```
+
+We also need to update `get` and `set` slightly:
+
+```haskell
+-- | Computation whose return value is the current counter value
+get :: Counting Cnt
+get = C (\cnt -> (cnt, cnt))
+
+-- | Computation that updates the counter value to `newCnt`
+set :: Cnt -> Counting ()
+set newCnt = C (\_ -> (newCnt, ()))
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Cleaned-up Evaluator
+
+Now we can use the `do` notation!
+
+```haskell
+eval :: Expr -> Counting Int
+eval (Num n)      = return n
+eval (Plus e1 e2) = do v1 <- eval e1
+                       v2 <- eval e2
+                       return (v1 + v2)
+eval Next         = do
+                      cnt <- get
+                      _ <- put (cnt + 1)
+                      return (cnt)                      
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## The State Monad
+
+Threading state is a very common task!
+
+Instead of defining your own type `Counting a`,
+you can use `State s a` from the Haskell standard library:
+
+```haskell
+data State s a = State (s -> (s, a))
+```
+
+`State` is already an instance of `Monad`,
+so no need to define your own `>>=`!
+
+<br>
+<br>
+
+Now we can simply define
+
+```haskell
+type Counting a = State Cnt a
+```
+
+and the `eval` above will just work out of the box!
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Writing Applications
+
+In most language related classes, we _start_ with a "Hello world!" program.
+
+With 130, we will _end_ with it.
+
+<!-- 
+For example, in Python you may write:
+
+```python
+def main():
+    print "hello, world!"
+
+main()
+```
+
+and then you can run it:
+
+```sh
+$ python hello.py
+hello world!
+```
+-->
+
+## Purity and the Immutability Principle
+
+Haskell is a **pure** language. Not a _value_ judgment, but a precise _technical_ statement:
+
+**The "Immutability Principle":**
+
+- A function must _always_ return the same output for a given input
+
+- A function's behavior should _never change_
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## No Side Effects
+
+![](/static/img/trinity.png){#fig:types .align-center width=60%}
+
+Haskell's most radical idea: `expression ==> value`
+
+- When you evaluate an expression you get a value and **nothing else happens**
+
+Specifically, evaluation must not have an **side effects**
+
+- _change_ a global variable or
+
+- _print_ to screen or
+
+- _read_ a file or
+
+- _send_ an email or
+
+- _launch_ a missile.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Purity
+
+Means _functions may depend only on their inputs_
+
+- i.e. **functions should give the same output for the same input every time.**
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## But... how to write "Hello, world!"
+
+But, we _want_ to ...
+
+- print to screen
+- read a file
+- send an email
+
+A language that only lets you write `factorial` and `fibonacci` is ... _not very useful_!
+
+Thankfully, you _can_ do all the above via a very clever idea: `Recipe`
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Recipes
+
+[This analogy is due to Joachim Brietner][brietner]
+
+Haskell has a special type called `IO` -- which you can think of as `Recipe` 
+
+```haskell
+type Recipe a = IO a
+```
+
+A _value_ of type `Recipe a` is
+
+- a **description** of an effectful computations
+
+- when **when executed** (possibly) perform some effectful I/O operations to
+
+- **produce** a value of type `a`.
+
+## Recipes have No Effects
+
+A value of type `Recipe a` is
+
+- Just a **description** of an effectful computation
+
+- An inert, perfectly safe thing with **no effects**.
+
+![Cake vs. Recipe](/static/img/cake.png){#fig:types .align-center width=80%}
+
+**(L)** chocolate _cake_, **(R)** a _sequence of instructions_ on how to make a cake.
+
+They are different (_hint_: only one of them is delicious.)
+
+Merely having a `Recipe Cake` has no effects: holding the recipe
+
+- Does not make your oven _hot_
+
+- Does not make your your floor _dirty_
+
+## Executing Recipes
+
+There is **only one way** to execute a `Recipe a`
+
+Haskell looks for a special value
+
+```haskell
+main :: Recipe ()
+```
+
+The value associated with `main` is handed to the **runtime system and executed**
+
+![Baker Aker](/static/img/baker-aker.jpg){#fig:types .align-center width=70%}
+
+The Haskell runtime is a _master chef_ who is the only one allowed to cook!
+
+## How to write an App in Haskell
+
+Make a `Recipe ()` that is handed off to the master chef `main`.
+
+- `main` can be arbitrarily complicated
+
+- will be composed of _many smaller_ recipes
+
+## Hello World
+
+
+```haskell
+putStrLn :: String -> Recipe ()
+```
+
+The function `putStrLn`
+
+- takes as input a `String`
+- returns as output a `Recipe ()`
+
+`putStrLn msg` is a `Recipe ()` _when executed_ prints out `msg` on the screen.
+
+```haskell
+main :: Recipe ()
+main = putStrLn "Hello, world!"
+```
+
+... and we can compile and run it
+
+```sh
+$ ghc --make hello.hs
+$ ./hello
+Hello, world!
+```
+
+## QUIZ: Combining Recipes
+
+Next, lets write a program that prints multiple things:
+
+```haskell
+main :: IO ()
+main = combine (putStrLn "Hello,") (putStrLn "World!")
+
+-- putStrLn :: String -> Recipe ()
+-- combine  :: ???
+```
+
+What must the _type_ of `combine` be?
+
+```haskell
+{- A -} combine :: () -> () -> ()
+{- B -} combine :: Recipe () -> Recipe () -> Recipe ()
+{- C -} combine :: Recipe a  -> Recipe a  -> Recipe a
+{- D -} combine :: Recipe a  -> Recipe b  -> Recipe b
+{- E -} combine :: Recipe a  -> Recipe b  -> Recipe a
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## Using Intermediate Results
+
+Next, lets write a program that
+
+1. **Asks** for the user's `name` using
+
+```haskell
+    getLine :: Recipe String
+```
+
+2. **Prints** out a greeting with that `name` using
+
+```haskell
+    putStrLn :: String -> Recipe ()
+```
+
+**Problem:** How to pass the **output** of _first_ recipe into the _second_ recipe?
+
+<br>
+<br>
+<br>
+<br>
+
+## QUIZ: Using Yolks to Make Batter
+
+Suppose you have two recipes
+
+```haskell
+crack     :: Recipe Yolk
+eggBatter :: Yolk -> Recipe Batter
+```
+
+and we want to get 
+
+```haskell
+mkBatter :: Recipe Batter
+mkBatter = crack `combineWithResult` eggBatter
+```
+
+What must the type of `combineWithResult` be?
+
+```haskell
+{- A -} Yolk -> Batter -> Batter
+{- B -} Recipe Yolk -> (Yolk  -> Recipe Batter) -> Recipe Batter
+{- C -} Recipe a    -> (a     -> Recipe a     ) -> Recipe a
+{- D -} Recipe a    -> (a     -> Recipe b     ) -> Recipe b
+{- E -} Recipe Yolk -> (Yolk  -> Recipe Batter) -> Recipe ()
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## Looks Familar
+
+Wait a bit, the signature looks familiar!
+
+```haskell
+combineWithResult :: Recipe a -> (a -> Recipe b) -> Recipe b
+```
+
+Remember this
+
+```haskell
+(>>=)             :: Result a -> (a -> Result b) -> Result b
+```
+
+## `Recipe` is an instance of `Monad`
+
+In fact, in the standard library
+
+```haskell
+instance Monad Recipe where
+  (>>=) = {-... combineWithResult... -}
+```
+
+So we can put this together with `putStrLn` to get:
+
+```haskell
+main :: Recipe ()
+main = getLine >>= \name -> putStrLn ("Hello, " ++ name ++ "!")
+```
+
+or, using `do` notation the above becomes
+
+```haskell
+main :: Recipe ()
+main = do name <- getLine
+          putStrLn ("Hello, " ++ name ++ "!")
+```
+
+**Exercise** 
+
+1. _Compile_ and run to make sure its ok!
+2. _Modify_ the above to repeatedly ask for names.
+3. _Extend_ the above to print a "prompt" that tells you how many iterations have occurred.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Monads are Amazing
+
+Monads have had a _revolutionary_ influence in PL, well beyond Haskell, some recent examples
+
+- **Error handling** in `go` e.g. [1](https://speakerdeck.com/rebeccaskinner/monadic-error-handling-in-go)  and [2](https://www.innoq.com/en/blog/golang-errors-monads/)
+
+- **Asynchrony** in JavaScript e.g. [1](https://gist.github.com/MaiaVictor/bc0c02b6d1fbc7e3dbae838fb1376c80) and [2](https://medium.com/@dtipson/building-a-better-promise-3dd366f80c16)
+
+- **Big data** pipelines e.g. [LinQ](https://www.microsoft.com/en-us/research/project/dryadlinq/) and [TensorFlow](https://www.tensorflow.org/)
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Thats all, folks!
+
+<!--
+
+## A Silly App to End CSE 130
+
+Lets write an app called [moo](/static/raw/moo.hs) inspired by [cowsay](https://medium.com/@jasonrigden/cowsay-is-the-most-important-unix-like-command-ever-35abdbc22b7f)
+
+**A Command Line App**
+
+![`moo`](/static/img/moo1.png){#fig:types .align-center width=70%}
+
+**`moo` works with pipes**
+
+![Thanks, and good luck for the final!](/static/img/moo2.png){#fig:types .align-center width=70%}
+
+
+![](/static/img/moo3.png){#fig:types .align-center width=70%}
+
+```sh
+$ ./moo Jhala, y u no make final easy!
+
+ --------------------------------
+< Jhala, y u no make final easy! >
+ --------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+or even using unix pipes
+
+```txt
+$ ./moo Thats all folks, thanks!
+
+ ------------------------------------
+< 00-intro.pdf 01-lambda.pdf         >
+< 03-datatypes.pdf 04-hof.pdf        >
+< 05-environments.pdf 06-parsing.pdf >
+< 07-classes.pdf 08-monads.pdf       >
+ ------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+-->
+
+
+[brietner]: https://www.seas.upenn.edu/~cis194/fall16/lectures/06-io-and-monads.html
