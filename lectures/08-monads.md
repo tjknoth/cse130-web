@@ -1426,11 +1426,40 @@ and the `eval` above will just work out of the box!
 <br>
 <br>
 
+## Outline
+
+1. Functors [done]
+2. Monads for
+
+    2.1. Error Handling [done]
+    
+    2.2. Mutable State [done]
+    
+    2.3. Nondeterminism [maybe next week]
+
+3. **Writing apps with monads**
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## Writing Applications
 
-In most language related classes, we _start_ with a "Hello world!" program.
+In most programming classes, they _start_ with a "Hello world!" program.
 
-With 130, we will _end_ with it.
+In 130, we will _end_ with it.
+
+<br>
+<br>
+
+Why is it hard to write a program that prints "Hello world!" in Haskell?
 
 <!-- 
 For example, in Python you may write:
@@ -1450,15 +1479,6 @@ hello world!
 ```
 -->
 
-## Purity and the Immutability Principle
-
-Haskell is a **pure** language. Not a _value_ judgment, but a precise _technical_ statement:
-
-**The "Immutability Principle":**
-
-- A function must _always_ return the same output for a given input
-
-- A function's behavior should _never change_
 
 <br>
 <br>
@@ -1466,18 +1486,22 @@ Haskell is a **pure** language. Not a _value_ judgment, but a precise _technical
 <br>
 <br>
 <br>
-<br>
-<br>
 
-## No Side Effects
+### Haskell is pure
 
-![](/static/img/trinity.png){#fig:types .align-center width=60%}
+Haskell programs don't **do** things!
 
-Haskell's most radical idea: `expression ==> value`
-
-- When you evaluate an expression you get a value and **nothing else happens**
-
-Specifically, evaluation must not have an **side effects**
+When you evaluate a program you get a value and **nothing else happens**
+    
+  - In Haskell, a function of type `Int -> Int`
+    computes a *single integer output* from a *single integer input*
+    and does **nothing else**
+    
+  - Moreover, it always returns the same output given the same input
+    (*referential transparency*)
+  
+    
+Specifically, evaluation must not have any **side effects**
 
 - _change_ a global variable or
 
@@ -1488,22 +1512,7 @@ Specifically, evaluation must not have an **side effects**
 - _send_ an email or
 
 - _launch_ a missile.
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-## Purity
-
-Means _functions may depend only on their inputs_
-
-- i.e. **functions should give the same output for the same input every time.**
+    
 
 <br>
 <br>
@@ -1546,60 +1555,99 @@ Haskell has a special type called `IO` -- which you can think of as `Recipe`
 type Recipe a = IO a
 ```
 
+<br>
+<br>
+
 A _value_ of type `Recipe a` is
 
-- a **description** of an effectful computations
+- a **description** of a computation
 
-- when **when executed** (possibly) perform some effectful I/O operations to
+- that **when executed** (possibly) perform side effects and
 
-- **produce** a value of type `a`.
+- **produces** a value of type `a`.
 
-## Recipes have No Effects
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-A value of type `Recipe a` is
+## Recipes are Pure
 
-- Just a **description** of an effectful computation
+Baking a cake can have side effects:
 
-- An inert, perfectly safe thing with **no effects**.
+- make your oven _hot_
+
+- make your floor _dirty_
+
+- set off your fire alarm
 
 ![Cake vs. Recipe](/static/img/cake.png){#fig:types .align-center width=80%}
 
-**(L)** chocolate _cake_, **(R)** a _sequence of instructions_ on how to make a cake.
+*(L)* chocolate _cake_, *(R)* a _sequence of instructions_ on how to make a cake.
 
-They are different (_hint_: only one of them is delicious.)
 
-Merely having a `Recipe Cake` has no effects: holding the recipe
+**But** Merely writing down a cake recipe does not cause any side effects
 
-- Does not make your oven _hot_
-
-- Does not make your your floor _dirty_
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Executing Recipes
 
-There is **only one way** to execute a `Recipe a`
-
-Haskell looks for a special value
+When executing a program, Haskell looks for a special value:
 
 ```haskell
 main :: Recipe ()
 ```
 
-The value associated with `main` is handed to the **runtime system and executed**
+This is a recipe for everything a program should do
+
+  - that returns a unit `()`
+  - i.e. does not return any useful value
+  
+<br>
+<br>
+<br>  
+
+The value of `main` is handed to the runtime system and *executed*
 
 ![Baker Aker](/static/img/baker-aker.jpg){#fig:types .align-center width=70%}
 
-The Haskell runtime is a _master chef_ who is the only one allowed to cook!
+The Haskell runtime is a _master chef_ who is the only one allowed to produce effects!
 
-## How to write an App in Haskell
+<br>
+<br>
+<br>
 
-Make a `Recipe ()` that is handed off to the master chef `main`.
+To write an app in Haskell, you define your own recipe `main`!
 
-- `main` can be arbitrarily complicated
-
-- will be composed of _many smaller_ recipes
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Hello World
 
+```haskell
+main :: Recipe ()
+main = putStrLn "Hello, world!"
+```
+
+<br>
+<br>
 
 ```haskell
 putStrLn :: String -> Recipe ()
@@ -1608,26 +1656,40 @@ putStrLn :: String -> Recipe ()
 The function `putStrLn`
 
 - takes as input a `String`
-- returns as output a `Recipe ()`
+- returns a `Recipe ()` for printing things to screen
 
-`putStrLn msg` is a `Recipe ()` _when executed_ prints out `msg` on the screen.
-
-```haskell
-main :: Recipe ()
-main = putStrLn "Hello, world!"
-```
+<br>
+<br>
 
 ... and we can compile and run it
 
 ```sh
-$ ghc --make hello.hs
+$ ghc hello.hs
 $ ./hello
 Hello, world!
 ```
 
+<br>
+<br>
+
+This was a one-step recipe
+
+Most interesting recipes have multiple steps
+
+  - How do I write those?
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## QUIZ: Combining Recipes
 
-Next, lets write a program that prints multiple things:
+Assume we had a function `combine` that lets us combine recipes like so:
 
 ```haskell
 main :: IO ()
@@ -1637,16 +1699,28 @@ main = combine (putStrLn "Hello,") (putStrLn "World!")
 -- combine  :: ???
 ```
 
-What must the _type_ of `combine` be?
+What should the _type_ of `combine` be?
 
-```haskell
-{- A -} combine :: () -> () -> ()
-{- B -} combine :: Recipe () -> Recipe () -> Recipe ()
-{- C -} combine :: Recipe a  -> Recipe a  -> Recipe a
-{- D -} combine :: Recipe a  -> Recipe b  -> Recipe b
-{- E -} combine :: Recipe a  -> Recipe b  -> Recipe a
-```
+**(A)** `() -> () -> ()`
 
+**(B)** `Recipe () -> Recipe () -> Recipe ()`
+
+**(C)** `Recipe a  -> Recipe a  -> Recipe a`
+
+**(D)** `Recipe a  -> Recipe b  -> Recipe b`
+
+**(E)** `Recipe a  -> Recipe b  -> Recipe a`
+
+<br>
+
+(I) final
+
+    *Answer:* D
+
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -1674,6 +1748,10 @@ Next, lets write a program that
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
 
 ## QUIZ: Using Yolks to Make Batter
 
@@ -1691,43 +1769,59 @@ mkBatter :: Recipe Batter
 mkBatter = crack `combineWithResult` eggBatter
 ```
 
-What must the type of `combineWithResult` be?
+What should the type of `combineWithResult` be?
 
-```haskell
-{- A -} Yolk -> Batter -> Batter
-{- B -} Recipe Yolk -> (Yolk  -> Recipe Batter) -> Recipe Batter
-{- C -} Recipe a    -> (a     -> Recipe a     ) -> Recipe a
-{- D -} Recipe a    -> (a     -> Recipe b     ) -> Recipe b
-{- E -} Recipe Yolk -> (Yolk  -> Recipe Batter) -> Recipe ()
-```
+**(A)** `Yolk -> Batter -> Batter`
+
+**(B)** `Recipe Yolk -> (Yolk  -> Recipe Batter) -> Recipe Batter`
+
+**(C)** `Recipe a    -> (a     -> Recipe a     ) -> Recipe a`
+
+**(D)** `Recipe a    -> (a     -> Recipe b     ) -> Recipe b`
+
+**(E)** `Recipe Yolk -> (Yolk  -> Recipe Batter) -> Recipe ()`
+
+<br>
+
+(I) final
+
+    *Answer:* D
 
 <br>
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
 
-## Looks Familar
+## Recipes are Monads
 
-Wait a bit, the signature looks familiar!
+Wait a bit, the signature:
 
 ```haskell
 combineWithResult :: Recipe a -> (a -> Recipe b) -> Recipe b
 ```
 
-Remember this
+looks just like:
 
 ```haskell
-(>>=)             :: Result a -> (a -> Result b) -> Result b
+(>>=)             :: m a      -> (a -> m b)      -> m b
 ```
 
-## `Recipe` is an instance of `Monad`
+<br>
+<br>
 
-In fact, in the standard library
+In fact, in the standard library `Recipe` is an instance of `Monad`!
 
 ```haskell
 instance Monad Recipe where
   (>>=) = {-... combineWithResult... -}
 ```
+
+<br>
+<br>
 
 So we can put this together with `putStrLn` to get:
 
@@ -1744,11 +1838,22 @@ main = do name <- getLine
           putStrLn ("Hello, " ++ name ++ "!")
 ```
 
-**Exercise** 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-1. _Compile_ and run to make sure its ok!
-2. _Modify_ the above to repeatedly ask for names.
-3. _Extend_ the above to print a "prompt" that tells you how many iterations have occurred.
+## Exercise
+
+Experiment with this code at home:
+
+1. _Compile_ and run.
+2. _Modify_ to repeatedly ask for names.
+3. _Extend_ to print a "prompt" that tells you how many iterations have occurred.
 
 <br>
 <br>
@@ -1762,11 +1867,14 @@ main = do name <- getLine
 
 Monads have had a _revolutionary_ influence in PL, well beyond Haskell, some recent examples
 
-- **Error handling** in `go` e.g. [1](https://speakerdeck.com/rebeccaskinner/monadic-error-handling-in-go)  and [2](https://www.innoq.com/en/blog/golang-errors-monads/)
+- **Error handling** in `go` e.g. [1](https://speakerdeck.com/rebeccaskinner/monadic-error-handling-in-go)  
+and [2](https://www.innoq.com/en/blog/golang-errors-monads/)
 
-- **Asynchrony** in JavaScript e.g. [1](https://gist.github.com/MaiaVictor/bc0c02b6d1fbc7e3dbae838fb1376c80) and [2](https://medium.com/@dtipson/building-a-better-promise-3dd366f80c16)
+- **Asynchrony** in JavaScript e.g. [1](https://gist.github.com/MaiaVictor/bc0c02b6d1fbc7e3dbae838fb1376c80) 
+and [2](https://medium.com/@dtipson/building-a-better-promise-3dd366f80c16)
 
-- **Big data** pipelines e.g. [LinQ](https://www.microsoft.com/en-us/research/project/dryadlinq/) and [TensorFlow](https://www.tensorflow.org/)
+- **Big data** pipelines e.g. [LinQ](https://www.microsoft.com/en-us/research/project/dryadlinq/) 
+and [TensorFlow](https://www.tensorflow.org/)
 
 <br>
 <br>

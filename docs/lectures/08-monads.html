@@ -858,9 +858,21 @@ eval <span class="dt">Next</span>         <span class="fu">=</span> <span class=
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Counting</span> a <span class="fu">=</span> <span class="dt">State</span> <span class="dt">Cnt</span> a</code></pre></div>
 <p>and the <code class="sourceCode haskell">eval</code> above will just work out of the box!</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="outline-3">Outline</h2>
+<ol style="list-style-type: decimal">
+<li>Functors [done]</li>
+<li><p>Monads for</p>
+<p>2.1. Error Handling [done]</p>
+<p>2.2. Mutable State [done]</p>
+<p>2.3. Nondeterminism [maybe next week]</p></li>
+<li><p><strong>Writing apps with monads</strong></p></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="writing-applications">Writing Applications</h2>
-<p>In most language related classes, we <em>start</em> with a “Hello world!” program.</p>
-<p>With 130, we will <em>end</em> with it.</p>
+<p>In most programming classes, they <em>start</em> with a “Hello world!” program.</p>
+<p>In 130, we will <em>end</em> with it.</p>
+<p><br> <br></p>
+<p>Why is it hard to write a program that prints “Hello world!” in Haskell?</p>
 <!-- 
 For example, in Python you may write:
 
@@ -878,36 +890,21 @@ $ python hello.py
 hello world!
 ```
 -->
-<h2 id="purity-and-the-immutability-principle">Purity and the Immutability Principle</h2>
-<p>Haskell is a <strong>pure</strong> language. Not a <em>value</em> judgment, but a precise <em>technical</em> statement:</p>
-<p><strong>The “Immutability Principle”:</strong></p>
+<p><br> <br> <br> <br> <br> <br></p>
+<h3 id="haskell-is-pure">Haskell is pure</h3>
+<p>Haskell programs don’t <strong>do</strong> things!</p>
+<p>When you evaluate a program you get a value and <strong>nothing else happens</strong></p>
 <ul>
-<li><p>A function must <em>always</em> return the same output for a given input</p></li>
-<li><p>A function’s behavior should <em>never change</em></p></li>
+<li><p>In Haskell, a function of type <code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code> computes a <em>single integer output</em> from a <em>single integer input</em> and does <strong>nothing else</strong></p></li>
+<li><p>Moreover, it always returns the same output given the same input (<em>referential transparency</em>)</p></li>
 </ul>
-<p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="no-side-effects">No Side Effects</h2>
-<div class="figure">
-<img src="../static/img/trinity.png" id="fig:types" class="align-center" style="width:60.0%" />
-
-</div>
-<p>Haskell’s most radical idea: <code class="sourceCode haskell">expression <span class="fu">==&gt;</span> value</code></p>
-<ul>
-<li>When you evaluate an expression you get a value and <strong>nothing else happens</strong></li>
-</ul>
-<p>Specifically, evaluation must not have an <strong>side effects</strong></p>
+<p>Specifically, evaluation must not have any <strong>side effects</strong></p>
 <ul>
 <li><p><em>change</em> a global variable or</p></li>
 <li><p><em>print</em> to screen or</p></li>
 <li><p><em>read</em> a file or</p></li>
 <li><p><em>send</em> an email or</p></li>
 <li><p><em>launch</em> a missile.</p></li>
-</ul>
-<p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="purity">Purity</h2>
-<p>Means <em>functions may depend only on their inputs</em></p>
-<ul>
-<li>i.e. <strong>functions should give the same output for the same input every time.</strong></li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="but-how-to-write-hello-world">But… how to write “Hello, world!”</h2>
@@ -924,73 +921,84 @@ hello world!
 <p><a href="https://www.seas.upenn.edu/~cis194/fall16/lectures/06-io-and-monads.html">This analogy is due to Joachim Brietner</a></p>
 <p>Haskell has a special type called <code class="sourceCode haskell"><span class="dt">IO</span></code> – which you can think of as <code class="sourceCode haskell"><span class="dt">Recipe</span></code></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Recipe</span> a <span class="fu">=</span> <span class="dt">IO</span> a</code></pre></div>
+<p><br> <br></p>
 <p>A <em>value</em> of type <code class="sourceCode haskell"><span class="dt">Recipe</span> a</code> is</p>
 <ul>
-<li><p>a <strong>description</strong> of an effectful computations</p></li>
-<li><p>when <strong>when executed</strong> (possibly) perform some effectful I/O operations to</p></li>
-<li><p><strong>produce</strong> a value of type <code class="sourceCode haskell">a</code>.</p></li>
+<li><p>a <strong>description</strong> of a computation</p></li>
+<li><p>that <strong>when executed</strong> (possibly) perform side effects and</p></li>
+<li><p><strong>produces</strong> a value of type <code class="sourceCode haskell">a</code>.</p></li>
 </ul>
-<h2 id="recipes-have-no-effects">Recipes have No Effects</h2>
-<p>A value of type <code class="sourceCode haskell"><span class="dt">Recipe</span> a</code> is</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="recipes-are-pure">Recipes are Pure</h2>
+<p>Baking a cake can have side effects:</p>
 <ul>
-<li><p>Just a <strong>description</strong> of an effectful computation</p></li>
-<li><p>An inert, perfectly safe thing with <strong>no effects</strong>.</p></li>
+<li><p>make your oven <em>hot</em></p></li>
+<li><p>make your floor <em>dirty</em></p></li>
+<li><p>set off your fire alarm</p></li>
 </ul>
 <div class="figure">
 <img src="../static/img/cake.png" alt="Cake vs. Recipe" id="fig:types" class="align-center" style="width:80.0%" />
 <p class="caption">Cake vs. Recipe</p>
 </div>
-<p><strong>(L)</strong> chocolate <em>cake</em>, <strong>(R)</strong> a <em>sequence of instructions</em> on how to make a cake.</p>
-<p>They are different (<em>hint</em>: only one of them is delicious.)</p>
-<p>Merely having a <code class="sourceCode haskell"><span class="dt">Recipe</span> <span class="dt">Cake</span></code> has no effects: holding the recipe</p>
-<ul>
-<li><p>Does not make your oven <em>hot</em></p></li>
-<li><p>Does not make your your floor <em>dirty</em></p></li>
-</ul>
+<p><em>(L)</em> chocolate <em>cake</em>, <em>(R)</em> a <em>sequence of instructions</em> on how to make a cake.</p>
+<p><strong>But</strong> Merely writing down a cake recipe does not cause any side effects</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="executing-recipes">Executing Recipes</h2>
-<p>There is <strong>only one way</strong> to execute a <code class="sourceCode haskell"><span class="dt">Recipe</span> a</code></p>
-<p>Haskell looks for a special value</p>
+<p>When executing a program, Haskell looks for a special value:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">Recipe</span> ()</code></pre></div>
-<p>The value associated with <code class="sourceCode haskell">main</code> is handed to the <strong>runtime system and executed</strong></p>
+<p>This is a recipe for everything a program should do</p>
+<ul>
+<li>that returns a unit <code class="sourceCode haskell">()</code></li>
+<li>i.e. does not return any useful value</li>
+</ul>
+<p><br> <br> <br></p>
+<p>The value of <code class="sourceCode haskell">main</code> is handed to the runtime system and <em>executed</em></p>
 <div class="figure">
 <img src="../static/img/baker-aker.jpg" alt="Baker Aker" id="fig:types" class="align-center" style="width:70.0%" />
 <p class="caption">Baker Aker</p>
 </div>
-<p>The Haskell runtime is a <em>master chef</em> who is the only one allowed to cook!</p>
-<h2 id="how-to-write-an-app-in-haskell">How to write an App in Haskell</h2>
-<p>Make a <code class="sourceCode haskell"><span class="dt">Recipe</span> ()</code> that is handed off to the master chef <code class="sourceCode haskell">main</code>.</p>
-<ul>
-<li><p><code class="sourceCode haskell">main</code> can be arbitrarily complicated</p></li>
-<li><p>will be composed of <em>many smaller</em> recipes</p></li>
-</ul>
+<p>The Haskell runtime is a <em>master chef</em> who is the only one allowed to produce effects!</p>
+<p><br> <br> <br></p>
+<p>To write an app in Haskell, you define your own recipe <code class="sourceCode haskell">main</code>!</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="hello-world">Hello World</h2>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">Recipe</span> ()
+main <span class="fu">=</span> putStrLn <span class="st">&quot;Hello, world!&quot;</span></code></pre></div>
+<p><br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">putStrLn<span class="ot"> ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()</code></pre></div>
 <p>The function <code class="sourceCode haskell">putStrLn</code></p>
 <ul>
 <li>takes as input a <code class="sourceCode haskell"><span class="dt">String</span></code></li>
-<li>returns as output a <code class="sourceCode haskell"><span class="dt">Recipe</span> ()</code></li>
+<li>returns a <code class="sourceCode haskell"><span class="dt">Recipe</span> ()</code> for printing things to screen</li>
 </ul>
-<p><code class="sourceCode haskell">putStrLn msg</code> is a <code class="sourceCode haskell"><span class="dt">Recipe</span> ()</code> <em>when executed</em> prints out <code class="sourceCode haskell">msg</code> on the screen.</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">Recipe</span> ()
-main <span class="fu">=</span> putStrLn <span class="st">&quot;Hello, world!&quot;</span></code></pre></div>
+<p><br> <br></p>
 <p>… and we can compile and run it</p>
-<pre class="sh"><code>$ ghc --make hello.hs
+<pre class="sh"><code>$ ghc hello.hs
 $ ./hello
 Hello, world!</code></pre>
+<p><br> <br></p>
+<p>This was a one-step recipe</p>
+<p>Most interesting recipes have multiple steps</p>
+<ul>
+<li>How do I write those?</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-combining-recipes">QUIZ: Combining Recipes</h2>
-<p>Next, lets write a program that prints multiple things:</p>
+<p>Assume we had a function <code class="sourceCode haskell">combine</code> that lets us combine recipes like so:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> combine (putStrLn <span class="st">&quot;Hello,&quot;</span>) (putStrLn <span class="st">&quot;World!&quot;</span>)
 
 <span class="co">-- putStrLn :: String -&gt; Recipe ()</span>
 <span class="co">-- combine  :: ???</span></code></pre></div>
-<p>What must the <em>type</em> of <code class="sourceCode haskell">combine</code> be?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">{- A -}</span><span class="ot"> combine ::</span> () <span class="ot">-&gt;</span> () <span class="ot">-&gt;</span> ()
-<span class="co">{- B -}</span><span class="ot"> combine ::</span> <span class="dt">Recipe</span> () <span class="ot">-&gt;</span> <span class="dt">Recipe</span> () <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()
-<span class="co">{- C -}</span><span class="ot"> combine ::</span> <span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a
-<span class="co">{- D -}</span><span class="ot"> combine ::</span> <span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b
-<span class="co">{- E -}</span><span class="ot"> combine ::</span> <span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a</code></pre></div>
-<p><br> <br> <br> <br></p>
+<p>What should the <em>type</em> of <code class="sourceCode haskell">combine</code> be?</p>
+<p><strong>(A)</strong> <code class="sourceCode haskell">() <span class="ot">-&gt;</span> () <span class="ot">-&gt;</span> ()</code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> () <span class="ot">-&gt;</span> <span class="dt">Recipe</span> () <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()</code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a</code></p>
+<p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b</code></p>
+<p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a</code></p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="using-intermediate-results">Using Intermediate Results</h2>
 <p>Next, lets write a program that</p>
 <ol style="list-style-type: decimal">
@@ -1002,7 +1010,7 @@ main <span class="fu">=</span> combine (putStrLn <span class="st">&quot;Hello,&q
 </ol>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">    putStrLn ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()</code></pre></div>
 <p><strong>Problem:</strong> How to pass the <strong>output</strong> of <em>first</em> recipe into the <em>second</em> recipe?</p>
-<p><br> <br> <br> <br></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-using-yolks-to-make-batter">QUIZ: Using Yolks to Make Batter</h2>
 <p>Suppose you have two recipes</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">crack     ::</span> <span class="dt">Recipe</span> <span class="dt">Yolk</span>
@@ -1010,22 +1018,25 @@ main <span class="fu">=</span> combine (putStrLn <span class="st">&quot;Hello,&q
 <p>and we want to get</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mkBatter ::</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>
 mkBatter <span class="fu">=</span> crack <span class="ot">`combineWithResult`</span> eggBatter</code></pre></div>
-<p>What must the type of <code class="sourceCode haskell">combineWithResult</code> be?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">{- A -}</span> <span class="dt">Yolk</span> <span class="ot">-&gt;</span> <span class="dt">Batter</span> <span class="ot">-&gt;</span> <span class="dt">Batter</span>
-<span class="co">{- B -}</span> <span class="dt">Recipe</span> <span class="dt">Yolk</span> <span class="ot">-&gt;</span> (<span class="dt">Yolk</span>  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>
-<span class="co">{- C -}</span> <span class="dt">Recipe</span> a    <span class="ot">-&gt;</span> (a     <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a     ) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a
-<span class="co">{- D -}</span> <span class="dt">Recipe</span> a    <span class="ot">-&gt;</span> (a     <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b     ) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b
-<span class="co">{- E -}</span> <span class="dt">Recipe</span> <span class="dt">Yolk</span> <span class="ot">-&gt;</span> (<span class="dt">Yolk</span>  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()</code></pre></div>
-<p><br> <br> <br> <br></p>
-<h2 id="looks-familar">Looks Familar</h2>
-<p>Wait a bit, the signature looks familiar!</p>
+<p>What should the type of <code class="sourceCode haskell">combineWithResult</code> be?</p>
+<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="dt">Yolk</span> <span class="ot">-&gt;</span> <span class="dt">Batter</span> <span class="ot">-&gt;</span> <span class="dt">Batter</span></code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> <span class="dt">Yolk</span> <span class="ot">-&gt;</span> (<span class="dt">Yolk</span>  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span></code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> a    <span class="ot">-&gt;</span> (a     <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a     ) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a</code></p>
+<p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> a    <span class="ot">-&gt;</span> (a     <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b     ) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b</code></p>
+<p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> <span class="dt">Yolk</span> <span class="ot">-&gt;</span> (<span class="dt">Yolk</span>  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()</code></p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="recipes-are-monads">Recipes are Monads</h2>
+<p>Wait a bit, the signature:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">combineWithResult ::</span> <span class="dt">Recipe</span> a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b</code></pre></div>
-<p>Remember this</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">(&gt;&gt;=)             ::</span> <span class="dt">Result</span> a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Result</span> b) <span class="ot">-&gt;</span> <span class="dt">Result</span> b</code></pre></div>
-<h2 id="recipe-is-an-instance-of-monad"><code class="sourceCode haskell"><span class="dt">Recipe</span></code> is an instance of <code class="sourceCode haskell"><span class="dt">Monad</span></code></h2>
-<p>In fact, in the standard library</p>
+<p>looks just like:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">(&gt;&gt;=)             ::</span> m a      <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> m b)      <span class="ot">-&gt;</span> m b</code></pre></div>
+<p><br> <br></p>
+<p>In fact, in the standard library <code class="sourceCode haskell"><span class="dt">Recipe</span></code> is an instance of <code class="sourceCode haskell"><span class="dt">Monad</span></code>!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">Recipe</span> <span class="kw">where</span>
   (<span class="fu">&gt;&gt;=</span>) <span class="fu">=</span> <span class="co">{-... combineWithResult... -}</span></code></pre></div>
+<p><br> <br></p>
 <p>So we can put this together with <code class="sourceCode haskell">putStrLn</code> to get:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">Recipe</span> ()
 main <span class="fu">=</span> getLine <span class="fu">&gt;&gt;=</span> \name <span class="ot">-&gt;</span> putStrLn (<span class="st">&quot;Hello, &quot;</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">&quot;!&quot;</span>)</code></pre></div>
@@ -1033,11 +1044,13 @@ main <span class="fu">=</span> getLine <span class="fu">&gt;&gt;=</span> \name <
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">Recipe</span> ()
 main <span class="fu">=</span> <span class="kw">do</span> name <span class="ot">&lt;-</span> getLine
           putStrLn (<span class="st">&quot;Hello, &quot;</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">&quot;!&quot;</span>)</code></pre></div>
-<p><strong>Exercise</strong></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="exercise-1">Exercise</h2>
+<p>Experiment with this code at home:</p>
 <ol style="list-style-type: decimal">
-<li><em>Compile</em> and run to make sure its ok!</li>
-<li><em>Modify</em> the above to repeatedly ask for names.</li>
-<li><em>Extend</em> the above to print a “prompt” that tells you how many iterations have occurred.</li>
+<li><em>Compile</em> and run.</li>
+<li><em>Modify</em> to repeatedly ask for names.</li>
+<li><em>Extend</em> to print a “prompt” that tells you how many iterations have occurred.</li>
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="monads-are-amazing">Monads are Amazing</h2>
