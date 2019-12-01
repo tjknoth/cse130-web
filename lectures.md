@@ -35,9 +35,9 @@ Lecture schedule is subject to change!
 | 11/25      | contd.                          |                           |               |
 | 11/27      | contd.                          |                           |               |
 | 11/29      | *No lecture: Thanksgiving*      |                           |               |
-| 12/2       | Type Systems                    |                           |               |
+| 12/2       | Semantics and Type Systems      |                           |               |
 | 12/4       | contd.                          |                           |               |
-| 12/6       | contd.                          |                           |               |
+| 12/6       | Final Review                    |                           |               |
 | 12/12      | **Final**                       |                           |               |
 
 

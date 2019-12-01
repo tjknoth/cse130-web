@@ -381,8 +381,6 @@ Error "oh no"
     
     2.2. Mutable State
     
-    2.3. Nondeterminism
-
 3. Writing apps with monads
 
 <br>
@@ -908,8 +906,6 @@ and the `eval` above will just work out of the box!
     
     2.2. **Mutable State**
     
-    2.3. Nondeterminism
-
 3. Writing apps with monads
 
 <br>
@@ -1435,8 +1431,6 @@ and the `eval` above will just work out of the box!
     
     2.2. Mutable State [done]
     
-    2.3. Nondeterminism [maybe next week]
-
 3. **Writing apps with monads**
 
 <br>
