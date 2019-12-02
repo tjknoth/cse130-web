@@ -214,7 +214,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Well-Typed Programs don't Go Wrong</h1>
+                    <h1>Well-Typed Programs Don't Go Wrong</h1>
                     
                     <span class="meta">
 		    
@@ -244,11 +244,11 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>How do we <em>reason</em> about programs mathematically?</p>
 <ol style="list-style-type: decimal">
 <li><p><em>Operational semantics:</em> formalizing how programs evaluate</p></li>
-<li><p><em>Type system:</em> formalizing the intuition about which expressions have which types</p></li>
-<li><p><em>Type soundness:</em> proving that well-typed programs don’t throw runtime errors</p></li>
+<li><p><em>Type system:</em> formalizing which expressions have which types</p></li>
+<li><p><em>Type soundness:</em> proving that well-typed programs behave well at run time</p></li>
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="goal">Goal</h2>
+<h2 id="type-checking-goal">Type Checking: Goal</h2>
 <p>Consider a simplified version of Nano without:</p>
 <ul>
 <li><code class="sourceCode haskell"><span class="kw">let</span></code>-bindings</li>
@@ -257,29 +257,51 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>recursion</li>
 </ul>
 <p><br> <br></p>
-<p>Expressions:</p>
+<p><strong>Expressions:</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">e <span class="ot">::</span><span class="fu">=</span> n        <span class="co">-- numeral</span>
     <span class="fu">|</span> x        <span class="co">-- variable</span>
     <span class="fu">|</span> e1 <span class="fu">+</span> e2  <span class="co">-- addition</span>
     <span class="fu">|</span> \x <span class="ot">-&gt;</span> e  <span class="co">-- abstraction</span>
     <span class="fu">|</span> e1 e2    <span class="co">-- application        </span></code></pre></div>
-<p><br> <br> <br> <br> <br></p>
+<p><br> <br></p>
+<p>Can you give me examples of Nano programs that crash? Run forever?</p>
+<p><br></p>
+<p>The <strong>goal</strong> of type checking is to <em>detect</em> and <em>reject</em> such programs <em>before</em> run.</p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz">QUIZ</h2>
-<p>Which one of these Nano programs is <em>okay</em> (in your opinion)?</p>
-<p><strong>(A)</strong> <code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x) <span class="fu">+</span> <span class="dv">1</span></code></p>
+<p>Which one of these Nano programs is well-typed (in your opinion)?</p>
+<p><strong>(A)</strong> <code class="sourceCode haskell">x <span class="fu">+</span> <span class="dv">1</span></code></p>
 <p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dv">1</span> <span class="dv">2</span></code></p>
 <p><strong>(C)</strong> <code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>) (\y <span class="ot">-&gt;</span> y)</code></p>
 <p><strong>(D)</strong> <code class="sourceCode haskell">(\f y <span class="ot">-&gt;</span> f y) (\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>) <span class="dv">5</span></code></p>
-<p><strong>(E)</strong> <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x x</code></p>
+<p><strong>(E)</strong> <code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x x) (\y <span class="ot">-&gt;</span> y y)</code></p>
 <p><br></p>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p><em>(A)</em> <code class="sourceCode haskell">x <span class="fu">+</span> <span class="dv">1</span></code></p>
+<p><em>Type error:</em> Unbound variable <code class="sourceCode haskell">x</code></p>
+<p><em>(B)</em> <code class="sourceCode haskell"><span class="dv">1</span> <span class="dv">2</span></code></p>
+<p><em>Type error:</em> LHS of application should be of type <code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">T2</span></code></p>
+<p><em>(C)</em> <code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>) (\y <span class="ot">-&gt;</span> y)</code></p>
+<p><em>Type error:</em> RHS of application should be of type <code class="sourceCode haskell"><span class="dt">Int</span></code></p>
+<p><em>(D)</em> <code class="sourceCode haskell">(\f y <span class="ot">-&gt;</span> f y) (\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>) <span class="dv">5</span><span class="ot"> ::</span> <span class="dt">Int</span></code></p>
+<p><em>(E)</em> <code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x x) (\y <span class="ot">-&gt;</span> y y)</code></p>
+<p><em>Type error:</em> <code class="sourceCode haskell">x</code> cannot be both <code class="sourceCode haskell"><span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span></code> and <code class="sourceCode haskell"><span class="dt">T1</span></code></p>
+<p><br> <br></p>
+<p><strong>At run time:</strong></p>
 <ul>
-<li>Programs A, B, C <em>crash</em>: A and C add a function; B applies a number</li>
+<li>Programs A, B, C <em>crash</em></li>
 <li>Program E <em>runs forever</em></li>
-<li>Somehow you were able to determine by looking at the program that it’s okay</li>
-<li>Can we formalize this intuition?</li>
+<li>Program D <em>evaluates to a value</em> (6)</li>
 </ul>
+<p><br> <br></p>
+<p>Can we <strong>prove</strong> that <em>all</em> well-typed programs <em>always</em> evaluate to a value?</p>
+<ul>
+<li>do not crash?</li>
+<li>do not run forever?</li>
+</ul>
+<p><br> <br></p>
+<p><strong>Yes we can!</strong></p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="outline">Outline</h2>
 <ol style="list-style-type: decimal">
@@ -296,79 +318,152 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br></p>
 <p>Let’s define an <em>evaluation relation</em> <code class="sourceCode haskell"><span class="dt">E</span> ; e <span class="fu">==&gt;</span> v</code></p>
 <ul>
-<li>“expression <code class="sourceCode haskell">e</code> evaluates to value <code class="sourceCode haskell">v</code> in environment <code class="sourceCode haskell"><span class="dt">E</span></code></li>
+<li>Informal meaning: “expression <code class="sourceCode haskell">e</code> evaluates to value <code class="sourceCode haskell">v</code> in environment <code class="sourceCode haskell"><span class="dt">E</span></code>”</li>
 </ul>
 <p><br></p>
-<p>First we need to define values and environments:</p>
+<p>First we need to define <em>values</em> and <em>environments</em>:</p>
 <p><br> <br></p>
-<p>Values:</p>
+<p><strong>Values:</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">v <span class="ot">::</span><span class="fu">=</span> n         <span class="co">-- numeral</span>
     <span class="fu">|</span> <span class="fu">&lt;</span><span class="dt">E</span>, x, e<span class="fu">&gt;</span> <span class="co">-- closure</span></code></pre></div>
 <p><br> <br></p>
-<p>Environments:</p>
+<p><strong>Environments:</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">E</span> <span class="ot">::</span><span class="fu">=</span> []        <span class="co">-- empty</span>
     <span class="fu">|</span> x <span class="fu">:=</span> v, <span class="dt">E</span> <span class="co">-- value binding and rest</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="evaluation-rules">Evaluation Rules</h2>
-<p>We define the evaluation relation through a set of <em>rules</em> of the form:</p>
+<h3 id="inference-rules">Inference Rules</h3>
+<p>In PL, we define relations formally using <em>inference rules</em> of the form:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">            premise_1 <span class="fu">...</span> premise_n
 [<span class="dt">Rule</span><span class="fu">-</span><span class="dt">Name</span>] <span class="fu">-----------------------</span>
                   conclusion</code></pre></div>
-<ul>
-<li>Meaning: if all of <code class="sourceCode haskell">premise_1</code>, …, <code class="sourceCode haskell">premise_n</code> are true, then <code class="sourceCode haskell">conclusion</code> is also true</li>
-<li>Rules with no premises are called <strong>axioms</strong> (conclusion is <em>always</em> true)</li>
-</ul>
-<p><br> <br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">
+<p>Meaning:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">-</span> <span class="dt">If</span> <span class="ot">`premise_1`</span> is true and <span class="fu">...</span> and <span class="ot">`premise_n`</span> is true
+<span class="fu">-</span> <span class="kw">then</span> <span class="ot">`conclusion`</span> is also true<span class="fu">.</span></code></pre></div>
+<p>Or alternatively:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">-</span> <span class="dt">In</span> order to prove <span class="ot">`conclusion`</span>
+<span class="fu">-</span> you have to prove <span class="ot">`premise_1`</span> and <span class="fu">...</span> and <span class="ot">`premise_n`</span><span class="fu">.</span></code></pre></div>
+<p>Rules with no premises are called <strong>axioms</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">-</span> <span class="dt">Conclusion</span> is <span class="fu">*</span>always<span class="fu">*</span> true</code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="nano-evaluation-rules">Nano Evaluation Rules</h3>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- A numeral always evaluates to itself:</span>
+
 [<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>] <span class="fu">-------------</span>
         <span class="dt">E</span> ; n  <span class="fu">==&gt;</span>  n
          
+<span class="co">-- A variable x evaluates to v in an env where it is bound to v:</span>
          
 [<span class="dt">E</span><span class="fu">-</span><span class="dt">Var</span>] <span class="fu">--------------------</span>
         (x<span class="fu">:=</span>v,<span class="dt">E</span>) ; x  <span class="fu">==&gt;</span>  v
 
+<span class="co">-- If both sides of addition evaluate to numerals,</span>
+<span class="co">-- then addition evaluated to their sum:</span>
 
           <span class="dt">E</span> ; e1 <span class="fu">==&gt;</span> n1   <span class="dt">E</span> ; e2 <span class="fu">==&gt;</span> n2   n <span class="fu">==</span> n1 <span class="fu">+</span> n2
 [<span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span>]   <span class="fu">--------------------------------------------</span>
                       <span class="dt">E</span> ; (e1 <span class="fu">+</span> e2) <span class="fu">==&gt;</span> n
 
+<span class="co">-- A lambda abstraction always evaluates to a closure:</span>
           
 [<span class="dt">E</span><span class="fu">-</span><span class="dt">Lam</span>]   <span class="fu">---------------------------</span>
           <span class="dt">E</span> ; (\x <span class="ot">-&gt;</span> e) <span class="fu">==&gt;</span> <span class="fu">&lt;</span><span class="dt">E</span>, x, e<span class="fu">&gt;</span>
+          
+<span class="co">-- If LHS evaluates to a closure, RHS evaluates to v2,</span>
+<span class="co">-- and the body of the closure evaluates to v </span>
+<span class="co">-- in the closure environment extended with binding of formal to v2,</span>
+<span class="co">-- then the application of LHS to RHS evaluates to v:</span>
        
         <span class="dt">E</span> ; e1 <span class="fu">==&gt;</span> <span class="fu">&lt;</span><span class="dt">E'</span>, x, e<span class="fu">&gt;</span>   <span class="dt">E</span> ; e2 <span class="fu">==&gt;</span> v2   (x<span class="fu">:=</span>v2,<span class="dt">E'</span>) ; e <span class="fu">==&gt;</span> v
 [<span class="dt">E</span><span class="fu">-</span><span class="dt">App</span>] <span class="fu">---------------------------------------------------------------</span>
                                <span class="dt">E</span> ; (e1 e2) <span class="fu">==&gt;</span> v</code></pre></div>
-<p><br> <br></p>
-<p>A <strong>derivation</strong> of <code class="sourceCode haskell"><span class="dt">E</span> ; e <span class="fu">==&gt;</span> v</code> is a tree build from inference rules where</p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="derivations">Derivations</h3>
+<p>A <strong>derivation</strong> of <code class="sourceCode haskell"><span class="dt">E</span> ; e <span class="fu">==&gt;</span> v</code> is a <em>tree</em> build from inference rules where</p>
 <ul>
 <li>the root is <code class="sourceCode haskell"><span class="dt">E</span> ; e <span class="fu">==&gt;</span> v</code></li>
 <li>leaves are axioms</li>
 </ul>
+<p><br> <br></p>
 <p>For example, this is the derivation of <code class="sourceCode haskell">([x<span class="fu">:=</span><span class="dv">5</span>], x <span class="fu">+</span> <span class="dv">1</span>)  <span class="fu">==&gt;</span>  <span class="dv">6</span></code></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">        
 [<span class="dt">E</span><span class="fu">-</span><span class="dt">Var</span>] <span class="fu">----------------</span>  [<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>]<span class="fu">---------------</span>
         [x<span class="fu">:=</span><span class="dv">5</span>] ; x <span class="fu">==&gt;</span> <span class="dv">5</span>        [x<span class="fu">:=</span><span class="dv">5</span>] ; <span class="dv">1</span> <span class="fu">==&gt;</span> <span class="dv">1</span>   <span class="dv">6</span> <span class="fu">==</span> <span class="dv">1</span> <span class="fu">+</span> <span class="dv">5</span>
 [<span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span>] <span class="fu">--------------------------------------------------</span>
                       [x<span class="fu">:=</span><span class="dv">5</span>] ; (x <span class="fu">+</span> <span class="dv">1</span>)  <span class="fu">==&gt;</span>  <span class="dv">6</span></code></pre></div>
+<p><br> <br></p>
+<p>Meaning:</p>
+<ul>
+<li>Our goal is to prove that <code class="sourceCode haskell">[x<span class="fu">:=</span><span class="dv">5</span>] ; (x <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">==&gt;</span> <span class="dv">6</span></code>.</li>
+<li>This relation matches the <em>conclusion</em> of rule <code class="sourceCode haskell">[<span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span>]</code>.</li>
+<li>Hence we can construct its derivation using <code class="sourceCode haskell">[<span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span>]</code>, we only need to prove its premises.</li>
+<li>The first premise is <code class="sourceCode haskell">[x<span class="fu">:=</span><span class="dv">5</span>] ; x <span class="fu">==&gt;</span> n1</code>:
+<ul>
+<li>This relation matches the conclusion of rule <code class="sourceCode haskell">[<span class="dt">E</span><span class="fu">-</span><span class="dt">Var</span>]</code>.</li>
+<li>Hence we can construct its derivation using <code class="sourceCode haskell">[<span class="dt">E</span><span class="fu">-</span><span class="dt">Var</span>]</code> with <code class="sourceCode haskell">n1 <span class="fu">==</span> <span class="dv">5</span></code>.</li>
+<li><code class="sourceCode haskell">[<span class="dt">E</span><span class="fu">-</span><span class="dt">Var</span>]</code> has no premises, hence this sub-derivation is complete.</li>
+</ul></li>
+<li>The second premise is <code class="sourceCode haskell">[x<span class="fu">:=</span><span class="dv">5</span>] ; <span class="dv">1</span> <span class="fu">==&gt;</span> n2</code>:
+<ul>
+<li>This relation matches the conclusion of rule <code class="sourceCode haskell">[<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>]</code>.</li>
+<li>Hence we can construct its derivation using <code class="sourceCode haskell">[<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>]</code> with <code class="sourceCode haskell">n2 <span class="fu">==</span> <span class="dv">1</span></code>.</li>
+<li><code class="sourceCode haskell">[<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>]</code> has no premises, hence this sub-derivation is complete.</li>
+</ul></li>
+<li>Since <code class="sourceCode haskell"><span class="dv">6</span> <span class="fu">==</span> <span class="dv">5</span> <span class="fu">+</span> <span class="dv">1</span></code>, we conclude <code class="sourceCode haskell">[x<span class="fu">:=</span><span class="dv">5</span>] ; (x <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">==&gt;</span> <span class="dv">6</span></code> by <code class="sourceCode haskell">[<span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span>]</code>.</li>
+</ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-1">QUIZ</h2>
-<p>What is the derivation of <code class="sourceCode haskell">[] ; (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span>  <span class="fu">==&gt;</span>  <span class="dv">6</span></code>?</p>
-<p>TODO</p>
+<p>What is the correct derivation of <code class="sourceCode haskell">[] ; (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span>  <span class="fu">==&gt;</span>  <span class="dv">6</span></code>?</p>
+<p><strong>(A)</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                <span class="dv">6</span><span class="fu">==</span><span class="dv">1</span><span class="fu">+</span><span class="dv">2</span><span class="fu">+</span><span class="dv">3</span>
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span>] <span class="fu">------------------------</span>
+        [] ; (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span>  <span class="fu">==&gt;</span>  <span class="dv">6</span></code></pre></div>
+<p><strong>(B)</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">        [<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>]      [<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>]     [<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>]
+       <span class="fu">----------</span>  <span class="fu">----------</span>  <span class="fu">----------</span>
+       [];<span class="dv">1</span> <span class="fu">==&gt;</span> <span class="dv">1</span>  [];<span class="dv">2</span> <span class="fu">==&gt;</span> <span class="dv">2</span>  [];<span class="dv">3</span> <span class="fu">==&gt;</span> <span class="dv">3</span>  <span class="dv">6</span><span class="fu">==</span><span class="dv">1</span><span class="fu">+</span><span class="dv">2</span><span class="fu">+</span><span class="dv">3</span>
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span>]<span class="fu">---------------------------------------------</span>
+                 [] ; (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span>  <span class="fu">==&gt;</span>  <span class="dv">6</span></code></pre></div>
+<p><strong>(C)</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">        [<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>]      [<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>]
+       <span class="fu">----------</span>  <span class="fu">----------</span>
+       [];<span class="dv">1</span> <span class="fu">==&gt;</span> <span class="dv">1</span>  [];<span class="dv">2</span> <span class="fu">==&gt;</span> <span class="dv">2</span>   <span class="dv">3</span><span class="fu">==</span><span class="dv">1</span><span class="fu">+</span><span class="dv">2</span>      [<span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span>]
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span>]<span class="fu">--------------------------------</span>   <span class="fu">----------</span>
+              [];(<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">==&gt;</span> <span class="dv">3</span>            [];<span class="dv">3</span> <span class="fu">==&gt;</span> <span class="dv">3</span>   <span class="dv">6</span><span class="fu">==</span><span class="dv">3</span><span class="fu">+</span><span class="dv">3</span>
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span>]<span class="fu">------------------------------------------------------</span>
+                 [] ; (<span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span>  <span class="fu">==&gt;</span>  <span class="dv">6</span></code></pre></div>
+<p><br></p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<p>We say an evaluation is <strong>valid</strong> if we can build its derivation.</p>
 <h2 id="quiz-2">QUIZ</h2>
-<p>Which of the following evaluations are valid for <em>some</em> value <code class="sourceCode haskell">v</code>?</p>
-<p>TODO (include something ill-typed, reduce under lambda, do not terminate)</p>
+<p>Which of the following relations have a derivation for <em>some</em> value <code class="sourceCode haskell">v</code>?</p>
+<p><strong>(A)</strong> <code class="sourceCode haskell">[] ; x <span class="fu">+</span> <span class="dv">1</span>  <span class="fu">==&gt;</span>  v</code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell">[] ; <span class="dv">1</span> <span class="dv">2</span>  <span class="fu">==&gt;</span>  v</code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell">[] ; (\f y <span class="ot">-&gt;</span> f y) (\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>)  <span class="fu">==&gt;</span>  v</code></p>
+<p><strong>(E)</strong> <code class="sourceCode haskell">[] ; (\x <span class="ot">-&gt;</span> x x) (\y <span class="ot">-&gt;</span> y y)  <span class="fu">==&gt;</span>  v</code></p>
+<p><br></p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<p>Evaluating any configuration <code class="sourceCode haskell"><span class="dt">E</span> ; e</code> has one of the following results:</p>
+<h3 id="evaluation-results">Evaluation Results</h3>
+<p>For any pair <code class="sourceCode haskell"><span class="dt">E</span> ; e</code> one of the following is true:</p>
+<ol style="list-style-type: decimal">
+<li><p>We can build a derivation <code class="sourceCode haskell"><span class="dt">E</span> ; e <span class="fu">==&gt;</span> v</code> for some <code class="sourceCode haskell">v</code></p>
 <ul>
-<li>evaluates to a value, i.e. there exists <code class="sourceCode haskell">v</code> such that <code class="sourceCode haskell"><span class="dt">E</span> ; e <span class="fu">==&gt;</span> v</code></li>
-<li>gets <strong>stuck</strong>: derivation cannot continue at some point (corresponds to <em>runtime error</em> / <em>crash</em> in <code class="sourceCode haskell">eval</code>)</li>
-<li><strong>diverges</strong>: derivation is infinitely deep (corresponds to <em>nontermination</em> in <code class="sourceCode haskell">eval</code>)</li>
-</ul>
+<li>We say that <code class="sourceCode haskell">e</code> <strong>evaluates to a value</strong> in <code class="sourceCode haskell"><span class="dt">E</span></code></li>
+<li>Example: <code class="sourceCode haskell">[x<span class="fu">:=</span><span class="dv">5</span>] ; (x <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">==&gt;</span> <span class="dv">6</span></code></li>
+</ul></li>
+<li><p>We try to build a derivation, but at some point no rule applies</p>
+<ul>
+<li>We say that <code class="sourceCode haskell">e</code> <strong>gets stuck</strong> in <code class="sourceCode haskell"><span class="dt">E</span></code> (corresponds to <em>runtime error</em> / <em>crash</em> in <code class="sourceCode haskell">eval</code>)</li>
+<li>Example: <code class="sourceCode haskell">[] ; (x <span class="fu">+</span> <span class="dv">1</span>)</code></li>
+</ul></li>
+<li><p>We try to build a derivation, but it just goes on forever</p>
+<ul>
+<li>We say that <code class="sourceCode haskell">e</code> <strong>diverges</strong> in <code class="sourceCode haskell"><span class="dt">E</span></code> (corresponds to <em>nontermination</em> in <code class="sourceCode haskell">eval</code>)</li>
+<li>Example: <code class="sourceCode haskell">[] ; (\x <span class="ot">-&gt;</span> x x) (\y <span class="ot">-&gt;</span> y y)</code></li>
+</ul></li>
+</ol>
 <p><br> <br></p>
-<p>How can we determine that a program will not go wrong?</p>
+<p>In cases 2 and 3 we say that <code class="sourceCode haskell">e</code> <strong>goes wrong</strong> in <code class="sourceCode haskell"><span class="dt">E</span></code>.</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="outline-1">Outline</h2>
 <ol style="list-style-type: decimal">
@@ -377,59 +472,73 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>Type Soundness</li>
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="type-system-for-nano">Type system for Nano</h2>
-<p>A <strong>type system</strong> defines what types an expression can have</p>
-<p>To define a type system we need to define:</p>
+<h2 id="type-system-for-nano">Type System for Nano</h2>
+<p>A <strong>type system</strong> defines what types we can assign to an expression</p>
+<p><br></p>
+<p>Let’s try to define a <em>typing relation</em> <code class="sourceCode haskell"><span class="ot">e ::</span> <span class="dt">T</span></code></p>
 <ul>
-<li>the <em>syntax</em> of types: what do types look like?</li>
-<li>the <em>static semantics</em> of our language (i.e. the typing rules): assign types to expressions</li>
+<li>Informal meaning: “expression <code class="sourceCode haskell">e</code> has type <code class="sourceCode haskell"><span class="dt">T</span></code>”</li>
 </ul>
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="type-system">Type system</h2>
-<p>Types:</p>
+<p><br></p>
+<p>First we need to define what <em>types</em> look like:</p>
+<p><br> <br></p>
+<p><strong>Types:</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">T</span> <span class="ot">::</span><span class="fu">=</span> <span class="dt">Int</span>       <span class="co">-- integers</span>
     <span class="fu">|</span> <span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span>  <span class="co">-- function types</span></code></pre></div>
-<p><br></p>
-<p>Now we want to define a <em>typing relation</em> <code class="sourceCode haskell"><span class="ot">e ::</span> <span class="dt">T</span></code> (<code class="sourceCode haskell">e</code> has type <code class="sourceCode haskell"><span class="dt">T</span></code>)</p>
-<p><br></p>
-<p>We define this relation <em>inductively</em> through a set of <em>inference rules</em>:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]<span class="ot">  n ::</span> <span class="dt">Int</span>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="typing-rules-take-i">Typing Rules: Take I</h3>
+<p>We define the typing relation using <em>inference rules</em>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- A numeral always has type Int:</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]<span class="ot">  n ::</span> <span class="dt">Int</span>
 
-<span class="ot">         e1 ::</span> <span class="dt">Int</span><span class="ot">    e2 ::</span> <span class="dt">Int</span>   <span class="co">-- premises</span>
+<span class="co">-- Addition has type Int, provided both sides have type Int:</span>
+<span class="ot">         e1 ::</span> <span class="dt">Int</span><span class="ot">    e2 ::</span> <span class="dt">Int</span>
 [<span class="dt">T</span><span class="fu">-</span><span class="dt">Add</span>]  <span class="fu">----------------------</span>
-            e1 <span class="fu">+</span><span class="ot"> e2 ::</span> <span class="dt">Int</span>        <span class="co">-- conclusion</span>
-            
+            e1 <span class="fu">+</span><span class="ot"> e2 ::</span> <span class="dt">Int</span>
+      
+<span class="co">-- Variable has type ???      </span>
 [<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>]<span class="ot">   x ::</span> <span class="fu">???</span></code></pre></div>
 <p><br></p>
 <p>What is the type of a variable?</p>
-<p><br> <br></p>
-<p>We have to remember what type of expression it was bound to!</p>
+<p><br> <br> <br> <br></p>
+<p>Reminder: to <em>evaluate</em> a variable we save its <em>value</em> in the <em>environment</em></p>
+<p>So: to <em>type</em> a variable we have to save its <em>type</em> in the <em>type environment</em></p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="type-environment">Type Environment</h2>
 <p>An expression has a type in a given <strong>type environment</strong> (also called <strong>context</strong>), which maps all its <em>free variables</em> to their <em>types</em></p>
-<p>Contexts:</p>
+<p><strong>Contexts:</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">G</span> <span class="ot">::</span><span class="fu">=</span> []      <span class="co">-- empty</span>
     <span class="fu">|</span> x<span class="fu">:</span><span class="dt">T</span>, <span class="dt">G</span>  <span class="co">-- type binding and rest</span></code></pre></div>
 <p><br></p>
-<p>Our <em>typing relation</em> should include the context <code class="sourceCode haskell"><span class="dt">G</span></code>:</p>
-<p><code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T</span></code> (<code class="sourceCode haskell">e</code> has type <code class="sourceCode haskell"><span class="dt">T</span></code> in context <code class="sourceCode haskell"><span class="dt">G</span></code>)</p>
+<p>Our <em>typing relation</em> should include the context <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T</span></code>:</p>
+<ul>
+<li>Informal meaning: “expression <code class="sourceCode haskell">e</code> has type <code class="sourceCode haskell"><span class="dt">T</span></code> in context <code class="sourceCode haskell"><span class="dt">G</span></code>”</li>
+</ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="typing-rules">Typing rules</h2>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">        <span class="fu">--------------</span>
+<h3 id="typing-rules">Typing rules</h3>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- A numeral always has type Int:</span>
+
+        <span class="fu">--------------</span>
 [<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]  <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> n ::</span> <span class="dt">Int</span>
+
+<span class="co">-- A variable has type T in a context that binds it to T:</span>
 
         <span class="fu">---------------</span>
 [<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>] x<span class="fu">:</span><span class="dt">T</span>, <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">T</span>
 
+<span class="co">-- Addition has type Int, provided both sides have type Int: </span>
          <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e1 ::</span> <span class="dt">Int</span>   <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e2 ::</span> <span class="dt">Int</span>
 [<span class="dt">T</span><span class="fu">-</span><span class="dt">Add</span>]  <span class="fu">-------------------------------</span>
                <span class="dt">G</span> <span class="fu">|-</span> e1 <span class="fu">+</span><span class="ot"> e2 ::</span> <span class="dt">Int</span>
 
-
+<span class="co">-- Lambda abstraction has type T1 -&gt; T2 provided</span>
+<span class="co">-- its body has type T2 in a context where formal is bound to T1:</span>
           x<span class="fu">:</span><span class="dt">T1</span>, <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T2</span>
 [<span class="dt">T</span><span class="fu">-</span><span class="dt">Lam</span>] <span class="fu">------------------------</span>
         <span class="dt">G</span> <span class="fu">|-</span> \x <span class="ot">-&gt; e ::</span> <span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span>
         
+<span class="co">-- Application has type T2 provided there exists T1</span>
+<span class="co">-- such that the LHS has type T1 -&gt; T2 and RHS has type T1</span>
         <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e1 ::</span> <span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span>   <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e2 ::</span> <span class="dt">T1</span>
 [<span class="dt">T</span><span class="fu">-</span><span class="dt">App</span>] <span class="fu">-----------------------------------</span>
                  <span class="dt">G</span> <span class="fu">|-</span> e1<span class="ot"> e2 ::</span> <span class="dt">T2</span></code></pre></div>
@@ -455,15 +564,39 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li><code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">App</span></code> only applies when LHS has a function type, but there’s no rule to derive a function type for <code class="sourceCode haskell"><span class="dv">1</span></code></li>
 </ul>
 <p><br> <br></p>
-<p><strong>Example 2</strong>:</p>
-<p>Let’s derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">1</span> <span class="kw">in</span> x <span class="fu">+</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">      <span class="fu">?</span>
-[<span class="fu">?</span>]   <span class="fu">-----------------------------------------------</span>
-        [] <span class="fu">|-</span> <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">1</span> <span class="kw">in</span> x <span class="fu">+</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
-<p>But we <em>cannot</em> derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> <span class="kw">let</span> x <span class="fu">=</span> \y <span class="ot">-&gt;</span> y <span class="kw">in</span> x <span class="fu">+</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">T</span></code> for any type <code class="sourceCode haskell"><span class="dt">T</span></code></p>
+<!--
+**Example 2**: 
 
+Let's derive: `[] |- let x = 1 in x + 2 :: Int`
+
+
+(I) lecture
+
+    ```haskell
+          ?
+    [?]   -----------------------------------------------
+            [] |- let x = 1 in x + 2 :: Int
+    ```
+    
+(I) final    
+
+    ```haskell
+                     [T-Var]-----------------   -----------------[T-Num]
+                             x:Int |- x :: Int   x:Int |- 2 :: Int
+    [T-Num] --------------   ------------------------------------[T-Add]
+            [] |- 1 :: Int   x:Int |- x + 2 :: Int
+    [T-Let] -----------------------------------------------
+            [] |- let x = 1 in x + 2 :: Int
+    ```    
+
+But we *cannot* derive: `[] |- let x = \y -> y in x + 2 :: T` for any type `T`
+
+(I) final    
+    
+    The `[T-Var]` rule above will fail to derive `x :: Int`
+-->
 <p><br> <br></p>
-<p><strong>Example 3</strong>:</p>
+<p><strong>Example 2</strong>:</p>
 <p>We cannot derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> (\x <span class="ot">-&gt;</span> x x)<span class="ot"> ::</span> <span class="dt">T</span></code> for any type <code class="sourceCode haskell"><span class="dt">T</span></code></p>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>

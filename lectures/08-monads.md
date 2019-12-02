@@ -1874,6 +1874,42 @@ Experiment with this code at home:
 
 ## Monads are Amazing
 
+This code stays *the same*:
+
+```haskell
+eval :: Expr -> Interpreter Int
+eval (Plus e1 e2) = do v1 <- eval e1
+                       v2 <- eval e2
+                       return (v1 + v2)
+...                       
+```
+
+We can change the type `Interpreter` to implement different **effects**:
+
+  - `type Interpreter a = Either String a` if we want to handle errors
+  - `type Interpreter a = State Int a` if we want to have a counter
+  - `type Interpreter a = StateT Int (Either String) a` if we want *both*
+  - `type Interpreter a = [a]` if we want to return multiple results
+  - ...
+  
+<br>
+<br>
+
+Monads let us *decouple* two things:
+
+  1. Application logic: the sequence of actions (implemented in `eval`)
+  2. Effects: how actions are sequenced (implemented in `>>=`)
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Monads are Influential
+
 Monads have had a _revolutionary_ influence in PL, well beyond Haskell, some recent examples
 
 - **Error handling** in `go` e.g. [1](https://speakerdeck.com/rebeccaskinner/monadic-error-handling-in-go)  
