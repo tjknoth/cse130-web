@@ -62,7 +62,7 @@ Lecture schedule is subject to change!
 [lec6]: lectures/06-parsing.html
 [lec7]: lectures/07-classes.html
 [lec8]: lectures/08-monads.html
-[lec8]: lectures/09-types.html
+[lec9]: lectures/09-types.html
 
 [disc1]: /static/raw/disc1-lambda_calc.pdf
 [disc5]: /static/raw/disc5-parsing.pdf
