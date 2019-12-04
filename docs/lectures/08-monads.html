@@ -289,6 +289,10 @@ sqrList  xs <span class="fu">=</span> mapList (\n <span class="ot">-&gt;</span> 
 <span class="ot">showTree ::</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">String</span>
 showTree <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="fu">???</span>
 showTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p><br></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">showTree ::</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">String</span>
+showTree <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="dt">Leaf</span>
+showTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="dt">Node</span> (show v) (showTree l) (showTree r)</code></pre></div>
 <p><br> <br> <br></p>
 <p><strong>Squaring the values of a Tree</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; sqrTree (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf))</span>
@@ -297,6 +301,10 @@ showTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span cl
 <span class="ot">sqrTree ::</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">Int</span>
 sqrTree <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="fu">???</span>
 sqrTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p><br></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">sqrTree ::</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">Int</span>
+sqrTree <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="dt">Leaf</span>
+sqrTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="dt">Node</span> (v<span class="fu">^</span><span class="dv">2</span>) (sqrTree l) (sqrTree r)</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="quiz-mapping-over-a-tree">QUIZ: Mapping over a Tree</h3>
 <p>If we refactor iteration into <code class="sourceCode haskell">mapTree</code>, what should its type be?</p>
@@ -317,6 +325,10 @@ sqrTree  t <span class="fu">=</span> mapTree (\n <span class="ot">-&gt;</span> n
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mapTree ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> b
 mapTree f <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="fu">???</span>
 mapTree f (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<p><br></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mapTree ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> b
+mapTree f <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="dt">Leaf</span>
+mapTree f (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="dt">Node</span> (f v) (mapTree f l) (mapTree f r)</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="abstracting-across-datatypes">Abstracting across Datatypes</h3>
 <p>Wait, this looks familiar…</p>

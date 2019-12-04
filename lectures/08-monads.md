@@ -139,6 +139,17 @@ showTree (Node v l r) = ???
 ```
 
 <br>
+
+(I) final
+
+    ```
+    showTree :: Tree Int -> Tree String
+    showTree Leaf         = Leaf
+    showTree (Node v l r) = Node (show v) (showTree l) (showTree r)
+    ```
+    
+
+<br>
 <br>
 <br>
 
@@ -152,6 +163,17 @@ sqrTree :: Tree Int -> Tree Int
 sqrTree Leaf         = ???
 sqrTree (Node v l r) = ???
 ```
+
+<br>
+
+(I) final
+
+    ```
+    sqrTree :: Tree Int -> Tree Int
+    sqrTree Leaf         = Leaf
+    sqrTree (Node v l r) = Node (v^2) (sqrTree l) (sqrTree r)
+    ```
+
 
 <br>
 <br>
@@ -211,6 +233,17 @@ mapTree :: (a -> b) -> Tree a -> Tree b
 mapTree f Leaf         = ???
 mapTree f (Node v l r) = ???
 ```
+
+<br>
+
+(I) final
+
+    ```
+    mapTree :: (a -> b) -> Tree a -> Tree b
+    mapTree f Leaf         = Leaf
+    mapTree f (Node v l r) = Node (f v) (mapTree f l) (mapTree f r)
+    ```
+
 
 <br>
 <br>
