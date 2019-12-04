@@ -35,7 +35,7 @@ Lecture schedule is subject to change!
 | 11/25      | contd.                          |                           |               |
 | 11/27      | contd.                          |                           |               |
 | 11/29      | *No lecture: Thanksgiving*      |                           |               |
-| 12/2       | Semantics and Type Systems      |  [html][lec9]             |               |
+| 12/2       | Semantics and Type Systems      |  [html][lec9] [notes][soundness]  |       |
 | 12/4       | contd.                          |                           |               |
 | 12/6       | Final Review                    |                           |               |
 | 12/12      | **Final**                       |                           |               |
@@ -63,6 +63,7 @@ Lecture schedule is subject to change!
 [lec7]: lectures/07-classes.html
 [lec8]: lectures/08-monads.html
 [lec9]: lectures/09-types.html
+[soundness]: lectures/soundness.html
 
 [disc1]: /static/raw/disc1-lambda_calc.pdf
 [disc5]: /static/raw/disc5-parsing.pdf

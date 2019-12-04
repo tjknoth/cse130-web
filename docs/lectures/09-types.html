@@ -439,9 +439,43 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><strong>(A)</strong> <code class="sourceCode haskell">[] ; x <span class="fu">+</span> <span class="dv">1</span>  <span class="fu">==&gt;</span>  v</code></p>
 <p><strong>(B)</strong> <code class="sourceCode haskell">[] ; <span class="dv">1</span> <span class="dv">2</span>  <span class="fu">==&gt;</span>  v</code></p>
 <p><strong>(C)</strong> <code class="sourceCode haskell">[] ; (\f y <span class="ot">-&gt;</span> f y) (\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>)  <span class="fu">==&gt;</span>  v</code></p>
-<p><strong>(E)</strong> <code class="sourceCode haskell">[] ; (\x <span class="ot">-&gt;</span> x x) (\y <span class="ot">-&gt;</span> y y)  <span class="fu">==&gt;</span>  v</code></p>
+<p><strong>(D)</strong> <code class="sourceCode haskell">[] ; (\x <span class="ot">-&gt;</span> x x) (\y <span class="ot">-&gt;</span> y y)  <span class="fu">==&gt;</span>  v</code></p>
 <p><br></p>
 
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p><em>(A)</em></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">    <span class="co">-- NO RULE MATCHES!!!       </span>
+        <span class="fu">--------------</span>
+        [] ; x <span class="fu">==&gt;</span> n1   <span class="fu">...</span>   <span class="fu">...</span>
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span>]<span class="fu">-----------------------------</span>
+           [] ; x <span class="fu">+</span> <span class="dv">1</span>  <span class="fu">==&gt;</span>  v</code></pre></div>
+<p><em>(B)</em></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">    <span class="co">-- NO RULE MATCHES!!!       </span>
+       <span class="fu">------------------</span>
+       [] ; <span class="dv">1</span> <span class="fu">==&gt;</span> <span class="fu">&lt;</span><span class="dt">E</span>,x,e<span class="fu">&gt;</span>   <span class="fu">...</span>   <span class="fu">...</span> 
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">App</span>]<span class="fu">------------------------------</span>
+                 [] ; <span class="dv">1</span> <span class="dv">2</span>  <span class="fu">==&gt;</span>  v</code></pre></div>
+<p><em>(C)</em></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                                       [<span class="dt">E</span><span class="fu">-</span><span class="dt">Lam</span>]
+                  <span class="fu">------------------------------------------------------</span>
+                  [f<span class="fu">:=&lt;</span>[],x,x<span class="fu">+</span><span class="dv">1</span><span class="fu">&gt;</span>] ; \y<span class="ot">-&gt;</span>f y <span class="fu">==&gt;</span> <span class="fu">&lt;</span>[f<span class="fu">:=&lt;</span>[],x,x<span class="fu">+</span><span class="dv">1</span><span class="fu">&gt;</span>],y,f y<span class="fu">&gt;</span> 
+                                                                       <span class="fu">^</span>
+               [<span class="dt">E</span><span class="fu">-</span><span class="dt">Lam</span>]                            [<span class="dt">E</span><span class="fu">-</span><span class="dt">Lam</span>]              <span class="fu">|</span>
+<span class="fu">-----------------------------------</span>   <span class="fu">-------------------------------</span>  <span class="fu">|</span>
+[];(\f y <span class="ot">-&gt;</span> f y) <span class="fu">==&gt;</span> <span class="fu">&lt;</span>[],f,\y<span class="ot">-&gt;</span>f y<span class="fu">&gt;</span>   [];(\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">==&gt;</span> <span class="fu">&lt;</span>[],x,x<span class="fu">+</span><span class="dv">1</span><span class="fu">&gt;</span>  <span class="fu">|</span>
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">App</span>]<span class="fu">-----------------------------------------------------------------</span>
+                [] ; (\f y <span class="ot">-&gt;</span> f y) (\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>)  <span class="fu">==&gt;</span>  v</code></pre></div>
+<p><em>(D)</em></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                    <span class="co">-- X2                            AND SO ON!</span>
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">Var</span>] <span class="fu">----------------------------------</span>  <span class="fu">----------------------------</span>
+        [x<span class="fu">:=&lt;</span>[],x,x x<span class="fu">&gt;</span>] ; x <span class="fu">==&gt;</span> <span class="fu">&lt;</span>[],x,x x<span class="fu">&gt;</span>  [x<span class="fu">:=&lt;</span>[],x,x x<span class="fu">&gt;</span>] ; x x <span class="fu">==&gt;</span> v                                                        
+             [<span class="dt">E</span><span class="fu">-</span><span class="dt">App</span>]<span class="fu">------------------------------------------------</span>
+                            [x<span class="fu">:=&lt;</span>[],x,x x<span class="fu">&gt;</span>] ; x x <span class="fu">==&gt;</span> v
+                  <span class="co">--  X2     </span>
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">Lam</span>]<span class="fu">-----------------------------</span>
+       [];(\x <span class="ot">-&gt;</span> x x) <span class="fu">==&gt;</span> <span class="fu">&lt;</span>[],x,x x<span class="fu">&gt;</span>         
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">App</span>]<span class="fu">----------------------------------------------------------</span>
+       [] ; (\x <span class="ot">-&gt;</span> x x) (\x <span class="ot">-&gt;</span> x x)  <span class="fu">==&gt;</span>  v</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="evaluation-results">Evaluation Results</h3>
 <p>For any pair <code class="sourceCode haskell"><span class="dt">E</span> ; e</code> one of the following is true:</p>
@@ -517,14 +551,12 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="typing-rules">Typing rules</h3>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- A numeral always has type Int:</span>
-
-        <span class="fu">--------------</span>
-[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]  <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> n ::</span> <span class="dt">Int</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>] <span class="fu">-------------</span>
+        <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> n ::</span> <span class="dt">Int</span>
 
 <span class="co">-- A variable has type T in a context that binds it to T:</span>
-
-        <span class="fu">---------------</span>
-[<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>] x<span class="fu">:</span><span class="dt">T</span>, <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">T</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>] <span class="fu">----------------</span>
+        x<span class="fu">:</span><span class="dt">T</span>, <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">T</span>
 
 <span class="co">-- Addition has type Int, provided both sides have type Int: </span>
          <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e1 ::</span> <span class="dt">Int</span>   <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e2 ::</span> <span class="dt">Int</span>
@@ -549,67 +581,106 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>and <strong>ill-typed</strong> otherwise</li>
 </ul>
 <p><br> <br> <br> <br> <br></p>
-<h3 id="examples">Examples</h3>
-<p><strong>Example 1</strong>:</p>
-<p>Let’s derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> (\x <span class="ot">-&gt;</span> x) <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></p>
+<p>For example, this is the derivation of <code class="sourceCode haskell">[x<span class="fu">:=</span><span class="dv">5</span>] <span class="fu">|-</span> x <span class="fu">+</span> <span class="dv">1</span><span class="ot"> ::</span> <span class="dt">Int</span></code></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">        
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>] <span class="fu">-----------------</span>  [<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]<span class="fu">----------------</span>
+        [x<span class="fu">:=</span><span class="dv">5</span>] ;<span class="ot"> x ::</span> <span class="dt">Int</span>        [x<span class="fu">:=</span><span class="dv">5</span>] ; <span class="dv">1</span><span class="ot"> ::</span> <span class="dt">Int</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Add</span>] <span class="fu">------------------------------------------</span>
+                  [x<span class="fu">:=</span><span class="dv">5</span>] <span class="fu">|-</span> x <span class="fu">+</span> <span class="dv">1</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
+<p><br> <br></p>
+<p>Meaning:</p>
+<ul>
+<li>Our goal is to prove that <code class="sourceCode haskell">[x<span class="fu">:=</span><span class="dv">5</span>] <span class="fu">|-</span> x <span class="fu">+</span> <span class="dv">1</span><span class="ot"> ::</span> <span class="dt">Int</span></code>.</li>
+<li>This relation matches the <em>conclusion</em> of rule <code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Add</span>]</code>.</li>
+<li>Hence we can construct its derivation using <code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Add</span>]</code>, we only need to prove its premises.</li>
+<li>The first premise is <code class="sourceCode haskell">[x<span class="fu">:=</span><span class="dv">5</span>] ;<span class="ot"> x ::</span> <span class="dt">Int</span></code>:
+<ul>
+<li>This relation matches the conclusion of rule <code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>]</code>.</li>
+<li><code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>]</code> has no premises, hence this sub-derivation is complete.</li>
+</ul></li>
+<li>The second premise is <code class="sourceCode haskell">[x<span class="fu">:=</span><span class="dv">5</span>] ; <span class="dv">1</span><span class="ot"> ::</span> <span class="dt">Int</span></code>:
+<ul>
+<li>This relation matches the conclusion of rule <code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]</code>.</li>
+<li><code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]</code> has no premises, hence this sub-derivation is complete.</li>
+</ul></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-3">QUIZ</h2>
+<p>What is the correct derivation of <code class="sourceCode haskell">[] <span class="fu">|-</span> (\x <span class="ot">-&gt;</span> x) <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code>?</p>
+<p><strong>(A)</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>] <span class="fu">------------------------</span>
+             [] <span class="fu">|-</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">App</span>] <span class="fu">------------------------</span>
+        [] <span class="fu">|-</span> (\x <span class="ot">-&gt;</span> x) <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
+<p><strong>(B)</strong></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>] <span class="fu">--------------------</span>
+        [x <span class="fu">:=</span> <span class="dv">2</span>] <span class="fu">|-</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span>        
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>] <span class="fu">--------------------</span>
+        [x <span class="fu">:=</span> <span class="dv">2</span>] <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">Int</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">App</span>] <span class="fu">------------------------</span>
+        [] <span class="fu">|-</span> (\x <span class="ot">-&gt;</span> x) <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
+<p><strong>(C)</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>] <span class="fu">-------------------</span>
         [x<span class="fu">:</span><span class="dt">Int</span>] <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">Int</span>
-[<span class="dt">T</span><span class="fu">-</span><span class="dt">Abs</span>] <span class="fu">-------------------</span>            <span class="fu">--------------</span> [<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Lam</span>] <span class="fu">---------------------------</span>    <span class="fu">--------------</span> [<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]
         [] <span class="fu">|-</span> \x <span class="ot">-&gt; x ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>    [] <span class="fu">|-</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span>
 [<span class="dt">T</span><span class="fu">-</span><span class="dt">App</span>] <span class="fu">-----------------------------------------------</span>
-        [] <span class="fu">|-</span> (\x <span class="ot">-&gt;</span> x) <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
-<p>But we <em>cannot</em> derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> <span class="dv">1</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">T</span></code> for any type <code class="sourceCode haskell"><span class="dt">T</span></code></p>
-<ul>
-<li>Why?</li>
-<li><code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">App</span></code> only applies when LHS has a function type, but there’s no rule to derive a function type for <code class="sourceCode haskell"><span class="dv">1</span></code></li>
-</ul>
-<p><br> <br></p>
-<!--
-**Example 2**: 
+                   [] <span class="fu">|-</span> (\x <span class="ot">-&gt;</span> x) <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
+<p><br></p>
 
-Let's derive: `[] |- let x = 1 in x + 2 :: Int`
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-4">QUIZ</h2>
+<p>Which of the following typing relations have a derivation for <em>some</em> type <code class="sourceCode haskell"><span class="dt">T</span></code>?</p>
+<p><strong>(A)</strong> <code class="sourceCode haskell">[]  <span class="fu">|-</span>  x <span class="fu">+</span> <span class="dv">1</span><span class="ot">  ::</span>  <span class="dt">T</span></code></p>
+<p><strong>(B)</strong> <code class="sourceCode haskell">[]  <span class="fu">|-</span>  <span class="dv">1</span> <span class="dv">2</span><span class="ot">  ::</span>  <span class="dt">T</span></code></p>
+<p><strong>(C)</strong> <code class="sourceCode haskell">[]  <span class="fu">|-</span>  \x <span class="ot">-&gt;</span> x<span class="ot"> x  ::</span>  <span class="dt">T</span></code></p>
+<p><strong>(D)</strong> <code class="sourceCode haskell">[]  <span class="fu">|-</span>  (\f y <span class="ot">-&gt;</span> f y) (\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>)<span class="ot">  ::</span>  <span class="dt">T</span></code></p>
+<p><br></p>
 
-
-(I) lecture
-
-    ```haskell
-          ?
-    [?]   -----------------------------------------------
-            [] |- let x = 1 in x + 2 :: Int
-    ```
-    
-(I) final    
-
-    ```haskell
-                     [T-Var]-----------------   -----------------[T-Num]
-                             x:Int |- x :: Int   x:Int |- 2 :: Int
-    [T-Num] --------------   ------------------------------------[T-Add]
-            [] |- 1 :: Int   x:Int |- x + 2 :: Int
-    [T-Let] -----------------------------------------------
-            [] |- let x = 1 in x + 2 :: Int
-    ```    
-
-But we *cannot* derive: `[] |- let x = \y -> y in x + 2 :: T` for any type `T`
-
-(I) final    
-    
-    The `[T-Var]` rule above will fail to derive `x :: Int`
--->
-<p><br> <br></p>
-<p><strong>Example 2</strong>:</p>
-<p>We cannot derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> (\x <span class="ot">-&gt;</span> x x)<span class="ot"> ::</span> <span class="dt">T</span></code> for any type <code class="sourceCode haskell"><span class="dt">T</span></code></p>
-
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p><em>(A)</em></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">     <span class="co">-- NO RULE MATCHES!!!       </span>
+        <span class="fu">--------------</span>
+        [] <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">Int</span>   <span class="fu">...</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Add</span>]<span class="fu">-----------------------</span>
+        []  <span class="fu">|-</span>  x <span class="fu">+</span> <span class="dv">1</span><span class="ot">  ::</span>  <span class="dt">T</span></code></pre></div>
+<p><em>(B)</em></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">      <span class="co">-- NO RULE MATCHES!!!       </span>
+       <span class="fu">------------------</span>
+       [] <span class="fu">|-</span> <span class="dv">1</span><span class="ot"> ::</span> <span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span>  <span class="fu">...</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">App</span>]<span class="fu">--------------------------</span>
+          []  <span class="fu">|-</span>  <span class="dv">1</span> <span class="dv">2</span><span class="ot">  ::</span>  <span class="dt">T</span></code></pre></div>
+<p><em>(C)</em></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">          <span class="co">-- CAN'T FIND T1 = (T3 -&gt; T2) = T3</span>
+       [x<span class="fu">:</span><span class="dt">T1</span>] <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">T3</span> <span class="ot">-&gt;</span> <span class="dt">T2</span>   [x<span class="fu">:</span><span class="dt">T1</span>] <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">T3</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">App</span>]<span class="fu">-------------------------------------------</span>
+           [x<span class="fu">:</span><span class="dt">T1</span>] <span class="fu">|-</span> x<span class="ot"> x ::</span> <span class="dt">T2</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Lam</span>]<span class="fu">-----------------------------</span>
+       [] <span class="fu">|-</span> \x <span class="ot">-&gt;</span> x<span class="ot"> x  ::</span>  <span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span></code></pre></div>
+<p><em>(C)</em></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                                       [<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>]<span class="fu">--------</span>  [<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]<span class="fu">---------</span>
+[y<span class="fu">:</span><span class="dt">Int</span>,f<span class="fu">:</span><span class="dt">Int</span><span class="ot">-&gt;</span><span class="dt">Int</span>] <span class="fu">|-</span> f<span class="ot"> y ::</span> <span class="dt">Int</span>       [x<span class="fu">:</span><span class="dt">Int</span>]<span class="fu">|-</span><span class="ot">x::</span><span class="dt">Int</span>  [x<span class="fu">:</span><span class="dt">Int</span>]<span class="fu">|-</span><span class="dv">1</span><span class="ot">::</span><span class="dt">Int</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Lam</span>]<span class="fu">------------------------------</span>      <span class="fu">----------------------</span>[<span class="dt">T</span><span class="fu">-</span><span class="dt">Add</span>]
+[f<span class="fu">:</span><span class="dt">Int</span><span class="ot">-&gt;</span><span class="dt">Int</span>] <span class="fu">|-</span> \y <span class="ot">-&gt;</span> f<span class="ot"> y ::</span> <span class="dt">Int</span><span class="ot">-&gt;</span><span class="dt">Int</span>      [x<span class="fu">:</span><span class="dt">Int</span>] <span class="fu">|-</span> x <span class="fu">+</span> <span class="dv">1</span><span class="ot"> ::</span> <span class="dt">Int</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">Lam</span>]<span class="fu">----------------------------------</span>  <span class="fu">----------------------</span>[<span class="dt">T</span><span class="fu">-</span><span class="dt">Lam</span>]
+[] <span class="fu">|-</span> \f y <span class="ot">-&gt;</span> f<span class="ot"> y ::</span> (<span class="dt">Int</span><span class="ot">-&gt;</span><span class="dt">Int</span>)<span class="ot">-&gt;</span><span class="dt">Int</span><span class="ot">-&gt;</span><span class="dt">Int</span>  [] <span class="fu">|-</span> \x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span><span class="ot"> ::</span> <span class="dt">Int</span><span class="ot">-&gt;</span><span class="dt">Int</span>
+[<span class="dt">T</span><span class="fu">-</span><span class="dt">App</span>]<span class="fu">-----------------------------------------------------------------</span>
+                [] <span class="fu">|-</span> (\f y <span class="ot">-&gt;</span> f y) (\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>)<span class="ot">  ::</span>   <span class="dt">Int</span><span class="ot">-&gt;</span><span class="dt">Int</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="outline-2">Outline</h2>
 <ol style="list-style-type: decimal">
 <li>Operational Semantics [done]</li>
 <li>Type System [done]</li>
-<li>Type Soundness</li>
+<li><strong>Type Soundness</strong></li>
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="well-typed-programs-always-succeed">Well-Typed Programs Always Succeed</h2>
 <p>We would like to prove the following theorem:</p>
-<p><strong>Theorem</strong> <em>(Well-Typed Programs Always Succeed):</em> For any program <code class="sourceCode haskell">e</code> and type <code class="sourceCode haskell"><span class="dt">T</span></code>, if <code class="sourceCode haskell">[] <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T</span></code>, then there exists value <code class="sourceCode haskell">v</code> such that <code class="sourceCode haskell">[] ; e  <span class="fu">==&gt;</span>  v</code>.</p>
+<p><strong>Theorem</strong> <em>(Well-Typed Programs Always Succeed):</em> For any program <code class="sourceCode haskell">e</code> and type <code class="sourceCode haskell"><span class="dt">T</span></code></p>
+<ul>
+<li>if <code class="sourceCode haskell">[] <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T</span></code>,</li>
+<li>then there exists a value <code class="sourceCode haskell">v</code> such that <code class="sourceCode haskell">[] ; e  <span class="fu">==&gt;</span>  v</code>.</li>
+</ul>
 <p>How do we prove theorems about languages?</p>
 <p><strong>By induction.</strong></p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
@@ -648,11 +719,15 @@ But we *cannot* derive: `[] |- let x = \y -> y in x + 2 :: T` for any type `T`
 </ul>
 <p><br> <br> <br></p>
 <h2 id="proof-take-1">Proof: Take 1</h2>
-<p><strong>Theorem</strong> For any program <code class="sourceCode haskell">e</code> and type <code class="sourceCode haskell"><span class="dt">T</span></code>, if <code class="sourceCode haskell">[] <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T</span></code>, then there exists value <code class="sourceCode haskell">v</code> such that <code class="sourceCode haskell">[] ; e  <span class="fu">==&gt;</span>  v</code>.</p>
+<p><strong>Theorem</strong> For any program <code class="sourceCode haskell">e</code> and type <code class="sourceCode haskell"><span class="dt">T</span></code></p>
+<ul>
+<li>if <code class="sourceCode haskell">[] <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T</span></code>,</li>
+<li>then there exists a value <code class="sourceCode haskell">v</code> such that <code class="sourceCode haskell">[] ; e  <span class="fu">==&gt;</span>  v</code>.</li>
+</ul>
 <p><strong>Proof:</strong></p>
-<p><em>Base case 1</em> <code class="sourceCode haskell">n</code>: By <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span></code> we have <code class="sourceCode haskell">[] ; n <span class="fu">==&gt;</span> n</code>, hence <code class="sourceCode haskell">v <span class="fu">==</span> n</code>.</p>
+<p><em>Base case 1</em> (<code class="sourceCode haskell">n</code>): By <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span></code> we have <code class="sourceCode haskell">[] ; n <span class="fu">==&gt;</span> n</code>, hence <code class="sourceCode haskell">v <span class="fu">==</span> n</code>.</p>
 <p>…</p>
-<p><em>Inductive case 3</em> <code class="sourceCode haskell">e1 e2</code>: Assuming that <code class="sourceCode haskell">[] <span class="fu">|-</span> e1<span class="ot"> e2 ::</span> <span class="dt">T</span></code>, prove that <code class="sourceCode haskell">[] ; e1 e2  <span class="fu">==&gt;</span>  v</code>. We need to prove that:</p>
+<p><em>Inductive case 3</em> (<code class="sourceCode haskell">e1 e2</code>): Assuming that <code class="sourceCode haskell">[] <span class="fu">|-</span> e1<span class="ot"> e2 ::</span> <span class="dt">T</span></code>, prove that <code class="sourceCode haskell">[] ; e1 e2  <span class="fu">==&gt;</span>  v</code>. We need to prove that:</p>
 <ol style="list-style-type: decimal">
 <li><code class="sourceCode haskell">[] ; e1 <span class="fu">==&gt;</span> <span class="fu">&lt;</span><span class="dt">E</span>, x, e<span class="fu">&gt;</span></code></li>
 <li><code class="sourceCode haskell">[] ; e2 <span class="fu">==&gt;</span> v2</code></li>
@@ -662,46 +737,72 @@ But we *cannot* derive: `[] |- let x = \y -> y in x + 2 :: T` for any type `T`
 <li>follows by IH, but 1 and 3 <em>do not</em>. We need to generalize the theorem to make the induction go through!</li>
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="helpful-properties">Helpful Properties</h2>
+<h2 id="generalizing-the-theorem">Generalizing the Theorem</h2>
 <p>Intuitively, we need to change our theorem in three ways:</p>
-<ul>
+<ol style="list-style-type: decimal">
 <li>Generalize to arbitrary <code class="sourceCode haskell"><span class="dt">G</span></code> and <code class="sourceCode haskell"><span class="dt">E</span></code></li>
-<li>Also prove that the resulting value <code class="sourceCode haskell">v</code> “has type” <code class="sourceCode haskell"><span class="dt">T</span></code></li>
-<li>For values that are closures, we also want to know that when applied to appropriate values, they will terminate</li>
-</ul>
+<li>Prove that the resulting value <code class="sourceCode haskell">v</code> <em>has type</em> <code class="sourceCode haskell"><span class="dt">T</span></code></li>
+<li>Prove all closures we create <em>terminate</em>, when given appropriate arguments</li>
+</ol>
 <p><br> <br></p>
-<p>We define two auxiliary relations: <code class="sourceCode haskell">v <span class="ot">::</span><span class="fu">:</span> <span class="dt">T</span></code> and <code class="sourceCode haskell"><span class="dt">E</span> <span class="ot">::</span><span class="fu">:</span> <span class="dt">G</span></code></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">        <span class="fu">---------</span>
-[<span class="dt">V</span><span class="fu">-</span><span class="dt">Num</span>] n <span class="ot">::</span><span class="fu">:</span> <span class="dt">Int</span>
+<p>Let’s define what it means for a value to be “well-typed and terminating”!</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="well-behaved-values">Well-Behaved Values</h2>
+<p>Let’s define a new relation: <code class="sourceCode haskell"><span class="ot">v ::</span> <span class="dt">T</span></code> (value <code class="sourceCode haskell">v</code> is <em>well-behaved</em> at type <code class="sourceCode haskell"><span class="dt">T</span></code>)</p>
+<ul>
+<li>Intuitive meaning: <code class="sourceCode haskell">v</code> has type <code class="sourceCode haskell"><span class="dt">T</span></code> and also terminates on all well-behaved arguments (if it’s a closure).</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dt">V</span><span class="fu">-</span><span class="dt">Num</span>] <span class="fu">--------</span>
+<span class="ot">        n ::</span> <span class="dt">Int</span>
 
 
-         v1 <span class="ot">::</span><span class="fu">:</span> <span class="dt">T1</span>   (x<span class="fu">:=</span>v1,<span class="dt">E</span>) ; e <span class="fu">==&gt;</span> v2   v2 <span class="ot">::</span><span class="fu">:</span> <span class="dt">T2</span>
-[<span class="dt">V</span><span class="fu">-</span><span class="dt">Clos</span>] <span class="fu">--------------------------------------------</span>
-                  <span class="fu">&lt;</span><span class="dt">E</span>, x, e<span class="fu">&gt;</span> <span class="ot">::</span><span class="fu">:</span> <span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span>
-
-[<span class="dt">E</span><span class="fu">-</span><span class="dt">Nil</span>] <span class="fu">---------</span>
-        [] <span class="ot">::</span><span class="fu">:</span> []
+               forall<span class="ot"> v1 ::</span> <span class="dt">T1</span> <span class="fu">.</span>  
+         (x<span class="fu">:=</span>v1,<span class="dt">E</span>) ; e <span class="fu">==&gt;</span> v2<span class="ot">   v2 ::</span> <span class="dt">T2</span>
+[<span class="dt">V</span><span class="fu">-</span><span class="dt">Clos</span>] <span class="fu">-------------------------------</span>
+             <span class="fu">&lt;</span><span class="dt">E</span>, x, e<span class="fu">&gt;</span><span class="ot"> ::</span> <span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span></code></pre></div>
+<p><br> <br></p>
+<p>We extend this relation to environments: <code class="sourceCode haskell"><span class="dt">E</span><span class="ot"> ::</span> <span class="dt">G</span></code> (environment <code class="sourceCode haskell"><span class="dt">E</span></code> is <em>well-behaved</em> in context <code class="sourceCode haskell"><span class="dt">G</span></code>)</p>
+<ul>
+<li>Intuitive meaning: <code class="sourceCode haskell"><span class="dt">G</span></code> and <code class="sourceCode haskell"><span class="dt">E</span></code> have the same variables, and each value in <code class="sourceCode haskell"><span class="dt">E</span></code> is well-behaved at its <code class="sourceCode haskell"><span class="dt">G</span></code>-type</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dt">E</span><span class="fu">-</span><span class="dt">Nil</span>] <span class="fu">--------</span>
+        []<span class="ot"> ::</span> []
         
-           v <span class="ot">::</span><span class="fu">:</span> <span class="dt">T</span>   <span class="dt">E</span> <span class="ot">::</span><span class="fu">:</span> <span class="dt">G</span>
-[<span class="dt">E</span><span class="fu">-</span><span class="dt">Bnd</span>] <span class="fu">----------------------</span>
-        (x<span class="fu">:=</span>v, <span class="dt">E</span>) <span class="ot">::</span><span class="fu">:</span> (x<span class="fu">:</span><span class="dt">T</span>, <span class="dt">G</span>)       </code></pre></div>
-<p><br> <br> <br> <br></p>
-<p><strong>Lemma</strong> For any <code class="sourceCode haskell">e</code>, <code class="sourceCode haskell"><span class="dt">T</span></code>, <code class="sourceCode haskell"><span class="dt">E</span></code>, <code class="sourceCode haskell"><span class="dt">G</span></code>: if (1) <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T</span></code> and (2) <code class="sourceCode haskell"><span class="dt">E</span> <span class="ot">::</span><span class="fu">:</span> <span class="dt">G</span></code>, then there exists value <code class="sourceCode haskell">v</code> such that (A) <code class="sourceCode haskell"><span class="dt">E</span> ; e  <span class="fu">==&gt;</span>  v</code> and (B) <code class="sourceCode haskell">v <span class="ot">::</span><span class="fu">:</span> <span class="dt">T</span></code>.</p>
+<span class="ot">           v ::</span> <span class="dt">T</span>   <span class="dt">E</span><span class="ot"> ::</span> <span class="dt">G</span>
+[<span class="dt">E</span><span class="fu">-</span><span class="dt">Bnd</span>] <span class="fu">---------------------</span>
+        (x<span class="fu">:=</span>v, <span class="dt">E</span>)<span class="ot"> ::</span> (x<span class="fu">:</span><span class="dt">T</span>, <span class="dt">G</span>)       </code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="main-lemma">Main Lemma</h2>
+<p>Now we can state our generalized theorem:</p>
+<p><strong>Lemma:</strong> For any program <code class="sourceCode haskell">e</code>, type <code class="sourceCode haskell"><span class="dt">T</span></code>, environment <code class="sourceCode haskell"><span class="dt">E</span></code>, context <code class="sourceCode haskell"><span class="dt">G</span></code>:</p>
+<ol style="list-style-type: decimal">
+<li>If <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T</span></code></li>
+<li>and <code class="sourceCode haskell"><span class="dt">E</span><span class="ot"> ::</span> <span class="dt">G</span></code></li>
+</ol>
+<p>then there exists a value <code class="sourceCode haskell">v</code> such that</p>
+<ol style="list-style-type: upper-alpha">
+<li><code class="sourceCode haskell"><span class="dt">E</span> ; e  <span class="fu">==&gt;</span>  v</code></li>
+<li>and <code class="sourceCode haskell"><span class="ot">v ::</span> <span class="dt">T</span></code>.</li>
+</ol>
 <p><strong>Proof:</strong></p>
 <p><em>Base case 1</em> (<code class="sourceCode haskell">n</code>):</p>
-<p>Because <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> n ::</span> <span class="dt">T</span></code>, then <code class="sourceCode haskell"><span class="dt">T</span></code> is <code class="sourceCode haskell"><span class="dt">Int</span></code> by <code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span></code>. With <code class="sourceCode haskell">v <span class="fu">==</span> n</code>: (A) <code class="sourceCode haskell"><span class="dt">E</span> ; n <span class="fu">==&gt;</span> n</code> by <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span></code> and (B) <code class="sourceCode haskell">n <span class="ot">::</span><span class="fu">:</span> <span class="dt">Int</span></code> by <code class="sourceCode haskell"><span class="dt">V</span><span class="fu">-</span><span class="dt">Num</span></code>.</p>
+<p>Because <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> n ::</span> <span class="dt">T</span></code>, then <code class="sourceCode haskell"><span class="dt">T</span></code> is <code class="sourceCode haskell"><span class="dt">Int</span></code> by <code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span></code>. With <code class="sourceCode haskell">v <span class="fu">==</span> n</code>: (A) <code class="sourceCode haskell"><span class="dt">E</span> ; n <span class="fu">==&gt;</span> n</code> by <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Num</span></code> and (B) <code class="sourceCode haskell"><span class="ot">n ::</span> <span class="dt">Int</span></code> by <code class="sourceCode haskell"><span class="dt">V</span><span class="fu">-</span><span class="dt">Num</span></code>.</p>
 <p><em>Base case 2</em> (<code class="sourceCode haskell">x</code>):</p>
-<p>Because <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">T</span></code>, we know that <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">=</span> (x<span class="fu">:</span><span class="dt">T</span>,<span class="fu">...</span>)</code> by <code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span></code>. Hence, from (2) and <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Bnd</span></code> we have <code class="sourceCode haskell"><span class="dt">E</span> <span class="fu">=</span> (x<span class="fu">:=</span>v, <span class="fu">...</span>)</code> and <code class="sourceCode haskell">v <span class="ot">::</span><span class="fu">:</span> <span class="dt">T</span></code>. Hence we get: (A) <code class="sourceCode haskell"><span class="dt">E</span> ; x <span class="fu">==&gt;</span> v</code> by <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Var</span></code> and (B) <code class="sourceCode haskell">v <span class="ot">::</span><span class="fu">:</span> <span class="dt">T</span></code>.</p>
+<p>Because <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">T</span></code>, we know that <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">=</span> (x<span class="fu">:</span><span class="dt">T</span>,<span class="fu">...</span>)</code> by <code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span></code>. Hence, from (2) and <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Bnd</span></code> we have <code class="sourceCode haskell"><span class="dt">E</span> <span class="fu">=</span> (x<span class="fu">:=</span>v, <span class="fu">...</span>)</code> and <code class="sourceCode haskell"><span class="ot">v ::</span> <span class="dt">T</span></code>. Hence we get: (A) <code class="sourceCode haskell"><span class="dt">E</span> ; x <span class="fu">==&gt;</span> v</code> by <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Var</span></code> and (B) <code class="sourceCode haskell"><span class="ot">v ::</span> <span class="dt">T</span></code>.</p>
 <p><em>Inductive case 1</em> (<code class="sourceCode haskell">e1 <span class="fu">+</span> e2</code>):</p>
-<p>Because <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span> e1 <span class="fu">+</span><span class="ot"> e2 ::</span> <span class="dt">T</span></code>, then by <code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">Add</span></code>, <code class="sourceCode haskell"><span class="dt">T</span></code> is <code class="sourceCode haskell"><span class="dt">Int</span></code> and also (3) <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e1 ::</span> <span class="dt">Int</span></code> and (4) <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e2 ::</span> <span class="dt">Int</span></code>. By IH from (3) we get (5) <code class="sourceCode haskell"><span class="dt">E</span> ; e1 <span class="fu">==&gt;</span> v1</code> and <code class="sourceCode haskell">v1 <span class="ot">::</span><span class="fu">:</span> <span class="dt">Int</span></code>, hence by <code class="sourceCode haskell"><span class="dt">V</span><span class="fu">-</span><span class="dt">Num</span></code> <code class="sourceCode haskell">v1</code> is some numeral <code class="sourceCode haskell">n1</code>. Similarly from (4) we get (6) <code class="sourceCode haskell"><span class="dt">E</span> ; e2 <span class="fu">==&gt;</span> n2</code>. With <code class="sourceCode haskell">n <span class="fu">=</span> n1 <span class="fu">+</span> n2</code>, we get (A) <code class="sourceCode haskell"><span class="dt">E</span> ; (e1 <span class="fu">+</span> e2) <span class="fu">==&gt;</span> n</code> by <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span></code>, and (B) <code class="sourceCode haskell">n <span class="ot">::</span><span class="fu">:</span> <span class="dt">Int</span></code> by <code class="sourceCode haskell"><span class="dt">V</span><span class="fu">-</span><span class="dt">Num</span></code>.</p>
+<p>Because <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span> e1 <span class="fu">+</span><span class="ot"> e2 ::</span> <span class="dt">T</span></code>, then by <code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">Add</span></code>, <code class="sourceCode haskell"><span class="dt">T</span></code> is <code class="sourceCode haskell"><span class="dt">Int</span></code> and also (3) <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e1 ::</span> <span class="dt">Int</span></code> and (4) <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e2 ::</span> <span class="dt">Int</span></code>. By IH from (3) we get (5) <code class="sourceCode haskell"><span class="dt">E</span> ; e1 <span class="fu">==&gt;</span> v1</code> and <code class="sourceCode haskell"><span class="ot">v1 ::</span> <span class="dt">Int</span></code>, hence by <code class="sourceCode haskell"><span class="dt">V</span><span class="fu">-</span><span class="dt">Num</span></code> <code class="sourceCode haskell">v1</code> is some numeral <code class="sourceCode haskell">n1</code>. Similarly from (4) we get (6) <code class="sourceCode haskell"><span class="dt">E</span> ; e2 <span class="fu">==&gt;</span> n2</code>. With <code class="sourceCode haskell">n <span class="fu">=</span> n1 <span class="fu">+</span> n2</code>, we get (A) <code class="sourceCode haskell"><span class="dt">E</span> ; (e1 <span class="fu">+</span> e2) <span class="fu">==&gt;</span> n</code> by <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Add</span></code>, and (B) <code class="sourceCode haskell"><span class="ot">n ::</span> <span class="dt">Int</span></code> by <code class="sourceCode haskell"><span class="dt">V</span><span class="fu">-</span><span class="dt">Num</span></code>.</p>
 <p><em>Inductive case 2</em> (<code class="sourceCode haskell">\x <span class="ot">-&gt;</span> e</code>):</p>
-<p>Because <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span> \x <span class="ot">-&gt; e ::</span> <span class="dt">T</span></code>, then by <code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">Lam</span></code>, <code class="sourceCode haskell"><span class="dt">T</span></code> is <code class="sourceCode haskell"><span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span></code> and also (3) <code class="sourceCode haskell">x<span class="fu">:</span><span class="dt">T1</span>, <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T2</span></code>. Now pick an arbitrary <code class="sourceCode haskell">v1</code> such that <code class="sourceCode haskell">v1 <span class="ot">::</span><span class="fu">:</span> <span class="dt">T1</span></code>. Then <code class="sourceCode haskell">x<span class="fu">:=</span>v1,<span class="dt">E</span> <span class="ot">::</span><span class="fu">:</span> x<span class="fu">:</span><span class="dt">T1</span>,<span class="dt">G</span></code> by <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Bnd</span></code> and (2). Hence using IH on (3) we get (4) <code class="sourceCode haskell">(x<span class="fu">:=</span>v1,<span class="dt">E</span>) ; e <span class="fu">==&gt;</span> v2</code> and <code class="sourceCode haskell">v2 <span class="ot">::</span><span class="fu">:</span> <span class="dt">T2</span></code>. With <code class="sourceCode haskell">v <span class="fu">=</span> <span class="fu">&lt;</span><span class="dt">E</span>,x,e<span class="fu">&gt;</span></code> we get (A) <code class="sourceCode haskell"><span class="dt">E</span> ; \x <span class="ot">-&gt;</span> e  <span class="fu">==&gt;</span>  v</code> and (B) <code class="sourceCode haskell">v <span class="ot">::</span><span class="fu">:</span> <span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span></code> by <code class="sourceCode haskell"><span class="dt">V</span><span class="fu">-</span><span class="dt">Clos</span></code> and (4).</p>
+<p>Because <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span> \x <span class="ot">-&gt; e ::</span> <span class="dt">T</span></code>, then by <code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">Lam</span></code>, <code class="sourceCode haskell"><span class="dt">T</span></code> is <code class="sourceCode haskell"><span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span></code> and also (3) <code class="sourceCode haskell">x<span class="fu">:</span><span class="dt">T1</span>, <span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T2</span></code>. Now pick an arbitrary <code class="sourceCode haskell">v1</code> such that <code class="sourceCode haskell"><span class="ot">v1 ::</span> <span class="dt">T1</span></code>. Then <code class="sourceCode haskell">x<span class="fu">:=</span>v1,<span class="dt">E</span><span class="ot"> ::</span> x<span class="fu">:</span><span class="dt">T1</span>,<span class="dt">G</span></code> by <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Bnd</span></code> and (2). Hence using IH on (3) we get (4) <code class="sourceCode haskell">(x<span class="fu">:=</span>v1,<span class="dt">E</span>) ; e <span class="fu">==&gt;</span> v2</code> and <code class="sourceCode haskell"><span class="ot">v2 ::</span> <span class="dt">T2</span></code>. With <code class="sourceCode haskell">v <span class="fu">=</span> <span class="fu">&lt;</span><span class="dt">E</span>,x,e<span class="fu">&gt;</span></code> we get (A) <code class="sourceCode haskell"><span class="dt">E</span> ; \x <span class="ot">-&gt;</span> e  <span class="fu">==&gt;</span>  v</code> and (B) <code class="sourceCode haskell"><span class="ot">v ::</span> <span class="dt">T1</span> <span class="ot">-&gt;</span> <span class="dt">T2</span></code> by <code class="sourceCode haskell"><span class="dt">V</span><span class="fu">-</span><span class="dt">Clos</span></code> and (4).</p>
 <p><em>Inductive case 3</em> (<code class="sourceCode haskell">e1 e2</code>):</p>
-<p>Because <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span> e1<span class="ot"> e2 ::</span> <span class="dt">T</span></code>, then by <code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">App</span></code> we get (3) <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e1 ::</span> <span class="dt">T'</span> <span class="ot">-&gt;</span> <span class="dt">T</span></code> and (4) <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e2 ::</span> <span class="dt">T'</span></code>. By IH from (4) we get (5) <code class="sourceCode haskell"><span class="dt">E</span> ; e2 <span class="fu">==&gt;</span> v2</code> and (6) <code class="sourceCode haskell">v2 <span class="ot">::</span><span class="fu">:</span> <span class="dt">T'</span></code>. By IH from (3) we get (7) <code class="sourceCode haskell"><span class="dt">E</span> ; e1 <span class="fu">==&gt;</span> v1</code> and (8) <code class="sourceCode haskell">v1 <span class="ot">::</span><span class="fu">:</span> <span class="dt">T'</span> <span class="ot">-&gt;</span> <span class="dt">T</span></code>, hence by <code class="sourceCode haskell"><span class="dt">V</span><span class="fu">-</span><span class="dt">Clos</span></code>: <code class="sourceCode haskell">v1</code> is a closure <code class="sourceCode haskell"><span class="fu">&lt;</span><span class="dt">E'</span>,x,e<span class="fu">&gt;</span></code> and moreover given (6), we also have (9) <code class="sourceCode haskell">(x<span class="fu">:=</span>v2,<span class="dt">E</span>) ; e <span class="fu">==&gt;</span> v</code> and (10) <code class="sourceCode haskell">v <span class="ot">::</span><span class="fu">:</span> <span class="dt">T</span></code>. By <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">App</span></code> from (7), (5), (9) we have (A) <code class="sourceCode haskell"><span class="dt">E</span> ; (e1 e2) <span class="fu">==&gt;</span> v</code> and (B) follows by (10).</p>
+<p>Because <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span> e1<span class="ot"> e2 ::</span> <span class="dt">T</span></code>, then by <code class="sourceCode haskell"><span class="dt">T</span><span class="fu">-</span><span class="dt">App</span></code> we get (3) <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e1 ::</span> <span class="dt">T'</span> <span class="ot">-&gt;</span> <span class="dt">T</span></code> and (4) <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">|-</span><span class="ot"> e2 ::</span> <span class="dt">T'</span></code>. By IH from (4) we get (5) <code class="sourceCode haskell"><span class="dt">E</span> ; e2 <span class="fu">==&gt;</span> v2</code> and (6) <code class="sourceCode haskell"><span class="ot">v2 ::</span> <span class="dt">T'</span></code>. By IH from (3) we get (7) <code class="sourceCode haskell"><span class="dt">E</span> ; e1 <span class="fu">==&gt;</span> v1</code> and (8) <code class="sourceCode haskell"><span class="ot">v1 ::</span> <span class="dt">T'</span> <span class="ot">-&gt;</span> <span class="dt">T</span></code>, hence by <code class="sourceCode haskell"><span class="dt">V</span><span class="fu">-</span><span class="dt">Clos</span></code>: <code class="sourceCode haskell">v1</code> is a closure <code class="sourceCode haskell"><span class="fu">&lt;</span><span class="dt">E'</span>,x,e<span class="fu">&gt;</span></code> and moreover given (6), we also have (9) <code class="sourceCode haskell">(x<span class="fu">:=</span>v2,<span class="dt">E</span>) ; e <span class="fu">==&gt;</span> v</code> and (10) <code class="sourceCode haskell"><span class="ot">v ::</span> <span class="dt">T</span></code>. By <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">App</span></code> from (7), (5), (9) we have (A) <code class="sourceCode haskell"><span class="dt">E</span> ; (e1 e2) <span class="fu">==&gt;</span> v</code> and (B) follows by (10).</p>
 <p><br> <br> <br></p>
 <h2 id="now-to-the-theorem">Now to the Theorem</h2>
-<p><strong>Theorem</strong> For any program <code class="sourceCode haskell">e</code> and type <code class="sourceCode haskell"><span class="dt">T</span></code>, if <code class="sourceCode haskell">[] <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T</span></code>, then there exists value <code class="sourceCode haskell">v</code> such that <code class="sourceCode haskell">[] ; e  <span class="fu">==&gt;</span>  v</code>.</p>
-<p><strong>Proof:</strong> Because <code class="sourceCode haskell">[] <span class="ot">::</span><span class="fu">:</span> []</code> by <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Nil</span></code>, we can invoke Lemma with <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">=</span> []</code>, <code class="sourceCode haskell"><span class="dt">E</span> <span class="fu">=</span> []</code> to get <code class="sourceCode haskell">v</code> such that <code class="sourceCode haskell">[] ; e <span class="fu">==&gt;</span> v</code>.</p>
+<p><strong>Theorem</strong> For any program <code class="sourceCode haskell">e</code> and type <code class="sourceCode haskell"><span class="dt">T</span></code></p>
+<ul>
+<li>if <code class="sourceCode haskell">[] <span class="fu">|-</span><span class="ot"> e ::</span> <span class="dt">T</span></code>,</li>
+<li>then there exists a value <code class="sourceCode haskell">v</code> such that <code class="sourceCode haskell">[] ; e  <span class="fu">==&gt;</span>  v</code>.</li>
+</ul>
+<p><strong>Proof:</strong> Because <code class="sourceCode haskell">[]<span class="ot"> ::</span> []</code> by <code class="sourceCode haskell"><span class="dt">E</span><span class="fu">-</span><span class="dt">Nil</span></code>, we can invoke <em>Lemma</em> with <code class="sourceCode haskell"><span class="dt">G</span> <span class="fu">=</span> []</code>, <code class="sourceCode haskell"><span class="dt">E</span> <span class="fu">=</span> []</code> to get <code class="sourceCode haskell">v</code> such that <code class="sourceCode haskell">[] ; e <span class="fu">==&gt;</span> v</code>.</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <p>That’s all folks</p>
                 <hr>
