@@ -37,20 +37,8 @@ Lecture schedule is subject to change!
 | 11/29      | *No lecture: Thanksgiving*      |                           |               |
 | 12/2       | Semantics and Type Systems      |  [html][lec9] [notes][soundness]  |       |
 | 12/4       | contd.                          |                           |               |
-| 12/6       | Final Review                    |                           |               |
+| 12/6       | Final Review                    |  [Q1][setReview] [Q2][HOReview] [Q3][semantics] |   |
 | 12/12      | **Final**                       |                           |               |
-
-
-<!--
-## Discussions
-
-| Date       | Topic                    | Slides        | 
-|:----------:|:-------------------------|:-------------:|
-| 1/14       | Lambda Calculus          | [pdf][disc1]  |
-| 2/25       | Nano: Parsing and Eval   | [pdf][disc5]  |
-| 3/4        | Type checking tips       | [pdf][disc6]  |
-| 3/11       | Final Review             | [pdf][discFinal] |
--->
 
 
 [lec0]: lectures/00-hello.html
@@ -65,17 +53,16 @@ Lecture schedule is subject to change!
 [lec9]: lectures/09-types.html
 [soundness]: lectures/soundness.html
 
-[disc1]: /static/raw/disc1-lambda_calc.pdf
-[disc5]: /static/raw/disc5-parsing.pdf
-[disc6]: /static/raw/disc-pa5tips.pdf
-[discFinal]: /static/raw/final-disc.pdf
+[semantics]: /static/raw/semantics.pdf
 
 [parsing]: https://github.com/cse130-sp18/arith
-
 [elsa]: https://github.com/ucsd-progsys/elsa
+
 [intro]: /static/raw/Intro.hs
 [datatypes]: /static/raw/Datatypes.hs
 [tail]: /static/raw/Tail.hs
+[setReview] /static/raw/set_review.lc
+[HOReview] /static/raw/HO_review.hs
 
 [midterm]: /static/raw/130-midterm-wi19.pdf
 [midterm-sol]: /static/raw/130-midterm-wi19-solution.pdf
