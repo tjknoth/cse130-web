@@ -61,8 +61,8 @@ Lecture schedule is subject to change!
 [intro]: /static/raw/Intro.hs
 [datatypes]: /static/raw/Datatypes.hs
 [tail]: /static/raw/Tail.hs
-[setReview] /static/raw/set_review.lc
-[HOReview] /static/raw/HO_review.hs
+[setReview]: /static/raw/set_review.lc
+[HOReview]: /static/raw/HO_review.hs
 
 [midterm]: /static/raw/130-midterm-wi19.pdf
 [midterm-sol]: /static/raw/130-midterm-wi19-solution.pdf
