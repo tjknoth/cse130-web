@@ -833,10 +833,12 @@ Which of the following typing relations have a derivation for *some* type `T`?
 ```
 
 
-*(C)*
+*(D)*
 
 ```
-                                       [T-Var]--------  [T-Num]---------
+[T-Var]-----------  -------------[T-Var]
+[...]|-f::Int->Int  [...]|-y::Int
+[T-App]-------------------------      [T-Var]--------  [T-Num]---------
 [y:Int,f:Int->Int] |- f y :: Int       [x:Int]|-x::Int  [x:Int]|-1::Int
 [T-Lam]------------------------------      ----------------------[T-Add]
 [f:Int->Int] |- \y -> f y :: Int->Int      [x:Int] |- x + 1 :: Int
