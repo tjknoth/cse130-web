@@ -3,13 +3,6 @@ title: <div style="color: #ffffff"><b>Calendar</b></div>
 headerImg: road.jpg
 ---
 
-<!--
-## Clicker Groups
-
-- [Groups](/static/raw/seating.txt)
-- [Seating Chart](/static/img/seating-WLH-2005.pdf)
---!>
-
 
 ## Calendar (Deadlines, Office Hours)
 

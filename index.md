@@ -3,6 +3,31 @@ title: <b>Programming Languages</b>
 headerImg: angles.jpg
 ---
 
+## Course Resources
+
+- **Lectures:**             MWF 2:00-2:50pm on [Zoom](https://ucsd.zoom.us/j/934813358)
+- **Discussion section:**   F 5:00-5:50pm on [Zoom](https://ucsd.zoom.us/j/934813358)
+- **Calendar:**             Check [here](calendar.html) for office hours, deadlines, etc.
+- **Canvas:**               Check [here](https://canvas.ucsd.edu/courses/12776) for announcement and discussions
+
+## Team
+
+### Instructor
+
+* [Nadia Polikarpova](https://cseweb.ucsd.edu/~npolikarpova/)
+
+### Teaching Assistants
+
+* [Zheng Guo](https://aaronguo1996.github.io/)
+* [Tristan Knoth](https://tjknoth.github.io/)
+* [Alex Sanchez-Stern](http://alex.uwplse.org/)
+
+### Tutors
+
+* [David Hacker](https://dmhacker.github.io/)
+* [Darya Verzhbinsky](https://www.linkedin.com/in/darya-ver)
+* Daniel Wang
+
 ## Overview
 
 Programming Languages are the duct tape, bricks, mortar
@@ -35,11 +60,3 @@ assignment/exam in question, students may also face other penalties,
 up to and including, expulsion from the University.  Should you have
 any doubts about the moral and/or ethical implications of an activity
 regarding the course, please see the instructor.
-
-## Research
-
-Your class work might be used for research purposes. For example, we may
-use anonymized student assignments to design algorithms or build tools to
-help programmers. Any student who wishes to opt out can contact the
-instructor or TA to do so after final grades have been issued.
-**This has no impact on your grade in any manner.**

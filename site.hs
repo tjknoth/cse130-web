@@ -50,17 +50,17 @@ main = hakyll $ do
   match "static/*/*"       $ do route idRoute
                                 compile copyFileCompiler
   match (fromList tops)    $ crunchWithCtx siteCtx
-  match "lectures/00-*"    $ crunchWithCtxCustom "final" postCtx
-  match "lectures/01-*"    $ crunchWithCtxCustom "final" postCtx
-  match "lectures/02-*"    $ crunchWithCtxCustom "final" postCtx
-  match "lectures/03-*"    $ crunchWithCtxCustom "final" postCtx
-  match "lectures/04-*"    $ crunchWithCtxCustom "final" postCtx
-  match "lectures/05-*"    $ crunchWithCtxCustom "final" postCtx
-  match "lectures/06-*"    $ crunchWithCtxCustom "final" postCtx
-  match "lectures/07-*"    $ crunchWithCtxCustom "final" postCtx
-  match "lectures/08-*"    $ crunchWithCtxCustom "final" postCtx
-  match "lectures/09-*"    $ crunchWithCtxCustom "final" postCtx
-  match "lectures/soundness*"    $ crunchWithCtxCustom "final" postCtx
+  match "lectures/00-*"    $ crunchWithCtxCustom "lecture" postCtx
+  -- match "lectures/01-*"    $ crunchWithCtxCustom "final" postCtx
+  -- match "lectures/02-*"    $ crunchWithCtxCustom "final" postCtx
+  -- match "lectures/03-*"    $ crunchWithCtxCustom "final" postCtx
+  -- match "lectures/04-*"    $ crunchWithCtxCustom "final" postCtx
+  -- match "lectures/05-*"    $ crunchWithCtxCustom "final" postCtx
+  -- match "lectures/06-*"    $ crunchWithCtxCustom "final" postCtx
+  -- match "lectures/07-*"    $ crunchWithCtxCustom "final" postCtx
+  -- match "lectures/08-*"    $ crunchWithCtxCustom "final" postCtx
+  -- match "lectures/09-*"    $ crunchWithCtxCustom "final" postCtx
+  -- match "lectures/soundness*"    $ crunchWithCtxCustom "final" postCtx
   match "assignments/*"    $ crunchWithCtx postCtx
   match "templates/*"      $ compile templateCompiler
 
@@ -81,6 +81,7 @@ siteCtx =
     constField "github_username"    "nadia-polikarpova"      `mappend`
     constField "google_username"    "npolikarpova@eng.ucsd.edu"       `mappend`
     constField "google_userid"      "u/0/104385825850161331469" `mappend`
+    constField "canvas_classid"     "12776" `mappend`
     constField "piazza_classid"     "ucsd/fall2019/cse130/home" `mappend`
     defaultContext
 
@@ -92,5 +93,4 @@ tops =
   , "links.md"
   , "assignments.md"
   , "calendar.md"
-  , "contact.md"
   ]

@@ -5,40 +5,39 @@ headerImg: books.jpg
 
 Lecture schedule is subject to change!
 
-| Date       | Topic                           | Notes                     |  Code         |
-|:----------:|:--------------------------------|:-------------------------:|:-------------:|
-| 9/27       | Hello, World!                   | [html][lec0]              |               |            
-| 9/30       | The Lambda Calculus             | [html][lec1]              |               |
-| 10/2       | contd.                          |                           |               |
-| 10/4       | contd.                          |                           |               |
-| 10/7       | contd.                          |                           |               |
-| 10/9       | contd.                          |                           |               |
-| 10/11      | A crash course in Haskell       | [html][lec2]              |               |
-| 10/14      | contd.                          |                           |               |
-| 10/16      | contd.                          |                           |               |
-| 10/18      | contd.                          |                           |               |
-| 10/21      | Datatypes and Recursion         | [html][lec3]              |               |
-| 10/23      | contd.                          |                           |               |
-| 10/25      | contd.                          |                           |               |
-| 10/28      | Higher Order Functions          |  [html][lec4]             |               |
-| 10/30      | contd.                          |                           |               |
-| 11/1       | **Midterm**                     |                           |               |
-| 11/4       | Environments and Closures       |  [html][lec5]             |               |
-| 11/6       | contd.                          |                           |               |
-| 11/8       | contd.                          |                           |               |
-| 11/11      | *No lecture: Veterans day*      |                           |               |
-| 11/13      | Lexing and Parsing              |  [html][lec6] [tutorial][parsing] |       |
-| 11/15      | contd.                          |                           |               |
-| 11/18      | Overloading & TypeClasses       |  [html][lec7]             |               |
-| 11/20      | contd.                          |                           |               |
-| 11/22      | Monads                          |  [html][lec8]             |               |
-| 11/25      | contd.                          |                           |               |
-| 11/27      | contd.                          |                           |               |
-| 11/29      | *No lecture: Thanksgiving*      |                           |               |
-| 12/2       | Semantics and Type Systems      |  [html][lec9] [notes][soundness]  |       |
-| 12/4       | contd.                          |                           |               |
-| 12/6       | Final Review                    |  [Q1][setReview] [Q2][HOReview] [Q3][semantics] |   |
-| 12/12      | **Final**                       |                           |               |
+| Date       | Topic                           | Material                  |
+|:----------:|:--------------------------------|:-------------------------:|
+| 3/30       | Hello, World!                   | [html][lec0]              |            
+| 4/1        | The Lambda Calculus             |                           |
+| 4/3        | contd.                          |                           |
+| 4/6        | contd.                          |                           |
+| 4/8        | contd.                          |                           |
+| 4/10       | contd.                          |                           |
+| 4/13       | A crash course in Haskell       |                           |
+| 4/15       | contd.                          |                           |
+| 4/17       | contd.                          |                           |
+| 4/20       | contd.                          |                           |
+| 4/22       | Datatypes and Recursion         |                           |
+| 4/24       | contd.                          |                           |
+| 4/27       | contd.                          |                           |
+| 4/29       | Higher Order Functions          |                           |
+| 5/1        | contd.                          |                           |
+| 5/4        | **Midterm**                     |                           |
+| 5/6        | Environments and Closures       |                           |
+| 5/8        | contd.                          |                           |
+| 5/11       | contd.                          |                           |
+| 5/13       | Lexing and Parsing              |                           |
+| 5/15       | contd.                          |                           |
+| 5/18       | Overloading & TypeClasses       |                           |       
+| 5/20       | contd.                          |                           |
+| 5/22       | Monads                          |                           |
+| 5/25       | *No lecture: Memorial Day*      |                           |
+| 5/27       | contd.                          |                           |
+| 5/29       | contd.                          |                           |
+| 6/1        | Semantics and Type Systems      |                           |
+| 6/3        | contd.                          |                           |
+| 6/5        | Final Review                    |                           |
+| 6/12       | **Final**                       |                           |
 
 
 [lec0]: lectures/00-hello.html
