@@ -404,13 +404,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - [webpage](https://nadia-polikarpova.github.io/cse130-web)
     - calendar, lecture notes/recordings, programming assignments, ...
 - [canvas](https://canvas.ucsd.edu/courses/12776)
-    - to-go place if you have a question or need help    
-<!--
-- [piazza](https://piazza.com/ucsd/fall2019/cse130/home)
-    - to-go place if you have a question or need help
-    - email is futile
--->    
-  
+    - to-go place if you have a question or need help  
 
 
 
@@ -530,13 +524,13 @@ Live lecture over Zoom during scheduled lecture time
 
 How are you supposed to turn in your 130 homework assignment?
 
-**A**  only one of the partners must turn in the solution
+- **A**  only one of the partners must turn in the solution
 
-**B**  both partners must turn in (potentially the same) solution
+- **B**  both partners must turn in (potentially the same) solution
 
-**C**  working in pairs is not allowed
+- **C**  working in pairs is not allowed
 
-**D** there are no homework assignments in 130
+- **D** there are no homework assignments in 130
 
 
 
