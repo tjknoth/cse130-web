@@ -41,6 +41,35 @@ Tutors:
 * [Darya Verzhbinsky](https://www.linkedin.com/in/darya-ver)
 * Daniel Wang
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Lecture Format
+
+Live lecture over Zoom during scheduled lecture time
+
+- Keep your video and mic off unless you are talking
+- Two ways to ask a question:
+    1. "Raise your hand" in zoom and I will call on you
+    2. Type into zoom chat
+- Same if I ask you a question
+    - Also use "thumb up" as a confirmation
+- I will assign you to "breakout rooms"
+    - Go to your breakout room for a small-group discussion
+    - Come back when I ask you to
+    - Let's test that!
+    
+    
+Lectures will also be recorded and published on website / canvas    
+
+
 
 <br>
 <br>
@@ -404,7 +433,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - [webpage](https://nadia-polikarpova.github.io/cse130-web)
     - calendar, lecture notes/recordings, programming assignments, ...
 - [canvas](https://canvas.ucsd.edu/courses/12776)
-    - to-go place if you have a question or need help  
+    - use Canvas discussions if you have a question or need help  
 
 
 
@@ -444,6 +473,8 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     - your partner will be in the same or nearby time zone so you can do remote pair programming
     - if this absolutely doesn't work for you, let me know this week
     - submit assignments **individually**
+- Please fill in this [registration form](https://forms.gle/3vqWc8UT6rGQMCQT6)
+    - to get assigned a partner and get homework credit    
 
 <br>
 <br>
@@ -474,42 +505,30 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 <br>
 <br>
 
-## Lecture Format
+## In-class Quizzes
 
-Live lecture over Zoom during scheduled lecture time
-
-- Two ways to ask a question:
-    1. "Raise your hand" in zoom and I will call on you
-    2. Type into zoom chat
-- Same if I ask you a question
-- Quizzes via Zoom polls
-    - Polls make class interactive
-    - Help *you* and *me* understand what's tricky
-    - We will randomly assign you to *breakout rooms* to discuss quizzes
+We will do quizzes in class via Zoom polls
+  - Make class interactive
+  - Help *you* and *me* understand what's tricky
     
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+**Protocol**
 
-## Quiz Protocol
-
-1. **Solo Vote**
+1. *Solo Vote*
+    - I show the quiz on my screen and start a poll
     - Think for yourself, select answer
 
-2. **Discuss**
+2. *Discuss*
     - Go into your *breakout room*
+    - To see the quiz, open the lecture notes from the class website
     - Analyze problem with your groups
     - Reach consensus
     - I will "call you back" from the room when time's up
 
-3. **Group Vote**
+3. *Group Vote*
     - Everyone in group votes
     - Hopefully the same way but not enforced
 
-4. **Class Discuss**
+4. *Class Discuss*
     - What was easy or tricky?    
 
 <br>
@@ -589,9 +608,8 @@ Exams done **alone**
 ## Students with Disabilites
 
 Students requesting accommodations for this course due to a disability or current functional limitation must provide 
-a current **Authorization for Accommodation (AFA)** letter issued by the Office for Students with Disabilities (OSD) 
-which is located in University Center 202 behind Center Hall.
-  
+a current **Authorization for Accommodation (AFA)** letter issued by the Office for Students with Disabilities (OSD). 
+
 Students are required to present their AFA letters to Faculty (please make arrangements to contact me privately) 
 and to the CSE OSD Liaison in advance so that accommodations may be arranged.
 
@@ -605,15 +623,18 @@ and to the CSE OSD Liaison in advance so that accommodations may be arranged.
 
 ## Diversity and Inclusion
 
-Our goal is to create a diverse and inclusive learning environment where all students feel comfortable and can thrive. 
-If there is a way we can make you feel more included please let one of the course staff know, 
-either in person, via email/discussion board, or even in a note under the door.
-Our learning about diverse perspectives and identities is an ongoing process, and we welcome your perspectives and input.  
+**Goal**
 
-We also expect that you, as a student in this course, will honor and respect your classmates, 
-abiding by the UCSD [Principles of Community](https://ucsd.edu/about/principles.html).
-Please understand that others’ backgrounds, perspectives and experiences may be different than your own,
-and help us to build an environment where everyone is respected and feels comfortable.
+- Create a diverse and inclusive learning environment 
+- Where all students feel comfortable and can thrive 
+- If there is a way we can make you feel more included, please let one of the course staff know
+
+**Expectations**
+
+- We expect that you will honor and respect your classmates
+- Abide by the UCSD [Principles of Community](https://ucsd.edu/about/principles.html)
+- Understand that others’ backgrounds, perspectives and experiences may be different than your own
+- Help us to build an environment where everyone is respected and feels comfortable.
 
 If you experience any sort of **harassment or discrimination**, please contact the [Office of Prevention of Harassment and Discrimination](https://ophd.ucsd.edu/).
 Students may receive confidential assistance at the [Sexual Assault Resource Center](http://care.ucsd.edu) at (858) 534-5793
@@ -626,18 +647,16 @@ or [Counseling and Psychological Services](http://caps.ucsd.edu.) (CAPS) at (85
 <br>
 <br>
 
-## Basic Needs
+## COVID-19
 
-- Are you eating properly?
-- Do you have adequate access to nutritious food?
-- Do you have stable housing?
-- Are you homeless or couch surfing?
+- We understand that this quarter will present unique challenges
+- And that you might be disadvantaged in new ways
+    - Poor Internet connection, different time zone, ...
+    
+- I will do my best to accommodate your needs, just ask me or one of the course staff!
+- You have the option of taking this class *P/NP* without affecting your GPA
 
-If you or someone you know has food and/or housing insecurity, be aware of [Basic Needs](http://basicneeds.ucsd.edu)
-
-- The [Triton Food Pantry](https://www.facebook.com/tritonfoodpantry/) (in the old Student Center), is free and anonymous, and includes produce. 
-- Financial aid resources, the possibility of emergency grant funding, and off-campus housing referral resources are available.
-- CAPS and college deans can connect students to the above resources, as well as other community resources and support.  
+- Please be patient with us too, it is all new to us!
 
 
 <br>
