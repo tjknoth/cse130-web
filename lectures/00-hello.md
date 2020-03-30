@@ -8,14 +8,14 @@ date: 2017-03-28
 
 ![Nadia Polikarpova](https://cseweb.ucsd.edu/~npolikarpova/images/nadia_polikarpova.jpg){#fig:nadia .align-center width=25%}
 
-- Assistant professor at CSE since Sept 2017
+- Assistant professor at CSE since 2017
 - PhD at ETH Zurich
 - Postdoc at MIT
 
 ### My Research
 
-- Software Verification: how to prove software is doing the right thing?
-- Software Synthesis: how to generate software that does the right thing?
+- Program Verification: how to *prove* the program is doing the right thing?
+- Program Synthesis: how to *generate* a program that does the right thing?
 
 <br>
 <br>
@@ -31,44 +31,17 @@ date: 2017-03-28
 
 Teaching assistants:
 
-* [Shraddha Barke](https://shraddhabarke.github.io/)
-* [Michael James](http://michaelbjames.com/)
-* [John Sarracino](http://goto.ucsd.edu/~john/)
+* [Zheng Guo](https://aaronguo1996.github.io/)
+* [Tristan Knoth](https://tjknoth.github.io/)
+* [Alex Sanchez-Stern](http://alex.uwplse.org/)
 
 Tutors:
 
-* Shivani Doshi
+* [David Hacker](https://dmhacker.github.io/)
+* [Darya Verzhbinsky](https://www.linkedin.com/in/darya-ver)
 * Daniel Wang
-* Jiaxiao (Joe) Zhou
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-## What is CSE 130 about?
-
-<br>
-<br>
-
-*Bad news:* 
-  
-  - lots of work
-
-*Good news:* 
-
-  - lots of programming!
-  - (and we're here to help)
-
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -93,6 +66,7 @@ Learning...
 
 There was no
 
+- Python      30 years ago
 - Java        25 years ago
 - C#          20 years ago
 - Rust        10 years ago
@@ -109,7 +83,6 @@ There was no
 ## What is CSE 130 about?
 
 - Concepts in programming languages
-- Programming paradigms
 - Language design and implementation
 
 
@@ -170,9 +143,10 @@ L2: ...
 
 ## The above language is "equivalent to" every PL!
 
-- But good luck writing QuickSort ...
-- ... or Plants v. Zombies
-- ... or Spotify!
+But good luck writing 
+- QuickSort
+- Fortnite
+- Spotify
 
 <br>
 <br>
@@ -226,7 +200,7 @@ Language affects how ideas and computation are expressed
 
 ## Course Goals
 
-![Morpheus, The Matrix](/static/img/morpheus.png){#fig:morpheus .align-center width=25%}
+![130 Brain](https://ucsd-cse130.github.io/wi20/static/img/galaxy-brain-130.jpg){#fig:morpheus .align-center width=40%}
 
 > Free Your Mind.
 
@@ -338,9 +312,13 @@ Yes.
 ## Course Syllabus
 
 - Lambda calculus (2 weeks)
-- Haskell (8 weeks)
-    - learn Haskell
-    - implement a toy language *in* Haksell
+    - The simplest language on Earth
+- Haskell (5 weeks)
+    - A cool functional language
+- Build your own language (3 weeks)
+    - How do we implement a new language (in Haksell)?
+    - How do we formalize a language and prove things about it?
+    
 
 <br>
 <br>
@@ -424,10 +402,14 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 ## Course Logistics
 
 - [webpage](https://nadia-polikarpova.github.io/cse130-web)
-    - calendar, lecture notes, programming assignments, ...
+    - calendar, lecture notes/recordings, programming assignments, ...
+- [canvas](https://canvas.ucsd.edu/courses/12776)
+    - to-go place if you have a question or need help    
+<!--
 - [piazza](https://piazza.com/ucsd/fall2019/cse130/home)
     - to-go place if you have a question or need help
     - email is futile
+-->    
   
 
 
@@ -441,11 +423,10 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 ## Grading
 
-- 30% Assignments
-- 30% Midterm
-- 35% Final
-- 05% Class participation (clickers)
-- 05% Piazza Extra Credit
+- 40% Homework assignments
+- 25% Midterm
+- 30% Final
+- 05% Canvas discussion
     - To **top 20** best participants
     
 <br>
@@ -461,12 +442,14 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - Released [online](https://nadia-polikarpova.github.io/cse130-web/assignments.html), at least a week before due date
 - Due on **Wednesday at 11:59pm**
     - no assignment this and next Wednesday
-- Four late days, used as **whole unit**
-    - 5 mins late = 1 late day
+- Eight late days, no more than 4 late days per assignment
+    - used atomically (5 mins late = 1 late day)
 - Submission instructions in the assignment
-- Solve in **groups of at most two**
-    - register your group [here](https://forms.gle/ytzpRJUqBKFKX5un6) 
-    - submit **individually**
+- Solve in **groups of two**
+    - we will randomly assign you a partner on Canvas
+    - your partner will be in the same or nearby time zone so you can do remote pair programming
+    - if this absolutely doesn't work for you, let me know this week
+    - submit assignments **individually**
 
 <br>
 <br>
@@ -477,14 +460,15 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     
 ## Exams    
 
-- Midterm: in-class on *Nov 1*
-    - subject to change but unlikely 
-- Final: *Dec 12*
-- 2-sided "cheat sheet"
+- Midterm on *May 4*
+    - most likely format: same as homework but individual and with 24h timespan
+- Final: *June 12*
+    - same format as midterm
+- You can use any resources you want, but not ask anyone for help
 - The final is cumulative
 - Midterm grade is calculated as `midterm > 0 ?  max(final, midterm) : 0`
     - you get a second chance if you don’t do well on the midterm
-    - you must show up to both the midterm and the final
+    - you must turn in both the midterm and the final
 
 
 
@@ -496,40 +480,19 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 <br>
 <br>
 
-## Clickers
+## Lecture Format
 
-Make class interactive
+Live lecture over Zoom during scheduled lecture time
 
-+ Help **you** and **me** understand what's tricky
-
-Clickers Are Not Optional
-
-+  **Cheap** ones are fine
-+  **Respond** to 75% questions
-
-Register your clicker [here](https://forms.gle/qCY8ybPaygudvdz2A)
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-## TEST QUIZ
-
-If you work on a 130 assignment with a partner...
-
-**A.**  only one of the partners must turn in the solution
-
-**B.**  both partners must turn in (potentially the same) solution
-
-**C.**  working in pairs is not allowed
-
-
+- Two ways to ask a question:
+    1. "Raise your hand" in zoom and I will call on you
+    2. Type into zoom chat
+- Same if I ask you a question
+- Quizzes via Zoom polls
+    - Polls make class interactive
+    - Help *you* and *me* understand what's tricky
+    - We will randomly assign you to *breakout rooms* to discuss quizzes
+    
 <br>
 <br>
 <br>
@@ -543,17 +506,37 @@ If you work on a 130 assignment with a partner...
     - Think for yourself, select answer
 
 2. **Discuss**
-    - Analyze Problem in Groups
+    - Go into your *breakout room*
+    - Analyze problem with your groups
     - Reach consensus
-    - Have questions, raise your hand!
+    - I will "call you back" from the room when time's up
 
 3. **Group Vote**
     - Everyone in group votes
     - Hopefully the same way but not enforced
-    - You don't have to answer correctly to get points!
 
 4. **Class Discuss**
-    - What was easy or tricky?
+    - What was easy or tricky?    
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## TEST QUIZ
+
+How are you supposed to turn in your 130 homework assignment?
+
+**A**  only one of the partners must turn in the solution
+
+**B**  both partners must turn in (potentially the same) solution
+
+**C**  working in pairs is not allowed
+
+**D** there are no homework assignments in 130
 
 
 
@@ -567,11 +550,11 @@ If you work on a 130 assignment with a partner...
 
 ## Your Resources
 
-- Discussion section: Mon 5pm, CENTR 115
+- Discussion section: Fri 5pm, same Zoom link
 - Office hours
     - every day, check calendar
     - I expect you to come to my office hours at least once this quarter
-- Piazza
+- Canvas
     - we answer during work hours
 - **No text**        
     - online lecture notes and links
