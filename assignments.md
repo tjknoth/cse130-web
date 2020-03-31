@@ -3,12 +3,6 @@ title: Assignments
 headerImg: angles.jpg
 ---
 
-**LATE POLICY:** You have a total of **8** late days
-that can be used in atomic units over the entire quarter,
-but no more than **4** late days per assignment. 
-By *atomic* I mean, for example, that 35
-minutes over the deadline is equal to 1 late day.
-
 ## Assignments
 
 Will appear here.

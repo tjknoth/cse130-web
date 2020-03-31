@@ -173,6 +173,7 @@ L2: ...
 ## The above language is "equivalent to" every PL!
 
 But good luck writing 
+
 - QuickSort
 - Fortnite
 - Spotify
@@ -446,10 +447,10 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 ## Grading
 
-- 40% Homework assignments
+- 45% Homework assignments
 - 25% Midterm
 - 30% Final
-- 05% Canvas discussion
+- 05% Extra credit for Canvas discussion
     - To **top 20** best participants
     
 <br>
@@ -475,6 +476,8 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     - submit assignments **individually**
 - Please fill in this [registration form](https://forms.gle/3vqWc8UT6rGQMCQT6)
     - to get assigned a partner and get homework credit    
+- If you have a good reason to work a specific student rather than a randomly assigned partner,
+please *additionally* fill in this [form](https://forms.gle/T4eGCSDDppN4KbmWA)
 
 <br>
 <br>
