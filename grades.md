@@ -18,7 +18,7 @@ we will assign you a partner randomly at the beginning of the quarter.
 even if their solution is identical to their partner's.
 - Please fill in this [registration form](https://forms.gle/3vqWc8UT6rGQMCQT6)
 to get assigned a partner and get homework credit 
-- If you have a good reason to work a specific student rather than a randomly assigned partner,
+- If you have a good reason to work with a specific student rather than a randomly assigned partner,
 please fill in this [form](https://forms.gle/T4eGCSDDppN4KbmWA)
 
 **Late Policy**
