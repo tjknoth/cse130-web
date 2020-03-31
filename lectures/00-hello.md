@@ -86,9 +86,9 @@ Lectures will also be recorded and published on website / canvas
 
 Learning... 
 
-- JavaScript in September
-- Haskell in October
-- C++ in November
+- JavaScript in April
+- Haskell in May
+- C++ in June
 - etc. 
 
 ### New languages come (and go ...)
