@@ -5,7 +5,17 @@ headerImg: angles.jpg
 
 ## Assignments
 
-Will appear here.
+Click the Github Classroom link next to the assignment. 
+This will automatically create your private assignment repository, 
+pre-populated with starter code and a README file with all the instructions.
+
+**Note:** we are still working on setting up the `ieng6` machines,
+the assignment will not yet work on your account!
+
+| Link                                             | Name                            | Deadline (11:59pm)        |
+|:------------------------------------------------:|:--------------------------------|:-------------------------:|
+| [HW0](https://classroom.github.com/a/-NM-zyrL)   | The Lambda Calculus             | 4/15                      |            
+
 
 <!--
 - [HW #0](https://github.com/cse130-fa19/00-lambda): The Lambda Calculus (due Wed 10/16 by 11:59pm)
