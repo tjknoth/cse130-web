@@ -730,7 +730,7 @@ replace all free occurrences of the _formal_ by that _argument_
 =b> apple
 ```
 
-Is this right? Ask [Elsa](http://goto.ucsd.edu:8095/index.html#?demo=blank.lc)!
+Is this right? Ask [Elsa](http://goto.ucsd.edu/elsa/index.html)!
 
 <br>
 <br>
