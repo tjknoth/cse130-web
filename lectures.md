@@ -40,6 +40,22 @@ Lecture schedule is subject to change!
 | 6/12       | **Final**                       |                           |
 
 
+**Discussions**
+
+| Date       | Topic                           |
+|:----------:|:--------------------------------|
+| 4/3        | Lambda Calculus: intro, syntax and reductions   |
+| 4/10       | Lambda Calculus: data type encodings            |
+| 4/17       | Haskell: simple recursion. Quickcheck           |
+| 4/24       | Haskell: recursive data types                   |
+| 5/1        | Haskell: list processing, folds. Midterm review |
+| 5/8        | Nano: interpreters                              |
+| 5/15       | Lexers, and parsers                             |
+| 5/22       | Type classes                                    |
+| 5/29       | IO Monad                                        |
+| 6/5        | Final Review                                    |
+
+
 [lec0]: lectures/00-hello.html
 [lec1]: lectures/01-lambda.html
 [lec2]: lectures/02-haskell.html
