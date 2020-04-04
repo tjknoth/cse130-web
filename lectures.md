@@ -42,18 +42,18 @@ Lecture schedule is subject to change!
 
 **Discussions**
 
-| Date       | Topic                           |
-|:----------:|:--------------------------------|
-| 4/3        | Lambda Calculus: intro, syntax and reductions   |
-| 4/10       | Lambda Calculus: data type encodings            |
-| 4/17       | Haskell: simple recursion. Quickcheck           |
-| 4/24       | Haskell: recursive data types                   |
-| 5/1        | Haskell: list processing, folds. Midterm review |
-| 5/8        | Nano: interpreters                              |
-| 5/15       | Lexers, and parsers                             |
-| 5/22       | Type classes                                    |
-| 5/29       | IO Monad                                        |
-| 6/5        | Final Review                                    |
+| Date       | Topic                                           | Material                  |
+|:----------:|:------------------------------------------------|:-------------------------:|
+| 4/3        | Lambda Calculus: intro, syntax and reductions   | [slides][disc1]           |
+| 4/10       | Lambda Calculus: data type encodings            |                           |
+| 4/17       | Haskell: simple recursion. Quickcheck           |                           |
+| 4/24       | Haskell: recursive data types                   |                           |
+| 5/1        | Haskell: list processing, folds. Midterm review |                           |
+| 5/8        | Nano: interpreters                              |                           |
+| 5/15       | Lexers, and parsers                             |                           |
+| 5/22       | Type classes                                    |                           |
+| 5/29       | IO Monad                                        |                           |
+| 6/5        | Final Review                                    |                           |
 
 
 [lec0]: lectures/00-hello.html
@@ -67,6 +67,8 @@ Lecture schedule is subject to change!
 [lec8]: lectures/08-monads.html
 [lec9]: lectures/09-types.html
 [soundness]: lectures/soundness.html
+
+[disc1]: /static/raw/discussion4-3-20.pdf
 
 [semantics]: /static/raw/semantics.pdf
 
