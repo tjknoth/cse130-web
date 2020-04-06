@@ -451,9 +451,10 @@ apple banana        <span class="co">-- Application of variable &quot;apple&quot
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Simplify expression:</span>
 
   (x <span class="fu">+</span> <span class="dv">2</span>)<span class="fu">*</span>(3x <span class="fu">-</span> <span class="dv">1</span>)
- <span class="ot">=&gt;</span> 
-  <span class="fu">???</span>
-</code></pre></div>
+ <span class="ot">=&gt;</span> <span class="co">-- RULE: mult. polynomials</span>
+  3x<span class="fu">^</span><span class="dv">2</span> <span class="fu">-</span> x <span class="fu">+</span> 6x <span class="fu">-</span> <span class="dv">2</span>
+ <span class="ot">=&gt;</span> <span class="co">-- RULE: add monomials</span>
+  3x<span class="fu">^</span><span class="dv">2</span> <span class="fu">+</span> 5x <span class="fu">-</span> <span class="dv">2</span> <span class="co">-- no more rules to apply  </span></code></pre></div>
 <p><br></p>
 <p><strong>Execute</strong> = rewrite step-by-step following simple rules, until no more rules apply</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
@@ -674,7 +675,7 @@ y[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x) apple
   <span class="fu">=</span>b<span class="fu">&gt;</span> apple</code></pre></div>
 <p><br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\f <span class="ot">-&gt;</span> f (\x <span class="ot">-&gt;</span> x)) (\x <span class="ot">-&gt;</span> x)
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\f <span class="ot">-&gt;</span> (\x <span class="ot">-&gt;</span> x) f) (\x <span class="ot">-&gt;</span> x)
   <span class="fu">=?&gt;</span> <span class="fu">???</span></code></pre></div>
 <p><br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x x) (\x <span class="ot">-&gt;</span> x)
@@ -686,8 +687,8 @@ y[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class
 <p><br> <br></p>
 <p>To substitute name with its definition, use a <code class="sourceCode haskell"><span class="fu">=</span>d<span class="fu">&gt;</span></code> step:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">ID</span> apple
-  <span class="fu">=</span>d<span class="fu">&gt;</span> (\x <span class="ot">-&gt;</span> x x) apple  <span class="co">-- expand definition</span>
-  <span class="fu">=</span>b<span class="fu">&gt;</span> apple              <span class="co">-- beta-reduce</span></code></pre></div>
+  <span class="fu">=</span>d<span class="fu">&gt;</span> (\x <span class="ot">-&gt;</span> x) apple  <span class="co">-- expand definition</span>
+  <span class="fu">=</span>b<span class="fu">&gt;</span> apple            <span class="co">-- beta-reduce</span></code></pre></div>
 <p><br> <br></p>
 <p>Evaluation:</p>
 <ul>

@@ -453,29 +453,15 @@ How do I "run" / "execute" a $\lambda$-term?
 
 Think of middle-school algebra:
 
-(I) lecture
+```haskell
+-- Simplify expression:
 
-    ```haskell
-    -- Simplify expression:
-
-      (x + 2)*(3x - 1)
-     => 
-      ???
-      
-      
-    ```
-
-(I) final
-
-    ```haskell
-    -- Simplify expression:
-
-      (x + 2)*(3x - 1)
-     => -- RULE: mult. polynomials
-      3x^2 - x + 6x - 2
-     => -- RULE: add monomials
-      3x^2 + 5x - 2 -- no more rules to apply  
-    ```
+  (x + 2)*(3x - 1)
+ => -- RULE: mult. polynomials
+  3x^2 - x + 6x - 2
+ => -- RULE: add monomials
+  3x^2 + 5x - 2 -- no more rules to apply  
+```
 
 <br>
 
@@ -1195,14 +1181,14 @@ E =?> E_1 =?> ... =?> E_N =?> E'
 (I) lecture
          
     ```haskell
-    (\f -> f (\x -> x)) (\x -> x)
+    (\f -> (\x -> x) f) (\x -> x)
       =?> ???
     ```
     
 (I) final
          
     ```haskell
-    (\f -> f (\x -> x)) (\x -> x)
+    (\f -> (\x -> x) f) (\x -> x)
       =b> (\x -> x) (\x -> x)
       =b> \x -> x
     ```
@@ -1247,8 +1233,8 @@ To substitute name with its definition, use a `=d>` step:
 
 ```haskell
 ID apple
-  =d> (\x -> x x) apple  -- expand definition
-  =b> apple              -- beta-reduce
+  =d> (\x -> x) apple  -- expand definition
+  =b> apple            -- beta-reduce
 ```
 
 <br>
