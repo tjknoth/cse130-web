@@ -48,7 +48,7 @@ you must turn in both the midterm and the final.
 
 ### Discussions (+5%)
 
-Extra credit for top-20 best participants in Canvas discussions,
+Extra credit for top-20 best participants in Piazza discussions,
 determined by the instruction team.
 
 

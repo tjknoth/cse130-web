@@ -8,7 +8,9 @@ headerImg: angles.jpg
 - **Lectures:**             MWF 2:00-2:50pm on [Zoom](https://ucsd.zoom.us/j/934813358)
 - **Discussion section:**   F 5:00-5:50pm on [Zoom](https://ucsd.zoom.us/j/934813358)
 - **Calendar:**             Check [here](calendar.html) for office hours, deadlines, etc.
-- **Canvas:**               Check [here](https://canvas.ucsd.edu/courses/12776) for announcement and discussions
+- **Piazza:**               Check [here](https://www.piazza.com/ucsd/spring2020/cse130/home) for announcement and discussions
+- **Canvas:**               Check [here](https://canvas.ucsd.edu/courses/12776) for lecture recordings
+
 
 ## Team
 

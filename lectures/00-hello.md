@@ -67,7 +67,7 @@ Live lecture over Zoom during scheduled lecture time
     - Let's test that!
     
     
-Lectures will also be recorded and published on website / canvas    
+Lectures will also be recorded and published on canvas    
 
 
 
@@ -432,9 +432,11 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 ## Course Logistics
 
 - [webpage](https://nadia-polikarpova.github.io/cse130-web)
-    - calendar, lecture notes/recordings, programming assignments, ...
+    - calendar, lecture notes, programming assignments, ...
 - [canvas](https://canvas.ucsd.edu/courses/12776)
-    - use Canvas discussions if you have a question or need help  
+    - lecture recordings  
+- [piazza](https://www.piazza.com/ucsd/spring2020/cse130/home)
+    - announcements and discussions
 
 
 
@@ -450,7 +452,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - 45% Homework assignments
 - 25% Midterm
 - 30% Final
-- 05% Extra credit for Canvas discussion
+- 05% Extra credit for Piazza discussion
     - To **top 20** best participants
     
 <br>
@@ -470,7 +472,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     - used atomically (5 mins late = 1 late day)
 - Submission instructions in the assignment
 - Solve in **groups of two**
-    - we will randomly assign you a partner on Canvas
+    - we will randomly assign you a partner
     - your partner will be in the same or nearby time zone so you can do remote pair programming
     - if this absolutely doesn't work for you, let me know this week
     - submit assignments **individually**
@@ -570,7 +572,7 @@ How are you supposed to turn in your 130 homework assignment?
 - Office hours
     - every day, check calendar
     - I expect you to come to my office hours at least once this quarter
-- Canvas
+- Piazza
     - we answer during work hours
 - **No text**        
     - online lecture notes and links
