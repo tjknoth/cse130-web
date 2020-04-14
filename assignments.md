@@ -12,6 +12,7 @@ pre-populated with starter code and a README file with all the instructions.
 | Link                                             | Name                            | Deadline (11:59pm)        |
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
 | [HW0](https://classroom.github.com/a/-NM-zyrL)   | The Lambda Calculus             | 4/15                      |            
+| [HW1](https://classroom.github.com/g/mVtx1uGN)   | Introduction to Haskell         | 4/22                      |            
 
 
 <!--
