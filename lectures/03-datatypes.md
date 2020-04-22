@@ -93,8 +93,8 @@ deadlineTime :: (Int, Int, Int)
 deadlineTime = (11, 59, 59)
 
 -- | Deadline date extended by one day
-extension :: (Int, Int, Int) -> (Int, Int, Int)
-extension = ...
+extendedDate :: (Int, Int, Int) -> (Int, Int, Int)
+extendedDate = ...
 ```
 
 Can you spot them?
@@ -121,8 +121,8 @@ deadlineTime :: Time
 deadlineTime = (11, 59, 59)
 
 -- | Deadline date extended by one day
-extension :: Date -> Date
-extension = ...
+extendedDate :: Date -> Date
+extendedDate = ...
 ```
 
 <br>
@@ -137,7 +137,7 @@ extension = ...
 We want this to fail at compile time!!!
 
 ```haskell
-extension deadlineTime
+extendedDate deadlineTime
 ```
 
 <br>

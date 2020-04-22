@@ -286,8 +286,8 @@ deadlineDate <span class="fu">=</span> (<span class="dv">4</span>, <span class="
 deadlineTime <span class="fu">=</span> (<span class="dv">11</span>, <span class="dv">59</span>, <span class="dv">59</span>)
 
 <span class="co">-- | Deadline date extended by one day</span>
-<span class="ot">extension ::</span> (<span class="dt">Int</span>, <span class="dt">Int</span>, <span class="dt">Int</span>) <span class="ot">-&gt;</span> (<span class="dt">Int</span>, <span class="dt">Int</span>, <span class="dt">Int</span>)
-extension <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
+<span class="ot">extendedDate ::</span> (<span class="dt">Int</span>, <span class="dt">Int</span>, <span class="dt">Int</span>) <span class="ot">-&gt;</span> (<span class="dt">Int</span>, <span class="dt">Int</span>, <span class="dt">Int</span>)
+extendedDate <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
 <p>Can you spot them?</p>
 <p><br> <br> <br> <br> <br> <br></p>
 <h3 id="verbose-and-unreadable">1. Verbose and unreadable</h3>
@@ -302,12 +302,12 @@ deadlineDate <span class="fu">=</span> (<span class="dv">4</span>, <span class="
 deadlineTime <span class="fu">=</span> (<span class="dv">11</span>, <span class="dv">59</span>, <span class="dv">59</span>)
 
 <span class="co">-- | Deadline date extended by one day</span>
-<span class="ot">extension ::</span> <span class="dt">Date</span> <span class="ot">-&gt;</span> <span class="dt">Date</span>
-extension <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
+<span class="ot">extendedDate ::</span> <span class="dt">Date</span> <span class="ot">-&gt;</span> <span class="dt">Date</span>
+extendedDate <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h3 id="unsafe">2. Unsafe</h3>
 <p>We want this to fail at compile time!!!</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">extension deadlineTime</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">extendedDate deadlineTime</code></pre></div>
 <p><br></p>
 <p><em>Solution:</em> construct two different <strong>datatypes</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Date</span> <span class="fu">=</span> <span class="dt">Date</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="dt">Int</span>
