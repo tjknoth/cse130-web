@@ -372,18 +372,18 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 <li>list: ordered? and items (<code class="sourceCode haskell"><span class="dt">Bool</span></code> and <code class="sourceCode haskell">[<span class="dt">String</span>]</code>)</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
-    <span class="dt">Text</span> <span class="dt">String</span>          <span class="co">-- 3 constructors,</span>
-  <span class="fu">|</span> <span class="dt">Heading</span> <span class="dt">Int</span> <span class="dt">String</span>   <span class="co">-- each with different  </span>
-  <span class="fu">|</span> <span class="dt">List</span> <span class="dt">Bool</span> [<span class="dt">String</span>]   <span class="co">-- parameters</span></code></pre></div>
+    <span class="dt">PText</span> <span class="dt">String</span>          <span class="co">-- 3 constructors,</span>
+  <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span>   <span class="co">-- each with different  </span>
+  <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]   <span class="co">-- parameters</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz">QUIZ</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
-    <span class="dt">Text</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">Heading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">List</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
+    <span class="dt">PText</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
 <p>What would GHCi say to</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">&gt;:</span>t <span class="dt">Text</span> <span class="st">&quot;Hey there!&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">&gt;:</span>t <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span></code></pre></div>
 <p><strong>A.</strong> Syntax error</p>
 <p><strong>B.</strong> Type error</p>
-<p><strong>C.</strong> <code class="sourceCode haskell"><span class="dt">Text</span></code></p>
+<p><strong>C.</strong> <code class="sourceCode haskell"><span class="dt">PText</span></code></p>
 <p><strong>D.</strong> <code class="sourceCode haskell"><span class="dt">String</span></code></p>
 <p><strong>E.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span></code></p>
 <p><br></p>
@@ -416,22 +416,22 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 <p><br></p>
 <p>Apply a constructor = pack some values into a box (and label it)</p>
 <ul>
-<li><code class="sourceCode haskell"><span class="dt">Text</span> <span class="st">&quot;Hey there!&quot;</span></code>
+<li><code class="sourceCode haskell"><span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span></code>
 <ul>
-<li>put <code class="sourceCode haskell"><span class="st">&quot;Hey there!&quot;</span></code> in a box labeled <code class="sourceCode haskell"><span class="dt">Text</span></code></li>
+<li>put <code class="sourceCode haskell"><span class="st">&quot;Hey there!&quot;</span></code> in a box labeled <code class="sourceCode haskell"><span class="dt">PText</span></code></li>
 </ul></li>
-<li><code class="sourceCode haskell"><span class="dt">Heading</span> <span class="dv">1</span> <span class="st">&quot;Introduction&quot;</span></code>
+<li><code class="sourceCode haskell"><span class="dt">PHeading</span> <span class="dv">1</span> <span class="st">&quot;Introduction&quot;</span></code>
 <ul>
-<li>put <code class="sourceCode haskell"><span class="dv">1</span></code> and <code class="sourceCode haskell"><span class="st">&quot;Introduction&quot;</span></code> in a box labeled <code class="sourceCode haskell"><span class="dt">Heading</span></code></li>
+<li>put <code class="sourceCode haskell"><span class="dv">1</span></code> and <code class="sourceCode haskell"><span class="st">&quot;Introduction&quot;</span></code> in a box labeled <code class="sourceCode haskell"><span class="dt">PHeading</span></code></li>
 </ul></li>
 <li>Boxes have different labels but same type (<code class="sourceCode haskell"><span class="dt">Paragraph</span></code>)</li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-1">QUIZ</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
-    <span class="dt">Text</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">Heading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">List</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
+    <span class="dt">PText</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
 <p>What would GHCi say to</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">&gt;:</span>t [<span class="dt">Heading</span> <span class="dv">1</span> <span class="st">&quot;Introduction&quot;</span>, <span class="dt">Text</span> <span class="st">&quot;Hey there!&quot;</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">&gt;:</span>t [<span class="dt">PHeading</span> <span class="dv">1</span> <span class="st">&quot;Introduction&quot;</span>, <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span>]</code></pre></div>
 <p><strong>A.</strong> Syntax error</p>
 <p><strong>B.</strong> Type error</p>
 <p><strong>C.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span></code></p>
@@ -442,13 +442,13 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="example-nanomd-1">Example: NanoMD</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
-    <span class="dt">Text</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">Heading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">List</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
+    <span class="dt">PText</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
 <p>Now I can create a document like so:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">doc ::</span> [<span class="dt">Paragraph</span>]
 doc <span class="fu">=</span> [
-    <span class="dt">Heading</span> <span class="dv">1</span> <span class="st">&quot;Notes from 130&quot;</span>
-  , <span class="dt">Text</span> <span class="st">&quot;There are two types of languages:&quot;</span>
-  , <span class="dt">List</span> <span class="dt">True</span> [<span class="st">&quot;purely functional&quot;</span>, <span class="st">&quot;purely evil&quot;</span>]
+    <span class="dt">PHeading</span> <span class="dv">1</span> <span class="st">&quot;Notes from 130&quot;</span>
+  , <span class="dt">PText</span> <span class="st">&quot;There are two types of languages:&quot;</span>
+  , <span class="dt">PList</span> <span class="dt">True</span> [<span class="st">&quot;purely functional&quot;</span>, <span class="st">&quot;purely evil&quot;</span>]
   ]</code></pre></div>
 <p><br> <br></p>
 <p>Now I want <strong>convert documents in to HTML</strong>.</p>
@@ -468,17 +468,17 @@ html p <span class="fu">=</span> <span class="fu">???</span> <span class="co">--
 <li>but now for arbitrary datatypes</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">html ::</span> <span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-html (<span class="dt">Text</span> str)        <span class="fu">=</span> <span class="fu">...</span> <span class="co">-- It's a plain text! Get string</span>
-html (<span class="dt">Heading</span> lvl str) <span class="fu">=</span> <span class="fu">...</span> <span class="co">-- It's a heading! Get level and string</span>
-html (<span class="dt">List</span> ord items)  <span class="fu">=</span> <span class="fu">...</span> <span class="co">-- It's a list! Get ordered and items</span></code></pre></div>
+html (<span class="dt">PText</span> str)        <span class="fu">=</span> <span class="fu">...</span> <span class="co">-- It's a plain text! Get string</span>
+html (<span class="dt">PHeading</span> lvl str) <span class="fu">=</span> <span class="fu">...</span> <span class="co">-- It's a heading! Get level and string</span>
+html (<span class="dt">PList</span> ord items)  <span class="fu">=</span> <span class="fu">...</span> <span class="co">-- It's a list! Get ordered and items</span></code></pre></div>
 <p><br> <br> <br> <br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">html ::</span> <span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-html (<span class="dt">Text</span> str) <span class="fu">=</span>           <span class="co">-- It's a plain text! Get string</span>
+html (<span class="dt">PText</span> str) <span class="fu">=</span>           <span class="co">-- It's a plain text! Get string</span>
   unlines [open <span class="st">&quot;p&quot;</span>, str, close <span class="st">&quot;p&quot;</span>]
-html (<span class="dt">Heading</span> lvl str) <span class="fu">=</span>    <span class="co">-- It's a heading! Get level and string</span>
+html (<span class="dt">PHeading</span> lvl str) <span class="fu">=</span>    <span class="co">-- It's a heading! Get level and string</span>
   <span class="kw">let</span> htag <span class="fu">=</span> <span class="st">&quot;h&quot;</span> <span class="fu">++</span> show lvl
   <span class="kw">in</span> unwords [open htag, str, close htag]
-html (<span class="dt">List</span> ord items) <span class="fu">=</span>    <span class="co">-- It's a list! Get ordered and items</span>
+html (<span class="dt">PList</span> ord items) <span class="fu">=</span>    <span class="co">-- It's a list! Get ordered and items</span>
   <span class="kw">let</span> 
    ltag <span class="fu">=</span> <span class="kw">if</span> ord <span class="kw">then</span> <span class="st">&quot;ol&quot;</span> <span class="kw">else</span> <span class="st">&quot;ul&quot;</span>
    litems <span class="fu">=</span> [unwords [open <span class="st">&quot;li&quot;</span>, i, close <span class="st">&quot;li&quot;</span>] <span class="fu">|</span> i <span class="ot">&lt;-</span> items]
@@ -489,20 +489,20 @@ close t <span class="fu">=</span> <span class="st">&quot;&lt;/&quot;</span> <spa
 <p><br> <br> <br> <br> <br> <br></p>
 <h3 id="dangers-of-pattern-matching-1">Dangers of pattern matching (1)</h3>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">html ::</span> <span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-html (<span class="dt">Text</span> str) <span class="fu">=</span> <span class="fu">...</span>
-html (<span class="dt">List</span> ord items) <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
+html (<span class="dt">PText</span> str) <span class="fu">=</span> <span class="fu">...</span>
+html (<span class="dt">PList</span> ord items) <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
 <p>What would GHCi say to:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">html (<span class="dt">Heading</span> <span class="dv">1</span> <span class="st">&quot;Introduction&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">html (<span class="dt">PHeading</span> <span class="dv">1</span> <span class="st">&quot;Introduction&quot;</span>)</code></pre></div>
 <p><br></p>
 
 <h3 id="dangers-of-pattern-matching-2">Dangers of pattern matching (2)</h3>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">html ::</span> <span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-html (<span class="dt">Text</span> str)        <span class="fu">=</span> unlines [open <span class="st">&quot;p&quot;</span>, str, close <span class="st">&quot;p&quot;</span>]
-html (<span class="dt">Heading</span> lvl str) <span class="fu">=</span> <span class="fu">...</span>
-html (<span class="dt">Heading</span> <span class="dv">0</span> str)   <span class="fu">=</span> html (<span class="dt">Heading</span> <span class="dv">1</span> str)
-html (<span class="dt">List</span> ord items)  <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
+html (<span class="dt">PText</span> str)        <span class="fu">=</span> unlines [open <span class="st">&quot;p&quot;</span>, str, close <span class="st">&quot;p&quot;</span>]
+html (<span class="dt">PHeading</span> lvl str) <span class="fu">=</span> <span class="fu">...</span>
+html (<span class="dt">PHeading</span> <span class="dv">0</span> str)   <span class="fu">=</span> html (<span class="dt">Heading</span> <span class="dv">1</span> str)
+html (<span class="dt">PList</span> ord items)  <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
 <p>What would GHCi say to:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">html (<span class="dt">Heading</span> <span class="dv">0</span> <span class="st">&quot;Introduction&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">html (<span class="dt">PHeading</span> <span class="dv">0</span> <span class="st">&quot;Introduction&quot;</span>)</code></pre></div>
 <p><br></p>
 
 <p><br> <br> <br> <br> <br></p>
@@ -519,17 +519,17 @@ html (<span class="dt">List</span> ord items)  <span class="fu">=</span> <span c
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">html ::</span> <span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 html p <span class="fu">=</span> 
   <span class="kw">case</span> p <span class="kw">of</span>
-    <span class="dt">Text</span> str <span class="ot">-&gt;</span> unlines [open <span class="st">&quot;p&quot;</span>, str, close <span class="st">&quot;p&quot;</span>]
-    <span class="dt">Heading</span> lvl str <span class="ot">-&gt;</span> <span class="fu">...</span>
-    <span class="dt">List</span> ord items <span class="ot">-&gt;</span> <span class="fu">...</span></code></pre></div>
+    <span class="dt">PText</span> str <span class="ot">-&gt;</span> unlines [open <span class="st">&quot;p&quot;</span>, str, close <span class="st">&quot;p&quot;</span>]
+    <span class="dt">PHeading</span> lvl str <span class="ot">-&gt;</span> <span class="fu">...</span>
+    <span class="dt">PList</span> ord items <span class="ot">-&gt;</span> <span class="fu">...</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-2">QUIZ</h2>
 <p>What is the type of</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> p <span class="fu">=</span> <span class="dt">Text</span> <span class="st">&quot;Hey there!&quot;</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> p <span class="fu">=</span> <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span>
 <span class="kw">in</span> <span class="kw">case</span> p <span class="kw">of</span>
-    <span class="dt">Text</span> str <span class="ot">-&gt;</span> str
-    <span class="dt">Heading</span> lvl _ <span class="ot">-&gt;</span> lvl
-    <span class="dt">List</span> ord _ <span class="ot">-&gt;</span> ord     </code></pre></div>
+    <span class="dt">PText</span> str <span class="ot">-&gt;</span> str
+    <span class="dt">PHeading</span> lvl _ <span class="ot">-&gt;</span> lvl
+    <span class="dt">PList</span> ord _ <span class="ot">-&gt;</span> ord     </code></pre></div>
 <p><strong>A.</strong> Syntax error</p>
 <p><strong>B.</strong> Type error</p>
 <p><strong>C.</strong> <code class="sourceCode haskell"><span class="dt">String</span></code></p>
@@ -558,11 +558,11 @@ html p <span class="fu">=</span>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-3">QUIZ</h2>
 <p>What is the type of</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> p <span class="fu">=</span> <span class="dt">Text</span> <span class="st">&quot;Hey there!&quot;</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> p <span class="fu">=</span> <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span>
 <span class="kw">in</span> <span class="kw">case</span> p <span class="kw">of</span>
-    <span class="dt">Text</span> _ <span class="ot">-&gt;</span> <span class="dv">1</span>
-    <span class="dt">Heading</span> _ _ <span class="ot">-&gt;</span> <span class="dv">2</span>
-    <span class="dt">List</span> _ _ <span class="ot">-&gt;</span> <span class="dv">3</span>     </code></pre></div>
+    <span class="dt">PText</span> _ <span class="ot">-&gt;</span> <span class="dv">1</span>
+    <span class="dt">PHeading</span> _ _ <span class="ot">-&gt;</span> <span class="dv">2</span>
+    <span class="dt">PList</span> _ _ <span class="ot">-&gt;</span> <span class="dv">3</span>     </code></pre></div>
 <p><strong>A.</strong> Syntax error</p>
 <p><strong>B.</strong> Type error</p>
 <p><strong>C.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span></code></p>

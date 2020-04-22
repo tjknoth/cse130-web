@@ -274,9 +274,9 @@ Each paragraph is either:
   
 ```haskell
 data Paragraph = 
-    Text String          -- 3 constructors,
-  | Heading Int String   -- each with different  
-  | List Bool [String]   -- parameters
+    PText String          -- 3 constructors,
+  | PHeading Int String   -- each with different  
+  | PList Bool [String]   -- parameters
 ```
 
 <br>
@@ -293,20 +293,20 @@ data Paragraph =
 
 ```haskell
 data Paragraph = 
-    Text String | Heading Int String | List Bool [String]
+    PText String | PHeading Int String | PList Bool [String]
 ```
 
 What would GHCi say to
 
 ```haskell
->:t Text "Hey there!"
+>:t PText "Hey there!"
 ```
 
 **A.**  Syntax error
 
 **B.**  Type error
 
-**C.**  `Text`
+**C.**  `PText`
 
 **D.**  `String`
 
@@ -363,10 +363,10 @@ You can think of a `T` value as a **box**:
   
 Apply a constructor = pack some values into a box (and label it)
 
-  * `Text "Hey there!"`
-      * put `"Hey there!"` in a box labeled `Text`
-  * `Heading 1 "Introduction"`
-      * put `1` and `"Introduction"` in a box labeled `Heading`
+  * `PText "Hey there!"`
+      * put `"Hey there!"` in a box labeled `PText`
+  * `PHeading 1 "Introduction"`
+      * put `1` and `"Introduction"` in a box labeled `PHeading`
   * Boxes have different labels but same type (`Paragraph`)
 
 <br>
@@ -383,13 +383,13 @@ Apply a constructor = pack some values into a box (and label it)
 
 ```haskell
 data Paragraph = 
-    Text String | Heading Int String | List Bool [String]
+    PText String | PHeading Int String | PList Bool [String]
 ```
 
 What would GHCi say to
 
 ```haskell
->:t [Heading 1 "Introduction", Text "Hey there!"]
+>:t [PHeading 1 "Introduction", PText "Hey there!"]
 ```
 
 **A.**  Syntax error
@@ -421,7 +421,7 @@ What would GHCi say to
 
 ```haskell
 data Paragraph = 
-    Text String | Heading Int String | List Bool [String]
+    PText String | PHeading Int String | PList Bool [String]
 ```
 
 Now I can create a document like so:
@@ -429,9 +429,9 @@ Now I can create a document like so:
 ```haskell
 doc :: [Paragraph]
 doc = [
-    Heading 1 "Notes from 130"
-  , Text "There are two types of languages:"
-  , List True ["purely functional", "purely evil"]
+    PHeading 1 "Notes from 130"
+  , PText "There are two types of languages:"
+  , PList True ["purely functional", "purely evil"]
   ]
 ```
 
@@ -473,9 +473,9 @@ How to tell what's in the box?
   
 ```haskell
 html :: Paragraph -> String
-html (Text str)        = ... -- It's a plain text! Get string
-html (Heading lvl str) = ... -- It's a heading! Get level and string
-html (List ord items)  = ... -- It's a list! Get ordered and items
+html (PText str)        = ... -- It's a plain text! Get string
+html (PHeading lvl str) = ... -- It's a heading! Get level and string
+html (PList ord items)  = ... -- It's a list! Get ordered and items
 ```
 
 <br>
@@ -487,12 +487,12 @@ html (List ord items)  = ... -- It's a list! Get ordered and items
   
 ```haskell
 html :: Paragraph -> String
-html (Text str) =           -- It's a plain text! Get string
+html (PText str) =           -- It's a plain text! Get string
   unlines [open "p", str, close "p"]
-html (Heading lvl str) =    -- It's a heading! Get level and string
+html (PHeading lvl str) =    -- It's a heading! Get level and string
   let htag = "h" ++ show lvl
   in unwords [open htag, str, close htag]
-html (List ord items) =    -- It's a list! Get ordered and items
+html (PList ord items) =    -- It's a list! Get ordered and items
   let 
    ltag = if ord then "ol" else "ul"
    litems = [unwords [open "li", i, close "li"] | i <- items]
@@ -513,14 +513,14 @@ close t = "</" ++ t ++ ">"
 
 ```haskell
 html :: Paragraph -> String
-html (Text str) = ...
-html (List ord items) = ...
+html (PText str) = ...
+html (PList ord items) = ...
 ```
 
 What would GHCi say to:
 
 ```haskell
-html (Heading 1 "Introduction")
+html (PHeading 1 "Introduction")
 ```
 
 <br>
@@ -538,23 +538,23 @@ html (Heading 1 "Introduction")
 
 ```haskell
 html :: Paragraph -> String
-html (Text str)        = unlines [open "p", str, close "p"]
-html (Heading lvl str) = ...
-html (Heading 0 str)   = html (Heading 1 str)
-html (List ord items)  = ...
+html (PText str)        = unlines [open "p", str, close "p"]
+html (PHeading lvl str) = ...
+html (PHeading 0 str)   = html (Heading 1 str)
+html (PList ord items)  = ...
 ```
 
 What would GHCi say to:
 
 ```haskell
-html (Heading 0 "Introduction")
+html (PHeading 0 "Introduction")
 ```
 
 <br>
 
 (I) final    
 
-    *Answer:* `Heading 0 "Introduction"` will be matched by `Heading lvl str`
+    *Answer:* `PHeading 0 "Introduction"` will be matched by `PHeading lvl str`
 
 <br>
 <br>
@@ -589,9 +589,9 @@ You can also pattern-match *inside your program* using the `case` expression:
 html :: Paragraph -> String
 html p = 
   case p of
-    Text str -> unlines [open "p", str, close "p"]
-    Heading lvl str -> ...
-    List ord items -> ...
+    PText str -> unlines [open "p", str, close "p"]
+    PHeading lvl str -> ...
+    PList ord items -> ...
 ```
 
 <br>
@@ -609,11 +609,11 @@ html p =
 What is the type of
 
 ```haskell
-let p = Text "Hey there!"
+let p = PText "Hey there!"
 in case p of
-    Text str -> str
-    Heading lvl _ -> lvl
-    List ord _ -> ord     
+    PText str -> str
+    PHeading lvl _ -> lvl
+    PList ord _ -> ord     
 ```
 
 **A.**  Syntax error
@@ -677,11 +677,11 @@ The expression `e` is called the *match scrutinee*
 What is the type of
 
 ```haskell
-let p = Text "Hey there!"
+let p = PText "Hey there!"
 in case p of
-    Text _ -> 1
-    Heading _ _ -> 2
-    List _ _ -> 3     
+    PText _ -> 1
+    PHeading _ _ -> 2
+    PList _ _ -> 3     
 ```
 
 **A.**  Syntax error
