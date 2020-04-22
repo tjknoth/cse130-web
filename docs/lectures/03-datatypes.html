@@ -130,12 +130,12 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="https://nadia-polikarpova.github.io/cse130-web/calendar.html">Calendar</a></li>
-                <li><a href="https://nadia-polikarpova.github.io/cse130-web/contact.html">Contact</a></li>
-                <li><a href="https://nadia-polikarpova.github.io/cse130-web/grades.html">Grades</a></li>
+                <li><a href="https://nadia-polikarpova.github.io/cse130-web/grades.html">Grading</a></li>
                 <li><a href="https://nadia-polikarpova.github.io/cse130-web/lectures.html">Lectures</a></li>
                 <li><a href="https://nadia-polikarpova.github.io/cse130-web/assignments.html">Assignments</a></li>
-                <li><a href="https://nadia-polikarpova.github.io/cse130-web/links.html">Links</a></li>
-                <li><a href="https://www.piazza.com/ucsd/fall2019/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+                <li><a href="https://nadia-polikarpova.github.io/cse130-web/links.html">Links</a></li>                
+                <li><a href="https://canvas.ucsd.edu/courses/12776" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Canvas</a></li>
+                <li><a href="https://www.piazza.com/ucsd/spring2020/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -155,7 +155,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <h1 class="font-style-inline-small-h1">Nadia Polikarpova</h1>
                             <hr class="star-primary">
                             <img src="https://nadia-polikarpova.github.io/cse130-web/static/img/ico.png" class="img-responsive img-centered" alt title>
                             <p class="font-style-inline-small">
@@ -190,12 +190,12 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
                               <a href="https://www.twitter.com/polikarn" target="_blank">follow</a>. <br>
                               <a href="https://www.github.com/nadia-polikarpova" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
                               <li><a href="https://nadia-polikarpova.github.io/cse130-web/calendar.html">Calendar</a></li>
-                              <li><a href="https://nadia-polikarpova.github.io/cse130-web/contact.html">Contact</a></li>
-                              <li><a href="https://nadia-polikarpova.github.io/cse130-web/grades.html">Grades</a></li>
+                              <li><a href="https://nadia-polikarpova.github.io/cse130-web/grades.html">Grading</a></li>
                               <li><a href="https://nadia-polikarpova.github.io/cse130-web/lectures.html">Lectures</a></li>
                               <li><a href="https://nadia-polikarpova.github.io/cse130-web/assignments.html">Assignments</a></li>
                               <li><a href="https://nadia-polikarpova.github.io/cse130-web/links.html">Links</a></li>
-                              <li><a href="https://www.piazza.com/ucsd/fall2019/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+                              <li><a href="https://canvas.ucsd.edu/courses/12776" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Canvas</a></li>
+                              <li><a href="https://www.piazza.com/ucsd/spring2020/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
                             </p>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
                         </div>
@@ -387,7 +387,7 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 <p><strong>D.</strong> <code class="sourceCode haskell"><span class="dt">String</span></code></p>
 <p><strong>E.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span></code></p>
 <p><br></p>
-<p><em>Answer:</em> E</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="constructing-datatypes">Constructing datatypes</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">T</span> <span class="fu">=</span> 
@@ -438,7 +438,7 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 <p><strong>D.</strong> <code class="sourceCode haskell">[<span class="dt">Paragraph</span>]</code></p>
 <p><strong>E.</strong> <code class="sourceCode haskell">[<span class="dt">String</span>]</code></p>
 <p><br></p>
-<p><em>Answer:</em> D</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="example-nanomd-1">Example: NanoMD</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
@@ -494,7 +494,7 @@ html (<span class="dt">List</span> ord items) <span class="fu">=</span> <span cl
 <p>What would GHCi say to:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">html (<span class="dt">Heading</span> <span class="dv">1</span> <span class="st">&quot;Introduction&quot;</span>)</code></pre></div>
 <p><br></p>
-<p><em>Answer:</em> Runtime error (no matching pattern) <br> <br> <br> <br> <br></p>
+
 <h3 id="dangers-of-pattern-matching-2">Dangers of pattern matching (2)</h3>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">html ::</span> <span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 html (<span class="dt">Text</span> str)        <span class="fu">=</span> unlines [open <span class="st">&quot;p&quot;</span>, str, close <span class="st">&quot;p&quot;</span>]
@@ -504,7 +504,7 @@ html (<span class="dt">List</span> ord items)  <span class="fu">=</span> <span c
 <p>What would GHCi say to:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">html (<span class="dt">Heading</span> <span class="dv">0</span> <span class="st">&quot;Introduction&quot;</span>)</code></pre></div>
 <p><br></p>
-<p><em>Answer:</em> <code class="sourceCode haskell"><span class="dt">Heading</span> <span class="dv">0</span> <span class="st">&quot;Introduction&quot;</span></code> will be matched by <code class="sourceCode haskell"><span class="dt">Heading</span> lvl str</code></p>
+
 <p><br> <br> <br> <br> <br></p>
 <h3 id="dangers-of-pattern-matching">Dangers of pattern matching</h3>
 <p>Beware of <strong>missing</strong> and <strong>overlapped</strong> patterns</p>
@@ -536,7 +536,7 @@ html p <span class="fu">=</span>
 <p><strong>D.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span></code></p>
 <p><strong>E.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">String</span></code></p>
 <p><br></p>
-<p><em>Answer:</em> B (cases have different types)</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="pattern-matching-expression-typing">Pattern matching expression: typing</h2>
 <p>The <code class="sourceCode haskell"><span class="kw">case</span></code> expression</p>
@@ -569,7 +569,7 @@ html p <span class="fu">=</span>
 <p><strong>D.</strong> <code class="sourceCode haskell"><span class="dt">Int</span></code></p>
 <p><strong>E.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></p>
 <p><br></p>
-<p><em>Answer:</em> D</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="building-data-types-2">Building data types</h2>
 <p><br></p>
@@ -633,7 +633,7 @@ toInt (<span class="dt">Succ</span> n) <span class="fu">=</span> <span class="dv
 <p><strong>D.</strong> <code class="sourceCode haskell"><span class="dt">Succ</span> <span class="dt">Zero</span></code></p>
 <p><strong>E.</strong> <code class="sourceCode haskell"><span class="dt">Succ</span> (<span class="dt">Succ</span> <span class="dt">Zero</span>)</code></p>
 <p><br></p>
-<p><em>Answer:</em> E</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="recursive-type-as-a-result">2. Recursive type as a result</h3>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Nat</span> <span class="fu">=</span> <span class="dt">Zero</span>     <span class="co">-- base constructor</span>
@@ -692,8 +692,7 @@ length (<span class="dt">Cons</span> _ xs) <span class="fu">=</span> <span class
 <p><br> <br> <br> <br> <br></p>
 <p>What is the right <em>inductive strategy</em> for appending two lists?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">append ::</span> <span class="dt">List</span> <span class="ot">-&gt;</span> <span class="dt">List</span> <span class="ot">-&gt;</span> <span class="dt">List</span>
-append <span class="dt">Nil</span> ys <span class="fu">=</span> ys
-append (<span class="dt">Cons</span> x xs) ys <span class="fu">=</span> <span class="dt">Cons</span> x (append xs ys)    </code></pre></div>
+append xs ys <span class="fu">=</span> <span class="fu">??</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="trees">Trees</h2>
 <p>Lists are <em>unary trees</em>:</p>
@@ -719,7 +718,7 @@ append (<span class="dt">Cons</span> x xs) ys <span class="fu">=</span> <span cl
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> <span class="fu">=</span> <span class="dt">Leaf</span> <span class="dt">Int</span> <span class="fu">|</span> <span class="dt">Node</span> <span class="dt">Tree</span> <span class="dt">Tree</span></code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> <span class="fu">=</span> <span class="dt">Leaf</span> <span class="dt">Int</span> <span class="fu">|</span> <span class="dt">Node</span> <span class="dt">Int</span> <span class="dt">Tree</span> <span class="dt">Tree</span></code></p>
 <p><br></p>
-<p><em>Answer:</em> C</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dv">1</span> <span class="fu">-</span> <span class="dv">2</span> <span class="fu">-</span> <span class="dv">3</span> <span class="fu">-</span> ()
   <span class="fu">|</span>   <span class="fu">|</span>   \ ()
@@ -746,8 +745,7 @@ t12345 <span class="fu">=</span> <span class="dt">Node</span>
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="functions-on-trees">Functions on trees</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">depth ::</span> <span class="dt">Tree</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-depth <span class="dt">Leaf</span> <span class="fu">=</span> <span class="dv">0</span>
-depth (<span class="dt">Node</span> _ l r) <span class="fu">=</span> <span class="dv">1</span> <span class="fu">+</span> max (depth l) (depth r)</code></pre></div>
+depth t <span class="fu">=</span> <span class="fu">??</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="example-calculator">Example: Calculator</h2>
 <p>I want to implement an arithmetic calculator to evaluate expressions like:</p>
@@ -766,10 +764,7 @@ depth (<span class="dt">Node</span> _ l r) <span class="fu">=</span> <span class
 <p><br> <br></p>
 <p>How do we write a function to <em>evaluate</em> an expression?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>
-eval (<span class="dt">Num</span> f)     <span class="fu">=</span> f
-eval (<span class="dt">Add</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">+</span> eval e2
-eval (<span class="dt">Sub</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">-</span> eval e2
-eval (<span class="dt">Mul</span> e1 e2) <span class="fu">=</span> eval e1 <span class="fu">*</span> eval e2</code></pre></div>
+eval e <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="recursion-is">Recursion is…</h2>
 <p>Building solutions for <em>big problems</em> from solutions for <em>sub-problems</em></p>
@@ -833,17 +828,12 @@ fac n
 <p><strong>A.</strong> Yes</p>
 <p><strong>B.</strong> No</p>
 <p><br></p>
-<p><em>Answer:</em> B</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="tail-recursive-factorial">Tail recursive factorial</h2>
 <p>Let’s write a tail-recursive factorial!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">facTR ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-facTR n <span class="fu">=</span> loop <span class="dv">1</span> n
-  <span class="kw">where</span>
-<span class="ot">    loop ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-    loop acc n
-      <span class="fu">|</span> n <span class="fu">&lt;=</span> <span class="dv">1</span>    <span class="fu">=</span> acc
-      <span class="fu">|</span> otherwise <span class="fu">=</span> loop (acc <span class="fu">*</span> n) (n <span class="fu">-</span> <span class="dv">1</span>)</code></pre></div>
+facTR n <span class="fu">=</span> <span class="fu">...</span> </code></pre></div>
 <p><br> <br> <br> <br></p>
 <p>Lets see how <code class="sourceCode haskell">facTR</code> is evaluated:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">&lt;</span>facTR <span class="dv">4</span><span class="fu">&gt;</span>
