@@ -346,7 +346,7 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 <li><p><strong>Recursive types</strong>: a value of <code class="sourceCode haskell"><span class="dt">T</span></code> contains a <em>sub-value</em> of the same type <code class="sourceCode haskell"><span class="dt">T</span></code></p></li>
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="example-nanomd">Example: NanoMD</h2>
+<h2 id="example-nanomarkdown">Example: NanoMarkdown</h2>
 <p>Suppose I want to represent a <em>text document</em> with simple markup</p>
 <p>Each paragraph is either:</p>
 <ul>
@@ -358,10 +358,10 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">doc <span class="fu">=</span> [
     (<span class="dv">1</span>, <span class="st">&quot;Notes from 130&quot;</span>)                        <span class="co">-- Lvl 1 heading</span>
   , <span class="st">&quot;There are two types of languages:&quot;</span>          <span class="co">-- Plain text</span>
-  , (<span class="dt">True</span>, [<span class="st">&quot;purely functional&quot;</span>, <span class="st">&quot;purely evil&quot;</span>]) <span class="co">-- Ordered list</span>
-  ]
-  
-<span class="co">-- But this doesn't type check!!!</span></code></pre></div>
+  , (<span class="dt">True</span>, [<span class="st">&quot;those people complain about&quot;</span>        <span class="co">-- Ordered list </span>
+           , <span class="st">&quot;those no one uses&quot;</span>])
+  ]</code></pre></div>
+<p>But this doesn’t type check!!!</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="sum-types">Sum Types</h2>
 <p>Solution: construct a new type for paragraphs that is a <em>sum</em> (<em>one-of</em>) the three options!</p>
@@ -414,18 +414,38 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 <li><em>or</em> a box labeled <code class="sourceCode haskell"><span class="dt">Cn</span></code> with values of types <code class="sourceCode haskell"><span class="dt">Tn1</span> <span class="fu">..</span> <span class="dt">Tnm</span></code> inside</li>
 </ul>
 <p><br></p>
+<div class="figure">
+<img src="../static/img/data-box.png" alt="Constructors as boxes" id="fig:boxes" class="align-center" style="width:80.0%" />
+<p class="caption">Constructors as boxes</p>
+</div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="datatype-for-paragraphs">Datatype for Paragraphs</h2>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
+    <span class="dt">PText</span> <span class="dt">String</span>
+  <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span>
+  <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
+<p><br></p>
+<div class="figure">
+<img src="../static/img/data-para-type.png" alt="Paragraph Constructors" id="fig:para-boxes" class="align-center" style="width:80.0%" />
+<p class="caption">Paragraph Constructors</p>
+</div>
+<p><br> <br></p>
 <p>Apply a constructor = pack some values into a box (and label it)</p>
 <ul>
-<li><code class="sourceCode haskell"><span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span></code>
+<li><code class="sourceCode haskell"><span class="dt">PText</span> <span class="st">&quot;cat&quot;</span></code>
 <ul>
-<li>put <code class="sourceCode haskell"><span class="st">&quot;Hey there!&quot;</span></code> in a box labeled <code class="sourceCode haskell"><span class="dt">PText</span></code></li>
+<li>put <code class="sourceCode haskell"><span class="st">&quot;cat&quot;</span></code> in a box labeled <code class="sourceCode haskell"><span class="dt">PText</span></code></li>
 </ul></li>
-<li><code class="sourceCode haskell"><span class="dt">PHeading</span> <span class="dv">1</span> <span class="st">&quot;Introduction&quot;</span></code>
+<li><code class="sourceCode haskell"><span class="dt">PHeading</span> <span class="dv">1</span> <span class="st">&quot;CSE 130&quot;</span></code>
 <ul>
-<li>put <code class="sourceCode haskell"><span class="dv">1</span></code> and <code class="sourceCode haskell"><span class="st">&quot;Introduction&quot;</span></code> in a box labeled <code class="sourceCode haskell"><span class="dt">PHeading</span></code></li>
+<li>put <code class="sourceCode haskell"><span class="dv">1</span></code> and <code class="sourceCode haskell"><span class="st">&quot;CSE 130&quot;</span></code> in a box labeled <code class="sourceCode haskell"><span class="dt">PHeading</span></code></li>
 </ul></li>
 <li>Boxes have different labels but same type (<code class="sourceCode haskell"><span class="dt">Paragraph</span></code>)</li>
 </ul>
+<div class="figure">
+<img src="../static/img/data-para-val.png" alt="Paragraph Values" id="fig:para-vals" class="align-center" style="width:80.0%" />
+<p class="caption">Paragraph Values</p>
+</div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-1">QUIZ</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
@@ -440,7 +460,7 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 <p><br></p>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="example-nanomd-1">Example: NanoMD</h2>
+<h2 id="example-nanomarkdown-1">Example: NanoMarkdown</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
     <span class="dt">PText</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
 <p>Now I can create a document like so:</p>
@@ -448,8 +468,8 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 doc <span class="fu">=</span> [
     <span class="dt">PHeading</span> <span class="dv">1</span> <span class="st">&quot;Notes from 130&quot;</span>
   , <span class="dt">PText</span> <span class="st">&quot;There are two types of languages:&quot;</span>
-  , <span class="dt">PList</span> <span class="dt">True</span> [<span class="st">&quot;purely functional&quot;</span>, <span class="st">&quot;purely evil&quot;</span>]
-  ]</code></pre></div>
+  , <span class="dt">PList</span> <span class="dt">True</span> [ <span class="st">&quot;those people complain about&quot;</span>
+               , <span class="st">&quot;those no one uses&quot;</span>]]</code></pre></div>
 <p><br> <br></p>
 <p>Now I want <strong>convert documents in to HTML</strong>.</p>
 <p>I need to write a function:</p>

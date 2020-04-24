@@ -226,7 +226,7 @@ Three key ways to build complex types/values:
 <br>
 <br>
 
-## Example: NanoMD
+## Example: NanoMarkdown
 
 Suppose I want to represent a *text document* with simple markup
 
@@ -242,11 +242,12 @@ I want to store all paragraphs in a *list*
 doc = [
     (1, "Notes from 130")                        -- Lvl 1 heading
   , "There are two types of languages:"          -- Plain text
-  , (True, ["purely functional", "purely evil"]) -- Ordered list
+  , (True, ["those people complain about"        -- Ordered list 
+           , "those no one uses"])
   ]
-  
--- But this doesn't type check!!!
-```  
+```
+
+But this doesn't type check!!!  
 
 
 
@@ -358,16 +359,46 @@ You can think of a `T` value as a **box**:
   * *or* a box labeled `C2` with values of types `T21 .. T2l` inside
   * *or* ...
   * *or* a box labeled `Cn` with values of types `Tn1 .. Tnm` inside
+  
+<br>  
+    
+![Constructors as boxes](/static/img/data-box.png){#fig:boxes .align-center width=80%}  
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Datatype for Paragraphs
+
+```haskell
+data Paragraph = 
+    PText String
+  | PHeading Int String
+  | PList Bool [String]
+```
+
+<br>
+
+![Paragraph Constructors](/static/img/data-para-type.png){#fig:para-boxes .align-center width=80%}
+
+<br>
 <br>  
   
 Apply a constructor = pack some values into a box (and label it)
 
-  * `PText "Hey there!"`
-      * put `"Hey there!"` in a box labeled `PText`
-  * `PHeading 1 "Introduction"`
-      * put `1` and `"Introduction"` in a box labeled `PHeading`
+  * `PText "cat"`
+      * put `"cat"` in a box labeled `PText`
+  * `PHeading 1 "CSE 130"`
+      * put `1` and `"CSE 130"` in a box labeled `PHeading`
   * Boxes have different labels but same type (`Paragraph`)
+  
+![Paragraph Values](/static/img/data-para-val.png){#fig:para-vals .align-center width=80%}  
 
 <br>
 <br>
@@ -417,7 +448,7 @@ What would GHCi say to
 <br>
 <br>
 
-## Example: NanoMD
+## Example: NanoMarkdown
 
 ```haskell
 data Paragraph = 
@@ -431,8 +462,8 @@ doc :: [Paragraph]
 doc = [
     PHeading 1 "Notes from 130"
   , PText "There are two types of languages:"
-  , PList True ["purely functional", "purely evil"]
-  ]
+  , PList True [ "those people complain about"
+               , "those no one uses"]]
 ```
 
 <br>
@@ -810,7 +841,7 @@ toInt (Succ n) = ... -- inductive case
                      -- (recursive call goes here)
 ```
 
-**Step 2:** fill in inductive case using a recursive call:
+**Step 3:** fill in inductive case using a recursive call:
 
 ```
 toInt :: Nat -> Int
