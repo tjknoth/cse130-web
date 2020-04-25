@@ -46,7 +46,7 @@ Lecture schedule is subject to change!
 |:----------:|:------------------------------------------------|:-------------------------:|
 | 4/3        | Lambda Calculus: intro, syntax and reductions   | [slides][disc1]           |
 | 4/10       | Lambda Calculus: data type encodings            | [slides][disc2]           |
-| 4/17       | Haskell: simple recursion                       |                           |
+| 4/17       | Haskell: simple recursion                       |  [code][disc3]            |
 | 4/24       | Haskell: recursive data types                   |                           |
 | 5/1        | Haskell: list processing, folds. Midterm review |                           |
 | 5/8        | Nano: interpreters                              |                           |
@@ -70,6 +70,7 @@ Lecture schedule is subject to change!
 
 [disc1]: /static/raw/discussion4-3-20.pdf
 [disc2]: /static/raw/20200410_Discussion_2.pdf
+[disc3]: /static/raw/discussion_4_24.hs
 
 [semantics]: /static/raw/semantics.pdf
 
