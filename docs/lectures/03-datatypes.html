@@ -638,7 +638,7 @@ toInt (<span class="dt">Succ</span> n) <span class="fu">=</span> <span class="fu
 toInt <span class="dt">Zero</span>     <span class="fu">=</span> <span class="dv">0</span>   <span class="co">-- base case</span>
 toInt (<span class="dt">Succ</span> n) <span class="fu">=</span> <span class="fu">...</span> <span class="co">-- inductive case</span>
                      <span class="co">-- (recursive call goes here)</span></code></pre></div>
-<p><strong>Step 2:</strong> fill in inductive case using a recursive call:</p>
+<p><strong>Step 3:</strong> fill in inductive case using a recursive call:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">toInt<span class="ot"> ::</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
 toInt <span class="dt">Zero</span>     <span class="fu">=</span> <span class="dv">0</span>           <span class="co">-- base case</span>
 toInt (<span class="dt">Succ</span> n) <span class="fu">=</span> <span class="dv">1</span> <span class="fu">+</span> toInt n <span class="co">-- inductive case</span></code></pre></div>
