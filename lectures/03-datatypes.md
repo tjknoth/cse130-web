@@ -1036,23 +1036,20 @@ What is the right *inductive strategy* for appending two lists?
 
 Lists are *unary trees*:
 
-```
-1 - 2 - 3 - ()
-```
+![Unary tree (aka list)](/static/img/list-tree.png){#fig:boxes .align-center width=50%}  
+
 
 ```haskell
 data List = Nil | Cons Int List
 ```
 
+<br>
+<br>
+<br>
+
 How do we represent *binary trees*?
 
-```
-1 - 2 - 3 - ()
-  |   |   \ ()
-  |   \ ()
-  \ 4 - ()
-      \ ()  
-```
+![Binary tree](/static/img/tree-data-node.png){#fig:boxes .align-center width=80%}  
 
 <br>
 <br>
@@ -1068,14 +1065,8 @@ How do we represent *binary trees*?
 
 What is a Haskell datatype that can represent this *binary tree*?
 
-```
-1 - 2 - 3 - ()
-  |   |   \ ()
-  |   \ ()
-  \ 4 - ()
-      \ ()  
-```
-
+![Binary tree](/static/img/tree-data-node.png){#fig:boxes .align-center width=50%}
+  
 **(A)** `data Tree = Leaf | Node Int Tree`
 
 **(B)** `data Tree = Leaf | Node Tree Tree`
@@ -1103,13 +1094,7 @@ What is a Haskell datatype that can represent this *binary tree*?
 <br>
 <br>  
 
-```
-1 - 2 - 3 - ()
-  |   |   \ ()
-  |   \ ()
-  \ 4 - ()
-      \ ()  
-```
+![Binary tree](/static/img/tree-data-node.png){#fig:boxes .align-center width=50%}
 
 ```haskell
 data Tree = Leaf | Node Int Tree Tree
@@ -1127,15 +1112,9 @@ t1234 = Node 1
 <br>
 <br>
 
-BTW, answer D is also a binary tree, but with elements stored in leaves!
+BTW, answer D is also a binary tree, but with values stored in leaves!
 
-```
-() - () - () - 1
-   |    |    \ 2
-   |    \ 3
-   \ () - 4
-        \ 5  
-```
+![Leaf tree](/static/img/tree-data-leaf.png){#fig:boxes .align-center width=50%}
 
 ```haskell
 data Tree = Leaf Int | Node Tree Tree
@@ -1159,16 +1138,16 @@ t12345 = Node
 (I) lecture
     
     ```haskell
-    depth :: Tree -> Int
-    depth t = ??
+    height :: Tree -> Int
+    height t = ??
     ```
     
 (I) final
     
     ```haskell
-    depth :: Tree -> Int
-    depth Leaf = 0
-    depth (Node _ l r) = 1 + max (depth l) (depth r)
+    height :: Tree -> Int
+    height Leaf = 0
+    height (Node _ l r) = 1 + max (height l) (height r)
     ```
 
 <br>
