@@ -22,7 +22,7 @@ Lecture schedule is subject to change!
 | 4/27       | contd.                          |                           |
 | 4/29       | Higher Order Functions          | [html][lec4]              |
 | 5/1        | contd.                          |                           |
-| 5/4        | **Midterm**                     |                           |
+| 5/4        | **Midterm**                     | [pdf][midterm]            |
 | 5/6        | Environments and Closures       |                           |
 | 5/8        | contd.                          |                           |
 | 5/11       | contd.                          |                           |
@@ -67,6 +67,8 @@ Lecture schedule is subject to change!
 [lec8]: lectures/08-monads.html
 [lec9]: lectures/09-types.html
 [soundness]: lectures/soundness.html
+
+[midterm]: /static/raw/130-midterm-sp20.pdf
 
 [disc1]: /static/raw/discussion4-3-20.pdf
 [disc2]: /static/raw/20200410_Discussion_2.pdf
