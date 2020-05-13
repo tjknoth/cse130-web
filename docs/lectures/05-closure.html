@@ -958,6 +958,7 @@ eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval en
     <span class="kw">let</span> c <span class="fu">=</span> <span class="dv">100</span>
     <span class="kw">in</span>                   <span class="co">-- [&quot;c&quot; := 100, &quot;inc&quot; := &lt;x, x + c&gt;, &quot;c&quot; := 1]</span>
       inc <span class="dv">10</span>       <span class="co">-- but now it means 100 because we are in a new env!</span></code></pre></div>
+<p><br> <br> <br> <br></p>
 <p><strong>Lesson learned:</strong> need to remember what <code class="sourceCode haskell">c</code> was bound to when <code class="sourceCode haskell">inc</code> was <strong>defined</strong>!</p>
 <ul>
 <li>i.e. “freeze” the environment at the point of function definition</li>

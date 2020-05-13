@@ -1517,6 +1517,11 @@ in                       --                                  ["c" := 1]
       inc 10       -- but now it means 100 because we are in a new env!
 ```
 
+<br>
+<br>
+<br>
+<br>
+
 **Lesson learned:** need to remember what `c` was bound to when `inc` was **defined**!
 
   - i.e. "freeze" the environment at the point of function definition
