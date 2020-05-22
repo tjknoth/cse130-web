@@ -1167,13 +1167,13 @@ transferring data around. Here is an example:
 }
 ```
 
-Each JSON object is either
+Each JSON value is either
 
 - a *base* value like a string, a number or a boolean,
 
-- an (ordered) *array* of objects, or
+- an (ordered) *array* of values, or
 
-- a set of *string-object* pairs.
+- an *object*, i.e. a set of *string-value* pairs.
 
 <br>
 <br>
