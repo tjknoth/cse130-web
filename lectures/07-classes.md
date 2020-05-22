@@ -1465,12 +1465,12 @@ instance (JSON a, JSON b, JSON c, JSON d, JSON e) => JSON ((String, a), (String,
 Now, we can simply write
 
 ```haskell
-hs = (("name"   , "Ranjit")
-     ,("age"    , 41.0)
-     ,("likes"  , ["guacamole", "coffee", "bacon"])
-     ,("hates"  , ["waiting", "grapefruit"])
+hs = (("name"   , "Nadia")
+     ,("age"    , 35.0)
+     ,("likes"  , ["poke", "coffee", "pasta"])
+     ,("hates"  , ["beets", "milk"])
      ,("lunches", lunches)
-     )
+     )     
 ```
 
 which is a Haskell value that describes our running JSON example, 

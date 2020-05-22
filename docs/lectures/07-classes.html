@@ -940,12 +940,12 @@ mapToJSON f kvs <span class="fu">=</span> <span class="dt">JObj</span> [ (k, f v
   toJSON ((k1, v1), (k2, v2), (k3, v3), (k4, v4), (k5, v5)) <span class="fu">=</span>
     <span class="dt">JObj</span> [(k1, toJSON v1), (k2, toJSON v2), (k3, toJSON v3), (k4, toJSON v4), (k5, toJSON v5)]</code></pre></div>
 <p>Now, we can simply write</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">hs <span class="fu">=</span> ((<span class="st">&quot;name&quot;</span>   , <span class="st">&quot;Ranjit&quot;</span>)
-     ,(<span class="st">&quot;age&quot;</span>    , <span class="fl">41.0</span>)
-     ,(<span class="st">&quot;likes&quot;</span>  , [<span class="st">&quot;guacamole&quot;</span>, <span class="st">&quot;coffee&quot;</span>, <span class="st">&quot;bacon&quot;</span>])
-     ,(<span class="st">&quot;hates&quot;</span>  , [<span class="st">&quot;waiting&quot;</span>, <span class="st">&quot;grapefruit&quot;</span>])
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">hs <span class="fu">=</span> ((<span class="st">&quot;name&quot;</span>   , <span class="st">&quot;Nadia&quot;</span>)
+     ,(<span class="st">&quot;age&quot;</span>    , <span class="fl">35.0</span>)
+     ,(<span class="st">&quot;likes&quot;</span>  , [<span class="st">&quot;poke&quot;</span>, <span class="st">&quot;coffee&quot;</span>, <span class="st">&quot;pasta&quot;</span>])
+     ,(<span class="st">&quot;hates&quot;</span>  , [<span class="st">&quot;beets&quot;</span>, <span class="st">&quot;milk&quot;</span>])
      ,(<span class="st">&quot;lunches&quot;</span>, lunches)
-     )</code></pre></div>
+     )     </code></pre></div>
 <p>which is a Haskell value that describes our running JSON example, and can convert it directly like so</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">js2 <span class="fu">=</span> toJSON hs</code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
