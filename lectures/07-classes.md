@@ -1156,7 +1156,7 @@ transferring data around. Here is an example:
 
 ```json
 { "name"    : "Nadia"
-, "age"     : 34.0
+, "age"     : 35.0
 , "likes"   : [ "poke", "coffee", "pasta" ]
 , "hates"   : [ "beets" , "milk" ]
 , "lunches" : [ {"day" : "mon", "loc" : "rubios"}
@@ -1205,7 +1205,7 @@ The above JSON value would be represented by the `JVal`
 ```haskell
 js1 =
   JObj [("name", JStr "Nadia")
-       ,("age",  JNum 34.0)
+       ,("age",  JNum 35.0)
        ,("likes",   JArr [ JStr "poke", JStr "coffee", JStr "pasta"])
        ,("hates",   JArr [ JStr "beets", JStr "milk"])
        ,("lunches", JArr [ JObj [("day",  JStr "mon")
