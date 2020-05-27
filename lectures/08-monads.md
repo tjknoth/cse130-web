@@ -115,7 +115,7 @@ sqrList  xs = mapList (\n -> n ^ 2)  xs
 <br>
 <br>
 
-### Iterating Trough Trees
+### Iterating Through Trees
 
 ```haskell
 data Tree a
