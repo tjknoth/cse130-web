@@ -319,15 +319,15 @@ class Functor t where
   fmap :: ???
 ```
 
-**(A)** `(b -> a) -> t b    -> t a`
+**(A)** `(a -> a) -> t a    -> t a`
 
-**(B)** `(a -> a) -> t a    -> t a`
+**(B)** `(a -> b) -> [a]    -> [b]`
 
-**(C)** `(a -> b) -> [a]    -> [b]`
+**(C)** `(a -> b) -> t a    -> t b`
 
-**(D)** `(a -> b) -> t a    -> t b`
+**(D)** `(a -> b) -> Tree a -> Tree b`
 
-**(E)** `(a -> b) -> Tree a -> Tree b`
+**(E)** None of the above
 
 
 <br>
