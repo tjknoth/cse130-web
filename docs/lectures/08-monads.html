@@ -446,7 +446,7 @@ eval (<span class="dt">Div</span> e1 e2)  <span class="fu">=</span>
     <span class="dt">Error</span> err1 <span class="ot">-&gt;</span> <span class="dt">Error</span> err1
     <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">case</span> eval e2 <span class="kw">of</span>
                     <span class="dt">Error</span> err2 <span class="ot">-&gt;</span> <span class="dt">Error</span> err2
-                    <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">if</span> v2 <span class="fu">==</span> <span class="dv">0</span> 
+                    <span class="dt">Value</span> v2   <span class="ot">-&gt;</span> <span class="kw">if</span> v2 <span class="fu">==</span> <span class="dv">0</span> 
                                     <span class="kw">then</span> <span class="dt">Error</span> (<span class="st">&quot;DBZ: &quot;</span> <span class="fu">++</span> show e2)
                                     <span class="kw">else</span> <span class="dt">Value</span> (v1 <span class="ot">`div`</span> v2)</code></pre></div>
 <p><br> <br></p>
@@ -466,7 +466,7 @@ eval (<span class="dt">Div</span> e1 e2)  <span class="fu">=</span>
   <span class="dt">Error</span> err1 <span class="ot">-&gt;</span> <span class="dt">Error</span> err1
   <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="kw">case</span> eval e2 <span class="kw">of</span>
                   <span class="dt">Error</span> err2 <span class="ot">-&gt;</span> <span class="dt">Error</span> err2
-                  <span class="dt">Value</span> v1   <span class="ot">-&gt;</span> <span class="dt">Value</span> (v1 <span class="fu">+</span> v2)</code></pre></div>
+                  <span class="dt">Value</span> v2   <span class="ot">-&gt;</span> <span class="dt">Value</span> (v1 <span class="fu">+</span> v2)</code></pre></div>
 <p><br> <br></p>
 <p>But these blocks have a <strong>common pattern</strong>:</p>
 <ul>

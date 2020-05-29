@@ -531,7 +531,7 @@ eval (Div e1 e2)  =
     Error err1 -> Error err1
     Value v1   -> case eval e2 of
                     Error err2 -> Error err2
-                    Value v1   -> if v2 == 0 
+                    Value v2   -> if v2 == 0 
                                     then Error ("DBZ: " ++ show e2)
                                     else Value (v1 `div` v2)
 ```
@@ -575,7 +575,7 @@ case eval e1 of
   Error err1 -> Error err1
   Value v1   -> case eval e2 of
                   Error err2 -> Error err2
-                  Value v1   -> Value (v1 + v2)
+                  Value v2   -> Value (v1 + v2)
 ```
 
 <br>
