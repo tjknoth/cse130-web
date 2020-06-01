@@ -1205,10 +1205,59 @@ Wait, but this type signature looks nothing like the `Monad`'s bind!
 
 <br>
 <br>
+
+... or does it???
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 
-... or does it???
+
+### QUIZ: Type of bind for Counting
+
+What should I replace `m t` with to make the general type of monadic bind:
+
+```haskell
+(>>=)  :: m a -> (a -> m b) -> m b
+```
+
+look like the type of bind we just defined:
+
+```haskell
+(>>=) :: (Cnt -> (Cnt, a)) 
+         -> (a -> Cnt -> (Cnt, b)) 
+         -> Cnt 
+         -> (Cnt, b)
+```
+
+**(A)** It's impossible
+
+**(B)** `m t  =  Result t`
+
+**(C)** `m t  =  (Cnt, t)`
+
+**(D)** `m t  =  Cnt -> (Cnt , t)`
+
+**(E)** `m t  =  t -> (Cnt , t)`
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 ```haskell
 type Counting a = Cnt -> (Cnt, a)
