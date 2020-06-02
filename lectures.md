@@ -34,7 +34,7 @@ Lecture schedule is subject to change!
 | 5/25       | *No lecture: Memorial Day*      |                           |
 | 5/27       | Monads                          | [html][lec8]              |
 | 5/29       | contd.                          |                           |
-| 6/1        | Semantics and Type Systems      |                           |
+| 6/1        | contd.                          |                           |
 | 6/3        | contd.                          |                           |
 | 6/5        | Final Review                    |                           |
 | 6/12       | **Final**                       |                           |
@@ -46,13 +46,13 @@ Lecture schedule is subject to change!
 |:----------:|:------------------------------------------------|:-------------------------:|
 | 4/3        | Lambda Calculus: intro, syntax and reductions   | [slides][disc1]           |
 | 4/10       | Lambda Calculus: data type encodings            | [slides][disc2]           |
-| 4/17       | Haskell: simple recursion                       |  [code][disc3]            |
+| 4/17       | Haskell: simple recursion                       | [code][disc3]             |
 | 4/24       | Haskell: recursive data types                   |                           |
 | 5/1        | Haskell: list processing, folds. Midterm review |                           |
 | 5/8        | Nano: interpreters                              |                           |
 | 5/15       | Lexers, and parsers                             |                           |
 | 5/22       | Type classes                                    |                           |
-| 5/29       | IO Monad                                        |                           |
+| 5/29       | IO Monad                                        | [code][disc9]             |
 | 6/5        | Final Review                                    |                           |
 
 
@@ -73,6 +73,7 @@ Lecture schedule is subject to change!
 [disc1]: /static/raw/discussion4-3-20.pdf
 [disc2]: /static/raw/20200410_Discussion_2.pdf
 [disc3]: /static/raw/discussion_4_24.hs
+[disc9]: /static/raw/20200529_dicussion.pdf
 
 [semantics]: /static/raw/semantics.pdf
 
