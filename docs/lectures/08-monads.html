@@ -290,7 +290,9 @@ sqrList  xs <span class="fu">=</span> mapList (\n <span class="ot">-&gt;</span> 
 showTree <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="fu">???</span>
 showTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
 <p><br></p>
-
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">showTree ::</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">String</span>
+showTree <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="dt">Leaf</span>
+showTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="dt">Node</span> (show v) (showTree l) (showTree r)</code></pre></div>
 <p><br> <br> <br></p>
 <p><strong>Squaring the values of a Tree</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- &gt;&gt;&gt; sqrTree (Node 2 (Node 1 Leaf Leaf) (Node 3 Leaf Leaf))</span>
@@ -300,7 +302,9 @@ showTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span cl
 sqrTree <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="fu">???</span>
 sqrTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
 <p><br></p>
-
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">sqrTree ::</span> <span class="dt">Tree</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Tree</span> <span class="dt">Int</span>
+sqrTree <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="dt">Leaf</span>
+sqrTree (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="dt">Node</span> (v<span class="fu">^</span><span class="dv">2</span>) (sqrTree l) (sqrTree r)</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="quiz-mapping-over-a-tree">QUIZ: Mapping over a Tree</h3>
 <p>If we refactor iteration into <code class="sourceCode haskell">mapTree</code>, what should its type be?</p>
@@ -314,7 +318,7 @@ sqrTree  t <span class="fu">=</span> mapTree (\n <span class="ot">-&gt;</span> n
 <p><strong>(D)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> a)        <span class="ot">-&gt;</span> <span class="dt">Tree</span> a   <span class="ot">-&gt;</span> <span class="dt">Tree</span> a</code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> b)        <span class="ot">-&gt;</span> <span class="dt">Tree</span> a   <span class="ot">-&gt;</span> <span class="dt">Tree</span> b</code></p>
 <p><br></p>
-
+<p><em>Answer:</em> E</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="mapping-over-trees">Mapping over Trees</h3>
 <p>Let’s write <code class="sourceCode haskell">mapTree</code>:</p>
@@ -322,7 +326,9 @@ sqrTree  t <span class="fu">=</span> mapTree (\n <span class="ot">-&gt;</span> n
 mapTree f <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="fu">???</span>
 mapTree f (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
 <p><br></p>
-
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mapTree ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> b
+mapTree f <span class="dt">Leaf</span>         <span class="fu">=</span> <span class="dt">Leaf</span>
+mapTree f (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span class="dt">Node</span> (f v) (mapTree f l) (mapTree f r)</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="abstracting-across-datatypes">Abstracting across Datatypes</h3>
 <p>Wait, this looks familiar…</p>
@@ -507,7 +513,7 @@ eval (<span class="dt">Div</span> e1 e2)  <span class="fu">=</span>
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dt">Value</span> <span class="dv">6</span></code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dt">Error</span> msg</code></p>
 <p><br></p>
-
+<p><em>Answer:</em> D</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="quiz-bind-2">QUIZ: Bind 2</h3>
 <p>With <code class="sourceCode haskell"><span class="fu">&gt;&gt;=</span></code> defined as before:</p>
@@ -522,7 +528,7 @@ eval (<span class="dt">Div</span> e1 e2)  <span class="fu">=</span>
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dt">Value</span> <span class="dv">6</span></code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dt">Error</span> <span class="st">&quot;nope&quot;</span></code></p>
 <p><br></p>
-
+<p><em>Answer:</em> E</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="a-cleaned-up-evaluator">A Cleaned up Evaluator</h2>
 <p>The magic bottle lets us clean up our <code class="sourceCode haskell">eval</code>:</p>
@@ -666,7 +672,7 @@ eval (<span class="dt">Plus</span> e1 e2) cnt <span class="fu">=</span> eval e1 
 <p><strong>(C)</strong> <code class="sourceCode haskell"><span class="dv">1</span></code></p>
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dv">2</span></code></p>
 <p><br></p>
-
+<p><em>Answer:</em> B</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <p>It’s going to be <code class="sourceCode haskell"><span class="dv">0</span></code> because we never increment the counter!</p>
 <ul>
@@ -790,7 +796,7 @@ return x <span class="fu">=</span> <span class="fu">???</span></code></pre></div
 <p><strong>(D)</strong> <code class="sourceCode haskell">\c <span class="ot">-&gt;</span> (c, x)</code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell">\c <span class="ot">-&gt;</span> (c <span class="fu">+</span> <span class="dv">1</span>, x)</code></p>
 <p><br></p>
-
+<p><em>Answer:</em> D</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="cleaned-up-evaluator">Cleaned-up evaluator</h3>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Counting</span> <span class="dt">Int</span>
@@ -1022,7 +1028,7 @@ main <span class="fu">=</span> combine (putStrLn <span class="st">&quot;Hello,&q
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b</code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> a  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> a</code></p>
 <p><br></p>
-
+<p><em>Answer:</em> D</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="using-intermediate-results">Using Intermediate Results</h2>
 <p>Next, lets write a program that</p>
@@ -1050,7 +1056,7 @@ mkBatter <span class="fu">=</span> crack <span class="ot">`combineWithResult`</s
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> a    <span class="ot">-&gt;</span> (a     <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b     ) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> b</code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dt">Recipe</span> <span class="dt">Yolk</span> <span class="ot">-&gt;</span> (<span class="dt">Yolk</span>  <span class="ot">-&gt;</span> <span class="dt">Recipe</span> <span class="dt">Batter</span>) <span class="ot">-&gt;</span> <span class="dt">Recipe</span> ()</code></p>
 <p><br></p>
-
+<p><em>Answer:</em> D</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="recipes-are-monads">Recipes are Monads</h2>
 <p>Wait a second, the signature:</p>
