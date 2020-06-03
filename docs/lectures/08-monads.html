@@ -1010,7 +1010,7 @@ Hello, world!</code></pre>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-combining-recipes">QUIZ: Combining Recipes</h2>
 <p>Assume we had a function <code class="sourceCode haskell">combine</code> that lets us combine recipes like so:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">Recipe</span> ()
 main <span class="fu">=</span> combine (putStrLn <span class="st">&quot;Hello,&quot;</span>) (putStrLn <span class="st">&quot;World!&quot;</span>)
 
 <span class="co">-- putStrLn :: String -&gt; Recipe ()</span>

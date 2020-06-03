@@ -1783,7 +1783,7 @@ Most interesting recipes have multiple steps
 Assume we had a function `combine` that lets us combine recipes like so:
 
 ```haskell
-main :: IO ()
+main :: Recipe ()
 main = combine (putStrLn "Hello,") (putStrLn "World!")
 
 -- putStrLn :: String -> Recipe ()
