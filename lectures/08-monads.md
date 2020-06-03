@@ -1889,7 +1889,7 @@ What should the type of `combineWithResult` be?
 
 ## Recipes are Monads
 
-Wait a bit, the signature:
+Wait a second, the signature:
 
 ```haskell
 combineWithResult :: Recipe a -> (a -> Recipe b) -> Recipe b
@@ -1960,6 +1960,7 @@ This code stays *the same*:
 
 ```haskell
 eval :: Expr -> Interpreter Int
+eval (Num n)      = return n
 eval (Plus e1 e2) = do v1 <- eval e1
                        v2 <- eval e2
                        return (v1 + v2)
@@ -1968,9 +1969,9 @@ eval (Plus e1 e2) = do v1 <- eval e1
 
 We can change the type `Interpreter` to implement different **effects**:
 
-  - `type Interpreter a = Either String a` if we want to handle errors
+  - `type Interpreter a = Except String a` if we want to handle errors
   - `type Interpreter a = State Int a` if we want to have a counter
-  - `type Interpreter a = StateT Int (Either String) a` if we want *both*
+  - `type Interpreter a = ExceptT String (State Int) a` if we want *both*
   - `type Interpreter a = [a]` if we want to return multiple results
   - ...
   
