@@ -810,11 +810,11 @@ eval <span class="dt">Next</span>         <span class="fu">=</span> \cnt <span c
 <p>The <code class="sourceCode haskell"><span class="dt">Next</span></code> case has to deal with counters</p>
 <ul>
 <li>but can we somehow hide the representation of <code class="sourceCode haskell"><span class="dt">Counting</span> a</code>?</li>
-<li>and make it look more like we just have mutable state that we can <code class="sourceCode haskell">get</code> and <code class="sourceCode haskell">set</code>?</li>
+<li>and make it look more like we just have mutable state that we can <code class="sourceCode haskell">get</code> and <code class="sourceCode haskell">put</code>?</li>
 <li>i.e. write:</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">eval <span class="dt">Next</span>         <span class="fu">=</span> get         <span class="fu">&gt;&gt;=</span> \c <span class="ot">-&gt;</span>
-                    set (c <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">&gt;&gt;=</span> \_ <span class="ot">-&gt;</span>
+                    put (c <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">&gt;&gt;=</span> \_ <span class="ot">-&gt;</span>
                     return c</code></pre></div>
 <p><br> <br></p>
 <p>How should we define these?</p>
@@ -823,16 +823,16 @@ eval <span class="dt">Next</span>         <span class="fu">=</span> \cnt <span c
 get <span class="fu">=</span> <span class="fu">???</span>
 
 <span class="co">-- | Computation that updates the counter value to `newCnt`</span>
-<span class="ot">set ::</span> <span class="dt">Cnt</span> <span class="ot">-&gt;</span> <span class="dt">Counting</span> ()
-set newCnt <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
+<span class="ot">put ::</span> <span class="dt">Cnt</span> <span class="ot">-&gt;</span> <span class="dt">Counting</span> ()
+put newCnt <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | Computation whose return value is the current counter value</span>
 <span class="ot">get ::</span> <span class="dt">Counting</span> <span class="dt">Cnt</span>
 get <span class="fu">=</span> \cnt <span class="ot">-&gt;</span> (cnt, cnt)
 
 <span class="co">-- | Computation that updates the counter value to `newCnt`</span>
-<span class="ot">set ::</span> <span class="dt">Cnt</span> <span class="ot">-&gt;</span> <span class="dt">Counting</span> ()
-set newCnt <span class="fu">=</span> \_ <span class="ot">-&gt;</span> (newCnt, ())</code></pre></div>
+<span class="ot">put ::</span> <span class="dt">Cnt</span> <span class="ot">-&gt;</span> <span class="dt">Counting</span> ()
+put newCnt <span class="fu">=</span> \_ <span class="ot">-&gt;</span> (newCnt, ())</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="monad-instance-for-counting">Monad instance for Counting</h3>
 <p>Let’s make <code class="sourceCode haskell"><span class="dt">Counting</span></code> an instance of <code class="sourceCode haskell"><span class="dt">Monad</span></code>!</p>
@@ -852,14 +852,14 @@ set newCnt <span class="fu">=</span> \_ <span class="ot">-&gt;</span> (newCnt, (
 
 <span class="ot">  return ::</span> a <span class="ot">-&gt;</span> <span class="dt">Result</span> a
   return v <span class="fu">=</span> <span class="dt">C</span> (\cnt <span class="ot">-&gt;</span> (cnt, v))</code></pre></div>
-<p>We also need to update <code class="sourceCode haskell">get</code> and <code class="sourceCode haskell">set</code> slightly:</p>
+<p>We also need to update <code class="sourceCode haskell">get</code> and <code class="sourceCode haskell">put</code> slightly:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | Computation whose return value is the current counter value</span>
 <span class="ot">get ::</span> <span class="dt">Counting</span> <span class="dt">Cnt</span>
 get <span class="fu">=</span> <span class="dt">C</span> (\cnt <span class="ot">-&gt;</span> (cnt, cnt))
 
 <span class="co">-- | Computation that updates the counter value to `newCnt`</span>
-<span class="ot">set ::</span> <span class="dt">Cnt</span> <span class="ot">-&gt;</span> <span class="dt">Counting</span> ()
-set newCnt <span class="fu">=</span> <span class="dt">C</span> (\_ <span class="ot">-&gt;</span> (newCnt, ()))</code></pre></div>
+<span class="ot">put ::</span> <span class="dt">Cnt</span> <span class="ot">-&gt;</span> <span class="dt">Counting</span> ()
+put newCnt <span class="fu">=</span> <span class="dt">C</span> (\_ <span class="ot">-&gt;</span> (newCnt, ()))</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="cleaned-up-evaluator-1">Cleaned-up Evaluator</h2>
 <p>Now we can use the <code class="sourceCode haskell"><span class="kw">do</span></code> notation!</p>

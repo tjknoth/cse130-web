@@ -1340,12 +1340,12 @@ Hooray! We rid the poor `Num` and `Plus` from the pesky counters!
 The `Next` case has to deal with counters
 
   - but can we somehow hide the representation of `Counting a`?
-  - and make it look more like we just have mutable state that we can `get` and `set`?
+  - and make it look more like we just have mutable state that we can `get` and `put`?
   - i.e. write:
   
 ```haskell
 eval Next         = get         >>= \c ->
-                    set (c + 1) >>= \_ ->
+                    put (c + 1) >>= \_ ->
                     return c
 ```
 
@@ -1360,8 +1360,8 @@ get :: Counting Cnt
 get = ???
 
 -- | Computation that updates the counter value to `newCnt`
-set :: Cnt -> Counting ()
-set newCnt = ???
+put :: Cnt -> Counting ()
+put newCnt = ???
 ```
   
 
@@ -1381,8 +1381,8 @@ get :: Counting Cnt
 get = \cnt -> (cnt, cnt)
 
 -- | Computation that updates the counter value to `newCnt`
-set :: Cnt -> Counting ()
-set newCnt = \_ -> (newCnt, ())
+put :: Cnt -> Counting ()
+put newCnt = \_ -> (newCnt, ())
 ```
 
 <br>
@@ -1416,7 +1416,7 @@ instance Monad Counting where
   return v = C (\cnt -> (cnt, v))
 ```
 
-We also need to update `get` and `set` slightly:
+We also need to update `get` and `put` slightly:
 
 ```haskell
 -- | Computation whose return value is the current counter value
@@ -1424,8 +1424,8 @@ get :: Counting Cnt
 get = C (\cnt -> (cnt, cnt))
 
 -- | Computation that updates the counter value to `newCnt`
-set :: Cnt -> Counting ()
-set newCnt = C (\_ -> (newCnt, ()))
+put :: Cnt -> Counting ()
+put newCnt = C (\_ -> (newCnt, ()))
 ```
 
 <br>
