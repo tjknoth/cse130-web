@@ -36,12 +36,12 @@ but no more than *four late days* per assignment.
       
 ### Midterm (25%)
 
-Will be held on **Monday May 4**.
+Will be held on **Monday November 9**.
 The format will be announced before the midterm.
 
 ### Final (30%)
   
-Will be held on **Friday June 12**.
+Will be held on **Tuesday December 15**.
 The format will be announced before the final.
   
 Since the final is cumulative, your midterm grade will be calculated as 

@@ -45,16 +45,15 @@ Lecture schedule is subject to change!
 
 | Date       | Topic                                           | Material                  |
 |:----------:|:------------------------------------------------|:-------------------------:|
-| 4/3        | Lambda Calculus: intro, syntax and reductions   | [slides][disc1]           |
-| 4/10       | Lambda Calculus: data type encodings            | [slides][disc2]           |
-| 4/17       | Haskell: simple recursion                       | [code][disc3]             |
-| 4/24       | Haskell: recursive data types                   |                           |
-| 5/1        | Haskell: list processing, folds. Midterm review |                           |
-| 5/8        | Nano: interpreters                              |                           |
-| 5/15       | Lexers, and parsers                             |                           |
-| 5/22       | Type classes                                    |                           |
-| 5/29       | IO Monad                                        | [code][disc9]             |
-| 6/5        | Final Review                                    |                           |
+| 10/8       | Lambda Calculus: intro, syntax and reductions   |                           |
+| 10/15      | Lambda Calculus: data type encodings            |                           |
+| 10/22      | Haskell: simple recursion                       |                           |
+| 10/29      | Haskell: recursive data types                   |                           |
+| 11/5       | Haskell: list processing, folds. Midterm review |                           |
+| 11/12      | Nano: interpreters                              |                           |
+| 11/19      | Lexers, and parsers                             |                           |
+| 12/3       | Type classes                                    |                           |
+| 12/10      | IO Monad                                        |                           |
 
 
 [lec0]: lectures/00-hello.html
