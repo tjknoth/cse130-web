@@ -5,6 +5,10 @@ headerImg: angles.jpg
 
 ## Assignments
 
+Will be posted shortly.
+
+<!--
+
 Click the Github Classroom link next to the assignment. 
 This will automatically create your private assignment repository, 
 pre-populated with starter code and a README file with all the instructions.
@@ -17,6 +21,8 @@ pre-populated with starter code and a README file with all the instructions.
 | [HW3](https://classroom.github.com/g/oK_TPAFt)   | All about Fold                  | ~~5/8~~   5/11            |          
 | [HW4](https://classroom.github.com/g/2vk74iJV)   | Nano                            | 5/20                      |
 | [HW5](https://classroom.github.com/g/UNlrjXM-)   | Type Classes                    | ~~6/3~~ 6/5               |
+
+-->
 
 
 <!--

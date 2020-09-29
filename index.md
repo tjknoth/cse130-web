@@ -5,11 +5,11 @@ headerImg: angles.jpg
 
 ## Course Resources
 
-- **Lectures:**             MWF 2:00-2:50pm on [Zoom](https://ucsd.zoom.us/j/934813358)
-- **Discussion section:**   F 5:00-5:50pm on [Zoom](https://ucsd.zoom.us/j/934813358)
+- **Lectures:**             MWF 4:00-4:50pm on [Zoom](https://ucsd.zoom.us/j/934813358)
+- **Discussion section:**   Th 5:00-5:50pm on [Zoom](https://ucsd.zoom.us/j/934813358)
 - **Calendar:**             Check [here](calendar.html) for office hours, deadlines, etc.
-- **Piazza:**               Check [here](https://www.piazza.com/ucsd/spring2020/cse130/home) for announcement and discussions
-- **Canvas:**               Check [here](https://canvas.ucsd.edu/courses/12776) for lecture recordings
+- **Piazza:**               Check [here](https://www.piazza.com/ucsd/fall2020/cse130/home) for announcement and discussions
+- **Canvas:**               Check [here](https://canvas.ucsd.edu/courses/18855) for lecture recordings
 
 
 ## Team
@@ -20,14 +20,13 @@ headerImg: angles.jpg
 
 ### Teaching Assistants
 
-* [Zheng Guo](https://aaronguo1996.github.io/)
+* [Shraddha Barke](https://shraddhabarke.github.io/)
 * [Tristan Knoth](https://tjknoth.github.io/)
-* [Alex Sanchez-Stern](http://alex.uwplse.org/)
 
 ### Tutors
 
-* [David Hacker](https://dmhacker.github.io/)
-* [Darya Verzhbinsky](https://www.linkedin.com/in/darya-ver)
+* David Cao
+* Aidan Denlinger
 * Daniel Wang
 
 ## Overview

@@ -12,14 +12,17 @@ each assignment.
 
 **Partners**
 
-- You will work on the assignment *in groups of two*;
-we will assign you a partner randomly at the beginning of the quarter.
+- You can work on the assignment *either alone or in groups of two*.
 - *Every student* has to turn in their solution,
 even if their solution is identical to their partner's.
-- Please fill in this [registration form](https://forms.gle/3vqWc8UT6rGQMCQT6)
-to get assigned a partner and get homework credit 
+
+<!--
 - If you have a good reason to work with a specific student rather than a randomly assigned partner,
 please fill in this [form](https://forms.gle/T4eGCSDDppN4KbmWA)
+- Please fill in this [registration form](https://forms.gle/3vqWc8UT6rGQMCQT6)
+to get assigned a partner and get homework credit 
+-->
+
 
 **Late Policy**
 
