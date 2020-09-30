@@ -27,7 +27,7 @@ headerImg: angles.jpg
 
 * David Cao
 * Aidan Denlinger
-* Daniel Wang
+* Jamie Song
 
 ## Overview
 
