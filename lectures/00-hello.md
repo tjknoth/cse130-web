@@ -663,7 +663,6 @@ or [Counseling and Psychological Services](http://caps.ucsd.edu.) (CAPS) at (85
     - Poor Internet connection, different time zone, ...
     
 - I will do my best to accommodate your needs, just ask me or one of the course staff!
-- You have the option of taking this class *P/NP* without affecting your GPA
 
 - Please be patient with us too, it is new to us!
 
