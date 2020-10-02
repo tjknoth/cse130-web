@@ -31,15 +31,14 @@ date: 2017-03-28
 
 Teaching assistants:
 
-* [Zheng Guo](https://aaronguo1996.github.io/)
+* [Shraddha Barke](https://shraddhabarke.github.io/)
 * [Tristan Knoth](https://tjknoth.github.io/)
-* [Alex Sanchez-Stern](http://alex.uwplse.org/)
 
 Tutors:
 
-* [David Hacker](https://dmhacker.github.io/)
-* [Darya Verzhbinsky](https://www.linkedin.com/in/darya-ver)
-* Daniel Wang
+* David Cao
+* Aidan Denlinger
+* Jamie Song
 
 <br>
 <br>
@@ -59,6 +58,7 @@ Live lecture over Zoom during scheduled lecture time
 - Two ways to ask a question:
     1. "Raise your hand" in zoom and I will call on you
     2. Type into zoom chat
+- Please do not use public Zoom chat for random commentary, it's very distracting   
 - Same if I ask you a question
     - Also use "thumb up" as a confirmation
 - I will assign you to "breakout rooms"
@@ -99,7 +99,7 @@ There was no
 - Java        25 years ago
 - C#          20 years ago
 - Rust        10 years ago
-- WebAssembly 2 years ago
+- WebAssembly 3 years ago
 
 
 <br>
@@ -433,10 +433,12 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 - [webpage](https://nadia-polikarpova.github.io/cse130-web)
     - calendar, lecture notes, programming assignments, ...
-- [canvas](https://canvas.ucsd.edu/courses/12776)
+- [canvas](https://canvas.ucsd.edu/courses/18855)
     - lecture recordings  
-- [piazza](https://www.piazza.com/ucsd/spring2020/cse130/home)
+- [piazza](https://www.piazza.com/ucsd/fall2020/cse130/home)
     - announcements and discussions
+- [gradescope](https://www.gradescope.com/courses/195408)
+    - homework/exam submissions, grades    
 
 
 
@@ -454,6 +456,8 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - 30% Final
 - 05% Extra credit for Piazza discussion
     - To **top 20** best participants
+- 01% Extra credit for filling in your degree plan
+    - Due by mid-quarter, will be announced on Piazza    
     
 <br>
 <br>
@@ -470,16 +474,10 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     - no assignment this and next Wednesday
 - Eight late days, no more than 4 late days per assignment
     - used atomically (5 mins late = 1 late day)
-- Submission instructions in the assignment
-- Solve in **groups of two**
-    - we will randomly assign you a partner
-    - your partner will be in the same or nearby time zone so you can do remote pair programming
-    - if this absolutely doesn't work for you, let me know this week
-    - submit assignments **individually**
-- Please fill in this [registration form](https://forms.gle/3vqWc8UT6rGQMCQT6)
-    - to get assigned a partner and get homework credit    
-- If you have a good reason to work with a specific student rather than a randomly assigned partner,
-please *additionally* fill in this [form](https://forms.gle/T4eGCSDDppN4KbmWA)
+- Submitted via Gradescope
+    - submission instructions in the assignment
+- Solve **alone or in groups of two**
+    - user this [piazza thread](https://piazza.com/class/kfo4d0hdrne2z9?cid=5) to find a partner
 
 <br>
 <br>
@@ -490,10 +488,15 @@ please *additionally* fill in this [form](https://forms.gle/T4eGCSDDppN4KbmWA)
     
 ## Exams    
 
-- Midterm on *May 4*
-    - most likely format: same as homework but individual and with 24h timespan
-- Final: *June 12*
-    - same format as midterm
+- Midterm on *November 9*
+    - Gradescope multiple choice
+    - individual
+    - 24h timespan
+- Final: *December 15*
+    - like a homework assignment (coding)
+    - individual
+    - 24h timespan
+- Formats subject to change!    
 - You can use any resources you want, but not ask anyone for help
 - The final is cumulative
 - Midterm grade is calculated as `midterm > 0 ?  max(final, midterm) : 0`
@@ -513,6 +516,7 @@ please *additionally* fill in this [form](https://forms.gle/T4eGCSDDppN4KbmWA)
 ## In-class Quizzes
 
 We will do quizzes in class via Zoom polls
+
   - Make class interactive
   - Help *you* and *me* understand what's tricky
     
@@ -546,16 +550,15 @@ We will do quizzes in class via Zoom polls
 
 ## TEST QUIZ
 
-How are you supposed to turn in your 130 homework assignment?
+How can you earn 10% extra credit for this class?
 
-- **A**  only one of the partners must turn in the solution
+- **A**  do all my homework alone
 
-- **B**  both partners must turn in (potentially the same) solution
+- **B**  answers other students' questions on Piazza
 
-- **C**  working in pairs is not allowed
+- **C**  submit all my homework on due date (without using late days)
 
-- **D** there are no homework assignments in 130
-
+- **D**  post snarky comments on zoom chat during lecture
 
 
 <br>
@@ -568,10 +571,11 @@ How are you supposed to turn in your 130 homework assignment?
 
 ## Your Resources
 
-- Discussion section: Fri 5pm, same Zoom link
+- Discussion section: Thu 5pm, same Zoom link
 - Office hours
     - every day, check calendar
     - I expect you to come to my office hours at least once this quarter
+    - I'll send a form to sign up
 - Piazza
     - we answer during work hours
 - **No text**        
@@ -661,7 +665,7 @@ or [Counseling and Psychological Services](http://caps.ucsd.edu.) (CAPS) at (85
 - I will do my best to accommodate your needs, just ask me or one of the course staff!
 - You have the option of taking this class *P/NP* without affecting your GPA
 
-- Please be patient with us too, it is all new to us!
+- Please be patient with us too, it is new to us!
 
 
 <br>
