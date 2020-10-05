@@ -3,30 +3,6 @@ title: Lambda Calculus
 headerImg: sea.jpg
 ---
 
-## Announcements
-
-- Zoom chat will be unmonitored from now on
-    - To ask a question, raise your hand
-- Fill in [partner form](https://forms.gle/T4eGCSDDppN4KbmWA) by this Sunday, we will assign partners on Monday
-- My OH is Wed 3-4pm, just stick around after the lecture
-- HW0 is up, but ieng6 is not working yet
-    - You can play with it through the web interface
-    - If you want, you can install everything locally
-    - ... or just wait for an announcement that ieng6 is ready
-    
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>    
-
 ## Your Favorite Language
 
 Probably has lots of features:
