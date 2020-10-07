@@ -13,15 +13,14 @@ pre-populated with starter code and a README file with all the instructions.
 | Link                                             | Name                            | Deadline (11:59pm)        |
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
 | [degree planning](https://docs.google.com/document/d/1EqtW-zWbwLhjZPjXfzY4YFq2OA7UdCWedLv-6DiwCD4/edit?usp=sharing) |Degree Planning Assignment       | 10/30    |
-
+| [HW0](https://classroom.github.com/a/U8pnNE9G)   | The Lambda Calculus             | 10/21                      |            
 
 <!--
-| [HW0](https://classroom.github.com/a/-NM-zyrL)   | The Lambda Calculus             | 4/15                      |            
-| [HW1](https://classroom.github.com/g/mVtx1uGN)   | Introduction to Haskell         | 4/22                      |            
-| [HW2](https://classroom.github.com/g/qjrQhWOR)   | Random Art                      | ~~4/29~~  5/1             |
-| [HW3](https://classroom.github.com/g/oK_TPAFt)   | All about Fold                  | ~~5/8~~   5/11            |          
-| [HW4](https://classroom.github.com/g/2vk74iJV)   | Nano                            | 5/20                      |
-| [HW5](https://classroom.github.com/g/UNlrjXM-)   | Type Classes                    | ~~6/3~~ 6/5               |
+| [HW1]()   | Introduction to Haskell         | 4/22                      |            
+| [HW2]()   | Random Art                      | ~~4/29~~  5/1             |
+| [HW3]()   | All about Fold                  | ~~5/8~~   5/11            |          
+| [HW4]()   | Nano                            | 5/20                      |
+| [HW5]()   | Type Classes                    | ~~6/3~~ 6/5               |
 -->
 
 
