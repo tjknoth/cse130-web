@@ -45,7 +45,7 @@ Lecture schedule is subject to change!
 
 | Date       | Topic                                           | Material                  |
 |:----------:|:------------------------------------------------|:-------------------------:|
-| 10/8       | Lambda Calculus: intro, syntax and reductions   |                           |
+| 10/8       | Lambda Calculus: intro, syntax and reductions   | [disc1]                   |
 | 10/15      | Lambda Calculus: data type encodings            |                           |
 | 10/22      | Haskell: simple recursion                       |                           |
 | 10/29      | Haskell: recursive data types                   |                           |
@@ -70,10 +70,14 @@ Lecture schedule is subject to change!
 
 [midterm]: /static/raw/130-midterm-sp20.pdf
 
+[disc1]: https://d1b10bmlvqabco.cloudfront.net/paste/jqmglbm0ei3kp/abc54305c3a095497c7c88669f8047d925d1fef9b633cebbeda2f8ff3e94278d/disc1-lambda_calc.pdf
+
+<!--
 [disc1]: /static/raw/discussion4-3-20.pdf
 [disc2]: /static/raw/20200410_Discussion_2.pdf
 [disc3]: /static/raw/discussion_4_24.hs
 [disc9]: /static/raw/20200529_dicussion.pdf
+-->
 
 [semantics]: /static/raw/semantics.pdf
 
