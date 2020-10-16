@@ -87,13 +87,13 @@ Functions are *first-class values*:
 (I) lecture
  
     ```haskell
-    (\x y -> x (x y)) (\z -> z + 1) 0   -- =~> ???
+    (\f x -> f (f x)) (\z -> z + 1) 0   -- =~> ???
     ```
     
 (I) final    
 
     ```haskell
-    (\x y -> x (x y)) (\z -> z + 1) 0   -- =~> 2
+    (\f x -> f (f x)) (\z -> z + 1) 0   -- =~> 2
     ```
 
 
