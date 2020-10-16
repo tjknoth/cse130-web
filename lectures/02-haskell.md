@@ -207,7 +207,10 @@ pair x y _     = y
 ## QUIZ
 
 Which of the following definitions of `pair` is **not the same** as 
-`pair = \x y -> \b -> if b then x else y`?
+
+```haskell
+pair = \x y -> \b -> if b then x else y
+```
 
 **A.** `pair x y = \b -> if b then x else y`
 

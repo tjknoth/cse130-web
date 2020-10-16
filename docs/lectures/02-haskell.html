@@ -336,7 +336,8 @@ pair x y b     <span class="fu">=</span> y  <span class="co">-- Otherwise, use t
 pair x y _     <span class="fu">=</span> y</code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz">QUIZ</h2>
-<p>Which of the following definitions of <code class="sourceCode haskell">pair</code> is <strong>not the same</strong> as <code class="sourceCode haskell">pair <span class="fu">=</span> \x y <span class="ot">-&gt;</span> \b <span class="ot">-&gt;</span> <span class="kw">if</span> b <span class="kw">then</span> x <span class="kw">else</span> y</code>?</p>
+<p>Which of the following definitions of <code class="sourceCode haskell">pair</code> is <strong>not the same</strong> as</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">pair <span class="fu">=</span> \x y <span class="ot">-&gt;</span> \b <span class="ot">-&gt;</span> <span class="kw">if</span> b <span class="kw">then</span> x <span class="kw">else</span> y</code></pre></div>
 <p><strong>A.</strong> <code class="sourceCode haskell">pair x y <span class="fu">=</span> \b <span class="ot">-&gt;</span> <span class="kw">if</span> b <span class="kw">then</span> x <span class="kw">else</span> y</code></p>
 <p><strong>B.</strong> <code class="sourceCode haskell">pair x <span class="fu">=</span> \y b <span class="ot">-&gt;</span> <span class="kw">if</span> b <span class="kw">then</span> x <span class="kw">else</span> y</code></p>
 <p><strong>C.</strong></p>
