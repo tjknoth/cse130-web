@@ -206,7 +206,7 @@ pair x y _     = y
 
 ## QUIZ
 
-Which of the following definitions of `pair` is **not the same** as 
+Which of the following definitions of `pair` is **not the same** as the original?
 
 ```haskell
 pair = \x y -> \b -> if b then x else y
