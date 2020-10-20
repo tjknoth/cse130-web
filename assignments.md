@@ -14,6 +14,7 @@ pre-populated with starter code and a README file with all the instructions.
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
 | [degree planning](https://docs.google.com/document/d/1EqtW-zWbwLhjZPjXfzY4YFq2OA7UdCWedLv-6DiwCD4/edit?usp=sharing) |Degree Planning Assignment       | 10/30    |
 | [HW0](https://classroom.github.com/a/U8pnNE9G)   | The Lambda Calculus             | 10/21                      |            
+| [HW1](https://classroom.github.com/a/HwHE3vCH)   | Introduction to Haskell         | 10/28                      |            
 
 <!--
 | [HW1]()   | Introduction to Haskell         | 4/22                      |            
