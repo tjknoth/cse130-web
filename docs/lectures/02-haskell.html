@@ -638,15 +638,24 @@ isEmpty p       <span class="fu">=</span> <span class="kw">let</span> (x, y) <sp
 <p><br> <br></p>
 <p>You can use pattern matching not only in equations, but also in <span class="math inline"><em>λ</em></span>-bindings and <code class="sourceCode haskell"><span class="kw">let</span></code>-bindings!</p>
 <p><br> <br> <br> <br> <br></p>
-<h3 id="pattern-matching-with-pairs">Pattern matching with pairs</h3>
-<p>Is this pattern matching correct? What does this function do?</p>
+<h3 id="quiz-4">QUIZ</h3>
+<p>What happens if I call the following function</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [(<span class="dt">String</span>, <span class="dt">Int</span>)] <span class="ot">-&gt;</span> <span class="dt">Int</span>
 f _ []   <span class="fu">=</span> <span class="dv">0</span>
 f x ((k,v) <span class="fu">:</span> ps)
   <span class="fu">|</span> x <span class="fu">==</span> k    <span class="fu">=</span> v
   <span class="fu">|</span> otherwise <span class="fu">=</span> f x ps</code></pre></div>
-<p><br></p>
-<p><br></p>
+<p>with input <code class="sourceCode haskell">f <span class="st">&quot;hi&quot;</span> [(<span class="st">&quot;hi&quot;</span>, <span class="dv">5</span>), (<span class="st">&quot;apple&quot;</span>, <span class="dv">10</span>)]</code>?</p>
+<p><strong>A.</strong> Syntax error</p>
+<p><strong>B.</strong> Type error</p>
+<p><strong>C.</strong> First pattern matches</p>
+<p><strong>D.</strong> Second pattern matches and binds</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">x <span class="ot">-&gt;</span> <span class="st">&quot;hi&quot;</span>, k <span class="ot">-&gt;</span> (<span class="st">&quot;hi&quot;</span>, <span class="dv">5</span>), v <span class="ot">-&gt;</span> (<span class="st">&quot;apple&quot;</span>, <span class="dv">10</span>)</code></pre></div>
+<p><strong>E.</strong> Second pattern matches and binds</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">x <span class="ot">-&gt;</span> <span class="st">&quot;hi&quot;</span>, k <span class="ot">-&gt;</span> <span class="st">&quot;hi&quot;</span>, v <span class="ot">-&gt;</span> <span class="dv">5</span>, ps <span class="ot">-&gt;</span> [(<span class="st">&quot;apple&quot;</span>, <span class="dv">10</span>)]</code></pre></div>
+
+<p><br> <br></p>
+<p>What does this function do?</p>
 
 <p><br> <br> <br> <br> <br></p>
 <h2 id="tuples">Tuples</h2>
@@ -668,7 +677,7 @@ my4tuple <span class="fu">=</span> (pi, sin pi, cos pi, sqrt <span class="dv">2<
 <span class="ot">myUnit   ::</span> ()
 myUnit   <span class="fu">=</span> ()</code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-4">QUIZ</h2>
+<h2 id="quiz-5">QUIZ</h2>
 <p>Which of the following terms is <em>ill-typed</em>?</p>
 <p>You can assume that <code class="sourceCode haskell"><span class="ot">(+) ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code>.</p>
 <p><strong>A.</strong> <code class="sourceCode haskell">(\(x,y,z) <span class="ot">-&gt;</span> x <span class="fu">+</span> y <span class="fu">+</span> z) (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">True</span>)</code></p>

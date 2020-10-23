@@ -958,9 +958,9 @@ but also in $\lambda$-bindings and `let`-bindings!
 <br>
 <br>
 
-### Pattern matching with pairs
+### QUIZ
 
-Is this pattern matching correct? What does this function do?
+What happens if I call the following function
 
 ```haskell
 f :: String -> [(String, Int)] -> Int
@@ -970,13 +970,40 @@ f x ((k,v) : ps)
   | otherwise = f x ps
 ```
 
-<br>
+with input `f "hi" [("hi", 5), ("apple", 10)]`?
 
-<br>
+**A.** Syntax error
+
+**B.** Type error
+
+**C.** First pattern matches
+
+**D.** Second pattern matches and binds 
+
+```
+x -> "hi", k -> ("hi", 5), v -> ("apple", 10)
+```
+
+**E.** Second pattern matches and binds 
+
+```
+x -> "hi", k -> "hi", v -> 5, ps -> [("apple", 10)]
+```
 
 (I) final
 
-    _Answer:_ a list of pairs represents key-value pairs in a dictionary; 
+    _Answer:_ E. 
+
+
+<br>
+<br>
+
+What does this function do?
+
+(I) final
+
+    _Answer:_ E. 
+    A list of pairs represents key-value pairs in a dictionary; 
     `f` performs lookup by key
 
 
