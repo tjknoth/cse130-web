@@ -166,6 +166,44 @@ deadlineTime = Time 11 59 59
 <br>
 <br>
 
+## QUIZ
+
+```haskell
+data Date = Date Int Int Int
+```
+
+What would GHCi say to
+
+```haskell
+>:t Date 11 5 2020
+```
+
+**A.**  Syntax error
+
+**B.**  Type error
+
+**C.**  `(Int, Int, Int)`
+
+**D.**  `Date`
+
+**E.**  `Date Int Int Int`
+
+<br>
+
+(I) final    
+
+    *Answer:* D
+    
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ### Record syntax
 
 Haskell's **record syntax** allows you to *name* the constructor parameters:

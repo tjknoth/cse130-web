@@ -320,6 +320,18 @@ deadlineDate <span class="fu">=</span> <span class="dt">Date</span> <span class=
 <span class="ot">deadlineTime ::</span> <span class="dt">Time</span>
 deadlineTime <span class="fu">=</span> <span class="dt">Time</span> <span class="dv">11</span> <span class="dv">59</span> <span class="dv">59</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz">QUIZ</h2>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Date</span> <span class="fu">=</span> <span class="dt">Date</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="dt">Int</span></code></pre></div>
+<p>What would GHCi say to</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">&gt;:</span>t <span class="dt">Date</span> <span class="dv">11</span> <span class="dv">5</span> <span class="dv">2020</span></code></pre></div>
+<p><strong>A.</strong> Syntax error</p>
+<p><strong>B.</strong> Type error</p>
+<p><strong>C.</strong> <code class="sourceCode haskell">(<span class="dt">Int</span>, <span class="dt">Int</span>, <span class="dt">Int</span>)</code></p>
+<p><strong>D.</strong> <code class="sourceCode haskell"><span class="dt">Date</span></code></p>
+<p><strong>E.</strong> <code class="sourceCode haskell"><span class="dt">Date</span> <span class="dt">Int</span> <span class="dt">Int</span> <span class="dt">Int</span></code></p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="record-syntax">Record syntax</h3>
 <p>Haskell’s <strong>record syntax</strong> allows you to <em>name</em> the constructor parameters:</p>
 <ul>
@@ -377,7 +389,7 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
   <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span>   <span class="co">-- each with different  </span>
   <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]   <span class="co">-- parameters</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz">QUIZ</h2>
+<h2 id="quiz-1">QUIZ</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
     <span class="dt">PText</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
 <p>What would GHCi say to</p>
@@ -448,7 +460,7 @@ dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- us
 <p class="caption">Paragraph Values</p>
 </div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-1">QUIZ</h2>
+<h2 id="quiz-2">QUIZ</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
     <span class="dt">PText</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
 <p>What would GHCi say to</p>
@@ -544,7 +556,7 @@ html p <span class="fu">=</span>
     <span class="dt">PHeading</span> lvl str <span class="ot">-&gt;</span> <span class="fu">...</span>
     <span class="dt">PList</span> ord items <span class="ot">-&gt;</span> <span class="fu">...</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-2">QUIZ</h2>
+<h2 id="quiz-3">QUIZ</h2>
 <p>What is the type of</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> p <span class="fu">=</span> <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span>
 <span class="kw">in</span> <span class="kw">case</span> p <span class="kw">of</span>
@@ -577,7 +589,7 @@ html p <span class="fu">=</span>
 </ul>
 <p>The expression <code class="sourceCode haskell">e</code> is called the <em>match scrutinee</em></p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-3">QUIZ</h2>
+<h2 id="quiz-4">QUIZ</h2>
 <p>What is the type of</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> p <span class="fu">=</span> <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span>
 <span class="kw">in</span> <span class="kw">case</span> p <span class="kw">of</span>
@@ -644,7 +656,7 @@ toInt (<span class="dt">Succ</span> n) <span class="fu">=</span> <span class="fu
 toInt <span class="dt">Zero</span>     <span class="fu">=</span> <span class="dv">0</span>           <span class="co">-- base case</span>
 toInt (<span class="dt">Succ</span> n) <span class="fu">=</span> <span class="dv">1</span> <span class="fu">+</span> toInt n <span class="co">-- inductive case</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-4">QUIZ</h2>
+<h2 id="quiz-5">QUIZ</h2>
 <p>What does this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> foo i <span class="fu">=</span> <span class="kw">if</span> i <span class="fu">&lt;=</span> <span class="dv">0</span> <span class="kw">then</span> <span class="dt">Zero</span> <span class="kw">else</span> <span class="dt">Succ</span> (foo (i <span class="fu">-</span> <span class="dv">1</span>))
 <span class="kw">in</span> foo <span class="dv">2</span> </code></pre></div>
