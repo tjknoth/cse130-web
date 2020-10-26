@@ -332,9 +332,10 @@ deadlineTime <span class="fu">=</span> <span class="dt">Time</span> <span class=
 <span class="ot">  year  ::</span> <span class="dt">Int</span>  
 }</code></pre></div></li>
 <li><p>then you can do:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">deadlineDate <span class="fu">=</span> <span class="dt">Date</span> <span class="dv">11</span> <span class="dv">4</span> <span class="dv">2020</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">deadlineDate <span class="fu">=</span> <span class="dt">Date</span> { month <span class="fu">=</span> <span class="dv">11</span>, day <span class="fu">=</span> <span class="dv">4</span>, year <span class="fu">=</span> <span class="dv">2020</span> }
+<span class="co">-- same as: deadlineDate = Date 11 4 2020</span>
 
-dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- use field name as a function</span></code></pre></div></li>
+dealineMonth <span class="fu">=</span> month deadlineDate <span class="co">-- use field name as a function    </span></code></pre></div></li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="building-data-types-1">Building data types</h2>
