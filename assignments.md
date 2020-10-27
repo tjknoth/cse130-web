@@ -16,6 +16,7 @@ pre-populated with starter code and a README file with all the instructions.
 | [HW0](https://classroom.github.com/a/U8pnNE9G)   | The Lambda Calculus             | 10/21                      |            
 | [HW1](https://classroom.github.com/a/HwHE3vCH)   | Introduction to Haskell         | 10/28                      |            
 | [HW2](https://classroom.github.com/a/VtMhFqJQ)   | Random Art                      | 11/4                       |
+
 <!--
 | [HW1]()   | Introduction to Haskell         | 4/22                      |            
 | [HW2]()   | Random Art                      | ~~4/29~~  5/1             |
