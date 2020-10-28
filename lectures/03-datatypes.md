@@ -686,8 +686,8 @@ html p =
 What is the type of
 
 ```haskell
-let p = PText "Hey there!"
-in case p of
+let p = PText "Hey there!" in
+  case p of
     PText _ -> 1
     PHeading _ _ -> 2
     PList _ _ -> 3     
@@ -724,8 +724,8 @@ in case p of
 What is the type of
 
 ```haskell
-let p = PText "Hey there!"
-in case p of
+let p = PText "Hey there!" in
+  case p of
     PText str -> str
     PHeading lvl _ -> lvl
     PList ord _ -> ord     
