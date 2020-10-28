@@ -679,6 +679,44 @@ html p =
 <br>
 <br>
 <br>
+<br>  
+
+## QUIZ
+
+What is the type of
+
+```haskell
+let p = PText "Hey there!"
+in case p of
+    PText _ -> 1
+    PHeading _ _ -> 2
+    PList _ _ -> 3     
+```
+
+**A.**  Syntax error
+
+**B.**  Type error
+
+**C.**  `Paragraph`
+
+**D.**  `Int`
+
+**E.**  `Paragraph -> Int`
+
+<br>
+
+(I) final
+
+    *Answer:* D
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br> 
 
 ## QUIZ
@@ -739,43 +777,7 @@ has type `T` if
       
 The expression `e` is called the *match scrutinee*      
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>  
 
-## QUIZ
-
-What is the type of
-
-```haskell
-let p = PText "Hey there!"
-in case p of
-    PText _ -> 1
-    PHeading _ _ -> 2
-    PList _ _ -> 3     
-```
-
-**A.**  Syntax error
-
-**B.**  Type error
-
-**C.**  `Paragraph`
-
-**D.**  `Int`
-
-**E.**  `Paragraph -> Int`
-
-<br>
-
-(I) final
-
-    *Answer:* D
 
 <br>
 <br>

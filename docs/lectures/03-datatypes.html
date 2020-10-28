@@ -561,6 +561,21 @@ html p <span class="fu">=</span>
 <p>What is the type of</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> p <span class="fu">=</span> <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span>
 <span class="kw">in</span> <span class="kw">case</span> p <span class="kw">of</span>
+    <span class="dt">PText</span> _ <span class="ot">-&gt;</span> <span class="dv">1</span>
+    <span class="dt">PHeading</span> _ _ <span class="ot">-&gt;</span> <span class="dv">2</span>
+    <span class="dt">PList</span> _ _ <span class="ot">-&gt;</span> <span class="dv">3</span>     </code></pre></div>
+<p><strong>A.</strong> Syntax error</p>
+<p><strong>B.</strong> Type error</p>
+<p><strong>C.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span></code></p>
+<p><strong>D.</strong> <code class="sourceCode haskell"><span class="dt">Int</span></code></p>
+<p><strong>E.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-4">QUIZ</h2>
+<p>What is the type of</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> p <span class="fu">=</span> <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span>
+<span class="kw">in</span> <span class="kw">case</span> p <span class="kw">of</span>
     <span class="dt">PText</span> str <span class="ot">-&gt;</span> str
     <span class="dt">PHeading</span> lvl _ <span class="ot">-&gt;</span> lvl
     <span class="dt">PList</span> ord _ <span class="ot">-&gt;</span> ord     </code></pre></div>
@@ -589,21 +604,6 @@ html p <span class="fu">=</span>
 </ul></li>
 </ul>
 <p>The expression <code class="sourceCode haskell">e</code> is called the <em>match scrutinee</em></p>
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-4">QUIZ</h2>
-<p>What is the type of</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> p <span class="fu">=</span> <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span>
-<span class="kw">in</span> <span class="kw">case</span> p <span class="kw">of</span>
-    <span class="dt">PText</span> _ <span class="ot">-&gt;</span> <span class="dv">1</span>
-    <span class="dt">PHeading</span> _ _ <span class="ot">-&gt;</span> <span class="dv">2</span>
-    <span class="dt">PList</span> _ _ <span class="ot">-&gt;</span> <span class="dv">3</span>     </code></pre></div>
-<p><strong>A.</strong> Syntax error</p>
-<p><strong>B.</strong> Type error</p>
-<p><strong>C.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span></code></p>
-<p><strong>D.</strong> <code class="sourceCode haskell"><span class="dt">Int</span></code></p>
-<p><strong>E.</strong> <code class="sourceCode haskell"><span class="dt">Paragraph</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></p>
-<p><br></p>
-
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="building-data-types-2">Building data types</h2>
 <p><br></p>
