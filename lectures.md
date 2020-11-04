@@ -20,8 +20,8 @@ Lecture schedule is subject to change!
 | 10/26      | Datatypes and Recursion         | [html][lec3]              |
 | 10/28      | contd.                          |                           |
 | 10/30      | contd.                          |                           |
-| 11/2       | Higher Order Functions          | [html][lec4]              |
-| 11/4       | contd.                          |                           |
+| 11/2       | contd.                          |                           |
+| 11/4       | Higher Order Functions          | [html][lec4]              |
 | 11/6       | contd.                          |                           |
 | 11/9       | **Midterm**                     |                           |
 | 11/11      | *No lecture: Veteran's Day*     |                           |
