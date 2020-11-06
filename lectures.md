@@ -45,7 +45,7 @@ Lecture schedule is subject to change!
 
 | Date       | Topic                                           | Material                  |
 |:----------:|:------------------------------------------------|:-------------------------:|
-| 10/8       | Lambda Calculus: intro, syntax and reductions   | [slides][disc1]                   |
+| 10/8       | Lambda Calculus: intro, syntax and reductions   | [slides][disc1]           |
 | 10/15      | Lambda Calculus: data type encodings            |                           |
 | 10/22      | Haskell: simple recursion                       |                           |
 | 10/29      | Haskell: recursive data types                   |                           |
@@ -67,8 +67,6 @@ Lecture schedule is subject to change!
 [lec8]: lectures/08-monads.html
 [lec9]: lectures/09-types.html
 [soundness]: lectures/soundness.html
-
-[midterm]: /static/raw/130-midterm-sp20.pdf
 
 [disc1]: https://d1b10bmlvqabco.cloudfront.net/paste/jqmglbm0ei3kp/abc54305c3a095497c7c88669f8047d925d1fef9b633cebbeda2f8ff3e94278d/disc1-lambda_calc.pdf
 
