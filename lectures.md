@@ -25,7 +25,7 @@ Lecture schedule is subject to change!
 | 11/6       | contd.                          |                           |
 | 11/9       | **Midterm**                     |                           |
 | 11/11      | *No lecture: Veteran's Day*     |                           |
-| 11/13      | Environments and Closures       |                           |
+| 11/13      | Environments and Closures       | [html][lec5]              |
 | 11/16      | contd.                          |                           |
 | 11/18      | contd.                          |                           |
 | 11/20      | Lexing and Parsing              |                           |       
