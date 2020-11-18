@@ -1108,10 +1108,10 @@ eval env (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span cla
 <span class="kw">in</span>                              <span class="co">-- env1 = [inc := &lt;[], x, x + 1&gt;]</span>
   <span class="kw">let</span> doTwice <span class="fu">=</span> \f <span class="ot">-&gt;</span> (\x <span class="ot">-&gt;</span> f (f x))
   <span class="kw">in</span>  <span class="co">-- env2 = [doTwice := &lt;env1, f, \x -&gt; f (f x)&gt;, inc := ...]</span>
-    ((doTwice inc) <span class="co">-- eval (&quot;f&quot; := &lt;[], x, x + 1&gt; : env1) (\x -&gt; f (f x))</span>
-                   <span class="co">-- ==&gt; &lt;(&quot;f&quot; := &lt;[], x, x + 1&gt; : env1), x, f (f x)&gt;</span>
+    ((doTwice inc) <span class="co">-- eval (&quot;f&quot; := &lt;[],x,x + 1&gt; : env1) (\x -&gt; f (f x))</span>
+                   <span class="co">-- ==&gt; &lt;(&quot;f&quot; := &lt;[],x,x + 1&gt; : env1), x, f (f x)&gt;</span>
                    
-      <span class="dv">10</span>)          <span class="co">-- eval [&quot;x&quot; := 10, &quot;f&quot; := &lt;[], x, x + 1&gt;, ...] f (f x)</span>
+      <span class="dv">10</span>)          <span class="co">-- eval [&quot;x&quot; := 10, &quot;f&quot; := &lt;[],x,x + 1&gt;, ...] f (f x)</span>
       
 <span class="co">-- f   ==&gt; &lt;[], x, x + 1&gt;</span>
 <span class="co">-- x   ==&gt; 10</span>

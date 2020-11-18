@@ -1825,10 +1825,10 @@ let inc = \x -> x + 1                                -- env0 = []
 in                              -- env1 = [inc := <[], x, x + 1>]
   let doTwice = \f -> (\x -> f (f x))
   in  -- env2 = [doTwice := <env1, f, \x -> f (f x)>, inc := ...]
-    ((doTwice inc) -- eval ("f" := <[], x, x + 1> : env1) (\x -> f (f x))
-                   -- ==> <("f" := <[], x, x + 1> : env1), x, f (f x)>
+    ((doTwice inc) -- eval ("f" := <[],x,x + 1> : env1) (\x -> f (f x))
+                   -- ==> <("f" := <[],x,x + 1> : env1), x, f (f x)>
                    
-      10)          -- eval ["x" := 10, "f" := <[], x, x + 1>, ...] f (f x)
+      10)          -- eval ["x" := 10, "f" := <[],x,x + 1>, ...] f (f x)
       
 -- f   ==> <[], x, x + 1>
 -- x   ==> 10
