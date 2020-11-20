@@ -134,8 +134,8 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
                 <li><a href="https://nadia-polikarpova.github.io/cse130-web/lectures.html">Lectures</a></li>
                 <li><a href="https://nadia-polikarpova.github.io/cse130-web/assignments.html">Assignments</a></li>
                 <li><a href="https://nadia-polikarpova.github.io/cse130-web/links.html">Links</a></li>                
-                <li><a href="https://canvas.ucsd.edu/courses/12776" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Canvas</a></li>
-                <li><a href="https://www.piazza.com/ucsd/spring2020/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+                <li><a href="https://canvas.ucsd.edu/courses/18855" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Canvas</a></li>
+                <li><a href="https://www.piazza.com/ucsd/fall2020/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -194,8 +194,8 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
                               <li><a href="https://nadia-polikarpova.github.io/cse130-web/lectures.html">Lectures</a></li>
                               <li><a href="https://nadia-polikarpova.github.io/cse130-web/assignments.html">Assignments</a></li>
                               <li><a href="https://nadia-polikarpova.github.io/cse130-web/links.html">Links</a></li>
-                              <li><a href="https://canvas.ucsd.edu/courses/12776" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Canvas</a></li>
-                              <li><a href="https://www.piazza.com/ucsd/spring2020/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
+                              <li><a href="https://canvas.ucsd.edu/courses/18855" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Canvas</a></li>
+                              <li><a href="https://www.piazza.com/ucsd/fall2020/cse130/home" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>Piazza</a></li>
                             </p>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
                         </div>
@@ -394,7 +394,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><strong>(D)</strong> <code class="sourceCode haskell">x</code></p>
 <p><strong>(E)</strong> C and D</p>
 <p><br></p>
-<p><em>Answer:</em> E</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="back-to-token-rules">Back to token rules</h2>
 <p>We can <strong>name</strong> some common regexps like:</p>
@@ -447,7 +447,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><strong>(C)</strong> <code class="sourceCode haskell">[<span class="dt">NUM</span> <span class="st">&quot;92&quot;</span>]</code></p>
 <p><strong>(D)</strong> <code class="sourceCode haskell">[<span class="dt">NUM</span> <span class="st">&quot;92&quot;</span>, <span class="dt">ID</span> <span class="st">&quot;zoo&quot;</span>]</code></p>
 <p><br></p>
-<p><em>Answer:</em> D</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="parsing">Parsing</h2>
 <p>We will use the tool called <code class="sourceCode haskell">happy</code> to generate the <strong>parser</strong></p>
@@ -517,7 +517,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><strong>(D)</strong> <code class="sourceCode haskell">x <span class="fu">+</span> <span class="dv">5</span> <span class="fu">+</span> <span class="dv">1</span></code></p>
 <p><strong>(E)</strong> B and C</p>
 <p><br></p>
-<p><em>Answer:</em> E</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="attribute-grammars">Attribute Grammars</h2>
 <p><em>So far:</em> grammar tells us whether a string is syntactically correct or not</p>
@@ -595,7 +595,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><strong>(C)</strong> <code class="sourceCode haskell"><span class="dt">APlus</span> (<span class="dt">APlus</span> (<span class="dt">AConst</span> <span class="dv">1</span>) (<span class="dt">AConst</span> <span class="dv">2</span>)) (<span class="dt">AConst</span> <span class="dv">3</span>)</code></p>
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dt">APlus</span> (<span class="dt">AConst</span> <span class="dv">1</span>) (<span class="dt">APlus</span> (<span class="dt">AConst</span> <span class="dv">2</span>) (<span class="dt">AConst</span> <span class="dv">3</span>))</code></p>
 <p><br></p>
-<p><em>Answer:</em> Could be C or D</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="running-the-parser">Running the Parser</h2>
 <p>First, we should tell the parser that the top-level non-terminal is <code class="sourceCode haskell"><span class="dt">AExpr</span></code>:</p>
@@ -609,13 +609,13 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span class="dv">10</span>
 
 λ<span class="fu">&gt;</span> evalString [(<span class="st">&quot;x&quot;</span>, <span class="dv">100</span>), (<span class="st">&quot;y&quot;</span>, <span class="dv">20</span>)] <span class="st">&quot;x - y&quot;</span>
-<span class="dv">80</span>
+<span class="fu">???</span>
 
 λ<span class="fu">&gt;</span> evalString [] <span class="st">&quot;2 * 5 + 5&quot;</span>
-<span class="dv">20</span>
+<span class="fu">???</span>
 
 λ<span class="fu">&gt;</span> evalString [] <span class="st">&quot;2 - 1 - 1&quot;</span>
-<span class="dv">2</span></code></pre></div>
+<span class="fu">???</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="precedence-and-associativity">Precedence and associativity</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> evalString [] <span class="st">&quot;2 * 5 + 5&quot;</span>
