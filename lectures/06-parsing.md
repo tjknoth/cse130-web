@@ -631,7 +631,7 @@ How do we compute the *value* of a terminal?
 
 Terminals correspond to the *tokens* returned by the lexer
 
-In the `.y` file, we have to declare with terminals in the rules 
+In the `.y` file, we have to declare which terminals in the rules 
 correspond to which tokens from the `Token` datatype:
 
 ```haskell
@@ -881,8 +881,39 @@ Aexpr3    -- cannot parse "5 + 5" as Aexpr3!
  '2'
 ```
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
+## QUIZ
 
+With this new grammar, can we parse `2 - 1 - 1` the wrong way?
+
+```haskell
+Aexpr : Aexpr '+' Aexpr2
+      | Aexpr '-' Aexpr2
+      | Aexpr2
+
+Aexpr2 : Aexpr2 '*' Aexpr3
+       | Aexpr2 '/' Aexpr3
+       | Aexpr3
+
+Aexpr3 : TNUM
+       | ID
+       | '(' Aexpr ')'
+```
+
+**(A)** Yes
+
+**(B)** No
+
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>

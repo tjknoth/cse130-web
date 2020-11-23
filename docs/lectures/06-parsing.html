@@ -563,7 +563,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="terminals">Terminals</h2>
 <p>Terminals correspond to the <em>tokens</em> returned by the lexer</p>
-<p>In the <code class="sourceCode haskell"><span class="fu">.</span>y</code> file, we have to declare with terminals in the rules correspond to which tokens from the <code class="sourceCode haskell"><span class="dt">Token</span></code> datatype:</p>
+<p>In the <code class="sourceCode haskell"><span class="fu">.</span>y</code> file, we have to declare which terminals in the rules correspond to which tokens from the <code class="sourceCode haskell"><span class="dt">Token</span></code> datatype:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Terminals:   Tokens from lexer:</span>
     <span class="dt">TNUM</span>        { <span class="dt">NUM</span> _ <span class="fu">$$</span> }
     <span class="dt">ID</span>          { <span class="dt">ID</span> _ <span class="fu">$$</span>  }
@@ -689,7 +689,23 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span class="dt">Aexpr3</span>    <span class="co">-- cannot parse &quot;5 + 5&quot; as Aexpr3!</span>
   <span class="fu">|</span>
  <span class="ch">'2'</span></code></pre></div>
-<p><br> <br> <br> <br></p>
+<p><br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-4">QUIZ</h2>
+<p>With this new grammar, can we parse <code class="sourceCode haskell"><span class="dv">2</span> <span class="fu">-</span> <span class="dv">1</span> <span class="fu">-</span> <span class="dv">1</span></code> the wrong way?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Aexpr</span> <span class="fu">:</span> <span class="dt">Aexpr</span> <span class="ch">'+'</span> <span class="dt">Aexpr2</span>
+      <span class="fu">|</span> <span class="dt">Aexpr</span> <span class="ch">'-'</span> <span class="dt">Aexpr2</span>
+      <span class="fu">|</span> <span class="dt">Aexpr2</span>
+
+<span class="dt">Aexpr2</span> <span class="fu">:</span> <span class="dt">Aexpr2</span> <span class="ch">'*'</span> <span class="dt">Aexpr3</span>
+       <span class="fu">|</span> <span class="dt">Aexpr2</span> <span class="ch">'/'</span> <span class="dt">Aexpr3</span>
+       <span class="fu">|</span> <span class="dt">Aexpr3</span>
+
+<span class="dt">Aexpr3</span> <span class="fu">:</span> <span class="dt">TNUM</span>
+       <span class="fu">|</span> <span class="dt">ID</span>
+       <span class="fu">|</span> <span class="ch">'('</span> <span class="dt">Aexpr</span> <span class="ch">')'</span></code></pre></div>
+<p><strong>(A)</strong> Yes</p>
+<p><strong>(B)</strong> No</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="solution-2-parser-directives">Solution 2: Parser directives</h3>
 <p>This problem is so common that parser generators have a special syntax for it!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">%</span>left <span class="ch">'+'</span> <span class="ch">'-'</span>
