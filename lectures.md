@@ -50,8 +50,8 @@ Lecture schedule is subject to change!
 | 10/22      | Haskell: simple recursion                       |                           |
 | 10/29      | Haskell: recursive data types                   |                           |
 | 11/5       | Haskell: list processing, folds. Midterm review |                           |
-| 11/12      | Nano: interpreters                              |                           |
-| 11/19      | Lexers, and parsers                             |                           |
+| 11/12      | Nano: interpreters                              | [slides][nano]            |
+| 11/19      | Lexers, and parsers                             | [slides][lexers]          |
 | 12/3       | Type classes                                    |                           |
 | 12/10      | IO Monad                                        |                           |
 
@@ -69,6 +69,8 @@ Lecture schedule is subject to change!
 [soundness]: lectures/soundness.html
 
 [disc1]: https://d1b10bmlvqabco.cloudfront.net/paste/jqmglbm0ei3kp/abc54305c3a095497c7c88669f8047d925d1fef9b633cebbeda2f8ff3e94278d/disc1-lambda_calc.pdf
+[nano]: /static/raw/disc-nano.pdf
+[lexers]: /static/raw/disc-lexing.pdf
 
 <!--
 [disc1]: /static/raw/discussion4-3-20.pdf
