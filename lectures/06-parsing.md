@@ -570,7 +570,7 @@ parse :: String -> AExpr
 An **attribute grammar** associates a *value* with each node in the parse tree
 
   - each production is annotated with a *rule* 
-  - a rule for computes the *value* of a non-terminal from the *values* of its children
+  - a rule computes the *value* of a non-terminal from the *values* of its children
   - here *value = AST* (i.e. Haskell value of type `AExpr`) 
   
 <br>
