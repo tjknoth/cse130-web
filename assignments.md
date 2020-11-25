@@ -18,10 +18,7 @@ pre-populated with starter code and a README file with all the instructions.
 | [HW2](https://classroom.github.com/a/VtMhFqJQ)   | Random Art                      | 11/4                       |
 | [HW3](https://classroom.github.com/a/UlsNGB0B)   | All about Fold                  | 11/13                      |          
 | [HW4](https://classroom.github.com/a/ubtmJ6a4)   | Nano                            | 11/25                      |
-
-<!--
-| [HW5]()   | Type Classes                    | ~~6/3~~ 6/5               |
--->
+| [HW5](https://classroom.github.com/a/VDui5vVz)   | Type Classes                    | 12/9                       |
 
 
 <!--
