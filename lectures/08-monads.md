@@ -268,13 +268,7 @@ mapTree :: (a -> b) -> Tree a -> Tree b    -- Tree
 
 <br>
 
-Can I write a generic function?
-
-<br>
-
-```
-map    :: (a -> b) -> t a    -> t b
-```
+Can I write a generic `map` function that works for `List`, `Tree`, and other datatypes?
 
 <br>
 <br>
@@ -289,7 +283,7 @@ map    :: (a -> b) -> t a    -> t b
 
 ### A Class for Mapping
 
-Not quite! Not all datatypes support mapping over, only *some* of them do.
+Not all datatypes support mapping over, only *some* of them do.
 
 So let's make a typeclass for it!
 

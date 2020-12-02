@@ -330,12 +330,10 @@ mapTree f (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span c
 <span class="ot">mapList ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">List</span> a <span class="ot">-&gt;</span> <span class="dt">List</span> b    <span class="co">-- List</span>
 <span class="ot">mapTree ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> b    <span class="co">-- Tree</span></code></pre></div>
 <p><br></p>
-<p>Can I write a generic function?</p>
-<p><br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">map<span class="ot">    ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> t a    <span class="ot">-&gt;</span> t b</code></pre></div>
+<p>Can I write a generic <code class="sourceCode haskell">map</code> function that works for <code class="sourceCode haskell"><span class="dt">List</span></code>, <code class="sourceCode haskell"><span class="dt">Tree</span></code>, and other datatypes?</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="a-class-for-mapping">A Class for Mapping</h3>
-<p>Not quite! Not all datatypes support mapping over, only <em>some</em> of them do.</p>
+<p>Not all datatypes support mapping over, only <em>some</em> of them do.</p>
 <p>So let’s make a typeclass for it!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Functor</span> t <span class="kw">where</span>
 <span class="ot">  fmap ::</span> <span class="fu">???</span></code></pre></div>
