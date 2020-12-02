@@ -313,7 +313,7 @@ class Functor t where
   fmap :: ???
 ```
 
-**(A)** `(a -> a) -> t a    -> t a`
+**(A)** `(a -> a) -> t      -> t`
 
 **(B)** `(a -> b) -> [a]    -> [b]`
 

@@ -342,7 +342,7 @@ mapTree f (<span class="dt">Node</span> v l r) <span class="fu">=</span> <span c
 <p>What type should we give to <code class="sourceCode haskell">fmap</code>?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Functor</span> t <span class="kw">where</span>
 <span class="ot">  fmap ::</span> <span class="fu">???</span></code></pre></div>
-<p><strong>(A)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> t a    <span class="ot">-&gt;</span> t a</code></p>
+<p><strong>(A)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> t      <span class="ot">-&gt;</span> t</code></p>
 <p><strong>(B)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> [a]    <span class="ot">-&gt;</span> [b]</code></p>
 <p><strong>(C)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> t a    <span class="ot">-&gt;</span> t b</code></p>
 <p><strong>(D)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> b</code></p>
