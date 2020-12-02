@@ -343,9 +343,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br></p>
 <p><strong>Example 2</strong>:</p>
 <p>Let’s derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">1</span> <span class="kw">in</span> x <span class="fu">+</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">      <span class="fu">?</span>
-[<span class="fu">?</span>]   <span class="fu">-----------------------------------------------</span>
-        [] <span class="fu">|-</span> <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">1</span> <span class="kw">in</span> x <span class="fu">+</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
+
 <p>But we <em>cannot</em> derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> <span class="kw">let</span> x <span class="fu">=</span> \y <span class="ot">-&gt;</span> y <span class="kw">in</span> x <span class="fu">+</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">T</span></code> for any type <code class="sourceCode haskell"><span class="dt">T</span></code></p>
 
 <p><br> <br></p>
@@ -527,9 +525,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br></p>
 <p><strong>Example 2</strong></p>
 <p>Let’s derive: <code class="sourceCode haskell"><span class="dt">G1</span> <span class="fu">|-</span> id <span class="dv">5</span><span class="ot"> ::</span> <span class="dt">Int</span></code> where <code class="sourceCode haskell"><span class="dt">G1</span> <span class="fu">=</span> [id <span class="fu">:</span> (forall a <span class="fu">.</span> a <span class="ot">-&gt;</span> a)]</code>:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">    <span class="fu">?</span>
-[<span class="fu">?</span>] <span class="fu">----------------</span>
-    <span class="dt">G1</span> <span class="fu">|-</span> id <span class="dv">5</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
+
 <p><br> <br></p>
 <p><strong>Example 3</strong></p>
 <p>Finally, we can derive:</p>
@@ -687,21 +683,7 @@ infer tEnv (<span class="dt">EAdd</span> e1 e2) <span class="fu">=</span>
 <p>Such a substitution is called a <em>unifier</em> of <code class="sourceCode haskell"><span class="dt">T1</span></code> and <code class="sourceCode haskell"><span class="dt">T2</span></code></p>
 <p><strong>Examples:</strong></p>
 <p>The unifier of:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">a         and  <span class="dt">Int</span>         is [a <span class="fu">/</span> <span class="dt">Int</span>]
 
-a <span class="ot">-&gt;</span> a    and  <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>  is [a <span class="fu">/</span> <span class="dt">Int</span>]
-
-a <span class="ot">-&gt;</span> <span class="dt">Int</span>  and  <span class="dt">Int</span> <span class="ot">-&gt;</span> b    is <span class="fu">???</span>
-
-<span class="dt">Int</span>       and  <span class="dt">Int</span>         is <span class="fu">???</span>
-
-a         and  a           is <span class="fu">???</span>
-
-<span class="dt">Int</span>       and <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>   is <span class="fu">???</span>
-
-<span class="dt">Int</span>       and a <span class="ot">-&gt;</span> a       is <span class="fu">???</span>
-
-a         and a <span class="ot">-&gt;</span> a       is <span class="fu">???</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-3">QUIZ</h2>
 <p>What is the unifier of the following two types?</p>
