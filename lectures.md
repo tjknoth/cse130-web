@@ -37,7 +37,7 @@ Lecture schedule is subject to change!
 | 12/4       | contd.                          |                           |
 | 12/7       | contd.                          |                           |
 | 12/9       | contd.                          |                           |
-| 12/11      | Final Review                    |                           |
+| 12/11      | *No lecture: Holiday Party      |                           |
 | 12/15      | **Final**                       |                           |
 
 
