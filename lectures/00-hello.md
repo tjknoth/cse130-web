@@ -31,14 +31,15 @@ date: 2017-03-28
 
 Teaching assistants:
 
-* [Shraddha Barke](https://shraddhabarke.github.io/)
-* [Tristan Knoth](https://tjknoth.github.io/)
+* [Zheng Guo](https://aaronguo1996.github.io/)
+* [Michael James](http://michaelbjames.com/)
 
-Tutors:
+Tutors
 
-* David Cao
 * Aidan Denlinger
-* Jamie Song
+* Darya Verzhbinsky
+* Daniel Wang
+* Ziteng Wang
 
 <br>
 <br>
@@ -54,16 +55,16 @@ Tutors:
 
 Live lecture over Zoom during scheduled lecture time
 
-- Keep your video and mic off unless you are talking
+- Keep your *mic* off unless you are talking
+- Keep your *video* on if you can: it makes it much more fun for me!
 - Two ways to ask a question:
     1. "Raise your hand" in zoom and I will call on you
     2. Type into zoom chat
-- Please do not use public Zoom chat for random commentary, it's very distracting   
+- Please do not use public Zoom chat for random commentary, it's distracting   
 - Same if I ask you a question
-    - Also use "thumb up" as a confirmation
-- I will assign you to "breakout rooms"
-    - Go to your breakout room for a small-group discussion
-    - Come back when I ask you to
+- I will split you into breakout rooms for small-group discussion
+    - Same group throughout the quarter (hopefully)
+    - You'll be sent to the room and back automatically    
     - Let's test that!
     
     
@@ -99,7 +100,7 @@ There was no
 - Java        25 years ago
 - C#          20 years ago
 - Rust        10 years ago
-- WebAssembly 3 years ago
+- WebAssembly 5 years ago
 
 
 <br>
@@ -433,11 +434,11 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 - [webpage](https://nadia-polikarpova.github.io/cse130-web)
     - calendar, lecture notes, programming assignments, ...
-- [canvas](https://canvas.ucsd.edu/courses/18855)
+- [canvas](https://canvas.ucsd.edu/courses/26587)
     - lecture recordings  
-- [piazza](https://www.piazza.com/ucsd/fall2020/cse130/home)
+- [piazza](https://www.piazza.com/ucsd/spring2021/cse130/home)
     - announcements and discussions
-- [gradescope](https://www.gradescope.com/courses/195408)
+- [gradescope](https://www.gradescope.com/courses/258033)
     - homework/exam submissions, grades    
 
 
@@ -456,8 +457,6 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - 30% Final
 - 05% Extra credit for Piazza discussion
     - To **top 20** best participants
-- 01% Extra credit for filling in your degree plan
-    - Due by mid-quarter, will be announced on Piazza    
     
 <br>
 <br>
@@ -472,12 +471,12 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - Released [online](https://nadia-polikarpova.github.io/cse130-web/assignments.html), at least a week before due date
 - Due on **Wednesday at 11:59pm**
     - no assignment this and next Wednesday
-- Eight late days, no more than 4 late days per assignment
+- 8 late days, no more than 4 late days per assignment
     - used atomically (5 mins late = 1 late day)
 - Submitted via Gradescope
     - submission instructions in the assignment
 - Solve **alone or in groups of two**
-    - user this [piazza thread](https://piazza.com/class/kfo4d0hdrne2z9?cid=5) to find a partner
+    - user this [piazza thread](https://piazza.com/class/kmpjxqrkmzu1kp?cid=5) to find a partner
 
 <br>
 <br>
@@ -488,12 +487,12 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     
 ## Exams    
 
-- Midterm on *November 9*
+- Midterm on *May 3*
     - Gradescope multiple choice
     - individual
     - 24h timespan
-- Final: *December 15*
-    - like a homework assignment (coding)
+- Final: *June 10*
+    - programming assignment
     - individual
     - 24h timespan
 - Formats subject to change!    
@@ -550,7 +549,7 @@ We will do quizzes in class via Zoom polls
 
 ## TEST QUIZ
 
-How can you earn 10% extra credit for this class?
+How can you earn 5% extra credit for this class?
 
 - **A**  do all my homework alone
 
@@ -571,11 +570,9 @@ How can you earn 10% extra credit for this class?
 
 ## Your Resources
 
-- Discussion section: Thu 5pm, same Zoom link
+- Discussion section: Fri 2pm, same Zoom link as lecture
 - Office hours
     - every day, check calendar
-    - I expect you to come to my office hours at least once this quarter
-    - I'll send a form to sign up
 - Piazza
     - we answer during work hours
 - **No text**        
@@ -664,7 +661,7 @@ or [Counseling and Psychological Services](http://caps.ucsd.edu.) (CAPS) at (85
     
 - I will do my best to accommodate your needs, just ask me or one of the course staff!
 
-- Please be patient with us too, it is new to us!
+- Please be patient with us too!
 
 
 <br>
