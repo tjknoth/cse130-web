@@ -5,16 +5,11 @@ headerImg: beach.jpg
 
 ### Homework Assignments (45%)
 
-There will be *six* programming assignments,
-assigned every one or two weeks.
-Instructions on turning them in will be posted with
-each assignment.
-
-**Partners**
-
+- There will be *six* programming assignments, assigned every one or two weeks.
+- Links to assignments will be posted on the [assignments page](assignments.html).
+- You will submit assignments via Gradescope.
 - You can work on the assignment *either alone or in groups of two*.
-- *Every student* has to turn in their solution,
-even if their solution is identical to their partner's.
+- If you are working with a partner and submitting the same code, please *submit as a group* (otherwise identical code might be flagged as plagiarism).
 
 <!--
 - If you have a good reason to work with a specific student rather than a randomly assigned partner,
@@ -36,13 +31,13 @@ but no more than *four late days* per assignment.
       
 ### Midterm (25%)
 
-Will be held on **Monday November 9**.
-The format will be announced before the midterm.
+- Will be held on **Monday, May 3**.
+- Format: multiple choice quiz on Gradescope.  
 
 ### Final (30%)
   
-Will be held on **Tuesday December 15**.
-The format will be announced before the final.
+- Will be held on **Thursday, June 10**.
+- Format: programming assignment. Solved individually in the course of 24 hours, but otherwise similar to homeworks.
   
 Since the final is cumulative, your midterm grade will be calculated as 
 `midterm > 0 ?  max(final, midterm) : 0`.
