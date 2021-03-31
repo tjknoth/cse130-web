@@ -5,7 +5,13 @@ headerImg: angles.jpg
 
 ## Assignments
 
-Coming soon
+Click the Github Classroom link next to the assignment. 
+This will automatically create your private assignment repository, 
+pre-populated with starter code and a README file with all the instructions.
+
+| Link                                             | Name                            | Deadline (11:59pm)        |
+|:------------------------------------------------:|:--------------------------------|:-------------------------:|
+| [HW0](https://classroom.github.com/a/uDpFHSq5)   | The Lambda Calculus             | 4/14                      |            
 
 <!--
 
