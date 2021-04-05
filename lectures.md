@@ -44,7 +44,7 @@ Lecture schedule is subject to change!
 
 | Date       | Topic                                           | Material                  |
 |:----------:|:------------------------------------------------|:-------------------------:|
-| 4/2        | Lambda Calculus: intro, syntax and reductions   |                           |
+| 4/2        | Lambda Calculus: intro, syntax and reductions   | [slides][disc1]           |
 | 4/9        | Lambda Calculus: data type encodings            |                           |
 | 4/16       | Haskell: simple recursion                       |                           |
 | 4/23       | Haskell: recursive data types                   |                           |
@@ -67,7 +67,7 @@ Lecture schedule is subject to change!
 [lec9]: lectures/09-types.html
 [soundness]: lectures/soundness.html
 
-[disc1]: https://d1b10bmlvqabco.cloudfront.net/paste/jqmglbm0ei3kp/abc54305c3a095497c7c88669f8047d925d1fef9b633cebbeda2f8ff3e94278d/disc1-lambda_calc.pdf
+[disc1]: /static/raw/discussion-4-2.pdf
 [nano]: /static/raw/disc-nano.pdf
 [lexers]: /static/raw/disc-lexing.pdf
 
