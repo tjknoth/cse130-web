@@ -938,7 +938,7 @@ y[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class
 <h2 id="lambda-calculus-recursion"><span class="math inline"><em>λ</em></span>-calculus: Recursion</h2>
 <p><br></p>
 <p>I want to write a function that sums up natural numbers up to <code class="sourceCode haskell">n</code>:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\n <span class="ot">-&gt;</span> <span class="fu">...</span>          <span class="co">-- 1 + 2 + ... + n</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">\n <span class="ot">-&gt;</span> <span class="fu">...</span>          <span class="co">-- 0 + 1 + 2 + ... + n</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-8">QUIZ</h2>
 <p>Is this a correct implementation of <code class="sourceCode haskell"><span class="dt">SUM</span></code>?</p>
@@ -1016,7 +1016,7 @@ y[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class
 <p>Remember <span class="math inline"><em>Ω</em></span>?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x x) (\x <span class="ot">-&gt;</span> x x)
 <span class="fu">=</span>b<span class="fu">&gt;</span> (\x <span class="ot">-&gt;</span> x x) (\x <span class="ot">-&gt;</span> x x)</code></pre></div>
-<p>This is <em>self-replcating code</em>! We need something like this but a bit more involved…</p>
+<p>This is <em>self-replicating code</em>! We need something like this but a bit more involved…</p>
 <p><br> <br> <br> <br></p>
 <p>The Y combinator discovered by Haskell Curry:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> <span class="dt">FIX</span>   <span class="fu">=</span> \stp <span class="ot">-&gt;</span> (\x <span class="ot">-&gt;</span> stp (x x)) (\x <span class="ot">-&gt;</span> stp (x x))</code></pre></div>

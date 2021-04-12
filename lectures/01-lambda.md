@@ -2038,7 +2038,7 @@ eval two_times_three :
 I want to write a function that sums up natural numbers up to `n`:
 
 ```
-\n -> ...          -- 1 + 2 + ... + n
+\n -> ...          -- 0 + 1 + 2 + ... + n
 ```
 
 <br>
@@ -2238,7 +2238,7 @@ Remember $\Omega$?
 =b> (\x -> x x) (\x -> x x)
 ``` 
  
-This is *self-replcating code*! We need something like this but a bit more involved...
+This is *self-replicating code*! We need something like this but a bit more involved...
 
 <br>
 <br>
