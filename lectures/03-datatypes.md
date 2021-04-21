@@ -87,7 +87,7 @@ Tuples can do the job but there are two problems...
 
 ```haskell
 deadlineDate :: (Int, Int, Int)
-deadlineDate = (11, 4, 2020)
+deadlineDate = (4, 28, 2020)
 
 deadlineTime :: (Int, Int, Int)
 deadlineTime = (11, 59, 59)
@@ -115,7 +115,7 @@ type Date = (Int, Int, Int)
 type Time = (Int, Int, Int)
 
 deadlineDate :: Date
-deadlineDate = (11, 4, 2020)
+deadlineDate = (4, 28, 2020)
 
 deadlineTime :: Time
 deadlineTime = (11, 59, 59)
@@ -150,7 +150,7 @@ data Time = Time Int Int Int
 -- constructor^   ^parameter types
 
 deadlineDate :: Date
-deadlineDate = Date 11 4 2020
+deadlineDate = Date 4 28 2020
 
 deadlineTime :: Time
 deadlineTime = Time 11 59 59
@@ -175,7 +175,7 @@ data Date = Date Int Int Int
 What would GHCi say to
 
 ```haskell
->:t Date 11 5 2020
+>:t Date 4 28 2020
 ```
 
 **A.**  Syntax error
@@ -227,8 +227,8 @@ Haskell's **record syntax** allows you to *name* the constructor parameters:
   * then you can do:
   
     ```
-    deadlineDate = Date { month = 11, day = 4, year = 2020 }
-    -- same as: deadlineDate = Date 11 4 2020
+    deadlineDate = Date { month = 4, day = 28, year = 2020 }
+    -- same as: deadlineDate = Date 4 28 2020
     
     dealineMonth = month deadlineDate -- use field name as a function    
     ```
