@@ -12,7 +12,8 @@ pre-populated with starter code and a README file with all the instructions.
 | Link                                             | Name                            | Deadline (11:59pm)        |
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
 | [HW0](https://classroom.github.com/a/uDpFHSq5)   | The Lambda Calculus             | 4/14                      |
-| [HW1](https://classroom.github.com/a/Jj3rzufC)   | Introduction to Haskell         | 4/21                      |            
+| [HW1](https://classroom.github.com/a/Jj3rzufC)   | Introduction to Haskell         | 4/21                      |
+| [HW2](https://classroom.github.com/a/u-nXvSoi)   | Random Art                      | 4/28                       |            
 
 <!--
 
@@ -22,7 +23,6 @@ pre-populated with starter code and a README file with all the instructions.
 
 | Link                                             | Name                            | Deadline (11:59pm)        |
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
-| [HW2](https://classroom.github.com/a/VtMhFqJQ)   | Random Art                      | 11/4                       |
 | [HW3](https://classroom.github.com/a/UlsNGB0B)   | All about Fold                  | 11/13                      |          
 | [HW4](https://classroom.github.com/a/ubtmJ6a4)   | Nano                            | 11/25                      |
 | [HW5](https://classroom.github.com/a/VDui5vVz)   | Type Classes                    | 12/9                       |
