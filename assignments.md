@@ -13,7 +13,7 @@ pre-populated with starter code and a README file with all the instructions.
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
 | [HW0](https://classroom.github.com/a/uDpFHSq5)   | The Lambda Calculus             | 4/14                      |
 | [HW1](https://classroom.github.com/a/Jj3rzufC)   | Introduction to Haskell         | 4/21                      |
-| [HW2](https://classroom.github.com/a/u-nXvSoi)   | Random Art                      | 4/28                       |            
+| [HW2](https://classroom.github.com/a/u-nXvSoi)   | Random Art                      | ~~4/28~~  4/30            |            
 
 <!--
 
