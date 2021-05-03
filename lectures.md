@@ -73,8 +73,8 @@ Lecture schedule is subject to change!
 [disc3code]: /static/raw/discussion-week-03.hs
 [disc4]: /static/raw/discussion-week-04.pdf
 [disc4code]: /static/raw/discussion-week-04.hs
-[disc4]: /static/raw/discussion-week-05.pdf
-[disc4code]: /static/raw/discussion-week-05.hs
+[disc5]: /static/raw/discussion-week-05.pdf
+[disc5code]: /static/raw/discussion-week-05.hs
 [nano]: /static/raw/disc-nano.pdf
 [lexers]: /static/raw/disc-lexing.pdf
 
