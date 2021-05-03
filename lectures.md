@@ -48,7 +48,7 @@ Lecture schedule is subject to change!
 | 4/9        | Lambda Calculus: data type encodings            | [slides][disc2]           |
 | 4/16       | Haskell: simple recursion                       | [slides][disc3] [code][disc3code] |
 | 4/23       | Haskell: recursive data types                   | [slides][disc4] [code][disc4code] |
-| 4/30       | Haskell: list processing, folds. Midterm review |                           |
+| 4/30       | Haskell: list processing, folds. Midterm review | [slides][disc5] [code][disc5code] |
 | 5/7        | Nano: interpreters                              |                           |
 | 5/14       | Lexers, and parsers                             |                           |
 | 5/21       | Type classes                                    |                           |
@@ -73,6 +73,8 @@ Lecture schedule is subject to change!
 [disc3code]: /static/raw/discussion-week-03.hs
 [disc4]: /static/raw/discussion-week-04.pdf
 [disc4code]: /static/raw/discussion-week-04.hs
+[disc4]: /static/raw/discussion-week-05.pdf
+[disc4code]: /static/raw/discussion-week-05.hs
 [nano]: /static/raw/disc-nano.pdf
 [lexers]: /static/raw/disc-lexing.pdf
 
