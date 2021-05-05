@@ -24,7 +24,7 @@ pre-populated with starter code and a README file with all the instructions.
 
 | Link                                             | Name                            | Deadline (11:59pm)        |
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
-| [HW4](https://classroom.github.com/a/ubtmJ6a4)   | Nano                            | 11/25                      |
+| [HW4](https://classroom.github.com/a/R7IvZgz-)   | Nano                            | 5/19                      |
 | [HW5](https://classroom.github.com/a/VDui5vVz)   | Type Classes                    | 12/9                       |
 
 

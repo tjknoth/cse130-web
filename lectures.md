@@ -24,7 +24,7 @@ Lecture schedule is subject to change!
 | 4/30       | contd.                          |                           |
 | 5/3        | **Midterm**                     |                           |
 | 5/5        | contd.                          |                           |
-| 5/7        | Environments and Closures       |                           |
+| 5/7        | Environments and Closures       | [html][lec5]              |
 | 5/10       | contd.                          |                           |
 | 5/12       | contd.                          |                           |
 | 5/14       | Lexing and Parsing              |                           |       
