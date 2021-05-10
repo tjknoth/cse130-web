@@ -803,7 +803,9 @@ eval env (<span class="dt">Let</span> x e1 e2) <span class="fu">=</span> eval en
 eval env (<span class="dt">Lam</span> x body) <span class="fu">=</span> <span class="dt">VFun</span> x body
 eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval env' body
   <span class="kw">where</span>
-    <span class="dt">VFun</span> x body <span class="fu">=</span> eval env fun
+    <span class="dt">VFun</span> x body <span class="fu">=</span> eval env fun  <span class="co">-- DO NOT DO THIS in HW! </span>
+                                <span class="co">-- introduce a helper instead </span>
+                                <span class="co">-- to match different value patterns </span>
     vArg        <span class="fu">=</span> eval env arg
     env'        <span class="fu">=</span> (x, vArg) <span class="fu">:</span> env</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>

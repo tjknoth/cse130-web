@@ -1229,7 +1229,9 @@ eval env (Let x e1 e2) = eval env' e2
 eval env (Lam x body) = VFun x body
 eval env (App fun arg) = eval env' body
   where
-    VFun x body = eval env fun
+    VFun x body = eval env fun  -- DO NOT DO THIS in HW! 
+                                -- introduce a helper instead 
+                                -- to match different value patterns 
     vArg        = eval env arg
     env'        = (x, vArg) : env
 ```
