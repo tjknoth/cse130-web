@@ -29,7 +29,7 @@ Lecture schedule is subject to change!
 | 5/12       | contd.                          |                           |
 | 5/14       | Lexing and Parsing              | [html][lec6] [tutorial][parsing] |
 | 5/17       | contd.                          |                           |
-| 5/19       | Overloading & TypeClasses       |                           |
+| 5/19       | Overloading & TypeClasses       | [html][lec7]              |
 | 5/21       | contd.                          |                           |
 | 5/24       | Monads                          |                           |
 | 5/26       | contd.                          |                           |

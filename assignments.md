@@ -25,7 +25,7 @@ pre-populated with starter code and a README file with all the instructions.
 
 | Link                                             | Name                            | Deadline (11:59pm)        |
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
-| [HW5](https://classroom.github.com/a/VDui5vVz)   | Type Classes                    | 12/9                       |
+| [HW5](https://classroom.github.com/a/_QSPLyig)   | Type Classes                    | 6/2                       |
 
 
 -->
