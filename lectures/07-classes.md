@@ -703,47 +703,6 @@ True
 
 ## QUIZ 
 
-With the definition
-
-```haskell
-data Color = Red | Green 
-  deriving (Eq, Show)
-```
-
-What is the result of:
-
-```haskell
-λ> Red < Green
-```
-
-**(A)** `True`
-
-**(B)** `False`
-
-**(C)** Type error
-
-**(D)** Run-time exception
-
-<br>
-
-(I) final
-
-    *Answer:* C
-    
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-## QUIZ 
-
 Which of the following `Eq` instances for `Color` are valid?
 
 ```haskell

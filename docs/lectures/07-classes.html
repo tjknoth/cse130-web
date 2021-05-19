@@ -569,19 +569,6 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span class="dt">True</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-2">QUIZ</h2>
-<p>With the definition</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Color</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Green</span> 
-  <span class="kw">deriving</span> (<span class="dt">Eq</span>, <span class="dt">Show</span>)</code></pre></div>
-<p>What is the result of:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">λ<span class="fu">&gt;</span> <span class="dt">Red</span> <span class="fu">&lt;</span> <span class="dt">Green</span></code></pre></div>
-<p><strong>(A)</strong> <code class="sourceCode haskell"><span class="dt">True</span></code></p>
-<p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dt">False</span></code></p>
-<p><strong>(C)</strong> Type error</p>
-<p><strong>(D)</strong> Run-time exception</p>
-<p><br></p>
-
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-3">QUIZ</h2>
 <p>Which of the following <code class="sourceCode haskell"><span class="dt">Eq</span></code> instances for <code class="sourceCode haskell"><span class="dt">Color</span></code> are valid?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- (A)</span>
 <span class="kw">instance</span> <span class="dt">Eq</span> <span class="dt">Color</span> <span class="kw">where</span>
@@ -621,7 +608,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span class="ot">  (/=) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
   <span class="ot">{-# MINIMAL (==) | (/=) #-}</span> <span class="co">-- HERE HERE!!!</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-4">QUIZ</h2>
+<h2 id="quiz-3">QUIZ</h2>
 <p>If you define:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Eq</span> <span class="dt">Color</span> <span class="kw">where</span>
   <span class="co">-- Nothing here!</span></code></pre></div>
@@ -721,7 +708,7 @@ get key env <span class="fu">=</span> <span class="fu">???</span></code></pre></
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br><br />
 <br> <br></p>
-<h2 id="quiz-5">QUIZ</h2>
+<h2 id="quiz-4">QUIZ</h2>
 <p>What does the expression <code class="sourceCode haskell">read <span class="st">&quot;2&quot;</span></code> evaluate to?</p>
 <p><strong>(A)</strong> Type error</p>
 <p><strong>(B)</strong> <code class="sourceCode haskell"><span class="st">&quot;2&quot;</span></code></p>
