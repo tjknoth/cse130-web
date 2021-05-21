@@ -77,7 +77,7 @@ Lecture schedule is subject to change!
 [disc5code]: /static/raw/discussion-week-05.hs
 [disc6]: /static/raw/discussion-week-06.pdf
 [disc6code]: /static/raw/discussion-week-06.hs
-[disc6]: /static/raw/discussion-week-07.pdf
+[disc7]: /static/raw/discussion-week-07.pdf
 [nano]: /static/raw/disc-nano.pdf
 [lexers]: /static/raw/disc-lexing.pdf
 
