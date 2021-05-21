@@ -756,7 +756,7 @@ get key env <span class="fu">=</span> <span class="fu">???</span></code></pre></
 <h2 id="json">JSON</h2>
 <p><em>JavaScript Object Notation</em> or <a href="http://www.json.org/">JSON</a> is a simple format for transferring data around. Here is an example:</p>
 <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span> <span class="dt">&quot;name&quot;</span>    <span class="fu">:</span> <span class="st">&quot;Nadia&quot;</span>
-<span class="fu">,</span> <span class="dt">&quot;age&quot;</span>     <span class="fu">:</span> <span class="fl">35.0</span>
+<span class="fu">,</span> <span class="dt">&quot;age&quot;</span>     <span class="fu">:</span> <span class="fl">36.0</span>
 <span class="fu">,</span> <span class="dt">&quot;likes&quot;</span>   <span class="fu">:</span> <span class="ot">[</span> <span class="st">&quot;poke&quot;</span><span class="ot">,</span> <span class="st">&quot;coffee&quot;</span><span class="ot">,</span> <span class="st">&quot;pasta&quot;</span> <span class="ot">]</span>
 <span class="fu">,</span> <span class="dt">&quot;hates&quot;</span>   <span class="fu">:</span> <span class="ot">[</span> <span class="st">&quot;beets&quot;</span> <span class="ot">,</span> <span class="st">&quot;milk&quot;</span> <span class="ot">]</span>
 <span class="fu">,</span> <span class="dt">&quot;lunches&quot;</span> <span class="fu">:</span> <span class="ot">[</span> <span class="fu">{</span><span class="dt">&quot;day&quot;</span> <span class="fu">:</span> <span class="st">&quot;mon&quot;</span><span class="fu">,</span> <span class="dt">&quot;loc&quot;</span> <span class="fu">:</span> <span class="st">&quot;rubios&quot;</span><span class="fu">}</span>
@@ -785,7 +785,7 @@ get key env <span class="fu">=</span> <span class="fu">???</span></code></pre></
 <p>The above JSON value would be represented by the <code class="sourceCode haskell"><span class="dt">JVal</span></code></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">js1 <span class="fu">=</span>
   <span class="dt">JObj</span> [(<span class="st">&quot;name&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;Nadia&quot;</span>)
-       ,(<span class="st">&quot;age&quot;</span>,  <span class="dt">JNum</span> <span class="fl">35.0</span>)
+       ,(<span class="st">&quot;age&quot;</span>,  <span class="dt">JNum</span> <span class="fl">36.0</span>)
        ,(<span class="st">&quot;likes&quot;</span>,   <span class="dt">JArr</span> [ <span class="dt">JStr</span> <span class="st">&quot;poke&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;coffee&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;pasta&quot;</span>])
        ,(<span class="st">&quot;hates&quot;</span>,   <span class="dt">JArr</span> [ <span class="dt">JStr</span> <span class="st">&quot;beets&quot;</span>, <span class="dt">JStr</span> <span class="st">&quot;milk&quot;</span>])
        ,(<span class="st">&quot;lunches&quot;</span>, <span class="dt">JArr</span> [ <span class="dt">JObj</span> [(<span class="st">&quot;day&quot;</span>,  <span class="dt">JStr</span> <span class="st">&quot;mon&quot;</span>)
@@ -928,7 +928,7 @@ mapToJSON f kvs <span class="fu">=</span> <span class="dt">JObj</span> [ (k, f v
     <span class="dt">JObj</span> [(k1, toJSON v1), (k2, toJSON v2), (k3, toJSON v3), (k4, toJSON v4), (k5, toJSON v5)]</code></pre></div>
 <p>Now, we can simply write</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">hs <span class="fu">=</span> ((<span class="st">&quot;name&quot;</span>   , <span class="st">&quot;Nadia&quot;</span>)
-     ,(<span class="st">&quot;age&quot;</span>    , <span class="fl">35.0</span>)
+     ,(<span class="st">&quot;age&quot;</span>    , <span class="fl">36.0</span>)
      ,(<span class="st">&quot;likes&quot;</span>  , [<span class="st">&quot;poke&quot;</span>, <span class="st">&quot;coffee&quot;</span>, <span class="st">&quot;pasta&quot;</span>])
      ,(<span class="st">&quot;hates&quot;</span>  , [<span class="st">&quot;beets&quot;</span>, <span class="st">&quot;milk&quot;</span>])
      ,(<span class="st">&quot;lunches&quot;</span>, lunches)
