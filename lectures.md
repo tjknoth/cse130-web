@@ -31,7 +31,7 @@ Lecture schedule is subject to change!
 | 5/17       | contd.                          |                           |
 | 5/19       | Overloading & TypeClasses       | [html][lec7]              |
 | 5/21       | contd.                          |                           |
-| 5/24       | Monads                          |                           |
+| 5/24       | Monads                          | [html][lec8]              |
 | 5/26       | contd.                          |                           |
 | 5/28       | contd.                          |                           |
 | 5/31       | *No lecture: Memorial Day*      |                           |
