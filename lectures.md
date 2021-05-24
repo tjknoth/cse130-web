@@ -51,7 +51,7 @@ Lecture schedule is subject to change!
 | 4/30       | Midterm review                                  | [slides][disc5] [code][disc5code] |
 | 5/7        | Haskell: folds.                                 | [slides][disc6] [code][disc6code] |
 | 5/14       | Nano: interpreters, lexers, and parsers         | [slides][disc7]           |
-| 5/21       | Type classes                                    |                           |
+| 5/21       | Type classes                                    | [slides][disc8] [code][disc8code] |
 | 5/28       | IO Monad                                        |                           |
 
 
@@ -78,6 +78,8 @@ Lecture schedule is subject to change!
 [disc6]: /static/raw/discussion-week-06.pdf
 [disc6code]: /static/raw/discussion-week-06.hs
 [disc7]: /static/raw/discussion-week-07.pdf
+[disc8]: /static/raw/discussion-week-08.pdf
+[disc8code]: /static/raw/discussion-week-08.hs
 [nano]: /static/raw/disc-nano.pdf
 [lexers]: /static/raw/disc-lexing.pdf
 
