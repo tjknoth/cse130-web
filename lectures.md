@@ -67,8 +67,8 @@ Lecture schedule is subject to change!
 [lec9]: lectures/09-types.html
 [soundness]: lectures/soundness.html
 
-[disc1]: /static/raw/discussion-4-2.pdf
-[disc2]: /static/raw/discussion-4-9.pdf
+[disc1]: /static/raw/discussion-week-01.pdf
+[disc2]: /static/raw/discussion-week-02.pdf
 [disc3]: /static/raw/discussion-week-03.pdf
 [disc3code]: /static/raw/discussion-week-03.hs
 [disc4]: /static/raw/discussion-week-04.pdf
@@ -81,23 +81,6 @@ Lecture schedule is subject to change!
 [disc8]: /static/raw/discussion-week-08.pdf
 [disc8code]: /static/raw/discussion-week-08.hs
 [disc9]: /static/raw/discussion-week-09.pdf
-[nano]: /static/raw/disc-nano.pdf
-[lexers]: /static/raw/disc-lexing.pdf
-
-<!--
-[disc1]: /static/raw/discussion4-3-20.pdf
-[disc2]: /static/raw/20200410_Discussion_2.pdf
-[disc3]: /static/raw/discussion_4_24.hs
-[disc9]: /static/raw/20200529_dicussion.pdf
--->
-
-[semantics]: /static/raw/semantics.pdf
 
 [parsing]: https://github.com/cse130-sp18/arith
 [elsa]: https://github.com/ucsd-progsys/elsa
-
-[intro]: /static/raw/Intro.hs
-[datatypes]: /static/raw/Datatypes.hs
-[tail]: /static/raw/Tail.hs
-[setReview]: /static/raw/set_review.lc
-[HOReview]: /static/raw/HO_review.hs
