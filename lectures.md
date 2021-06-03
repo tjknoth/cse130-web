@@ -52,7 +52,7 @@ Lecture schedule is subject to change!
 | 5/7        | Haskell: folds.                                 | [slides][disc6] [code][disc6code] |
 | 5/14       | Nano: interpreters, lexers, and parsers         | [slides][disc7]           |
 | 5/21       | Type classes                                    | [slides][disc8] [code][disc8code] |
-| 5/28       | IO Monad                                        |                           |
+| 5/28       | IO Monad                                        | [slides][disc9]                   |
 
 
 [lec0]: lectures/00-hello.html
@@ -80,6 +80,7 @@ Lecture schedule is subject to change!
 [disc7]: /static/raw/discussion-week-07.pdf
 [disc8]: /static/raw/discussion-week-08.pdf
 [disc8code]: /static/raw/discussion-week-08.hs
+[disc9]: /static/raw/discussion-week-09.pdf
 [nano]: /static/raw/disc-nano.pdf
 [lexers]: /static/raw/disc-lexing.pdf
 
