@@ -36,7 +36,7 @@ Lecture schedule is subject to change!
 | 5/28       | contd.                          |                           |
 | 5/31       | *No lecture: Memorial Day*      |                           |
 | 6/2        | contd.                          |                           |
-| 6/4        | Final Review                    |                           |
+| 6/4        | Final Review                    | [repo][mock-final]        |
 | 6/10       | **Final**                       |                           |
 
 
@@ -66,6 +66,7 @@ Lecture schedule is subject to change!
 [lec8]: lectures/08-monads.html
 [lec9]: lectures/09-types.html
 [soundness]: lectures/soundness.html
+[mock-final]: https://github.com/cse130-assignments/mock-final
 
 [disc1]: /static/raw/discussion-week-01.pdf
 [disc2]: /static/raw/discussion-week-02.pdf
