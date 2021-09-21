@@ -1,6 +1,6 @@
 # 130-web
 
-Public course materials for [UCSD CSE 130](https://nadia-polikarpova.github.io/cse130)
+Public course materials for [UCSD CSE 130](https://nadia-polikarpova.github.io/cse130-web)
 
 ## Install
 
