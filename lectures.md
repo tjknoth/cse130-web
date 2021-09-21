@@ -7,52 +7,53 @@ Lecture schedule is subject to change!
 
 | Date       | Topic                           | Material                  |
 |:----------:|:--------------------------------|:-------------------------:|
-| 3/29       | Hello, World!                   | [html][lec0]              |            
-| 3/31       | The Lambda Calculus             | [html][lec1]              |
-| 4/2        | contd.                          |                           |
-| 4/5        | contd.                          |                           |
-| 4/7        | contd.                          |                           |
-| 4/9        | contd.                          |                           |
-| 4/12       | A crash course in Haskell       | [html][lec2]              |
-| 4/14       | contd.                          |                           |
-| 4/16       | contd.                          |                           |
-| 4/19       | contd.                          |                           |
-| 4/21       | Datatypes and Recursion         | [html][lec3]              |
-| 4/23       | contd.                          |                           |
-| 4/26       | contd.                          |                           |
-| 4/28       | Higher Order Functions          | [html][lec4]              |
-| 4/30       | contd.                          |                           |
-| 5/3        | **Midterm**                     |                           |
-| 5/5        | contd.                          |                           |
-| 5/7        | Environments and Closures       | [html][lec5]              |
-| 5/10       | contd.                          |                           |
-| 5/12       | contd.                          |                           |
-| 5/14       | Lexing and Parsing              | [html][lec6] [tutorial][parsing] |
-| 5/17       | contd.                          |                           |
-| 5/19       | Overloading & TypeClasses       | [html][lec7]              |
-| 5/21       | contd.                          |                           |
-| 5/24       | Monads                          | [html][lec8]              |
-| 5/26       | contd.                          |                           |
-| 5/28       | contd.                          |                           |
-| 5/31       | *No lecture: Memorial Day*      |                           |
-| 6/2        | contd.                          |                           |
-| 6/4        | Final Review                    | [repo][mock-final]        |
-| 6/10       | **Final**                       |                           |
+| 9/24       | Hello, World!                   | [html][lec0]              |            
+| 9/27       | The Lambda Calculus             |                           |
+| 9/29       | contd.                          |                           |
+| 10/1       | contd.                          |                           |
+| 10/4       | contd.                          |                           |
+| 10/6       | contd.                          |                           |
+| 10/8       | A crash course in Haskell       |                           |
+| 10/11      | contd.                          |                           |
+| 10/13      | contd.                          |                           |
+| 10/15      | contd.                          |                           |
+| 10/18      | Datatypes and Recursion         |                           |
+| 10/20      | contd.                          |                           |
+| 10/22      | contd.                          |                           |
+| 10/25      | Higher Order Functions          |                           |
+| 10/27      | contd.                          |                           |
+| 10/29      | contd.                          |                           |
+| 11/1       | **Midterm**                     |                           |
+| 11/3       | Environments and Closures       |                           |
+| 11/5       | contd.                          |                           |
+| 11/8       | contd.                          |                           |
+| 11/10      | Lexing and Parsing              |                           |
+| 11/12      | contd.                          |                           |
+| 11/15      | Overloading & TypeClasses       |                           |
+| 11/17      | contd.                          |                           |
+| 11/19      | Monads                          |                           |
+| 11/22      | contd.                          |                           |
+| 11/24      | contd.                          |                           |
+| 11/26      |  *No lecture: Thanksgiving*     |                           |
+| 11/29      | contd.                          |                           |
+| 12/1       | TBD                             |                           |
+| 12/3       | TBD                             |                           |
+| 12/8       | **Final**                       |                           |
 
 
 **Discussions**
 
 | Date       | Topic                                           | Material                  |
 |:----------:|:------------------------------------------------|:-------------------------:|
-| 4/2        | Lambda Calculus: intro, syntax and reductions   | [slides][disc1]           |
-| 4/9        | Lambda Calculus: data type encodings            | [slides][disc2]           |
-| 4/16       | Haskell: simple recursion                       | [slides][disc3] [code][disc3code] |
-| 4/23       | Haskell: recursive data types                   | [slides][disc4] [code][disc4code] |
-| 4/30       | Midterm review                                  | [slides][disc5] [code][disc5code] |
-| 5/7        | Haskell: folds.                                 | [slides][disc6] [code][disc6code] |
-| 5/14       | Nano: interpreters, lexers, and parsers         | [slides][disc7]           |
-| 5/21       | Type classes                                    | [slides][disc8] [code][disc8code] |
-| 5/28       | IO Monad                                        | [slides][disc9]                   |
+| 10/1       | Lambda Calculus: intro, syntax and reductions   |                           |
+| 10/8       | Lambda Calculus: data type encodings            |                           |
+| 10/15      | Haskell: simple recursion                       |                           |
+| 10/22      | Haskell: recursive data types                   |                           |
+| 10/29      | Midterm review                                  |                           |
+| 11/5       | Haskell: folds.                                 |                           |
+| 11/12      | Nano: interpreters, lexers, and parsers         |                           |
+| 11/19      | Type classes                                    |                           |
+| 12/3       | IO Monad                                        |                           |
 
 
 [lec0]: lectures/00-hello.html

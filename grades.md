@@ -11,13 +11,6 @@ headerImg: beach.jpg
 - You can work on the assignment *either alone or in groups of two*.
 - If you are working with a partner and submitting the same code, please *submit as a group* (otherwise identical code might be flagged as plagiarism).
 
-<!--
-- If you have a good reason to work with a specific student rather than a randomly assigned partner,
-please fill in this [form](https://forms.gle/T4eGCSDDppN4KbmWA)
-- Please fill in this [registration form](https://forms.gle/3vqWc8UT6rGQMCQT6)
-to get assigned a partner and get homework credit 
--->
-
 
 **Late Policy**
 
@@ -31,12 +24,12 @@ but no more than *four late days* per assignment.
       
 ### Midterm (25%)
 
-- Will be held on **Monday, May 3**.
+- Will be held on **Monday, Nov 1**.
 - Format: multiple choice quiz on Gradescope.  
 
 ### Final (30%)
   
-- Will be held on **Thursday, June 10**.
+- Will be held on **Wednesday, Dec 8**.
 - Format: programming assignment. Solved individually in the course of 24 hours, but otherwise similar to homeworks.
   
 Since the final is cumulative, your midterm grade will be calculated as 

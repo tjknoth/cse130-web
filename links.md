@@ -3,10 +3,6 @@ title: Resources
 headerImg: sea.jpg
 ---
 
-## Podcast
-
-In addition to Zoom recordings from this quarter, you can watch the [podcast](https://podcast.ucsd.edu/watch/fa19/cse130_a00) from Fall 2019.
-
 ## Text
 
 There is **no text** for CSE 130. We will be using the
