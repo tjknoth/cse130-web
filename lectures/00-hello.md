@@ -31,15 +31,15 @@ date: 2017-03-28
 
 Teaching assistants:
 
+* [Kasra Ferdowsifard](https://weirdmachine.me/)
 * [Zheng Guo](https://aaronguo1996.github.io/)
-* [Michael James](http://michaelbjames.com/)
+* [Tristan Knoth](https://tjknoth.github.io/)
+
 
 Tutors
 
-* Aidan Denlinger
-* Darya Verzhbinsky
-* Daniel Wang
-* Ziteng Wang
+* [David Cao](https://cao.sh/)
+* Mingyang Liu
 
 <br>
 <br>
@@ -53,7 +53,9 @@ Tutors
 
 ## Lecture Format
 
-Live lecture over Zoom during scheduled lecture time
+In-person + live on Zoom
+
+For those joining on Zoom:
 
 - Keep your *mic* off unless you are talking
 - Keep your *video* on if you can: it makes it much more fun for me!
@@ -61,14 +63,9 @@ Live lecture over Zoom during scheduled lecture time
     1. "Raise your hand" in zoom and I will call on you
     2. Type into zoom chat
 - Please do not use public Zoom chat for random commentary, it's distracting   
-- Same if I ask you a question
-- I will split you into breakout rooms for small-group discussion
-    - Same group throughout the quarter (hopefully)
-    - You'll be sent to the room and back automatically    
-    - Let's test that!
+- Same if I ask you a question    
     
-    
-Lectures will also be recorded and published on canvas    
+Lectures will also be recorded and published on canvas and/or [podcast](https://podcast.ucsd.edu/)   
 
 
 
@@ -434,11 +431,11 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 - [webpage](https://nadia-polikarpova.github.io/cse130-web)
     - calendar, lecture notes, programming assignments, ...
-- [canvas](https://canvas.ucsd.edu/courses/26587)
+- [canvas](https://canvas.ucsd.edu/courses/30739)
     - lecture recordings  
-- [piazza](https://www.piazza.com/ucsd/spring2021/cse130/home)
+- [piazza](https://www.piazza.com/ucsd/fall2021/cse130/home)
     - announcements and discussions
-- [gradescope](https://www.gradescope.com/courses/258033)
+- [gradescope](https://www.gradescope.com/courses/317724)
     - homework/exam submissions, grades    
 
 
@@ -476,7 +473,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - Submitted via Gradescope
     - submission instructions in the assignment
 - Solve **alone or in groups of two**
-    - user this [piazza thread](https://piazza.com/class/kmpjxqrkmzu1kp?cid=5) to find a partner
+    - user this [piazza thread](https://piazza.com/class/kttd16ijrge1i7?cid=5) to find a partner
 
 <br>
 <br>
@@ -487,11 +484,11 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     
 ## Exams    
 
-- Midterm on *May 3*
+- Midterm on *Nov 1*
     - Gradescope multiple choice
     - individual
     - 24h timespan
-- Final: *June 10*
+- Final: *Dec 8*
     - programming assignment
     - individual
     - 24h timespan
@@ -514,7 +511,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 ## In-class Quizzes
 
-We will do quizzes in class via Zoom polls
+We will do quizzes in class via Clickers / Zoom polls
 
   - Make class interactive
   - Help *you* and *me* understand what's tricky
@@ -526,11 +523,9 @@ We will do quizzes in class via Zoom polls
     - Think for yourself, select answer
 
 2. *Discuss*
-    - Go into your *breakout room*
-    - To see the quiz, open the lecture notes from the class website
-    - Analyze problem with your groups
-    - Reach consensus
-    - I will "call you back" from the room when time's up
+    - If in class: discuss with your neighbor 
+    - If remote: discuss with a friend on zoom chat (or any other chat)
+    - Try to reach consensus
 
 3. *Group Vote*
     - Everyone in group votes
@@ -570,7 +565,8 @@ How can you earn 5% extra credit for this class?
 
 ## Your Resources
 
-- Discussion section: Fri 2pm, same Zoom link as lecture
+- Discussion section: Fri 6pm, **Zoom only**
+    - same Zoom link as lecture
 - Office hours
     - every day, check calendar
 - Piazza
