@@ -67,52 +67,6 @@ For those joining on Zoom:
     
 Lectures will also be recorded and published on canvas and/or [podcast](https://podcast.ucsd.edu/)   
 
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-## What is CSE 130 **not** about?
-
-Learning... 
-
-- JavaScript in April
-- Haskell in May
-- C++ in June
-- etc. 
-
-### New languages come (and go ...)
-
-There was no
-
-- Python      30 years ago
-- Java        25 years ago
-- C#          20 years ago
-- Rust        10 years ago
-- WebAssembly 5 years ago
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-## What is CSE 130 about?
-
-- Concepts in programming languages
-- Language design and implementation
-
-
 <br>
 <br>
 <br>
@@ -170,6 +124,8 @@ L2: ...
 
 ## The above language is "equivalent to" every PL!
 
+(See [wikipedia](https://en.wikipedia.org/wiki/Counter_machine))
+
 But good luck writing 
 
 - QuickSort
@@ -177,21 +133,11 @@ But good luck writing
 - Spotify
 
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-## So Why Study Programming Languages?
+**Two lessons:**
 
-![Federico Fellini](/static/img/fellini.png){#fig:fellini .align-center width=25%}
-
-> A different language
-> is
-> a different vision
-> of life.
-
+- All Programming Languages share something fundamental
+- But also: your Programming Language shapes your Programming Thought
 
 <br>
 <br>
@@ -199,22 +145,29 @@ But good luck writing
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
 
+## What is CSE 130 **not** about?
 
-## So Why Study Programming Languages?
+Learning... 
 
-> The principle of **linguistic relativity**
-> holds that the structure of a language
-> affects its speakers world view or cognition.
+- JavaScript in October
+- Haskell in November
+- C++ in December
+- etc. 
 
-Or more simply:
+### New languages come (and go ...)
 
-> Programming Language
-> shapes
-> Programming Thought.
+There was no
 
-Language affects how ideas and computation are expressed
-
+- Python      30 years ago
+- Java        25 years ago
+- C#          20 years ago
+- Rust        10 years ago
+- WebAssembly 5 years ago
 
 
 <br>
@@ -224,6 +177,34 @@ Language affects how ideas and computation are expressed
 <br>
 <br>
 
+## What is CSE 130 about?
+
+- Concepts in programming languages
+- Language design and implementation
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+### If you don't trust me, ask PL Twitter!
+
+![Two schools](/static/img/tweet2.png){#fig:tweet2 .align-center width=100%}
+
+<br>
+<br>
+
+![Two schools](/static/img/tweet3.png){#fig:tweet3 .align-center width=100%}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 ## Course Goals
@@ -315,27 +296,6 @@ If you work on a large system, you **will** design a new PL!
 <br>
 <br>
 
-## Goal: Enable You To Choose Right PL
-
-But isn't that decided by
-
-- Libraries
-- Standards
-- Hiring
-- Your Boss?!
-
-Yes.
-
-**My goal:** Educate tomorrow's leaders so you'll make **informed** choices.
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 ## Course Syllabus
 
