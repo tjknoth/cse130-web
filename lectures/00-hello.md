@@ -192,12 +192,12 @@ There was no
 
 ### If you don't trust me, ask PL Twitter!
 
-![Two schools](/static/img/tweet2.png){#fig:tweet2 .align-center width=100%}
+![Two schools](/static/img/tweet2.png){#fig:tweet2 .align-center}
 
 <br>
 <br>
 
-![Two schools](/static/img/tweet3.png){#fig:tweet3 .align-center width=100%}
+![Two schools](/static/img/tweet3.png){#fig:tweet3 .align-center}
 
 <br>
 <br>
