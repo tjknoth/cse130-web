@@ -427,7 +427,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - 6 programming assignments
 - Released [online](https://nadia-polikarpova.github.io/cse130-web/assignments.html), at least a week before due date
 - Due on **Wednesday at 11:59pm**
-    - no assignment this and next Wednesday
+    - no assignment Weeks 1 and 2
 - 8 late days, no more than 4 late days per assignment
     - used atomically (5 mins late = 1 late day)
 - Submitted via Gradescope
