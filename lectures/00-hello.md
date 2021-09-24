@@ -291,8 +291,8 @@ to create programs that are:
 
 New hot lanuages being designed in industry as we speak:
 
-- Flow, React @ Facebook     
-- Rust @ Mozilla, 
+- Hack, Flow, React @ Facebook     
+- Rust @ Mozilla 
 - TypeScript @ Microsoft
 - Swift @ Apple
 - WebAsssembly @ Google + Mozilla + Microsoft
@@ -302,7 +302,7 @@ Buried in every large system is a (domain-specific) language
 - DB: SQL
 - Word, Excel: Formulas, Macros, VBScript
 - Emacs: LISP
-- Latex, shell scripts, makefiles, ...
+- Latex, shell scripts, build scripts (makefiles), ...
 
 If you work on a large system, you **will** design a new PL!
 
