@@ -164,9 +164,9 @@ Learning...
 There was no
 
 - Python      30 years ago
-- Java        25 years ago
-- C#          20 years ago
-- Rust        10 years ago
+- Java        26 years ago
+- C#          21 years ago
+- Rust        11 years ago
 - WebAssembly 5 years ago
 
 
@@ -270,10 +270,10 @@ to create programs that are:
 
 ## Goal: How to Design new Languages
 
-New hot lanuages being designed in industry as we speak:
+New hot languages being designed in industry as we speak:
 
 - Hack, Flow, React @ Facebook     
-- Rust @ Mozilla 
+- Rust @ Mozilla (now The Rust Foundation)
 - TypeScript @ Microsoft
 - Swift @ Apple
 - WebAsssembly @ Google + Mozilla + Microsoft
@@ -471,7 +471,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 ## In-class Quizzes
 
-We will do quizzes in class via Clickers / Zoom polls
+We will do quizzes in class via iClickers (remotes and app)
 
   - Make class interactive
   - Help *you* and *me* understand what's tricky
