@@ -46,7 +46,7 @@ Lecture schedule is subject to change!
 | Date       | Topic                                           | Material                  |
 |:----------:|:------------------------------------------------|:-------------------------:|
 | 10/1       | Lambda Calculus: intro, syntax and reductions   | [pdf][disc1]              |
-| 10/8       | Lambda Calculus: data type encodings            |                           |
+| 10/8       | Lambda Calculus: data type encodings            | [pdf][disc2]              |
 | 10/15      | Haskell: simple recursion                       |                           |
 | 10/22      | Haskell: recursive data types                   |                           |
 | 10/29      | Midterm review                                  |                           |
