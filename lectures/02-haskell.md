@@ -32,7 +32,7 @@ Haskell = $\lambda$-calculus +
     
 ## Why Haskell?
 
-Haskell programs tend to be *simple* and *correct*   
+Haskell programs tend to be *concise* and *correct*   
 
 ### QuickSort in Haskell
 
@@ -162,9 +162,9 @@ snd p      = p False            -- same as: snd = \p -> ...
 A *single* function binding can have *multiple* equations with different **patterns** of parameters:
 
 ```haskell
-pair x y True  = x  -- If 3rd arg matches True,
+pair x y True  = x  -- If 3rd arg evals to True,
                     -- use this equation;
-pair x y False = y  -- Otherwise, if 3rd arg matches False,
+pair x y False = y  -- Otherwise, if 3rd evals to False,
                     -- use this equation.
 ```
 
@@ -182,7 +182,7 @@ For now, a **pattern** is:
 Same as:
 
 ```haskell
-pair x y True  = x  -- If 3rd arg matches True,
+pair x y True  = x  -- If 3rd arg evals to True,
                     -- use this equation;
 pair x y b     = y  -- Otherwise, use this equation.
 ```
@@ -194,7 +194,8 @@ Same as:
 
 ```haskell
 pair x y True  = x
-pair x y _     = y
+pair x y _     = y  -- Wildcard pattern `_` is like a variable 
+                    -- but cannot be used on the right
 ```
 
 <br>

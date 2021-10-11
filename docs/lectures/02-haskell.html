@@ -251,7 +251,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 </ul>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="why-haskell">Why Haskell?</h2>
-<p>Haskell programs tend to be <em>simple</em> and <em>correct</em></p>
+<p>Haskell programs tend to be <em>concise</em> and <em>correct</em></p>
 <h3 id="quicksort-in-haskell">QuickSort in Haskell</h3>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">sort []     <span class="fu">=</span> []
 sort (x<span class="fu">:</span>xs) <span class="fu">=</span> sort ls <span class="fu">++</span> [x] <span class="fu">++</span> sort rs
@@ -315,9 +315,9 @@ fst p      <span class="fu">=</span> p <span class="dt">True</span>             
 snd p      <span class="fu">=</span> p <span class="dt">False</span>            <span class="co">-- same as: snd = \p -&gt; ...</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <p>A <em>single</em> function binding can have <em>multiple</em> equations with different <strong>patterns</strong> of parameters:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">pair x y <span class="dt">True</span>  <span class="fu">=</span> x  <span class="co">-- If 3rd arg matches True,</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">pair x y <span class="dt">True</span>  <span class="fu">=</span> x  <span class="co">-- If 3rd arg evals to True,</span>
                     <span class="co">-- use this equation;</span>
-pair x y <span class="dt">False</span> <span class="fu">=</span> y  <span class="co">-- Otherwise, if 3rd arg matches False,</span>
+pair x y <span class="dt">False</span> <span class="fu">=</span> y  <span class="co">-- Otherwise, if 3rd evals to False,</span>
                     <span class="co">-- use this equation.</span></code></pre></div>
 <p>At run time, the first equation whose pattern matches the actual arguments is chosen</p>
 <p>For now, a <strong>pattern</strong> is:</p>
@@ -327,13 +327,14 @@ pair x y <span class="dt">False</span> <span class="fu">=</span> y  <span class=
 </ul>
 <p><br> <br></p>
 <p>Same as:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">pair x y <span class="dt">True</span>  <span class="fu">=</span> x  <span class="co">-- If 3rd arg matches True,</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">pair x y <span class="dt">True</span>  <span class="fu">=</span> x  <span class="co">-- If 3rd arg evals to True,</span>
                     <span class="co">-- use this equation;</span>
 pair x y b     <span class="fu">=</span> y  <span class="co">-- Otherwise, use this equation.</span></code></pre></div>
 <p><br> <br></p>
 <p>Same as:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">pair x y <span class="dt">True</span>  <span class="fu">=</span> x
-pair x y _     <span class="fu">=</span> y</code></pre></div>
+pair x y _     <span class="fu">=</span> y  <span class="co">-- Wildcard pattern `_` is like a variable </span>
+                    <span class="co">-- but cannot be used on the right</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz">QUIZ</h2>
 <p>Which of the following definitions of <code class="sourceCode haskell">pair</code> is <strong>not the same</strong> as the original?</p>
