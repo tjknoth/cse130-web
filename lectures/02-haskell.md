@@ -215,13 +215,13 @@ pair = \x y -> \b -> if b then x else y
 
 **A.** `pair x y = \b -> if b then x else y`
 
-**B.** `pair x _ True = x`
-
-**C.**
+**B.**
 ```haskell
 pair x _ True  = x
 pair _ y _     = y
 ```
+
+**C.** `pair x _ True = x`
 
 **D.**
 ```haskell
@@ -229,7 +229,7 @@ pair x y b     = x
 pair x y False = y
 ```
 
-**E.**  B and D
+**E.**  C and D
 
 <br>
 

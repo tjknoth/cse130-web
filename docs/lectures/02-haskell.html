@@ -340,14 +340,14 @@ pair x y _     <span class="fu">=</span> y  <span class="co">-- Wildcard pattern
 <p>Which of the following definitions of <code class="sourceCode haskell">pair</code> is <strong>not the same</strong> as the original?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">pair <span class="fu">=</span> \x y <span class="ot">-&gt;</span> \b <span class="ot">-&gt;</span> <span class="kw">if</span> b <span class="kw">then</span> x <span class="kw">else</span> y</code></pre></div>
 <p><strong>A.</strong> <code class="sourceCode haskell">pair x y <span class="fu">=</span> \b <span class="ot">-&gt;</span> <span class="kw">if</span> b <span class="kw">then</span> x <span class="kw">else</span> y</code></p>
-<p><strong>B.</strong> <code class="sourceCode haskell">pair x _ <span class="dt">True</span> <span class="fu">=</span> x</code></p>
-<p><strong>C.</strong></p>
+<p><strong>B.</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">pair x _ <span class="dt">True</span>  <span class="fu">=</span> x
 pair _ y _     <span class="fu">=</span> y</code></pre></div>
+<p><strong>C.</strong> <code class="sourceCode haskell">pair x _ <span class="dt">True</span> <span class="fu">=</span> x</code></p>
 <p><strong>D.</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">pair x y b     <span class="fu">=</span> x
 pair x y <span class="dt">False</span> <span class="fu">=</span> y</code></pre></div>
-<p><strong>E.</strong> B and D</p>
+<p><strong>E.</strong> C and D</p>
 <p><br></p>
 
 <p><br> <br> <br> <br> <br></p>
