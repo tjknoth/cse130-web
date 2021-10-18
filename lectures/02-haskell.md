@@ -938,13 +938,16 @@ whichFruit = fst myPair  -- "apple"
 howMany    = snd myPair  -- 3
 
 -- Using pattern matching:
-isEmpty (x, y)  =  y == 0
+isEmpty (x, y)   =  y == 0
 
 -- same as:
-isEmpty         = \(x, y) -> y == 0
+isEmpty          = \(x, y) -> y == 0
 
 -- same as:
-isEmpty p       = let (x, y) = p in y == 0
+isEmpty p        = let (x, y) = p in y == 0
+
+-- Now p is the whole pair and x, y are first and second:
+isEmpty p@(x, y) =  y == 0
 ```
 
 <br>

@@ -629,13 +629,16 @@ whichFruit <span class="fu">=</span> fst myPair  <span class="co">-- &quot;apple
 howMany    <span class="fu">=</span> snd myPair  <span class="co">-- 3</span>
 
 <span class="co">-- Using pattern matching:</span>
-isEmpty (x, y)  <span class="fu">=</span>  y <span class="fu">==</span> <span class="dv">0</span>
+isEmpty (x, y)   <span class="fu">=</span>  y <span class="fu">==</span> <span class="dv">0</span>
 
 <span class="co">-- same as:</span>
-isEmpty         <span class="fu">=</span> \(x, y) <span class="ot">-&gt;</span> y <span class="fu">==</span> <span class="dv">0</span>
+isEmpty          <span class="fu">=</span> \(x, y) <span class="ot">-&gt;</span> y <span class="fu">==</span> <span class="dv">0</span>
 
 <span class="co">-- same as:</span>
-isEmpty p       <span class="fu">=</span> <span class="kw">let</span> (x, y) <span class="fu">=</span> p <span class="kw">in</span> y <span class="fu">==</span> <span class="dv">0</span></code></pre></div>
+isEmpty p        <span class="fu">=</span> <span class="kw">let</span> (x, y) <span class="fu">=</span> p <span class="kw">in</span> y <span class="fu">==</span> <span class="dv">0</span>
+
+<span class="co">-- Now p is the whole pair and x, y are first and second:</span>
+isEmpty p<span class="fu">@</span>(x, y) <span class="fu">=</span>  y <span class="fu">==</span> <span class="dv">0</span></code></pre></div>
 <p><br> <br></p>
 <p>You can use pattern matching not only in equations, but also in <span class="math inline"><em>λ</em></span>-bindings and <code class="sourceCode haskell"><span class="kw">let</span></code>-bindings!</p>
 <p><br> <br> <br> <br> <br></p>
