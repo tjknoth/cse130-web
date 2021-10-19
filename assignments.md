@@ -14,9 +14,8 @@ pre-populated with starter code and a README file with all the instructions.
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
 | [HW0](https://classroom.github.com/a/BNDieLwc)   | The Lambda Calculus             | 10/13                     |
 | [HW1](https://classroom.github.com/a/OpdJuNy3)   | Introduction to Haskell         | 10/20                     |
-
+| [HW2](https://classroom.github.com/a/F6bvHRUy)   | Random Art                      | 10/27                     |
 <!--
-| [HW2](https://classroom.github.com/a/u-nXvSoi)   | Random Art                      | ~~4/28~~  4/30            |
 | [HW3](https://classroom.github.com/a/P2fCq79z)   | All about Fold                  | 5/7                       |
 | [HW4](https://classroom.github.com/a/R7IvZgz-)   | Nano                            | 5/19                      |          
 | [HW5](https://classroom.github.com/a/_QSPLyig)   | Type Classes                    | 6/2                       |
