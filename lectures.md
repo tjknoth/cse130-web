@@ -18,7 +18,7 @@ Lecture schedule is subject to change!
 | 10/13      | contd.                          |                           |
 | 10/15      | contd.                          |                           |
 | 10/18      | contd.                          |                           |
-| 10/20      | Datatypes and Recursion         |                           |
+| 10/20      | Datatypes and Recursion         | [html][lec3]              |
 | 10/22      | contd.                          |                           |
 | 10/25      | Higher Order Functions          |                           |
 | 10/27      | contd.                          |                           |
