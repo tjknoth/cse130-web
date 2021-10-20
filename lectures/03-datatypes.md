@@ -230,7 +230,7 @@ Haskell's **record syntax** allows you to *name* the constructor parameters:
     deadlineDate = Date { month = 10, day = 27, year = 2021 }
     -- same as: deadlineDate = Date 10 27 2021
     
-    dealineMonth = month deadlineDate -- use field name as a function    
+    deadlineMonth = month deadlineDate -- use field name as a function    
     ```
     
 <br>
