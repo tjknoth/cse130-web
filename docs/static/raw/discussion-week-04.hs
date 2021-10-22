@@ -1,34 +1,33 @@
-module Main where
+--Discussion section 10.22.21
+--(Recursive) algebraic data types
 
-import Prelude hiding (True,False, Bool)
+import Debug.Trace
 
-data Color = Red | Blue | Green
+-- Lets define a language of arithmetic expressions:
 
-data Bool = True | False
+-- 1 + 2
+-- 2 - 1
+-- 3 * (1 + 2)
+-- 5 / 2
+-- etc.
 
-data Foo = Color Color | Bool
+-- TODO
+data Expr  
+  = Num Double  -- TODO
+  deriving Show
 
-data Bar = Bar { color :: Color, bool :: Bool }
 
-myFoo = Color Red
 
-myBar = Bar {color=Blue, bool=False}
-myBar2 = Bar Green True
 
 
--- MyList: (Int, Bool) : (Int, Bool) : []
 
-data MyList = EndList | ListNode (Int, Bool) MyList
 
-myExampleList =
-    ListNode (1, False)
-        (ListNode (2, True) EndList)
+-- Now, let's write an interpreter:
+-- eval (Times (Plus (Num 3) (Num 2)) (Num -3)) = -15
+eval :: Expr -> Double 
+eval e = undefined
 
 
--- Define Length
-myLength EndList = 0
-myLength (ListNode _ next) = 1 + myLength next
--- Define Append
 
 
 
@@ -36,94 +35,97 @@ myLength (ListNode _ next) = 1 + myLength next
 
 
 
+-- Now, let's handle errors.
+-- What should happen if we divide by zero? 
 
-data Expr
-    = Number Int
-    | Add Expr Expr
-    | Mul Expr Expr
--- What kind of types are used here?
--- What else might we want to do?
--- Sum / Product / Recursive ?
+data MaybeDouble
+  = OK Double
+  | Err
+  deriving Show
 
--- What are some example expressions?
-myexpr1 = Number 1
+eval' :: Expr -> MaybeDouble
+eval' e = undefined
 
-myExp2 = Add (Number 2) (Number 3)
 
-myexpr3 = Mul (Number 3) (Number 4)
 
 
 
 
--- How do I write: (3 + (4 * 5)) + 1
--- Following the usual order of arithmetic
-myExpr4 = Add subexp2 (Number 1)
-    where
-        subexp1 = Mul (Number 4) (Number 5)
-        subexp2 = Add (Number 3) subexp1
 
-myExpr4' = Add
-    (Add
-        (Number 3)
-        (Mul
-            (Number 4)
-            (Number 5)))
-    (Number 1)
+-- More practice problems:
 
+-- count 1 [1, 2, 1] = 2
+-- count 1 [2, 3] = 0
+count :: Int -> [Int] -> [Int]
+count = undefined --TODO
 
+-- reverse a list
+reverse :: [Int] -> [Int]
+reverse = undefined --TODO
 
+-- replicate 2 [1, 2] = [1, 1, 2, 2]
+replicate :: Int -> [Int] -> [Int]
+replicate = undefined --TODO
 
-{-
-data Expr
-    = Number Int
-    | Add Expr Expr
-    | Mul Expr Expr
--}
+-- compress [1, 2, 3] = [1, 2, 3]
+-- compress [1, 1, 2, 3, 3] = [1, 2, 3]
+-- compress [1, 2, 1] = [1, 2, 1]
+compress :: [Int] -> [Int]
+compress = undefined --TODO
 
--- TODO: evalExpr
-evalExpr :: Expr -> Int
-evalExpr (Number n) = n
-evalExpr (Add lexpr rexpr) = (evalExpr lexpr) + (evalExpr rexpr)
-evalExpr (Mul lexpr rexpr) = (evalExpr lexpr) * (evalExpr rexpr)
 
 
+-- Some tree types
 
+-- Binary tree
+data BTree
+  = BEmpty
+  | BNode Int BTree BTree
+  deriving Show
 
+-- Can we define a tree with an arbitrary number of child nodes?
+data Tree = Empty -- TODO
+  deriving Show
 
+bflatten :: BTree -> [Int]
+bflatten = undefined -- TODO
 
+tflatten :: Tree -> Int
+tflatten = undefined --TODO
 
 
+-- A simple language of boolean expressions:
 
--- TODO: Fibonacci Sequence as datatype
+-- a && b
+-- (a && b} || a
+-- !a
+-- etc.
 
 
+data BoolExpr 
+  = Var String -- TODO: other cases
+  deriving Show  
 
+-- boolEval [("a", True)] (Var "a") = True
+-- boolEval [("a", True), ("b", False)] (And (Var "b") (Var "a")) = False
+boolEval :: [(String, Bool)] -> BoolExpr -> Bool
+boolEval = undefined --TODO
 
 
 
 
 
+-- These are hard!
 
+-- truthTable2: given an expression of two variables (the first two arguments),
+--   return a list of triples containing (value_of_a, value_of_b, value_of_expr)
+--
+-- truthTable2 "a" "b" (And (Var "a") (Or (Var "a") (Var "b")))
+--   = [(True, True, True), (True, False, True), (False, True, False)
+--      , (False, False, False)]
+truthTable2 :: String -> String -> BoolExpr -> [(Bool, Bool, Bool)]
+truthTable2 = undefined --TODO
 
-
-
-
-
-
-
-
-
-
-
-
-
-
--- data Fib = Base | Next Fib
-
--- >>> evalFib (Next (Next (Next (Next Base))))
--- 5
--- evalFib Base = 1
--- evalFib (Next Base) = 1
--- evalFib (Next (Next f)) = evalFib (Next f) + evalFib f
-
-main = print "Hello World"
+-- Generalize the above to expressions with an arbitrary # of variables
+truthTable :: [String] -> BoolExpr -> [([(String, Bool)], Bool)]
+truthTable = undefined --TODO
