@@ -1160,6 +1160,8 @@ t1234 = Node 1
 <br>
 <br>
 
+<!--
+
 BTW, answer D is also a binary tree, but with values stored in leaves!
 
 ![Leaf tree](/static/img/tree-data-leaf.png){#fig:boxes .align-center width=50%}
@@ -1179,6 +1181,8 @@ t12345 = Node
 <br>
 <br>
 <br>
+
+-->
 
 
 ## Functions on trees

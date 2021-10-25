@@ -766,17 +766,29 @@ t1234 <span class="fu">=</span> <span class="dt">Node</span> <span class="dv">1<
           (<span class="dt">Node</span> <span class="dv">2</span> (<span class="dt">Node</span> <span class="dv">3</span> <span class="dt">Leaf</span> <span class="dt">Leaf</span>) <span class="dt">Leaf</span>) 
           (<span class="dt">Node</span> <span class="dv">4</span> <span class="dt">Leaf</span> <span class="dt">Leaf</span>)</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br></p>
-<p>BTW, answer D is also a binary tree, but with values stored in leaves!</p>
-<div class="figure">
-<img src="../static/img/tree-data-leaf.png" alt="Leaf tree" id="fig:boxes" class="align-center" style="width:50.0%" />
-<p class="caption">Leaf tree</p>
-</div>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> <span class="fu">=</span> <span class="dt">Leaf</span> <span class="dt">Int</span> <span class="fu">|</span> <span class="dt">Node</span> <span class="dt">Tree</span> <span class="dt">Tree</span>
+<!--
 
-t12345 <span class="fu">=</span> <span class="dt">Node</span>
-          (<span class="dt">Node</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">1</span>) (<span class="dt">Leaf</span> <span class="dv">2</span>)) (<span class="dt">Leaf</span> <span class="dv">3</span>))
-          (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">4</span>) (<span class="dt">Leaf</span> <span class="dv">5</span>))</code></pre></div>
-<p><br> <br> <br> <br> <br> <br> <br></p>
+BTW, answer D is also a binary tree, but with values stored in leaves!
+
+![Leaf tree](/static/img/tree-data-leaf.png){#fig:boxes .align-center width=50%}
+
+```haskell
+data Tree = Leaf Int | Node Tree Tree
+
+t12345 = Node
+          (Node (Node (Leaf 1) (Leaf 2)) (Leaf 3))
+          (Node (Leaf 4) (Leaf 5))
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+-->
 <h2 id="functions-on-trees">Functions on trees</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">height ::</span> <span class="dt">Tree</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
 height t <span class="fu">=</span> <span class="fu">??</span></code></pre></div>
