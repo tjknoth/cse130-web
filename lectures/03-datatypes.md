@@ -1371,9 +1371,7 @@ Can we do recursion without allocating stack frames?
 
 ## Tail Recursion
 
-Recursive call is the *top-most* sub-expression in the function body
-
-  - i.e. no computations allowed on recursively returned value 
+No computations allowed on recursively returned value 
 
   - i.e. value returned by the recursive call == value returned by function
   

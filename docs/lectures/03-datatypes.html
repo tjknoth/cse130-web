@@ -860,10 +860,9 @@ fac n
 <p>Can we do recursion without allocating stack frames?</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="tail-recursion">Tail Recursion</h2>
-<p>Recursive call is the <em>top-most</em> sub-expression in the function body</p>
+<p>No computations allowed on recursively returned value</p>
 <ul>
-<li><p>i.e. no computations allowed on recursively returned value</p></li>
-<li><p>i.e. value returned by the recursive call == value returned by function</p></li>
+<li>i.e. value returned by the recursive call == value returned by function</li>
 </ul>
 <p><br> <br></p>
 <h3 id="quiz-is-this-function-tail-recursive">QUIZ: Is this function tail recursive?</h3>
