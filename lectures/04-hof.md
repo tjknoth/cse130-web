@@ -948,11 +948,13 @@ General Pattern
 <br>
 <br>
 
+Also, since `foldl` already has the `b` argument, which can serve as accumulator,
+the `helper` is redundant!
+Can be rewritten as:
+
 ```haskell
-foldl f b xs          = helper b xs
-  where
-    helper acc []     = acc
-    helper acc (x:xs) = helper (f acc x) xs
+foldl f b []     = b
+foldl f b (x:xs) = foldl f (f b x) xs
 ```
 
 <br>
@@ -983,10 +985,8 @@ Factor the tail-recursion out!
 What does this evaluate to?
 
 ```haskell
-foldl f b xs          = helper b xs
-  where
-    helper acc []     = acc
-    helper acc (x:xs) = helper (f acc x) xs
+foldl f b []     = b
+foldl f b (x:xs) = foldl f (f b x) xs
 
 quiz = foldl (:) [] [1,2,3]
 ```
@@ -1023,10 +1023,8 @@ quiz = foldl (:) [] [1,2,3]
 What does this evaluate to?
 
 ```haskell
-foldl f b xs          = helper b xs
-  where
-    helper acc []     = acc
-    helper acc (x:xs) = helper (f acc x) xs
+foldl f b []     = b
+foldl f b (x:xs) = foldl f (f b x) xs
 
 quiz = foldl (\xs x -> x : xs) [] [1,2,3]
 ```
@@ -1062,11 +1060,10 @@ quiz = foldl (\xs x -> x : xs) [] [1,2,3]
 
 ```haskell
 foldl f b                     [x1, x2, x3, x4]
-  ==> helper b                [x1, x2, x3, x4]
-  ==> helper (f b x1)             [x2, x3, x4]
-  ==> helper (f (f b x1) x2)          [x3, x4]
-  ==> helper (f (f (f b x1) x2) x3)       [x4]
-  ==> helper (f (f (f (f b x1) x2) x3) x4)  []
+  ==> foldl f (f b x1)             [x2, x3, x4]
+  ==> foldl f (f (f b x1) x2)          [x3, x4]
+  ==> foldl f (f (f (f b x1) x2) x3)       [x4]
+  ==> foldl f (f (f (f (f b x1) x2) x3) x4)  []
   ==> (f (f (f (f b x1) x2) x3) x4)
 ```
 
@@ -1076,11 +1073,10 @@ For example:
 
 ```haskell
 foldl (+) 0                   [1, 2, 3, 4]
-  ==> helper 0                [1, 2, 3, 4]
-  ==> helper (0 + 1)             [2, 3, 4]
-  ==> helper ((0 + 1) + 2)          [3, 4]
-  ==> helper (((0 + 1) + 2) + 3)       [4]
-  ==> helper ((((0 + 1) + 2) + 3) + 4)  []
+  ==> foldl (+) (0 + 1)             [2, 3, 4]
+  ==> foldl (+) ((0 + 1) + 2)          [3, 4]
+  ==> foldl (+) (((0 + 1) + 2) + 3)       [4]
+  ==> foldl (+) ((((0 + 1) + 2) + 3) + 4)  []
   ==> ((((0 + 1) + 2) + 3) + 4)
 ```
 

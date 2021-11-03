@@ -656,10 +656,9 @@ foo xs                <span class="fu">=</span> helper <span class="st">&quot;&q
 <li>To compute new accumulator, combine current accumulator with the head using some binary operation</li>
 </ul>
 <p><br> <br> <br> <br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b xs          <span class="fu">=</span> helper b xs
-  <span class="kw">where</span>
-    helper acc []     <span class="fu">=</span> acc
-    helper acc (x<span class="fu">:</span>xs) <span class="fu">=</span> helper (f acc x) xs</code></pre></div>
+<p>Also, since <code class="sourceCode haskell">foldl</code> already has the <code class="sourceCode haskell">b</code> argument, which can serve as accumulator, the <code class="sourceCode haskell">helper</code> is redundant! Can be rewritten as:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b []     <span class="fu">=</span> b
+foldl f b (x<span class="fu">:</span>xs) <span class="fu">=</span> foldl f (f b x) xs</code></pre></div>
 <p><br> <br></p>
 <p>Let’s refactor <code class="sourceCode haskell">sumTR</code> and <code class="sourceCode haskell">catTR</code>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">sumTR <span class="fu">=</span> foldl <span class="fu">...</span>  <span class="fu">...</span>
@@ -669,10 +668,8 @@ catTR <span class="fu">=</span> foldl <span class="fu">...</span>  <span class="
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-4">QUIZ</h2>
 <p>What does this evaluate to?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b xs          <span class="fu">=</span> helper b xs
-  <span class="kw">where</span>
-    helper acc []     <span class="fu">=</span> acc
-    helper acc (x<span class="fu">:</span>xs) <span class="fu">=</span> helper (f acc x) xs
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b []     <span class="fu">=</span> b
+foldl f b (x<span class="fu">:</span>xs) <span class="fu">=</span> foldl f (f b x) xs
 
 quiz <span class="fu">=</span> foldl (<span class="fu">:</span>) [] [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</code></pre></div>
 <p><br></p>
@@ -686,10 +683,8 @@ quiz <span class="fu">=</span> foldl (<span class="fu">:</span>) [] [<span class
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-5">QUIZ</h2>
 <p>What does this evaluate to?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b xs          <span class="fu">=</span> helper b xs
-  <span class="kw">where</span>
-    helper acc []     <span class="fu">=</span> acc
-    helper acc (x<span class="fu">:</span>xs) <span class="fu">=</span> helper (f acc x) xs
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b []     <span class="fu">=</span> b
+foldl f b (x<span class="fu">:</span>xs) <span class="fu">=</span> foldl f (f b x) xs
 
 quiz <span class="fu">=</span> foldl (\xs x <span class="ot">-&gt;</span> x <span class="fu">:</span> xs) [] [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</code></pre></div>
 <p><br></p>
@@ -703,20 +698,18 @@ quiz <span class="fu">=</span> foldl (\xs x <span class="ot">-&gt;</span> x <spa
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="the-fold-left-pattern-1">The “fold-left” pattern</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b                     [x1, x2, x3, x4]
-  <span class="fu">==&gt;</span> helper b                [x1, x2, x3, x4]
-  <span class="fu">==&gt;</span> helper (f b x1)             [x2, x3, x4]
-  <span class="fu">==&gt;</span> helper (f (f b x1) x2)          [x3, x4]
-  <span class="fu">==&gt;</span> helper (f (f (f b x1) x2) x3)       [x4]
-  <span class="fu">==&gt;</span> helper (f (f (f (f b x1) x2) x3) x4)  []
+  <span class="fu">==&gt;</span> foldl f (f b x1)             [x2, x3, x4]
+  <span class="fu">==&gt;</span> foldl f (f (f b x1) x2)          [x3, x4]
+  <span class="fu">==&gt;</span> foldl f (f (f (f b x1) x2) x3)       [x4]
+  <span class="fu">==&gt;</span> foldl f (f (f (f (f b x1) x2) x3) x4)  []
   <span class="fu">==&gt;</span> (f (f (f (f b x1) x2) x3) x4)</code></pre></div>
 <p>Accumulate the values from the <strong>left</strong></p>
 <p>For example:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl (<span class="fu">+</span>) <span class="dv">0</span>                   [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]
-  <span class="fu">==&gt;</span> helper <span class="dv">0</span>                [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]
-  <span class="fu">==&gt;</span> helper (<span class="dv">0</span> <span class="fu">+</span> <span class="dv">1</span>)             [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]
-  <span class="fu">==&gt;</span> helper ((<span class="dv">0</span> <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">+</span> <span class="dv">2</span>)          [<span class="dv">3</span>, <span class="dv">4</span>]
-  <span class="fu">==&gt;</span> helper (((<span class="dv">0</span> <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span>)       [<span class="dv">4</span>]
-  <span class="fu">==&gt;</span> helper ((((<span class="dv">0</span> <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span>) <span class="fu">+</span> <span class="dv">4</span>)  []
+  <span class="fu">==&gt;</span> foldl (<span class="fu">+</span>) (<span class="dv">0</span> <span class="fu">+</span> <span class="dv">1</span>)             [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]
+  <span class="fu">==&gt;</span> foldl (<span class="fu">+</span>) ((<span class="dv">0</span> <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">+</span> <span class="dv">2</span>)          [<span class="dv">3</span>, <span class="dv">4</span>]
+  <span class="fu">==&gt;</span> foldl (<span class="fu">+</span>) (((<span class="dv">0</span> <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span>)       [<span class="dv">4</span>]
+  <span class="fu">==&gt;</span> foldl (<span class="fu">+</span>) ((((<span class="dv">0</span> <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span>) <span class="fu">+</span> <span class="dv">4</span>)  []
   <span class="fu">==&gt;</span> ((((<span class="dv">0</span> <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">+</span> <span class="dv">2</span>) <span class="fu">+</span> <span class="dv">3</span>) <span class="fu">+</span> <span class="dv">4</span>)</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="left-vs.right">Left vs. Right</h2>
