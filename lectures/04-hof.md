@@ -1056,6 +1056,27 @@ quiz = foldl (\xs x -> x : xs) [] [1,2,3]
 <br>
 <br>
 
+```haskell
+f = \xs x -> x : xs
+
+foldl f []                         [1,2,3]
+  ==> foldl f (1 : [])               [2,3]
+  ==> foldl f (2 : (1 : []))           [3]
+  ==> foldl f (3 : (2 : (1 : [])))      []
+  ==> 3 : (2 : (1 : []))
+  = [3,2,1]
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## The "fold-left" pattern
 
 ```haskell
