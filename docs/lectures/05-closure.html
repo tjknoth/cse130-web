@@ -556,27 +556,27 @@ eval env (<span class="dt">Let</span> x def body) <span class="fu">=</span> <spa
 <p><strong>Example 1</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">            <span class="co">-- environment:</span>
 <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">5</span>   <span class="co">-- []</span>
-<span class="kw">in</span>          <span class="co">-- [x := 5]</span>
-  x <span class="fu">+</span> <span class="dv">1</span></code></pre></div>
+<span class="kw">in</span>          <span class="co">--   [x := 5]</span>
+  x <span class="fu">+</span> <span class="dv">1</span>     <span class="co">--   |</span></code></pre></div>
 <p><br> <br></p>
 <p><strong>Example 2</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                 <span class="co">-- environment:</span>
 <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">5</span>        <span class="co">-- []</span>
-<span class="kw">in</span>               <span class="co">-- [x := 5]</span>
-  <span class="kw">let</span> y <span class="fu">=</span> x <span class="fu">+</span> <span class="dv">1</span>
-  <span class="kw">in</span>             <span class="co">-- [y := 6, x := 5]</span>
-    x <span class="fu">*</span> y</code></pre></div>
+<span class="kw">in</span>               <span class="co">--   [x := 5]</span>
+  <span class="kw">let</span> y <span class="fu">=</span> x <span class="fu">+</span> <span class="dv">1</span>  <span class="co">--   |</span>
+  <span class="kw">in</span>             <span class="co">--   | [y := 6, x := 5]</span>
+    x <span class="fu">*</span> y        <span class="co">--   | |</span></code></pre></div>
 <p><em>Note:</em> <code class="sourceCode haskell">[y <span class="fu">:=</span> <span class="dv">6</span>]</code> got <em>added</em> to the environment</p>
 <p><br> <br></p>
 <p><strong>Example 3</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                 <span class="co">-- environment:</span>
-<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">0</span> 
-<span class="kw">in</span>               <span class="co">-- [x := 0]</span>
-  (<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">100</span> 
-   <span class="kw">in</span>            <span class="co">-- [x := 100, x := 0]</span>
-     x <span class="fu">+</span> <span class="dv">1</span>
-  ) 
-  <span class="fu">+</span> x            <span class="co">-- [x := 0]</span></code></pre></div>
+<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">0</span>        <span class="co">-- []</span>
+<span class="kw">in</span>               <span class="co">--   [x := 0]</span>
+  (<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">100</span>   <span class="co">--   |</span>
+   <span class="kw">in</span>            <span class="co">--   | [x := 100, x := 0]</span>
+     x <span class="fu">+</span> <span class="dv">1</span>       <span class="co">--   | |</span>
+  )              <span class="co">--   | |</span>
+  <span class="fu">+</span> x            <span class="co">--   |     </span></code></pre></div>
 <p><em>Note:</em> <code class="sourceCode haskell">[x <span class="fu">:=</span> <span class="dv">100</span>]</code> was only added for the inner scope</p>
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="evaluating-let-expressions">Evaluating let Expressions</h2>

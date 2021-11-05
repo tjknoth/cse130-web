@@ -675,8 +675,8 @@ Every variable *use* (occurrence) gets its value from the most local *definition
 ```haskell
             -- environment:
 let x = 5   -- []
-in          -- [x := 5]
-  x + 1
+in          --   [x := 5]
+  x + 1     --   |
 ```
 
 <br>
@@ -687,10 +687,10 @@ in          -- [x := 5]
 ```haskell
                  -- environment:
 let x = 5        -- []
-in               -- [x := 5]
-  let y = x + 1
-  in             -- [y := 6, x := 5]
-    x * y
+in               --   [x := 5]
+  let y = x + 1  --   |
+  in             --   | [y := 6, x := 5]
+    x * y        --   | |
 ```
 
 *Note:* `[y := 6]` got *added* to the environment
@@ -702,13 +702,13 @@ in               -- [x := 5]
 
 ```haskell
                  -- environment:
-let x = 0 
-in               -- [x := 0]
-  (let x = 100 
-   in            -- [x := 100, x := 0]
-     x + 1
-  ) 
-  + x            -- [x := 0]
+let x = 0        -- []
+in               --   [x := 0]
+  (let x = 100   --   |
+   in            --   | [x := 100, x := 0]
+     x + 1       --   | |
+  )              --   | |
+  + x            --   |     
 ```
 
 *Note:* `[x := 100]` was only added for the inner scope
