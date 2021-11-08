@@ -16,9 +16,9 @@ pre-populated with starter code and a README file with all the instructions.
 | [HW1](https://classroom.github.com/a/OpdJuNy3)   | Introduction to Haskell         | 10/20                     |
 | [HW2](https://classroom.github.com/a/F6bvHRUy)   | Random Art                      | ~~10/27~~ 10/29           |
 | [HW3](https://classroom.github.com/a/TE-c5MV1)   | All about Fold                  | 11/5                      |
+| [HW4](https://classroom.github.com/a/3OjrpOUd)   | Nano                            | 11/17                     |
 
 <!--
-| [HW4](https://classroom.github.com/a/R7IvZgz-)   | Nano                            | 5/19                      |          
 | [HW5](https://classroom.github.com/a/_QSPLyig)   | Type Classes                    | 6/2                       |
 -->
 
