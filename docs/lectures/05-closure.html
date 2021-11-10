@@ -1057,7 +1057,7 @@ eval env (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span cla
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-12">QUIZ</h2>
 <p>What should the following evaluate to?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> add <span class="fu">=</span> \x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> x <span class="fu">+</span> y)
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> add <span class="fu">=</span> \x y <span class="ot">-&gt;</span> x <span class="fu">+</span> y
 <span class="kw">in</span>
   <span class="kw">let</span> add1 <span class="fu">=</span> add <span class="dv">1</span>
   <span class="kw">in</span>

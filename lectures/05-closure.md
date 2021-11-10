@@ -1718,7 +1718,7 @@ Does our `eval` support this?
 What should the following evaluate to?
 
 ```haskell
-let add = \x -> (\y -> x + y)
+let add = \x y -> x + y
 in
   let add1 = add 1
   in
