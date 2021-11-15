@@ -831,12 +831,12 @@ How do we communicate precedence and associativity to `happy`?
 We can split the `AExpr` non-terminal into multiple "levels"
 
 ```haskell
-Aexpr : Aexpr '+' Aexpr2
-      | Aexpr '-' Aexpr2
+Aexpr : Aexpr '+' Aexpr
+      | Aexpr '-' Aexpr
       | Aexpr2
 
-Aexpr2 : Aexpr2 '*' Aexpr3
-       | Aexpr2 '/' Aexpr3
+Aexpr2 : Aexpr2 '*' Aexpr2
+       | Aexpr2 '/' Aexpr2
        | Aexpr3
 
 Aexpr3 : TNUM
@@ -854,18 +854,18 @@ Now the only way to parse `2 * 5 + 5` is:
 
              Aexpr
           /    |    \
-       Aexpr  '+'   Aexpr2
+       Aexpr  '+'   Aexpr
          |            |
-       Aexpr2       Aexpr3
+       Aexpr2       Aexpr2
     /    |    \       |
-Aexpr2  '*'  Aexpr3  '5' 
-  |            | 
-Aexpr3        '5'  
-  |
- '2'
+Aexpr2  '*'  Aexpr2 Aexpr3
+  |            |      |
+Aexpr3       Aexpr3  '5' 
+  |            |
+ '2'          '5'
 ```
 
-If we start parsing the wrong way, we get!
+If we start parsing the wrong way, we get:
 
 ```
 --     Bad???
@@ -874,9 +874,9 @@ If we start parsing the wrong way, we get!
          |
        Aexpr2
     /    |    \
-Aexpr2  '*'  Aexpr3
+Aexpr2  '*'  Aexpr2
   |            | 
-Aexpr3    -- cannot parse "5 + 5" as Aexpr3!
+Aexpr3    -- cannot parse "5 + 5" as Aexpr2!
   |
  '2'
 ```
@@ -893,6 +893,75 @@ Aexpr3    -- cannot parse "5 + 5" as Aexpr3!
 With this new grammar, can we parse `2 - 1 - 1` the wrong way?
 
 ```haskell
+Aexpr : Aexpr '+' Aexpr
+      | Aexpr '-' Aexpr
+      | Aexpr2
+
+Aexpr2 : Aexpr2 '*' Aexpr2
+       | Aexpr2 '/' Aexpr2
+       | Aexpr3
+
+Aexpr3 : TNUM
+       | ID
+       | '(' Aexpr ')'
+```
+
+**(A)** Yes
+
+**(B)** No
+
+<br>
+
+(I) final
+
+    *Answer:* A
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+There are **still** multiple ways of parsing `2 - 1 - 1`, namely
+
+```
+--         Good:                    Bad:
+
+           Aexpr                   Aexpr
+          /  |  \                 /  |  \
+     Aexpr  '-'  Aexpr       Aexpr  '-'   Aexpr
+    /  |  \        |           |         /  |  \
+Aexpr '-' Aexpr  AExpr2      AExpr2   Aexpr '-' Aexpr
+  |         |      |           |        |         |
+AExpr2    AExpr2 AExpr3      AExpr3   AExpr2    AExpr2
+  |         |      |           |        |         |
+AExpr3    AExpr3  '1'         '2'     AExpr3    AExpr3
+  |         |                           |         | 
+ '2'       '1'                         '1'       '1'
+```
+
+<br>
+
+How do we fix this?
+
+*Hint:* how do we disallow the RHS of a minus to be a minus?
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Grammar factoring can encode **both** precedence and associativity!
+
+
+```haskell
 Aexpr : Aexpr '+' Aexpr2
       | Aexpr '-' Aexpr2
       | Aexpr2
@@ -906,18 +975,16 @@ Aexpr3 : TNUM
        | '(' Aexpr ')'
 ```
 
-**(A)** Yes
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-**(B)** No
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 ### Solution 2: Parser directives
 

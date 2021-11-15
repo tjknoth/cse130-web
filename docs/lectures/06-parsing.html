@@ -651,12 +651,12 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br></p>
 <h3 id="solution-1-grammar-factoring">Solution 1: Grammar factoring</h3>
 <p>We can split the <code class="sourceCode haskell"><span class="dt">AExpr</span></code> non-terminal into multiple “levels”</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Aexpr</span> <span class="fu">:</span> <span class="dt">Aexpr</span> <span class="ch">'+'</span> <span class="dt">Aexpr2</span>
-      <span class="fu">|</span> <span class="dt">Aexpr</span> <span class="ch">'-'</span> <span class="dt">Aexpr2</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Aexpr</span> <span class="fu">:</span> <span class="dt">Aexpr</span> <span class="ch">'+'</span> <span class="dt">Aexpr</span>
+      <span class="fu">|</span> <span class="dt">Aexpr</span> <span class="ch">'-'</span> <span class="dt">Aexpr</span>
       <span class="fu">|</span> <span class="dt">Aexpr2</span>
 
-<span class="dt">Aexpr2</span> <span class="fu">:</span> <span class="dt">Aexpr2</span> <span class="ch">'*'</span> <span class="dt">Aexpr3</span>
-       <span class="fu">|</span> <span class="dt">Aexpr2</span> <span class="ch">'/'</span> <span class="dt">Aexpr3</span>
+<span class="dt">Aexpr2</span> <span class="fu">:</span> <span class="dt">Aexpr2</span> <span class="ch">'*'</span> <span class="dt">Aexpr2</span>
+       <span class="fu">|</span> <span class="dt">Aexpr2</span> <span class="ch">'/'</span> <span class="dt">Aexpr2</span>
        <span class="fu">|</span> <span class="dt">Aexpr3</span>
 
 <span class="dt">Aexpr3</span> <span class="fu">:</span> <span class="dt">TNUM</span>
@@ -668,30 +668,65 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 
              <span class="dt">Aexpr</span>
           <span class="fu">/</span>    <span class="fu">|</span>    \
-       <span class="dt">Aexpr</span>  <span class="ch">'+'</span>   <span class="dt">Aexpr2</span>
+       <span class="dt">Aexpr</span>  <span class="ch">'+'</span>   <span class="dt">Aexpr</span>
          <span class="fu">|</span>            <span class="fu">|</span>
-       <span class="dt">Aexpr2</span>       <span class="dt">Aexpr3</span>
+       <span class="dt">Aexpr2</span>       <span class="dt">Aexpr2</span>
     <span class="fu">/</span>    <span class="fu">|</span>    \       <span class="fu">|</span>
-<span class="dt">Aexpr2</span>  <span class="ch">'*'</span>  <span class="dt">Aexpr3</span>  <span class="ch">'5'</span> 
-  <span class="fu">|</span>            <span class="fu">|</span> 
-<span class="dt">Aexpr3</span>        <span class="ch">'5'</span>  
-  <span class="fu">|</span>
- <span class="ch">'2'</span></code></pre></div>
-<p>If we start parsing the wrong way, we get!</p>
+<span class="dt">Aexpr2</span>  <span class="ch">'*'</span>  <span class="dt">Aexpr2</span> <span class="dt">Aexpr3</span>
+  <span class="fu">|</span>            <span class="fu">|</span>      <span class="fu">|</span>
+<span class="dt">Aexpr3</span>       <span class="dt">Aexpr3</span>  <span class="ch">'5'</span> 
+  <span class="fu">|</span>            <span class="fu">|</span>
+ <span class="ch">'2'</span>          <span class="ch">'5'</span></code></pre></div>
+<p>If we start parsing the wrong way, we get:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--     Bad???</span>
 
        <span class="dt">Aexpr</span>
          <span class="fu">|</span>
        <span class="dt">Aexpr2</span>
     <span class="fu">/</span>    <span class="fu">|</span>    \
-<span class="dt">Aexpr2</span>  <span class="ch">'*'</span>  <span class="dt">Aexpr3</span>
+<span class="dt">Aexpr2</span>  <span class="ch">'*'</span>  <span class="dt">Aexpr2</span>
   <span class="fu">|</span>            <span class="fu">|</span> 
-<span class="dt">Aexpr3</span>    <span class="co">-- cannot parse &quot;5 + 5&quot; as Aexpr3!</span>
+<span class="dt">Aexpr3</span>    <span class="co">-- cannot parse &quot;5 + 5&quot; as Aexpr2!</span>
   <span class="fu">|</span>
  <span class="ch">'2'</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-4">QUIZ</h2>
 <p>With this new grammar, can we parse <code class="sourceCode haskell"><span class="dv">2</span> <span class="fu">-</span> <span class="dv">1</span> <span class="fu">-</span> <span class="dv">1</span></code> the wrong way?</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Aexpr</span> <span class="fu">:</span> <span class="dt">Aexpr</span> <span class="ch">'+'</span> <span class="dt">Aexpr</span>
+      <span class="fu">|</span> <span class="dt">Aexpr</span> <span class="ch">'-'</span> <span class="dt">Aexpr</span>
+      <span class="fu">|</span> <span class="dt">Aexpr2</span>
+
+<span class="dt">Aexpr2</span> <span class="fu">:</span> <span class="dt">Aexpr2</span> <span class="ch">'*'</span> <span class="dt">Aexpr2</span>
+       <span class="fu">|</span> <span class="dt">Aexpr2</span> <span class="ch">'/'</span> <span class="dt">Aexpr2</span>
+       <span class="fu">|</span> <span class="dt">Aexpr3</span>
+
+<span class="dt">Aexpr3</span> <span class="fu">:</span> <span class="dt">TNUM</span>
+       <span class="fu">|</span> <span class="dt">ID</span>
+       <span class="fu">|</span> <span class="ch">'('</span> <span class="dt">Aexpr</span> <span class="ch">')'</span></code></pre></div>
+<p><strong>(A)</strong> Yes</p>
+<p><strong>(B)</strong> No</p>
+<p><br></p>
+
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<p>There are <strong>still</strong> multiple ways of parsing <code class="sourceCode haskell"><span class="dv">2</span> <span class="fu">-</span> <span class="dv">1</span> <span class="fu">-</span> <span class="dv">1</span></code>, namely</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--         Good:                    Bad:</span>
+
+           <span class="dt">Aexpr</span>                   <span class="dt">Aexpr</span>
+          <span class="fu">/</span>  <span class="fu">|</span>  \                 <span class="fu">/</span>  <span class="fu">|</span>  \
+     <span class="dt">Aexpr</span>  <span class="ch">'-'</span>  <span class="dt">Aexpr</span>       <span class="dt">Aexpr</span>  <span class="ch">'-'</span>   <span class="dt">Aexpr</span>
+    <span class="fu">/</span>  <span class="fu">|</span>  \        <span class="fu">|</span>           <span class="fu">|</span>         <span class="fu">/</span>  <span class="fu">|</span>  \
+<span class="dt">Aexpr</span> <span class="ch">'-'</span> <span class="dt">Aexpr</span>  <span class="dt">AExpr2</span>      <span class="dt">AExpr2</span>   <span class="dt">Aexpr</span> <span class="ch">'-'</span> <span class="dt">Aexpr</span>
+  <span class="fu">|</span>         <span class="fu">|</span>      <span class="fu">|</span>           <span class="fu">|</span>        <span class="fu">|</span>         <span class="fu">|</span>
+<span class="dt">AExpr2</span>    <span class="dt">AExpr2</span> <span class="dt">AExpr3</span>      <span class="dt">AExpr3</span>   <span class="dt">AExpr2</span>    <span class="dt">AExpr2</span>
+  <span class="fu">|</span>         <span class="fu">|</span>      <span class="fu">|</span>           <span class="fu">|</span>        <span class="fu">|</span>         <span class="fu">|</span>
+<span class="dt">AExpr3</span>    <span class="dt">AExpr3</span>  <span class="ch">'1'</span>         <span class="ch">'2'</span>     <span class="dt">AExpr3</span>    <span class="dt">AExpr3</span>
+  <span class="fu">|</span>         <span class="fu">|</span>                           <span class="fu">|</span>         <span class="fu">|</span> 
+ <span class="ch">'2'</span>       <span class="ch">'1'</span>                         <span class="ch">'1'</span>       <span class="ch">'1'</span></code></pre></div>
+<p><br></p>
+<p>How do we fix this?</p>
+<p><em>Hint:</em> how do we disallow the RHS of a minus to be a minus?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<p>Grammar factoring can encode <strong>both</strong> precedence and associativity!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Aexpr</span> <span class="fu">:</span> <span class="dt">Aexpr</span> <span class="ch">'+'</span> <span class="dt">Aexpr2</span>
       <span class="fu">|</span> <span class="dt">Aexpr</span> <span class="ch">'-'</span> <span class="dt">Aexpr2</span>
       <span class="fu">|</span> <span class="dt">Aexpr2</span>
@@ -703,8 +738,6 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span class="dt">Aexpr3</span> <span class="fu">:</span> <span class="dt">TNUM</span>
        <span class="fu">|</span> <span class="dt">ID</span>
        <span class="fu">|</span> <span class="ch">'('</span> <span class="dt">Aexpr</span> <span class="ch">')'</span></code></pre></div>
-<p><strong>(A)</strong> Yes</p>
-<p><strong>(B)</strong> No</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="solution-2-parser-directives">Solution 2: Parser directives</h3>
 <p>This problem is so common that parser generators have a special syntax for it!</p>
