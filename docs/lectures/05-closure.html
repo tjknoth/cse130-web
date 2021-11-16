@@ -883,11 +883,12 @@ eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval en
   <span class="kw">in</span>
     <span class="kw">let</span> c <span class="fu">=</span> <span class="dv">100</span>
     <span class="kw">in</span>
-      <span class="kw">let</span> res1 <span class="fu">=</span> inc <span class="dv">10</span>    <span class="co">-- ==&gt; 11</span>
+      <span class="kw">let</span> res1 <span class="fu">=</span> inc <span class="dv">10</span>      <span class="co">-- ==&gt; 11</span>
       <span class="kw">in</span>
         <span class="kw">let</span> c <span class="fu">=</span> <span class="dv">200</span>
-        <span class="kw">in</span> res2 <span class="fu">=</span> inc <span class="dv">10</span>   <span class="co">-- ==&gt; 11</span>
-           <span class="kw">in</span> res1 <span class="fu">==</span> res2 <span class="co">-- ==&gt; True</span></code></pre></div>
+        <span class="kw">in</span> 
+           <span class="kw">let</span> res2 <span class="fu">=</span> inc <span class="dv">10</span> <span class="co">-- ==&gt; 11</span>
+           <span class="kw">in</span> res1 <span class="fu">==</span> res2   <span class="co">-- ==&gt; True</span></code></pre></div>
 <p><br> <br> <br> <br></p>
 <p>What we <strong>don’t</strong> want:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> c <span class="fu">=</span> <span class="dv">1</span>               
@@ -908,15 +909,16 @@ eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval en
 </ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> c <span class="fu">=</span> <span class="dv">1</span>               
 <span class="kw">in</span>
-  <span class="kw">let</span> inc <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">+</span> c    <span class="co">-- refers to this def \  \</span>
-  <span class="kw">in</span>                       <span class="co">--                    \  \</span>
-    <span class="kw">let</span> c <span class="fu">=</span> <span class="dv">100</span>            <span class="co">-- &lt;-------------------  \</span>
-    <span class="kw">in</span>                     <span class="co">--                       \</span>
-      <span class="kw">let</span> res1 <span class="fu">=</span> inc <span class="dv">10</span>    <span class="co">-- ==&gt; 110               \</span>
-      <span class="kw">in</span>                   <span class="co">--                       \</span>
-        <span class="kw">let</span> c <span class="fu">=</span> <span class="dv">200</span>        <span class="co">-- &lt;----------------------</span>
-        <span class="kw">in</span> res2 <span class="fu">=</span> inc <span class="dv">10</span>   <span class="co">-- ==&gt; 210!!!</span>
-           <span class="kw">in</span> res1 <span class="fu">==</span> res2 <span class="co">-- ==&gt; False</span></code></pre></div>
+  <span class="kw">let</span> inc <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">+</span> c     <span class="co">-- refers to this def \  \</span>
+  <span class="kw">in</span>                        <span class="co">--                    \  \</span>
+    <span class="kw">let</span> c <span class="fu">=</span> <span class="dv">100</span>             <span class="co">-- &lt;-------------------  \</span>
+    <span class="kw">in</span>                      <span class="co">--                       \</span>
+      <span class="kw">let</span> res1 <span class="fu">=</span> inc <span class="dv">10</span>     <span class="co">-- ==&gt; 110               \</span>
+      <span class="kw">in</span>                    <span class="co">--                       \</span>
+        <span class="kw">let</span> c <span class="fu">=</span> <span class="dv">200</span>         <span class="co">-- &lt;----------------------</span>
+        <span class="kw">in</span> 
+          <span class="kw">let</span> res2 <span class="fu">=</span> inc <span class="dv">10</span> <span class="co">-- ==&gt; 210!!!</span>
+          <span class="kw">in</span> res1 <span class="fu">==</span> res2   <span class="co">-- ==&gt; False</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-11">QUIZ</h2>
 <p>Which scoping does our <code class="sourceCode haskell">eval</code> function implement?</p>

@@ -1385,11 +1385,12 @@ in                      --                    \
   in
     let c = 100
     in
-      let res1 = inc 10    -- ==> 11
+      let res1 = inc 10      -- ==> 11
       in
         let c = 200
-        in res2 = inc 10   -- ==> 11
-           in res1 == res2 -- ==> True
+        in 
+           let res2 = inc 10 -- ==> 11
+           in res1 == res2   -- ==> True
 ```
   
 <br>
@@ -1423,15 +1424,16 @@ in
 ```haskell
 let c = 1               
 in
-  let inc = \x -> x + c    -- refers to this def \  \
-  in                       --                    \  \
-    let c = 100            -- <-------------------  \
-    in                     --                       \
-      let res1 = inc 10    -- ==> 110               \
-      in                   --                       \
-        let c = 200        -- <----------------------
-        in res2 = inc 10   -- ==> 210!!!
-           in res1 == res2 -- ==> False
+  let inc = \x -> x + c     -- refers to this def \  \
+  in                        --                    \  \
+    let c = 100             -- <-------------------  \
+    in                      --                       \
+      let res1 = inc 10     -- ==> 110               \
+      in                    --                       \
+        let c = 200         -- <----------------------
+        in 
+          let res2 = inc 10 -- ==> 210!!!
+          in res1 == res2   -- ==> False
 ```
 
 <br>
