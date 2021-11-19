@@ -1119,10 +1119,10 @@ transferring data around. Here is an example:
 , "likes"   : [ "poke", "coffee", "pasta" ]
 , "hates"   : [ "beets" , "milk" ]
 , "lunches" : [ {"day" : "mon", "loc" : "rubios"}
-              , {"day" : "tue", "loc" : "farmers market"}
-              , {"day" : "wed", "loc" : "seed and sprout"}
+              , {"day" : "tue", "loc" : "home"}
+              , {"day" : "wed", "loc" : "lemongrass"}
               , {"day" : "thu", "loc" : "home"}
-              , {"day" : "fri", "loc" : "lemongrass"} ]
+              , {"day" : "fri", "loc" : "santorini"} ]
 }
 ```
 
@@ -1170,13 +1170,13 @@ js1 =
        ,("lunches", JArr [ JObj [("day",  JStr "mon")
                                 ,("loc",  JStr "rubios")]
                          , JObj [("day",  JStr "tue")
-                                ,("loc",  JStr "farmers market")]
+                                ,("loc",  JStr "home")]
                          , JObj [("day",  JStr "wed")
-                                ,("loc",  JStr "seed and sprout")]
+                                ,("loc",  JStr "lemongrass")]
                          , JObj [("day",  JStr "thu")
                                 ,("loc",  JStr "home")]
                          , JObj [("day",  JStr "fri")
-                                ,("loc",  JStr "lemongrass")]
+                                ,("loc",  JStr "santorini")]
                          ])
        ]  
 ```
@@ -1285,7 +1285,7 @@ This gets more hideous when you have richer objects like
 
 ```haskell
 lunches = [ [("day", "mon"), ("loc", "rubios")]
-          , [("day", "tue"), ("loc", "farmers market")]
+          , [("day", "tue"), ("loc", "home")]
           ]
 ```
 
@@ -1293,8 +1293,8 @@ because we have to go through gymnastics like
 
 ```haskell
 λ> listToJSON (mapToJSON stringToJSON) lunches
-JArr [ JObj [("day",JStr "monday")   ,("loc",JStr "zanzibar")]
-     , JObj [("day",JStr "tuesday")  ,("loc",JStr "farmers market")]
+JArr [ JObj [("day",JStr "monday")   ,("loc",JStr "rubios")]
+     , JObj [("day",JStr "tuesday")  ,("loc",JStr "home")]
      ]
 ```
 
