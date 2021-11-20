@@ -52,7 +52,7 @@ Lecture schedule is subject to change!
 | 10/29      | Midterm review                                  | [pdf][disc5] [code][disc5code] |
 | 11/5       | Haskell: folds.                                 | [pdf][disc6] [code][disc6code] |
 | 11/12      | Nano: interpreters, lexers, and parsers         | [pdf][disc7]              |
-| 11/19      | Type classes                                    |                           |
+| 11/19      | Type classes and Quickcheck                     | [pdf][disc8]              |
 | 12/3       | IO Monad                                        |                           |
 
 
