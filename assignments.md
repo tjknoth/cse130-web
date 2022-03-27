@@ -5,6 +5,10 @@ headerImg: angles.jpg
 
 ## Assignments
 
+TBA
+
+<!--
+
 Click the Github Classroom link next to the assignment. 
 This will automatically create your private assignment repository, 
 pre-populated with starter code and a README file with all the instructions.
@@ -19,8 +23,10 @@ pre-populated with starter code and a README file with all the instructions.
 | [HW4](https://classroom.github.com/a/3OjrpOUd)   | Nano                            | 11/17                     |
 | [HW5](https://classroom.github.com/a/M5XVG0Uy)   | Type Classes                    | 12/1                      |
 
+-->
 
 
+<!--
 ## Past Exams
 
 - [Midterm Fa 19](/static/raw/130-midterm-fa19.pdf) ([solution](/static/raw/130-midterm-fa19-solution.pdf)),
@@ -28,4 +34,5 @@ pre-populated with starter code and a README file with all the instructions.
 
 - [Final Fa 19](/static/raw/130-final-fa19.pdf) ([solution](/static/raw/130-final-fa19-solution.pdf)),
   [Final Wi 19](/static/raw/130-final-wi19.pdf) ([solution](/static/raw/130-final-wi19-solution.pdf)).
+-->
   
