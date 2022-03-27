@@ -31,15 +31,16 @@ date: 2017-03-28
 
 Teaching assistants:
 
-* [Kasra Ferdowsifard](https://weirdmachine.me/)
-* [Zheng Guo](https://aaronguo1996.github.io/)
-* [Tristan Knoth](https://tjknoth.github.io/)
+* [Shraddha Barke](https://shraddhabarke.github.io/)
+* [Michael James](http://michaelbjames.com/)
+* Rose Kunkel
 
 
 Tutors
 
-* [David Cao](https://cao.sh/)
-* Mingyang Liu
+* Darwin Chan
+* Elizaveta Pertseva
+* Shuhua Xie
 
 <br>
 <br>
@@ -58,7 +59,7 @@ In-person + live on Zoom
 For those joining on Zoom:
 
 - Keep your *mic* off unless you are talking
-- Keep your *video* on if you can: it makes it much more fun for me!
+- Keep your *video* on if you can
 - Two ways to ask a question:
     1. "Raise your hand" in zoom and I will call on you
     2. Type into zoom chat
@@ -391,11 +392,11 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 - [webpage](https://nadia-polikarpova.github.io/cse130-web)
     - calendar, lecture notes, programming assignments, ...
-- [canvas](https://canvas.ucsd.edu/courses/30739)
+- [canvas](https://canvas.ucsd.edu/courses/36670)
     - lecture recordings  
-- [piazza](https://www.piazza.com/ucsd/fall2021/cse130/home)
+- [piazza](https://www.piazza.com/ucsd/spring2021/cse130/home)
     - announcements and discussions
-- [gradescope](https://www.gradescope.com/courses/317724)
+- [gradescope](https://www.gradescope.com/courses/381579)
     - homework/exam submissions, grades    
 
 
@@ -433,7 +434,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - Submitted via Gradescope
     - submission instructions in the assignment
 - Solve **alone or in groups of two**
-    - user this [piazza thread](https://piazza.com/class/kttd16ijrge1i7?cid=5) to find a partner
+    - user this [piazza thread](https://piazza.com/class/l19lxxev1bg5ht?cid=5) to find a partner
 
 <br>
 <br>
@@ -444,16 +445,20 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     
 ## Exams    
 
-- Midterm on *Nov 1*
+- Midterm on *May 2*
     - Gradescope multiple choice
     - individual
     - 24h timespan
-- Final: *Dec 8*
+- Final: *June 10*
     - programming assignment
     - individual
     - 24h timespan
 - Formats subject to change!    
-- You can use any resources you want, but not ask anyone for help
+- You can use any general resources you want (class material, Wikipedia), but **do not**:
+    - search or post Chegg etc
+    - post on StackOverflow etc
+    - try to find past exams that are not publicly posted    
+    - communicate with each other during the exam
 - The final is cumulative
 - Midterm grade is calculated as `midterm > 0 ?  max(final, midterm) : 0`
     - you get a second chance if you don’t do well on the midterm
@@ -478,18 +483,14 @@ We will do quizzes in class via iClickers (remotes and app)
     
 **Protocol**
 
-1. *Solo Vote*
-    - I show the quiz on my screen and start a poll
-    - Think for yourself, select answer
-
-2. *Discuss*
+1. *Discuss*
+    - I show the quiz on screen
     - If in class: discuss with your neighbor 
     - If remote: discuss with a friend on zoom chat (or any other chat)
     - Try to reach consensus
 
-3. *Group Vote*
-    - Everyone in group votes
-    - Hopefully the same way but not enforced
+3. *Vote*
+    - Using iClicker remote or app
 
 4. *Class Discuss*
     - What was easy or tricky?    
@@ -525,7 +526,8 @@ How can you earn 5% extra credit for this class?
 
 ## Your Resources
 
-- Discussion section: Fri 6pm, **Zoom only**
+- Discussion section: Fri 11am, **Zoom only**
+    - CENTR 119 and/or on Zoom, depending on the TA
     - same Zoom link as lecture
 - Office hours
     - every day, check calendar
@@ -601,23 +603,6 @@ and to the CSE OSD Liaison in advance so that accommodations may be arranged.
 If you experience any sort of **harassment or discrimination**, please contact the [Office of Prevention of Harassment and Discrimination](https://ophd.ucsd.edu/).
 Students may receive confidential assistance at the [Sexual Assault Resource Center](http://care.ucsd.edu) at (858) 534-5793
 or [Counseling and Psychological Services](http://caps.ucsd.edu.) (CAPS) at (858) 534-3755.
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-## COVID-19
-
-- We understand that this quarter will present unique challenges
-- And that you might be disadvantaged in new ways
-    - Poor Internet connection, different time zone, ...
-    
-- I will do my best to accommodate your needs, just ask me or one of the course staff!
-
-- Please be patient with us too!
 
 
 <br>
