@@ -195,10 +195,6 @@ There was no
 
 ![Two schools](/static/img/tweet2.png){#fig:tweet2 .align-center}
 
-<br>
-<br>
-
-![Two schools](/static/img/tweet3.png){#fig:tweet3 .align-center}
 
 <br>
 <br>
