@@ -164,10 +164,10 @@ Learning...
 
 There was no
 
-- Python      30 years ago
-- Java        26 years ago
-- C#          21 years ago
-- Rust        11 years ago
+- Python      35 years ago
+- Java        30 years ago
+- C#          25 years ago
+- Rust        12 years ago
 - WebAssembly 5 years ago
 
 
