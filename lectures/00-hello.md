@@ -390,7 +390,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     - calendar, lecture notes, programming assignments, ...
 - [canvas](https://canvas.ucsd.edu/courses/36670)
     - lecture recordings  
-- [piazza](https://www.piazza.com/ucsd/spring2021/cse130/home)
+- [piazza](https://www.piazza.com/ucsd/spring2022/cse130/home)
     - announcements and discussions
 - [gradescope](https://www.gradescope.com/courses/381579)
     - homework/exam submissions, grades    
@@ -522,7 +522,7 @@ How can you earn 5% extra credit for this class?
 
 ## Your Resources
 
-- Discussion section: Fri 11am, **Zoom only**
+- Discussion section: Fri 11am
     - CENTR 119 and/or on Zoom, depending on the TA
     - same Zoom link as lecture
 - Office hours
