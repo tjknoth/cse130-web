@@ -365,8 +365,8 @@ How do I apply a function to two arguments?
 <br>
 
 ```haskell
-(((\x -> (\y -> y)) apple) banana) -- first apply to apple,
-                                   -- then apply the result to banana
+((\x -> (\y -> y)) apple) banana -- first apply to apple,
+                                 -- then apply the result to banana
 ```
 
 

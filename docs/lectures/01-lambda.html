@@ -395,8 +395,8 @@ apple banana        <span class="co">-- Application of variable &quot;apple&quot
 <li>e.g. apply <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> y)</code> to <code class="sourceCode haskell">apple</code> and <code class="sourceCode haskell">banana</code>?</li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(((\x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> y)) apple) banana) <span class="co">-- first apply to apple,</span>
-                                   <span class="co">-- then apply the result to banana</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">((\x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> y)) apple) banana <span class="co">-- first apply to apple,</span>
+                                 <span class="co">-- then apply the result to banana</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="syntactic-sugar">Syntactic Sugar</h2>
 <p><br> <br></p>
