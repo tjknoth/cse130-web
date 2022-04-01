@@ -574,13 +574,13 @@ apple banana        <span class="co">-- Application of variable &quot;apple&quot
 </ul>
 <p><br></p>
 <p>Formally:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">x[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class="fu">=</span> <span class="dt">E</span>
-y[x <span class="fu">:=</span> <span class="dt">E</span>]            <span class="fu">=</span> y            <span class="co">-- assuming x /= y</span>
-(<span class="dt">E1</span> <span class="dt">E2</span>)[x <span class="fu">:=</span> <span class="dt">E</span>]      <span class="fu">=</span> (<span class="dt">E1</span>[x <span class="fu">:=</span> <span class="dt">E</span>]) (<span class="dt">E2</span>[x <span class="fu">:=</span> <span class="dt">E</span>])
-(\x <span class="ot">-&gt;</span> <span class="dt">E1</span>)[x <span class="fu">:=</span> <span class="dt">E</span>]   <span class="fu">=</span> \x <span class="ot">-&gt;</span> <span class="dt">E1</span>     <span class="co">-- why do we leave `E1` alone?</span>
-(\y <span class="ot">-&gt;</span> <span class="dt">E1</span>)[x <span class="fu">:=</span> <span class="dt">E</span>] 
-  <span class="fu">|</span> not (y <span class="kw">in</span> <span class="dt">FV</span>(<span class="dt">E</span>)) <span class="fu">=</span> \y <span class="ot">-&gt;</span> <span class="dt">E1</span>[x <span class="fu">:=</span> <span class="dt">E</span>]
-  <span class="fu">|</span> otherise         <span class="fu">=</span> undefined    <span class="co">-- wait, but what do we do then???</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">x[x <span class="fu">:=</span> <span class="dt">E'</span>]            <span class="fu">=</span> <span class="dt">E'</span>
+y[x <span class="fu">:=</span> <span class="dt">E'</span>]            <span class="fu">=</span> y            <span class="co">-- assuming x /= y</span>
+(<span class="dt">E1</span> <span class="dt">E2</span>)[x <span class="fu">:=</span> <span class="dt">E'</span>]      <span class="fu">=</span> (<span class="dt">E1</span>[x <span class="fu">:=</span> <span class="dt">E'</span>]) (<span class="dt">E2</span>[x <span class="fu">:=</span> <span class="dt">E'</span>])
+(\x <span class="ot">-&gt;</span> <span class="dt">E</span>)[x <span class="fu">:=</span> <span class="dt">E'</span>]    <span class="fu">=</span> \x <span class="ot">-&gt;</span> <span class="dt">E</span>      <span class="co">-- why do we leave `E` alone?</span>
+(\y <span class="ot">-&gt;</span> <span class="dt">E</span>)[x <span class="fu">:=</span> <span class="dt">E'</span>] 
+  <span class="fu">|</span> not (y <span class="kw">in</span> <span class="dt">FV</span>(<span class="dt">E'</span>)) <span class="fu">=</span> \y <span class="ot">-&gt;</span> <span class="dt">E</span>[x <span class="fu">:=</span> <span class="dt">E'</span>]
+  <span class="fu">|</span> otherise          <span class="fu">=</span> undefined    <span class="co">-- wait, but what do we do then???</span></code></pre></div>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="rewrite-rules-of-lambda-calculus-2">Rewrite Rules of Lambda Calculus</h2>

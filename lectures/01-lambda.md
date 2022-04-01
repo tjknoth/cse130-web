@@ -873,20 +873,20 @@ where `E1[x := E2]` means
 Formally:
 
 ```haskell
-x[x := E]            = E
-y[x := E]            = y            -- assuming x /= y
-(E1 E2)[x := E]      = (E1[x := E]) (E2[x := E])
-(\x -> E1)[x := E]   = \x -> E1     -- why do we leave `E1` alone?
-(\y -> E1)[x := E] 
-  | not (y in FV(E)) = \y -> E1[x := E]
-  | otherise         = undefined    -- wait, but what do we do then???
+x[x := E']            = E'
+y[x := E']            = y            -- assuming x /= y
+(E1 E2)[x := E']      = (E1[x := E']) (E2[x := E'])
+(\x -> E)[x := E']    = \x -> E      -- why do we leave `E` alone?
+(\y -> E)[x := E'] 
+  | not (y in FV(E')) = \y -> E[x := E']
+  | otherise          = undefined    -- wait, but what do we do then???
 
 ```
 
 (I) final
     
-    *Answer*: We leave `E1` above alone even though it might contain `x`, 
-    because in `\x -> E1` every occurrence of `x` is bound by `\x`
+    *Answer*: We leave `E` above alone even though it might contain `x`, 
+    because in `\x -> E` every occurrence of `x` is bound by `\x`
     (hence, there are *no free occurrences* of `x`)
 
 <br>
