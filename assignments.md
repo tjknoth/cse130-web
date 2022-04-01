@@ -7,7 +7,6 @@ headerImg: angles.jpg
 
 TBA
 
-<!--
 
 Click the Github Classroom link next to the assignment. 
 This will automatically create your private assignment repository, 
@@ -16,13 +15,14 @@ pre-populated with starter code and a README file with all the instructions.
 
 | Link                                             | Name                            | Deadline (11:59pm)        |
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
-| [HW0](https://classroom.github.com/a/BNDieLwc)   | The Lambda Calculus             | 10/13                     |
+| [HW0](https://classroom.github.com/a/bRVjPTGa)   | The Lambda Calculus             | 4/13                      |
+
+<!--
 | [HW1](https://classroom.github.com/a/OpdJuNy3)   | Introduction to Haskell         | 10/20                     |
 | [HW2](https://classroom.github.com/a/F6bvHRUy)   | Random Art                      | ~~10/27~~ 10/29           |
 | [HW3](https://classroom.github.com/a/TE-c5MV1)   | All about Fold                  | 11/5                      |
 | [HW4](https://classroom.github.com/a/3OjrpOUd)   | Nano                            | 11/17                     |
 | [HW5](https://classroom.github.com/a/M5XVG0Uy)   | Type Classes                    | 12/1                      |
-
 -->
 
 
