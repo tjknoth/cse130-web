@@ -1772,19 +1772,6 @@ let SIX   = \f x -> f (f (f (f (f (f x)))))
 ```
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
 ## QUIZ: Church Numerals
 
 Which of these is a valid encoding of `ZERO` ?
