@@ -1774,7 +1774,7 @@ let SIX   = \f x -> f (f (f (f (f (f x)))))
 
 ## QUIZ: Church Numerals
 
-Which of these is a valid encoding of `ZERO` ?
+Which of these is a reasonable encoding of `ZERO` ?
 
 - **A**: `let ZERO = \f x -> x`
 
