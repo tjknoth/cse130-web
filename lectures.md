@@ -17,7 +17,7 @@ Lecture schedule is subject to change!
 | 4/13       | contd.                          |                           |
 | 4/15       | contd.                          |                           |
 | 4/18       | contd.                          |                           |
-| 4/20       | Datatypes and Recursion         |                           |
+| 4/20       | Datatypes and Recursion         |  [html][lec3]             |
 | 4/22       | contd.                          |                           |
 | 4/25       | contd.                          |                           |
 | 4/27       | contd.                          |                           |
