@@ -916,14 +916,19 @@ html p =
 
 ## QUIZ
 
-What is the type of
+Given the definition:
 
 ```haskell
-let p = PText "Hey there!" in
-  case p of
-    PText _ -> 1
-    PHeading _ _ -> 2
-    PList _ _ -> 3     
+data Paragraph = PText String | PHeading Int String | PList Bool [String]
+```
+
+what is the type of
+
+```haskell
+case PText "Hey there!" of
+  PText _ -> 1
+  PHeading _ _ -> 2
+  PList _ _ -> 3     
 ```
 
 **A.**  Syntax error
@@ -954,14 +959,19 @@ let p = PText "Hey there!" in
 
 ## QUIZ
 
-What is the type of
+Given the definition:
 
 ```haskell
-let p = PText "Hey there!" in
-  case p of
-    PText str -> str
-    PHeading lvl _ -> lvl
-    PList ord _ -> ord     
+data Paragraph = PText String | PHeading Int String | PList Bool [String]
+```
+
+what is the type of
+
+```haskell
+case PText "Hey there!" of
+  PText str -> str
+  PHeading lvl _ -> lvl
+  PList ord _ -> ord     
 ```
 
 **A.**  Syntax error
