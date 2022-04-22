@@ -667,7 +667,8 @@ html p <span class="fu">=</span>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-3">QUIZ</h2>
 <p>Given the definition:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> <span class="dt">PText</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
+  <span class="dt">PText</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
 <p>what is the type of</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">case</span> <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span> <span class="kw">of</span>
   <span class="dt">PText</span> _ <span class="ot">-&gt;</span> <span class="dv">1</span>
@@ -683,7 +684,8 @@ html p <span class="fu">=</span>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-4">QUIZ</h2>
 <p>Given the definition:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> <span class="dt">PText</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Paragraph</span> <span class="fu">=</span> 
+  <span class="dt">PText</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PHeading</span> <span class="dt">Int</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">PList</span> <span class="dt">Bool</span> [<span class="dt">String</span>]</code></pre></div>
 <p>what is the type of</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">case</span> <span class="dt">PText</span> <span class="st">&quot;Hey there!&quot;</span> <span class="kw">of</span>
   <span class="dt">PText</span> str <span class="ot">-&gt;</span> str

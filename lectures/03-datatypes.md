@@ -919,7 +919,8 @@ html p =
 Given the definition:
 
 ```haskell
-data Paragraph = PText String | PHeading Int String | PList Bool [String]
+data Paragraph = 
+  PText String | PHeading Int String | PList Bool [String]
 ```
 
 what is the type of
@@ -962,7 +963,8 @@ case PText "Hey there!" of
 Given the definition:
 
 ```haskell
-data Paragraph = PText String | PHeading Int String | PList Bool [String]
+data Paragraph = 
+  PText String | PHeading Int String | PList Bool [String]
 ```
 
 what is the type of
