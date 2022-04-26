@@ -15,15 +15,14 @@ pre-populated with starter code and a README file with all the instructions.
 | [HW0](https://classroom.github.com/a/bRVjPTGa)   | The Lambda Calculus             | 4/13                      |
 | [HW1](https://classroom.github.com/a/JoLROppg)   | Introduction to Haskell         | 4/20                      |
 | [HW2](https://classroom.github.com/a/rWOlqoJc)   | Random Art                      | 4/29                      |
+| [HW3](https://classroom.github.com/a/LcaF_xdk)   | All about Fold                  | 5/6                       |
 
 <!--
-| [HW3](https://classroom.github.com/a/TE-c5MV1)   | All about Fold                  | 11/5                      |
 | [HW4](https://classroom.github.com/a/3OjrpOUd)   | Nano                            | 11/17                     |
 | [HW5](https://classroom.github.com/a/M5XVG0Uy)   | Type Classes                    | 12/1                      |
 -->
 
 
-<!--
 ## Past Exams
 
 - [Midterm Fa 19](/static/raw/130-midterm-fa19.pdf) ([solution](/static/raw/130-midterm-fa19-solution.pdf)),
@@ -31,5 +30,4 @@ pre-populated with starter code and a README file with all the instructions.
 
 - [Final Fa 19](/static/raw/130-final-fa19.pdf) ([solution](/static/raw/130-final-fa19-solution.pdf)),
   [Final Wi 19](/static/raw/130-final-wi19.pdf) ([solution](/static/raw/130-final-wi19-solution.pdf)).
--->
   
