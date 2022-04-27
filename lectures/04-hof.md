@@ -452,41 +452,6 @@ Things to try at home:
   * can you write a function `map' :: (a -> b) -> [a] -> [b]`
     such that `map' f xs` returns a list whose elements are not in `map f xs`?
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-## QUIZ
-
-What is the value of `quiz`?
-
-```haskell
-map :: (a -> b) -> [a] -> [b]
-
-quiz = map (\(x, y) -> x + y) [1, 2, 3]
-```
-
-**(A)** `[2, 4, 6]`
-
-**(B)** `[3, 5]`
-
-**(C)** Syntax Error
-
-**(D)** Type Error
-
-**(E)** None of the above
-
-<br>
-
-(I) final
-    
-    *Answer:* D (list elements are integers, but operation expects a pair)
 
 <br>
 <br>

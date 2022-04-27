@@ -450,19 +450,6 @@ map<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b) <span class="
 <li><p>can you write a function <code class="sourceCode haskell"><span class="ot">map' ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [b]</code> such that <code class="sourceCode haskell">map' f xs</code> returns a list whose elements are not in <code class="sourceCode haskell">map f xs</code>?</p></li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-1">QUIZ</h2>
-<p>What is the value of <code class="sourceCode haskell">quiz</code>?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">map<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [b]
-
-quiz <span class="fu">=</span> map (\(x, y) <span class="ot">-&gt;</span> x <span class="fu">+</span> y) [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</code></pre></div>
-<p><strong>(A)</strong> <code class="sourceCode haskell">[<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>]</code></p>
-<p><strong>(B)</strong> <code class="sourceCode haskell">[<span class="dv">3</span>, <span class="dv">5</span>]</code></p>
-<p><strong>(C)</strong> Syntax Error</p>
-<p><strong>(D)</strong> Type Error</p>
-<p><strong>(E)</strong> None of the above</p>
-<p><br></p>
-
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="dont-repeat-yourself">Don’t Repeat Yourself</h2>
 <p>Benefits of <strong>factoring</strong> code with HOFs:</p>
 <ul>
@@ -543,7 +530,7 @@ len <span class="fu">=</span> foldr <span class="fu">...</span>  <span class="fu
 
 cat <span class="fu">=</span> foldr (<span class="fu">++</span>) <span class="st">&quot;&quot;</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-2">QUIZ</h2>
+<h2 id="quiz-1">QUIZ</h2>
 <p>What does this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldr f b []     <span class="fu">=</span> b
 foldr f b (x<span class="fu">:</span>xs) <span class="fu">=</span> f x (foldr f b xs)
@@ -582,7 +569,7 @@ foldr (<span class="fu">:</span>) [] [<span class="dv">1</span>,<span class="dv"
   <span class="fu">==&gt;</span> <span class="dv">1</span> <span class="fu">+</span> (<span class="dv">2</span> <span class="fu">+</span> (<span class="dv">3</span> <span class="fu">+</span> (<span class="dv">4</span> <span class="fu">+</span> (foldr (<span class="fu">+</span>) <span class="dv">0</span> []))))
   <span class="fu">==&gt;</span> <span class="dv">1</span> <span class="fu">+</span> (<span class="dv">2</span> <span class="fu">+</span> (<span class="dv">3</span> <span class="fu">+</span> (<span class="dv">4</span> <span class="fu">+</span> <span class="dv">0</span>)))</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-3">QUIZ</h2>
+<h2 id="quiz-2">QUIZ</h2>
 <p>What is the most general type of <code class="sourceCode haskell">foldr</code>?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldr f b []     <span class="fu">=</span> b
 foldr f b (x<span class="fu">:</span>xs) <span class="fu">=</span> f x (foldr f b xs)</code></pre></div>
@@ -666,7 +653,7 @@ foldl f b (x<span class="fu">:</span>xs) <span class="fu">=</span> foldl f (f b 
 catTR <span class="fu">=</span> foldl <span class="fu">...</span>  <span class="fu">...</span></code></pre></div>
 <p>Factor the tail-recursion out!</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-4">QUIZ</h2>
+<h2 id="quiz-3">QUIZ</h2>
 <p>What does this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b []     <span class="fu">=</span> b
 foldl f b (x<span class="fu">:</span>xs) <span class="fu">=</span> foldl f (f b x) xs
@@ -681,7 +668,7 @@ quiz <span class="fu">=</span> foldl (<span class="fu">:</span>) [] [<span class
 <p><br></p>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-5">QUIZ</h2>
+<h2 id="quiz-4">QUIZ</h2>
 <p>What does this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b []     <span class="fu">=</span> b
 foldl f b (x<span class="fu">:</span>xs) <span class="fu">=</span> foldl f (f b x) xs
