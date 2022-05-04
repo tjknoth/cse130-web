@@ -683,7 +683,10 @@ quiz <span class="fu">=</span> foldl (\xs x <span class="ot">-&gt;</span> x <spa
 <p><br></p>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">f <span class="fu">=</span> \xs x <span class="ot">-&gt;</span> x <span class="fu">:</span> xs
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b []     <span class="fu">=</span> b
+foldl f b (x<span class="fu">:</span>xs) <span class="fu">=</span> foldl f (f b x) xs
+
+f <span class="fu">=</span> \xs x <span class="ot">-&gt;</span> x <span class="fu">:</span> xs
 
 foldl f []                         [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]
   <span class="fu">==&gt;</span> foldl f (<span class="dv">1</span> <span class="fu">:</span> [])               [<span class="dv">2</span>,<span class="dv">3</span>]

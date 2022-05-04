@@ -1022,6 +1022,9 @@ quiz = foldl (\xs x -> x : xs) [] [1,2,3]
 <br>
 
 ```haskell
+foldl f b []     = b
+foldl f b (x:xs) = foldl f (f b x) xs
+
 f = \xs x -> x : xs
 
 foldl f []                         [1,2,3]
