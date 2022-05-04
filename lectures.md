@@ -23,8 +23,8 @@ Lecture schedule is subject to change!
 | 4/27       | Higher Order Functions          |  [html][lec4]             |
 | 4/29       | contd.                          |                           |
 | 5/2        | **Midterm**                     |                           |
-| 5/4        | contd.                          |                           |
-| 5/6        | Environments and Closures       |                           |
+| 5/4        | Environments and Closures       |  [html][lec5]             |
+| 5/6        | contd.                          |                           |
 | 5/9        | contd.                          |                           |
 | 5/11       | contd.                          |                           |
 | 5/13       | Lexing and Parsing              |                           |
