@@ -596,48 +596,6 @@ eval env (<span class="dt">Let</span> x e1 e2)    <span class="fu">=</span> eval
     v    <span class="fu">=</span> eval env e1
     env' <span class="fu">=</span> (x, v) <span class="fu">:</span> env    </code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-6">QUIZ</h2>
-<p>Which of the following locations inside <code class="sourceCode haskell">eval</code> <strong>could fail</strong>?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span>
-eval env (<span class="dt">Num</span> n)          <span class="fu">=</span> n                              <span class="co">-- (A)</span>
-eval env (<span class="dt">Bin</span> op e1 e2)   <span class="fu">=</span> evalOp op (eval e1) (eval e2)  <span class="co">-- (B)</span>
-eval env (<span class="dt">Var</span> x)          <span class="fu">=</span> lookup x env                   <span class="co">-- (C)</span>
-eval env (<span class="dt">Let</span> x e1 e2)    <span class="fu">=</span> eval env' e2                   <span class="co">-- (D)</span>
-  <span class="kw">where</span>
-    v    <span class="fu">=</span> eval env e1
-    env' <span class="fu">=</span> (x, v) <span class="fu">:</span> env
-                                                           <span class="co">-- (E): none    </span></code></pre></div>
-<p><br></p>
-
-<p><br> <br> <br> <br> <br> <br></p>
-<h2 id="runtime-errors">Runtime errors</h2>
-<p>How do we make sure that <code class="sourceCode haskell">eval</code> never fails?</p>
-<p><br> <br> <br> <br> <br> <br></p>
-<h2 id="free-vs-bound-variables">Free vs bound variables</h2>
-<p>In <code class="sourceCode haskell">eval env e</code>, <code class="sourceCode haskell">env</code> must contain bindings for <em>all free variables</em> of <code class="sourceCode haskell">e</code>!</p>
-<ul>
-<li>an occurrence of <code class="sourceCode haskell">x</code> is <strong>free</strong> if it is not <strong>bound</strong></li>
-<li>an occurrence of <code class="sourceCode haskell">x</code> is <strong>bound</strong> if it’s inside <code class="sourceCode haskell">e2</code> where <code class="sourceCode haskell"><span class="kw">let</span> x <span class="fu">=</span> e1 <span class="kw">in</span> e2</code></li>
-<li>evaluation succeeds when an expression is <strong>closed</strong>!</li>
-</ul>
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-7">QUIZ</h2>
-<p>Which variables are free in the expression?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> y <span class="fu">=</span> (<span class="kw">let</span> x <span class="fu">=</span> <span class="dv">2</span> 
-         <span class="kw">in</span> 
-           x
-        ) <span class="fu">+</span> x 
-<span class="kw">in</span>
-  <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">3</span> 
-  <span class="kw">in</span>
-    x <span class="fu">+</span> y</code></pre></div>
-<p><strong>(A)</strong> None</p>
-<p><strong>(B)</strong> <code class="sourceCode haskell">x</code></p>
-<p><strong>(C)</strong> <code class="sourceCode haskell">y</code></p>
-<p><strong>(D)</strong> <code class="sourceCode haskell">x, y</code></p>
-<p><br></p>
-
-<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="the-nano-language-3">The Nano Language</h2>
 <p>Features of Nano:</p>
 <ol style="list-style-type: decimal">
@@ -668,7 +626,7 @@ eval env (<span class="dt">Let</span> x e1 e2)    <span class="fu">=</span> eval
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> inc <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span> <span class="kw">in</span> 
 inc <span class="dv">10</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-8">QUIZ</h2>
+<h2 id="quiz-6">QUIZ</h2>
 <p>What should this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> inc <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span> <span class="kw">in</span> 
 inc <span class="dv">10</span></code></pre></div>
@@ -809,7 +767,7 @@ eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval en
     vArg        <span class="fu">=</span> eval env arg
     env'        <span class="fu">=</span> (x, vArg) <span class="fu">:</span> env</code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-9">QUIZ</h2>
+<h2 id="quiz-7">QUIZ</h2>
 <p>What should this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> c <span class="fu">=</span> <span class="dv">1</span> 
 <span class="kw">in</span>
@@ -824,7 +782,7 @@ eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval en
 <p><br></p>
 
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-10">QUIZ</h2>
+<h2 id="quiz-8">QUIZ</h2>
 <p>And what should this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> c <span class="fu">=</span> <span class="dv">1</span> 
 <span class="kw">in</span>
@@ -920,7 +878,7 @@ eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval en
           <span class="kw">let</span> res2 <span class="fu">=</span> inc <span class="dv">10</span> <span class="co">-- ==&gt; 210!!!</span>
           <span class="kw">in</span> res1 <span class="fu">==</span> res2   <span class="co">-- ==&gt; False</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-11">QUIZ</h2>
+<h2 id="quiz-9">QUIZ</h2>
 <p>Which scoping does our <code class="sourceCode haskell">eval</code> function implement?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">...</span>
 eval env (<span class="dt">Lam</span> x body) <span class="fu">=</span> <span class="dt">VFun</span> x body
@@ -1057,7 +1015,7 @@ eval env (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span cla
 </ul>
 <p>Does our <code class="sourceCode haskell">eval</code> support this?</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-12">QUIZ</h2>
+<h2 id="quiz-10">QUIZ</h2>
 <p>What should the following evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> add <span class="fu">=</span> \x y <span class="ot">-&gt;</span> x <span class="fu">+</span> y
 <span class="kw">in</span>
@@ -1093,7 +1051,7 @@ eval env (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span cla
 
 <span class="fu">==&gt;</span> <span class="dv">1111</span>                 </code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-13">QUIZ</h2>
+<h2 id="quiz-11">QUIZ</h2>
 <p>What should the following evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> inc <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>
 <span class="kw">in</span>
@@ -1124,7 +1082,7 @@ eval env (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span cla
     
 <span class="fu">==&gt;</span> <span class="dv">12</span>    </code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-14">QUIZ</h2>
+<h2 id="quiz-12">QUIZ</h2>
 <p>What does this evaluate to?</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> f <span class="fu">=</span> \n <span class="ot">-&gt;</span> n <span class="fu">*</span> f (n <span class="fu">-</span> <span class="dv">1</span>) 
 <span class="kw">in</span>
