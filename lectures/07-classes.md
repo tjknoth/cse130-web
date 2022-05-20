@@ -1241,7 +1241,7 @@ stringsToJSON xs = JArr (map stringToJSON xs)
 
 This is **getting rather tedious**
 
-- Lot's of repetition :(
+- Lots of repetition :(
 
 <br>
 <br>
