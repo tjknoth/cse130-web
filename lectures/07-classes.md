@@ -1115,12 +1115,12 @@ transferring data around. Here is an example:
 
 ```json
 { "name"    : "Nadia"
-, "age"     : 36.0
+, "age"     : 37.0
 , "likes"   : [ "poke", "coffee", "pasta" ]
 , "hates"   : [ "beets" , "milk" ]
 , "lunches" : [ {"day" : "mon", "loc" : "rubios"}
               , {"day" : "tue", "loc" : "home"}
-              , {"day" : "wed", "loc" : "lemongrass"}
+              , {"day" : "wed", "loc" : "curry up now"}
               , {"day" : "thu", "loc" : "home"}
               , {"day" : "fri", "loc" : "santorini"} ]
 }
@@ -1172,7 +1172,7 @@ js1 =
                          , JObj [("day",  JStr "tue")
                                 ,("loc",  JStr "home")]
                          , JObj [("day",  JStr "wed")
-                                ,("loc",  JStr "lemongrass")]
+                                ,("loc",  JStr "curry up now")]
                          , JObj [("day",  JStr "thu")
                                 ,("loc",  JStr "home")]
                          , JObj [("day",  JStr "fri")
