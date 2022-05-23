@@ -268,7 +268,7 @@ mapTree :: (a -> b) -> Tree a -> Tree b    -- Tree
 
 <br>
 
-Can I write a generic `map` function that works for `List`, `Tree`, and other datatypes?
+Can we provide a generic `map` function that works for `List`, `Tree`, and other datatypes?
 
 <br>
 <br>
