@@ -53,8 +53,6 @@ Lecture schedule is subject to change!
 | 5/13       | Nano: interpreters, lexers, and parsers         | [pdf][disc7]              |
 | 5/20       | Type classes and Quickcheck                     | [pdf][disc8]              |
 | 5/27       | IO Monad                                        | [pdf][disc9]              |
-| 6/3        | Final review                                    |                           |
-
 
 [lec0]: lectures/00-hello.html
 [lec1]: lectures/01-lambda.html
