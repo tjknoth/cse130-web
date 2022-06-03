@@ -36,7 +36,7 @@ Lecture schedule is subject to change!
 | 5/27       | contd.                          |                           |
 | 5/30       | *No lecture: Memorial Day*      |                           |
 | 6/1        | contd.                          |                           |
-| 6/3        | contd.                          |                           |
+| 6/3        | Final Review                    |                           |
 | 6/10       | **Final**                       |                           |
 
 
