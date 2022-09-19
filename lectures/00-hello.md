@@ -6,15 +6,13 @@ date: 2017-03-28
 
 ## Who am I?
 
-![Nadia Polikarpova](https://cseweb.ucsd.edu/~npolikarpova/images/nadia_polikarpova.jpg){#fig:nadia .align-center width=25%}
+Tristan Knoth
 
-- Assistant professor at CSE since 2017
-- PhD at ETH Zurich
-- Postdoc at MIT
+- PhD Candidate 
+- Undergrade at Grinnell College 
 
 ### My Research
 
-- Program Verification: how to *prove* the program is doing the right thing?
 - Program Synthesis: how to *generate* a program that does the right thing?
 
 <br>
@@ -31,16 +29,16 @@ date: 2017-03-28
 
 Teaching assistants:
 
-* [Shraddha Barke](https://shraddhabarke.github.io/)
-* [Michael James](http://michaelbjames.com/)
-* Rose Kunkel
+* Aidan Denlinger 
+* Bhavya Singh 
 
 
 Tutors
 
-* Darwin Chan
-* Elizaveta Pertseva
-* Shuhua Xie
+* Justin Du 
+* Eugene Lau
+* Melody Ruth
+* Danica Xiong
 
 <br>
 <br>
@@ -54,19 +52,11 @@ Tutors
 
 ## Lecture Format
 
-In-person + live on Zoom
+In-person only (unless there are extenuating circumstances, in
+which case I'll figure something out...)
 
-For those joining on Zoom:
-
-- Keep your *mic* off unless you are talking
-- Keep your *video* on if you can
-- Two ways to ask a question:
-    1. "Raise your hand" in zoom and I will call on you
-    2. Type into zoom chat
-- Please do not use public Zoom chat for random commentary, it's distracting   
-- Same if I ask you a question    
-    
-Lectures will also be recorded and published on canvas and/or [podcast](https://podcast.ucsd.edu/)   
+Discussion sections:
+* In-person, PCNYH 106, Weds 7pm
 
 <br>
 <br>

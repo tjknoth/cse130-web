@@ -13,6 +13,10 @@ this site as appropriate.
 Below you can find a list of books and online resources
 that explore various class topics in more depth.
 
+## Give me feedback
+
+[Feedback](https://forms.gle/oqJgZQi4Z5qPqLzz9)
+
 ## Lambda Calculus
 
 - [Types and Programming Languages](https://books.google.com/books/about/Types_and_Programming_Languages.html?id=ti6zoAC9Ph8C) by Benjamin Pierce
