@@ -5,7 +5,7 @@ SLIDY=$(PANDOC) -t slidy
 DZSLIDES=$(PANDOC) --highlight-style tango --css=slides.css -w dzslides
 HANDOUT=$(PANDOC) --highlight-style tango --css=text.css -w html5
 SLIDES=$(patsubst lectures/%.md,lectures/%.md.slides.html,$(wildcard *.md))
-DEST=/home/tristan/Code/tjknoth.github.io/teaching/cse130fa22
+DEST=/home/tristan/Code/tjknoth.github.io/teaching/cse130fa22test
 
 # clear out all suffixes
 .SUFFIXES:
