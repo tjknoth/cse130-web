@@ -22,7 +22,10 @@ site:
 upload:
 	cp -r _site/* docs/ 
 	cd docs/ && git add . && git commit -a -m "update page" && git push origin master 
-	rm -r $(DEST)/* && cp -r docs/* $(DEST)
+	rm -r $(DEST)/* && cp -r _site/* $(DEST)
+
+deploy:
+	rm -r $(DEST)/* && cp -r _site/* $(DEST)
 
 clean:
 	rm -rf *.hi *.o .*.swp .*.swo website _site/ _cache/

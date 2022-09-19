@@ -49,6 +49,10 @@ git commit -a -m "update webpage"
 git push origin master
 ```
 
+To get it on my (tristan's) personal site:
+`make deploy`
+then deploy the other site.
+
 ## Credits
 
 This theme is a fork of [CleanMagicMedium-Jekyll](https://github.com/SpaceG/CleanMagicMedium-Jekyll)
