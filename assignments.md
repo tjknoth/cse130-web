@@ -12,12 +12,12 @@ pre-populated with starter code and a README file with all the instructions.
 
 | Link                                             | Name                            | Deadline (11:59pm)        |
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
-| [HW0](https://classroom.github.com/a/bRVjPTGa)   | The Lambda Calculus             | 4/13                      |
-| [HW1](https://classroom.github.com/a/JoLROppg)   | Introduction to Haskell         | 4/20                      |
-| [HW2](https://classroom.github.com/a/rWOlqoJc)   | Random Art                      | 4/29                      |
-| [HW3](https://classroom.github.com/a/LcaF_xdk)   | All about Fold                  | 5/6                       |
-| [HW4](https://classroom.github.com/a/B1XjvCJJ)   | Nano                            | 5/18                      |
-| [HW5](https://classroom.github.com/a/8tQaZ1l8)   | Type Classes                    | 6/1                       |
+| [HW0](TODO)   | The Lambda Calculus              | 10/10                      |
+| [HW1](TODO)   | Introduction to Haskell          | 10/19                      |
+| [HW2](TODO)   | Random Art                       | 10/26                      |
+| [HW3](TODO)   | All about Fold                   | 11/2                       |
+| [HW4](TODO)   | Nano                             | 11/16                      |
+| [HW5](TODO)   | Type Classes                     | 11/30                      |
 
 
 ## Past Exams
