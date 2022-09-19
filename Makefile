@@ -5,6 +5,7 @@ SLIDY=$(PANDOC) -t slidy
 DZSLIDES=$(PANDOC) --highlight-style tango --css=slides.css -w dzslides
 HANDOUT=$(PANDOC) --highlight-style tango --css=text.css -w html5
 SLIDES=$(patsubst lectures/%.md,lectures/%.md.slides.html,$(wildcard *.md))
+DEST=/home/tristan/Code/tjknoth.github.io/teaching/cse130fa22test
 
 # clear out all suffixes
 .SUFFIXES:
@@ -21,12 +22,14 @@ site:
 upload:
 	cp -r _site/* docs/ 
 	cd docs/ && git add . && git commit -a -m "update page" && git push origin master 
+	cp -r docs/* $(DEST)
 
 clean:
 	rm -rf *.hi *.o .*.swp .*.swo website _site/ _cache/
 
 server:
 	stack exec -- homepage watch
+
 
 #############################################################################
 
