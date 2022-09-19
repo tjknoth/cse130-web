@@ -24,12 +24,12 @@ but no more than *four late days* per assignment.
       
 ### Midterm (25%)
 
-- Will be held on **Monday, May 2**.
+- Will be held on **Friday, October 28**.
 - Format: multiple choice quiz on Gradescope, available for 24 hours.  
 
 ### Final (30%)
   
-- Will be held on **Friday, June 10**.
+- Will be held on **Wednesday, December 7**.
 - Format: programming assignment. Solved individually in the course of 24 hours, but otherwise similar to homeworks.
   
 Since the final is cumulative, your midterm grade will be calculated as 

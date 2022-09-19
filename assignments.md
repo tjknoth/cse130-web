@@ -12,12 +12,12 @@ pre-populated with starter code and a README file with all the instructions.
 
 | Link                                             | Name                            | Deadline (11:59pm)        |
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
-| [HW0](TODO)   | The Lambda Calculus              | 10/10                      |
-| [HW1](TODO)   | Introduction to Haskell          | 10/19                      |
-| [HW2](TODO)   | Random Art                       | 10/26                      |
-| [HW3](TODO)   | All about Fold                   | 11/2                       |
-| [HW4](TODO)   | Nano                             | 11/16                      |
-| [HW5](TODO)   | Type Classes                     | 11/30                      |
+| HW0   | The Lambda Calculus              | 10/10                      |
+| HW1   | Introduction to Haskell          | 10/19                      |
+| HW2   | Random Art                       | 10/26                      |
+| HW3   | All about Fold                   | 11/2                       |
+| HW4   | Nano                             | 11/16                      |
+| HW5   | Type Classes                     | 11/30                      |
 
 
 ## Past Exams

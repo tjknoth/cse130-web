@@ -15,7 +15,7 @@ that explore various class topics in more depth.
 
 ## Give me feedback
 
-[Feedback](https://forms.gle/oqJgZQi4Z5qPqLzz9)
+* [Feedback form](https://forms.gle/oqJgZQi4Z5qPqLzz9)
 
 ## Lambda Calculus
 

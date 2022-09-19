@@ -38,7 +38,7 @@ Lecture schedule is subject to change!
 | 11/28      | contd.                          |                           |
 | 11/30      | contd.                          |                           |
 | 12/2       | Final Review                    |                           |
-| 6/10       | **Final**                       |                           |
+| 12/7       | **Final**                       |                           |
 
 
 **Discussions**
