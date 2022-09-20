@@ -392,6 +392,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     - announcements and discussions
 - [gradescope](https://www.gradescope.com/courses/446590)
     - homework/exam submissions, grades    
+- No canvas
 
 
 
