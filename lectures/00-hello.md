@@ -56,6 +56,7 @@ In-person only (unless there are extenuating circumstances, in
 which case I'll figure something out...)
 
 Discussion sections:
+
 * In-person, PCNYH 106, Weds 7pm
 
 <br>
@@ -376,13 +377,11 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 
 ## Course Logistics
 
-- [webpage](https://nadia-polikarpova.github.io/cse130-web)
+- [webpage](https://tjknoth.github.io/teaching/cse130fa22)
     - calendar, lecture notes, programming assignments, ...
-- [canvas](https://canvas.ucsd.edu/courses/36670)
-    - lecture recordings  
-- [piazza](https://www.piazza.com/ucsd/spring2022/cse130/home)
+- [piazza](https://www.piazza.com/ucsd/fall2022/cse130/home)
     - announcements and discussions
-- [gradescope](https://www.gradescope.com/courses/381579)
+- [gradescope](https://www.gradescope.com/courses/446590)
     - homework/exam submissions, grades    
 
 
@@ -412,7 +411,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 ## Assignments
 
 - 6 programming assignments
-- Released [online](https://nadia-polikarpova.github.io/cse130-web/assignments.html), at least a week before due date
+- Released [online](https://tjknoth.github.io/teaching/cse130fa22/assignments.html), at least a week before due date
 - Due on **Wednesday at 11:59pm**
     - no assignment Weeks 1 and 2
 - 8 late days, no more than 4 late days per assignment
@@ -420,7 +419,7 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
 - Submitted via Gradescope
     - submission instructions in the assignment
 - Solve **alone or in groups of two**
-    - user this [piazza thread](https://piazza.com/class/l19lxxev1bg5ht?cid=5) to find a partner
+    - user the pinned piazza thread to find a partner
 
 <br>
 <br>
@@ -431,11 +430,11 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     
 ## Exams    
 
-- Midterm on *May 2*
+- Midterm on *October 28*
     - Gradescope multiple choice
     - individual
     - 24h timespan
-- Final: *June 10*
+- Final: *December 7*
     - programming assignment
     - individual
     - 24h timespan
@@ -512,14 +511,13 @@ How can you earn 5% extra credit for this class?
 
 ## Your Resources
 
-- Discussion section: Fri 11am
-    - CENTR 119 and/or on Zoom, depending on the TA
-    - same Zoom link as lecture
+- Discussion section: Weds 7pm 
+    - PCNYH 106
 - Office hours
     - every day, check calendar
 - Piazza
     - we answer during work hours
-- **No text**        
+- **No textbook**        
     - online lecture notes and links
 
 
@@ -600,4 +598,11 @@ or [Counseling and Psychological Services](http://caps.ucsd.edu.) (CAPS) at (85
 
 
 
+## Feedback?
+
+I want to get better at this!
+
+You can give me constructive [feedback](https://forms.gle/oqJgZQi4Z5qPqLzz9) and I will try to improve.
+
+Link is on the class website as well.
 
