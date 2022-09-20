@@ -11,9 +11,18 @@ Tristan Knoth
 - PhD Candidate 
 - Undergrade at Grinnell College 
 
-### My Research
+### Interests 
 
+Research:
+
+- Type systems: how to *prove* that a program does the right thing?
 - Program Synthesis: how to *generate* a program that does the right thing?
+
+Other:
+- Math
+- The ocean and the outdoors
+- The NBA
+- Chess
 
 <br>
 <br>

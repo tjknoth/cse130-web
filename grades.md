@@ -7,7 +7,7 @@ headerImg: beach.jpg
 
 - There will be *six* programming assignments, assigned every one or two weeks.
 - Links to assignments will be posted on the [assignments page](assignments.html).
-- You will submit assignments via Gradescope.
+- You will submit assignments via Gradescope (link to join is on Piazza).
 - You can work on the assignment *either alone or in groups of two*.
 - If you are working with a partner and submitting the same code, please *submit as a group* (otherwise identical code might be flagged as plagiarism).
 
