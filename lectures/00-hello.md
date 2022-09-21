@@ -19,6 +19,7 @@ Research:
 - Program Synthesis: how to *generate* a program that does the right thing?
 
 Other:
+
 - Math
 - The ocean and the outdoors
 - The NBA
@@ -63,6 +64,8 @@ Tutors
 
 In-person only (unless there are extenuating circumstances, in
 which case I'll figure something out...)
+
+* There should be a podcast
 
 Discussion sections:
 
