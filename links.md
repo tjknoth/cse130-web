@@ -17,6 +17,13 @@ that explore various class topics in more depth.
 
 * [Feedback form](https://forms.gle/oqJgZQi4Z5qPqLzz9)
 
+## Canvas
+
+I will not be using Canvas unless extenuating circumstances force a discussion
+section or lecture to occur virtually.
+In that case we will upload the materials to
+[canvas](https://canvas.ucsd.edu/courses/41638).
+
 ## Lambda Calculus
 
 - [Types and Programming Languages](https://books.google.com/books/about/Types_and_Programming_Languages.html?id=ti6zoAC9Ph8C) by Benjamin Pierce

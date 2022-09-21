@@ -392,7 +392,8 @@ sort (x:xs) = sort ls ++ [x] ++ sort rs
     - announcements and discussions
 - [gradescope](https://www.gradescope.com/courses/446590)
     - homework/exam submissions, grades    
-- No canvas
+- [canvas](https://canvas.ucsd.edu/courses/41638) 
+    - only be used to upload media (should we need it)
 
 
 
