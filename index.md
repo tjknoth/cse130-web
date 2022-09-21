@@ -15,7 +15,7 @@ headerImg: angles.jpg
 
 ### Instructor
 
-* [Tristan Knoth](tjknoth.github.io)
+* [Tristan Knoth](tjknoth.github.io) (tknoth@eng.ucsd.edu)
 
 ### Teaching Assistants
 
