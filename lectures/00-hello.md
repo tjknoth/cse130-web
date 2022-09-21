@@ -66,7 +66,7 @@ which case I'll figure something out...)
 
 Discussion sections:
 
-* In-person, PCNYH 106, Weds 7pm
+* In-person, PCYNH 106, Weds 7pm
 
 <br>
 <br>
@@ -523,7 +523,7 @@ How can you earn 5% extra credit for this class?
 ## Your Resources
 
 - Discussion section: Weds 7pm 
-    - PCNYH 106
+    - PCYNH 106
 - Office hours
     - every day, check calendar
 - Piazza

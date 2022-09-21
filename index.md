@@ -5,8 +5,8 @@ headerImg: angles.jpg
 
 ## Course Resources
 
-- **Lectures:**             MWF 2:00-2:50pm (PCNYH 106) 
-- **Discussion section:**   W 7:00-7:50pm (PCNYH 106)
+- **Lectures:**             MWF 2:00-2:50pm (PCYNH 106) 
+- **Discussion section:**   W 7:00-7:50pm (PCYNH 106)
 - **Calendar:**             Check [here](calendar.html) for office hours, deadlines, etc.
 - **Piazza:**               Check [here](https://www.piazza.com/ucsd/fall2022/cse130/home) for announcement and discussions
 
