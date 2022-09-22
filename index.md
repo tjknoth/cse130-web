@@ -20,7 +20,7 @@ headerImg: angles.jpg
 ### Teaching Assistants
 
 * Aidan Denlinger 
-* Bavya Singh 
+* Rolly Singh 
 
 ### Tutors
 
