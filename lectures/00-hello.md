@@ -8,22 +8,15 @@ date: 2017-03-28
 
 Tristan Knoth
 
-- PhD Candidate 
-- Undergrade at Grinnell College 
+- PhD Candidate (advisor: Nadia Polikarpova)
+- Undergrad at Grinnell College 
 
-### Interests 
+## Interests 
 
 Research:
 
-- Type systems: how to *prove* that a program does the right thing?
+- Advanced type systems: how to *prove* that a program does the right thing?
 - Program Synthesis: how to *generate* a program that does the right thing?
-
-Other:
-
-- Math
-- The ocean and the outdoors
-- The NBA
-- Chess
 
 <br>
 <br>
