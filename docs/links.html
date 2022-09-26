@@ -240,6 +240,26 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li><a href="https://books.google.com/books/about/Types_and_Programming_Languages.html?id=ti6zoAC9Ph8C">Types and Programming Languages</a> by Benjamin Pierce</li>
 </ul>
 <h2 id="haskell">Haskell</h2>
+<h3 id="installation-guide">Installation Guide</h3>
+<p><strong>Per OS Instructions</strong></p>
+<ul>
+<li>Windows: install <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL2</a>. You will first install the Windows Subsystem for Linux (WSL), with the administrator-level command <code>wsl --install</code>. Once you restart, then ensure you are using version 2, with <code>wsl -l -v</code>. If you haven’t used this before, you are likely already on WSL2. If not, <a href="https://learn.microsoft.com/en-us/windows/wsl/install">check this link to see how to upgrade from 1 to 2</a>.</li>
+<li>MacOS: Ensure you’ve agreed to the XCode License agreements, to ensure you have <code>clang</code> and other build tools available. Simply run <code>xcode-select --install</code></li>
+<li>Linux: You’ll need some usual compiler tools, including <code>clang</code> and <code>nasm</code>. If you’re on a Debian-like build, the <code>build-essential</code> package should suffice.</li>
+</ul>
+<p><strong>General instructions</strong></p>
+<ol style="list-style-type: decimal">
+<li>Install <a href="https://www.haskell.org/ghcup/">GHCup</a></li>
+<li>In a terminal, run: <code>ghcup tui</code></li>
+<li><strong>Install</strong> and <strong>set</strong> these versions of the tools:
+<ol style="list-style-type: decimal">
+<li><code>Stack</code>: 2.9.1</li>
+<li><code>HLS</code>: 1.8.0.0</li>
+<li><code>Cabal</code>: 3.6.2.0</li>
+<li><code>GHC</code>: 8.10.7</li>
+</ol></li>
+</ol>
+<p>Once you have <code>GHC</code>, <code>Cabal</code>, and <code>Stack</code> installed, you can edit your homework in your favorite text editor and build it by running <code>make</code>. For best experience, we recommend using VSCode with the <code>Haskell</code> extension; to make the extension work, you first need to install <code>HLS</code> via <code>ghcup</code> (see above).</p>
 <h3 id="books">Books</h3>
 <ul>
 <li><a href="http://learnyouahaskell.com/">Learn You a Haskell</a> by Miran Lipovača</li>
