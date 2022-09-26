@@ -3,6 +3,32 @@ title: Lambda Calculus
 headerImg: sea.jpg
 ---
 
+## Before we get started: No more clickers!
+
+1. Go to classquestion.com/students and click "Click here to register". This link will allow you to register for the site.
+2. Once you have registered, go to classquestion.com/students and sign in.
+3. Click "Add Class" at the bottom. Enter the Class Code for this class: QNCCK and then click "Add Class".
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
 ## Your Favorite Language
 
 Probably has lots of features:
