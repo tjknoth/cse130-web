@@ -12,8 +12,8 @@ pre-populated with starter code and a README file with all the instructions.
 
 | Link                                             | Name                            | Deadline (11:59pm)        |
 |:------------------------------------------------:|:--------------------------------|:-------------------------:|
-| [HW0](https://classroom.github.com/a/ntHHd64Z)  | The Lambda Calculus              | 10/10                      |
-| HW1   | Introduction to Haskell          | 10/19                      |
+| [HW0](https://classroom.github.com/a/ntHHd64Z)   | The Lambda Calculus             | 10/10                      |
+| [HW1](https://classroom.github.com/a/1Qsc21M6)   | Introduction to Haskell         | 10/19                      |
 | HW2   | Random Art                       | 10/26                      |
 | HW3   | All about Fold                   | 11/2                       |
 | HW4   | Nano                             | 11/16                      |
