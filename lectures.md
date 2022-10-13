@@ -43,18 +43,18 @@ Lecture schedule is subject to change!
 
 **Discussions**
 
-| Date       | Topic                                            |
-|:----------:|:------------------------------------------------:|
-| 9/28       | Lambda Calculus: intro, syntax and reductions    | 
-| 10/5       | Lambda Calculus: data type encodings             | 
-| 10/12      | Haskell: simple recursion                        | 
-| 10/19      | Haskell: recursive data types                    | 
-| 10/26      | Midterm review                                   | 
-| 11/2       | Haskell: folds.                                  | 
-| 11/9       | Nano: interpreters, lexers, and parsers          | 
-| 11/16      | Type classes and Quickcheck                      | 
-| 11/23      | IO Monad                                         | 
-| 11/30      | Final Review                                     | 
+| Date       | Topic                                           |
+|:----------:|:------------------------------------------------|
+| 9/28       | Lambda Calculus: intro, syntax and reductions   | 
+| 10/5       | Lambda Calculus: data type encodings            | 
+| 10/12      | Haskell: simple recursion                       | 
+| 10/19      | Haskell: recursive data types                   | 
+| 10/26      | Midterm review                                  | 
+| 11/2       | Haskell: folds.                                 | 
+| 11/9       | Nano: interpreters, lexers, and parsers         | 
+| 11/16      | Type classes and Quickcheck                     | 
+| 11/23      | IO Monad                                        | 
+| 11/30      | Final Review                                    | 
 
 All discussion slides can be found
 [here](https://drive.google.com/drive/u/1/folders/12Xx1IUShYQz1R89sBdU5GJXIw04YaAR7)
