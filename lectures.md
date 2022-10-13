@@ -17,7 +17,7 @@ Lecture schedule is subject to change!
 | 10/10      | contd.                          |                           |
 | 10/12      | contd.                          |                           |
 | 10/14      | contd.                          |                           |
-| 10/17      | Datatypes and Recursion         |                           |
+| 10/17      | Datatypes and Recursion         | [html][lec3]              |
 | 10/19      | contd.                          |                           |
 | 10/21      | contd.                          |                           |
 | 10/24      | Higher Order Functions          |                           |
@@ -43,18 +43,21 @@ Lecture schedule is subject to change!
 
 **Discussions**
 
-| Date       | Topic                                           | Material                  |
-|:----------:|:------------------------------------------------|:-------------------------:|
-| 9/28       | Lambda Calculus: intro, syntax and reductions   | 
-| 10/5       | Lambda Calculus: data type encodings            | 
-| 10/12      | Haskell: simple recursion                       | 
-| 10/19      | Haskell: recursive data types                   | 
-| 10/26      | Midterm review                                  | 
-| 11/2       | Haskell: folds.                                 | 
-| 11/9       | Nano: interpreters, lexers, and parsers         | 
-| 11/16      | Type classes and Quickcheck                     | 
-| 11/23      | IO Monad                                        | 
-| 11/30      | Final Review                                    | 
+| Date       | Topic                                            |
+|:----------:|:------------------------------------------------:|
+| 9/28       | Lambda Calculus: intro, syntax and reductions    | 
+| 10/5       | Lambda Calculus: data type encodings             | 
+| 10/12      | Haskell: simple recursion                        | 
+| 10/19      | Haskell: recursive data types                    | 
+| 10/26      | Midterm review                                   | 
+| 11/2       | Haskell: folds.                                  | 
+| 11/9       | Nano: interpreters, lexers, and parsers          | 
+| 11/16      | Type classes and Quickcheck                      | 
+| 11/23      | IO Monad                                         | 
+| 11/30      | Final Review                                     | 
+
+All discussion slides can be found
+[here](https://drive.google.com/drive/u/1/folders/12Xx1IUShYQz1R89sBdU5GJXIw04YaAR7)
 
 [lec0]: lectures/00-hello.html
 [lec1]: lectures/01-lambda.html

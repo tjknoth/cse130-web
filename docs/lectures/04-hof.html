@@ -573,10 +573,10 @@ foldr f b (x<span class="fu">:</span>xs) <span class="fu">=</span> f x (foldr f 
 <p><strong>(D)</strong> <code class="sourceCode haskell">(a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b</code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell">(b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b</code></p>
 <p><br></p>
-<p><em>Answer:</em> D</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <p>Is <code class="sourceCode haskell">foldr</code> <strong>tail recursive</strong>?</p>
-<p><em>Answer:</em> No! It calls the binary operations on the results of the recursive call</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="what-about-tail-recursive-versions">What about tail-recursive versions?</h2>
 <p>Let’s write tail-recursive <code class="sourceCode haskell">sum</code>!</p>
@@ -660,7 +660,7 @@ quiz <span class="fu">=</span> foldl (<span class="fu">:</span>) [] [<span class
 <p><strong>(D)</strong> <code class="sourceCode haskell">[[<span class="dv">3</span>],[<span class="dv">2</span>],[<span class="dv">1</span>]]</code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell">[[<span class="dv">1</span>],[<span class="dv">2</span>],[<span class="dv">3</span>]]</code></p>
 <p><br></p>
-<p><em>Answer:</em> A</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-4">QUIZ</h2>
 <p>What does this evaluate to?</p>
@@ -675,7 +675,7 @@ quiz <span class="fu">=</span> foldl (\xs x <span class="ot">-&gt;</span> x <spa
 <p><strong>(D)</strong> <code class="sourceCode haskell">[[<span class="dv">3</span>],[<span class="dv">2</span>],[<span class="dv">1</span>]]</code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell">[[<span class="dv">1</span>],[<span class="dv">2</span>],[<span class="dv">3</span>]]</code></p>
 <p><br></p>
-<p><em>Answer:</em> C</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl f b []     <span class="fu">=</span> b
 foldl f b (x<span class="fu">:</span>xs) <span class="fu">=</span> foldl f (f b x) xs
@@ -726,7 +726,7 @@ foldl (\xs x <span class="ot">-&gt;</span> x <span class="fu">:</span> xs) [] [<
 foldl (flip (<span class="fu">:</span>))        [] [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</code></pre></div>
 <p>What is the type of <code class="sourceCode haskell">flip</code>?</p>
 <p><br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">flip<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> c</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">flip<span class="ot"> ::</span> <span class="fu">???</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="useful-hof-compose">Useful HOF: compose</h3>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- you can write</span>
@@ -736,7 +736,7 @@ map (\x <span class="ot">-&gt;</span> f (g x)) ys
 map (f <span class="fu">.</span> g) ys</code></pre></div>
 <p>What is the type of <code class="sourceCode haskell">(<span class="fu">.</span>)</code>?</p>
 <p><br></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">(.) ::</span> (b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> c</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">(.) ::</span> <span class="fu">???</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="higher-order-functions">Higher Order Functions</h2>
 <p>Iteration patterns over collections:</p>

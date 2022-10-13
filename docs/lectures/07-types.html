@@ -256,7 +256,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><strong>(D)</strong> <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> \y <span class="ot">-&gt;</span> x y</code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x x</code></p>
 <p><br></p>
-<p><em>Answer:</em> <strong>D</strong>. A adds a function; B applies a number; C defines <code class="sourceCode haskell">f</code> to take an <code class="sourceCode haskell"><span class="dt">Int</span></code> and then passes in a function; E requires a type <code class="sourceCode haskell"><span class="dt">T</span></code> that is equal to <code class="sourceCode haskell"><span class="dt">T</span> <span class="ot">-&gt;</span> <span class="dt">T</span></code>, which doesn’t exit.</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="type-system-for-nano2">Type system for Nano2</h2>
 <p>A <strong>type system</strong> defines what types an expression can have</p>
@@ -337,25 +337,22 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br></p>
 <p><strong>Example 2</strong>:</p>
 <p>Let’s derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">1</span> <span class="kw">in</span> x <span class="fu">+</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                 [<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>]<span class="fu">-----------------</span>   <span class="fu">-----------------</span>[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]
-                         x<span class="fu">:</span><span class="dt">Int</span> <span class="fu">|-</span><span class="ot"> x ::</span> <span class="dt">Int</span>   x<span class="fu">:</span><span class="dt">Int</span> <span class="fu">|-</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span>
-[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>] <span class="fu">--------------</span>   <span class="fu">------------------------------------</span>[<span class="dt">T</span><span class="fu">-</span><span class="dt">Add</span>]
-        [] <span class="fu">|-</span> <span class="dv">1</span><span class="ot"> ::</span> <span class="dt">Int</span>   x<span class="fu">:</span><span class="dt">Int</span> <span class="fu">|-</span> x <span class="fu">+</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span>
-[<span class="dt">T</span><span class="fu">-</span><span class="dt">Let</span>] <span class="fu">-----------------------------------------------</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">      <span class="fu">?</span>
+[<span class="fu">?</span>]   <span class="fu">-----------------------------------------------</span>
         [] <span class="fu">|-</span> <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">1</span> <span class="kw">in</span> x <span class="fu">+</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
 <p>But we <em>cannot</em> derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> <span class="kw">let</span> x <span class="fu">=</span> \y <span class="ot">-&gt;</span> y <span class="kw">in</span> x <span class="fu">+</span> <span class="dv">2</span><span class="ot"> ::</span> <span class="dt">T</span></code> for any type <code class="sourceCode haskell"><span class="dt">T</span></code></p>
-<p>The <code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>]</code> rule above will fail to derive <code class="sourceCode haskell"><span class="ot">x ::</span> <span class="dt">Int</span></code></p>
+
 <p><br> <br></p>
 <p><strong>Example 3</strong>:</p>
 <p>We cannot derive: <code class="sourceCode haskell">[] <span class="fu">|-</span> (\x <span class="ot">-&gt;</span> x x)<span class="ot"> ::</span> <span class="dt">T</span></code> for any type <code class="sourceCode haskell"><span class="dt">T</span></code></p>
-<p>We cannot find any type <code class="sourceCode haskell"><span class="dt">T</span></code> to fill in for <code class="sourceCode haskell">x</code>, because it has to be equal to <code class="sourceCode haskell"><span class="dt">T</span> <span class="ot">-&gt;</span> <span class="dt">T</span></code></p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="a-note-about-typing-rules">A note about typing rules</h3>
 <p>According to these rules, an expression can have <em>zero</em>, <em>one</em>, or <em>many</em> types</p>
 <ul>
 <li>examples?</li>
 </ul>
-<p><code class="sourceCode haskell"><span class="dv">1</span> <span class="dv">2</span></code> has no types; <code class="sourceCode haskell"><span class="dv">1</span></code> has one type (<code class="sourceCode haskell"><span class="dt">Int</span></code>)</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <p><code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x</code> has many types:</p>
 <ul>
@@ -380,7 +377,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><strong>(C)</strong> Me: nope, rules: okay</p>
 <p><strong>(D)</strong> Me: nope, rules: nope</p>
 <p><br></p>
-<p><em>Answer:</em> B <br> <br> <br> <br> <br> <br> <br></p>
+
 <h2 id="double-identity">Double identity</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> id <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="kw">in</span>
   <span class="kw">let</span> y <span class="fu">=</span> id <span class="dv">5</span> <span class="kw">in</span>
@@ -470,7 +467,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><strong>(C)</strong> Error: no mapping for type variable <code class="sourceCode haskell">d</code></p>
 <p><strong>(D)</strong> Error: type variable <code class="sourceCode haskell">a</code> is unused</p>
 <p><br></p>
-<p><em>Answer:</em> B</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="typing-rules">Typing rules</h3>
 <p>We need to change the typing rules so that:</p>
@@ -520,16 +517,13 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
         [] <span class="fu">|-</span> \x <span class="ot">-&gt; x ::</span> forall a <span class="fu">.</span> a <span class="ot">-&gt;</span> a</code></pre></div>
 <p><br></p>
 <p>Can we derive: <code class="sourceCode haskell">[x<span class="fu">:</span>a] <span class="fu">|-</span><span class="ot"> x ::</span> forall a <span class="fu">.</span> a</code>?</p>
-<p>No! The side condition of <code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Gen</span>]</code> is violated because <code class="sourceCode haskell">a</code> <strong>is present</strong> in the context!</p>
+
 <p><br> <br></p>
 <p><strong>Example 2</strong></p>
 <p>Let’s derive: <code class="sourceCode haskell"><span class="dt">G1</span> <span class="fu">|-</span> id <span class="dv">5</span><span class="ot"> ::</span> <span class="dt">Int</span></code> where <code class="sourceCode haskell"><span class="dt">G1</span> <span class="fu">=</span> [id <span class="fu">:</span> (forall a <span class="fu">.</span> a <span class="ot">-&gt;</span> a)]</code>:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dt">T</span><span class="fu">-</span><span class="dt">Var</span>]<span class="fu">-------------------------</span>
-     <span class="dt">G1</span> <span class="fu">|-</span><span class="ot"> id ::</span> forall a<span class="fu">.</span>a <span class="ot">-&gt;</span> a
-[<span class="dt">T</span><span class="fu">-</span><span class="dt">Inst</span>]<span class="fu">------------------------</span>   <span class="fu">--------------</span>[<span class="dt">T</span><span class="fu">-</span><span class="dt">Num</span>]
-        <span class="dt">G1</span> <span class="fu">|-</span><span class="ot"> id ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>     <span class="dt">G1</span> <span class="fu">|-</span> <span class="dv">5</span><span class="ot"> ::</span> <span class="dt">Int</span>
-[<span class="dt">T</span><span class="fu">-</span><span class="dt">App</span>] <span class="fu">---------------------------------------</span>
-        <span class="dt">G1</span> <span class="fu">|-</span> id <span class="dv">5</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">    <span class="fu">?</span>
+[<span class="fu">?</span>] <span class="fu">----------------</span>
+    <span class="dt">G1</span> <span class="fu">|-</span> id <span class="dv">5</span><span class="ot"> ::</span> <span class="dt">Int</span></code></pre></div>
 <p><br> <br></p>
 <p><strong>Example 3</strong></p>
 <p>Finally, we can derive:</p>
@@ -691,17 +685,17 @@ infer tEnv (<span class="dt">EAdd</span> e1 e2) <span class="fu">=</span>
 
 a <span class="ot">-&gt;</span> a    and  <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>  is [a <span class="fu">/</span> <span class="dt">Int</span>]
 
-a <span class="ot">-&gt;</span> <span class="dt">Int</span>  and  <span class="dt">Int</span> <span class="ot">-&gt;</span> b    is [a <span class="fu">/</span> <span class="dt">Int</span>, b <span class="fu">/</span> <span class="dt">Int</span>]
+a <span class="ot">-&gt;</span> <span class="dt">Int</span>  and  <span class="dt">Int</span> <span class="ot">-&gt;</span> b    is <span class="fu">???</span>
 
-<span class="dt">Int</span>       and  <span class="dt">Int</span>         is []
+<span class="dt">Int</span>       and  <span class="dt">Int</span>         is <span class="fu">???</span>
 
-a         and  a           is []
+a         and  a           is <span class="fu">???</span>
 
-<span class="dt">Int</span>       and <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>   cannot unify<span class="fu">!</span>
+<span class="dt">Int</span>       and <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>   is <span class="fu">???</span>
 
-<span class="dt">Int</span>       and a <span class="ot">-&gt;</span> a       cannot unify<span class="fu">!</span>
+<span class="dt">Int</span>       and a <span class="ot">-&gt;</span> a       is <span class="fu">???</span>
 
-a         and a <span class="ot">-&gt;</span> a       cannot unify<span class="fu">!</span>   </code></pre></div>
+a         and a <span class="ot">-&gt;</span> a       is <span class="fu">???</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-3">QUIZ</h2>
 <p>What is the unifier of the following two types?</p>
@@ -762,7 +756,7 @@ infer sub tEnv (<span class="dt">EAdd</span> e1 e2) <span class="fu">=</span> (s
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dv">1</span> <span class="fu">+</span> (\x <span class="ot">-&gt;</span> x)</code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell">\x <span class="ot">-&gt;</span> x <span class="fu">+</span> x <span class="dv">5</span></code></p>
 <p><br></p>
-<p><em>Answer:</em> E. A fails in step 1 (LHS is ill-typed); B fails in step 4 (RHS is ill-typed); C fails in step 2 (LHS is not <code class="sourceCode haskell"><span class="dt">Int</span></code>); D fails in step 5 (RHS is not <code class="sourceCode haskell"><span class="dt">Int</span></code>); finally, E fails because LHS and RHS by themselves are fine, but not together!</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="fresh-type-variables">Fresh type variables</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | Now has to keep track of current substitution!</span>
@@ -784,7 +778,7 @@ infer tEnv (<span class="dt">ELam</span> x e) <span class="fu">=</span> tX <span
 </ul>
 <p><br> <br></p>
 <p>Can we do that in Haskell?</p>
-<p>No, Haskell is pure. Have to thread the counter through :(</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="polymorphism-the-final-frontier">Polymorphism: the final frontier</h2>
 <p>Back to double identity:</p>

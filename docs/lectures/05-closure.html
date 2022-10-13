@@ -324,7 +324,7 @@ eval (<span class="dt">Bin</span> op e1 e2) <span class="fu">=</span> evalOp op 
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dt">Binop</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span></code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dt">Binop</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Value</span></code></p>
 <p><br></p>
-<p><em>Answer:</em> B</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="the-nano-language-1">The Nano Language</h2>
 <p>Features of Nano:</p>
@@ -364,7 +364,7 @@ eval (<span class="dt">Bin</span> op e1 e2) <span class="fu">=</span> evalOp op 
 <p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dv">1</span></code></p>
 <p><strong>(C)</strong> Runtime error</p>
 <p><br></p>
-<p><em>Answer:</em> C</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="environment">Environment</h2>
 <p>An expression is evaluated in an <strong>environment</strong></p>
@@ -388,7 +388,7 @@ eval (<span class="dt">Bin</span> op e1 e2) <span class="fu">=</span> evalOp op 
 <p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dv">1</span></code></p>
 <p><strong>(C)</strong> Runtime error</p>
 <p><br></p>
-<p><em>Answer:</em> B</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <p>To evaluate a variable, <strong>look up</strong> its value in the environment!</p>
 <table>
@@ -506,7 +506,7 @@ eval env (<span class="dt">Let</span> x def body) <span class="fu">=</span> <spa
 <p><strong>(D)</strong> Error: unbound variable <code class="sourceCode haskell">x</code></p>
 <p><strong>(E)</strong> Error: unbound variable <code class="sourceCode haskell">y</code></p>
 <p><br></p>
-<p><em>Answer:</em> C</p>
+
 <p><br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-4">QUIZ</h2>
 <p>What should this evaluate to?</p>
@@ -521,7 +521,7 @@ eval env (<span class="dt">Let</span> x def body) <span class="fu">=</span> <spa
 <p><strong>(D)</strong> Error: unbound variable <code class="sourceCode haskell">x</code></p>
 <p><strong>(E)</strong> Error: unbound variable <code class="sourceCode haskell">y</code></p>
 <p><br></p>
-<p><em>Answer:</em> C</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-5">QUIZ</h2>
 <p>What should this evaluate to?</p>
@@ -537,7 +537,7 @@ eval env (<span class="dt">Let</span> x def body) <span class="fu">=</span> <spa
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dv">2</span></code></p>
 <p><strong>(E)</strong> Error: multiple definitions of <code class="sourceCode haskell">x</code></p>
 <p><br></p>
-<p><em>Answer:</em> B</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="principle-static-lexical-scoping">Principle: Static (Lexical) Scoping</h2>
 <p>Every variable <em>use</em> (occurrence) gets its value from the most local <em>definition</em> (binding)</p>
@@ -630,7 +630,7 @@ inc <span class="dv">10</span></code></pre></div>
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dv">10</span></code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dv">11</span></code></p>
 <p><br></p>
-<p><em>Answer:</em> E</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="representing-functions">Representing functions</h2>
 <p>Let’s extend the representation of expressions:</p>
@@ -681,7 +681,7 @@ inc <span class="dv">10</span></code></pre></div>
 <span class="kw">let</span> f <span class="fu">=</span> \x y <span class="ot">-&gt;</span> x <span class="fu">+</span> y <span class="kw">in</span>
 f <span class="dv">1</span>
 <span class="fu">==&gt;</span> <span class="fu">???</span></code></pre></div>
-<p>Conceptually, they both evaluate to a function that increments its argument</p>
+
 <p><br> <br> <br> <br> <br> <br></p>
 <p><strong>Now:</strong> a program evaluates to an integer or <em>a function</em> (or fails)</p>
 <ul>
@@ -774,7 +774,7 @@ eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval en
 <p><strong>(D)</strong> <code class="sourceCode haskell"><span class="dv">10</span></code></p>
 <p><strong>(E)</strong> <code class="sourceCode haskell"><span class="dv">11</span></code></p>
 <p><br></p>
-<p><em>Answer:</em> E</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz-8">QUIZ</h2>
 <p>And what should this evaluate to?</p>
@@ -789,7 +789,7 @@ eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval en
 <p><strong>(B)</strong> <code class="sourceCode haskell"><span class="dv">11</span></code></p>
 <p><strong>(C)</strong> <code class="sourceCode haskell"><span class="dv">110</span></code></p>
 <p><br></p>
-<p><em>Answer:</em> B</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="reminder-referential-transparency">Reminder: Referential Transparency</h2>
 <p>The same expression must <em>always</em> evaluate to the same value</p>
@@ -885,7 +885,7 @@ eval env (<span class="dt">App</span> fun arg) <span class="fu">=</span> eval en
 <p><strong>(B)</strong> Dynamic</p>
 <p><strong>(C)</strong> Neither</p>
 <p><br></p>
-<p><em>Answer:</em> B</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <p>Let’s find out!</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">                         <span class="co">-- env:</span>
@@ -1023,7 +1023,7 @@ eval env (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span cla
 <p><strong>(C)</strong> 1120</p>
 <p><strong>(D)</strong> 1111</p>
 <p><br></p>
-<p><em>Answer:</em> D</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="partial-applications-achieved">Partial Applications Achieved!</h2>
 <p>Closures support functions returning functions!</p>
@@ -1056,7 +1056,7 @@ eval env (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span cla
 <p><strong>(B)</strong> 11</p>
 <p><strong>(C)</strong> 12</p>
 <p><br></p>
-<p><em>Answer:</em> C</p>
+
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="higher-order-functions-achieved">Higher-order Functions Achieved</h2>
 <p>Closures support functions taking functions as arguments!</p>
@@ -1085,7 +1085,7 @@ eval env (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span cla
 <p><strong>(B)</strong> Evaluation does not terminate</p>
 <p><strong>(C)</strong> Error: unbound variable <code class="sourceCode haskell">f</code></p>
 <p><br></p>
-<p><em>Answer:</em> C</p>
+
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> f <span class="fu">=</span> \n <span class="ot">-&gt;</span> n <span class="fu">*</span> f (n <span class="fu">-</span> <span class="dv">1</span>) 
 <span class="kw">in</span> <span class="co">-- [f := &lt;[], n, n * f (n - 1)&gt;]</span>
