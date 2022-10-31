@@ -26,17 +26,17 @@ Lecture schedule is subject to change!
 | 10/31      | Environments and Closures       | [html][lec5]              |
 | 11/2       | contd.                          |                           |
 | 11/4       | contd.                          |                           |
-| 11/7       | Lexing and Parsing              |                           |
+| 11/7       | Overloading & Typeclasses       |                           |
 | 11/9       | contd.                          |                           |
 | 11/11      | *No lecture: Veteran's day*     |                           |
-| 11/14      | contd.                          |                           |
-| 11/16      | Overloading & TypeClasses       |                           |
+| 11/14      | Monads                          |                           |
+| 11/16      | contd.                          |                           |
 | 11/18      | contd.                          |                           |
-| 11/21      | Monads                          |                           |
-| 11/23      | contd.                          |                           |
+| 11/21      | contd.                          |                           |
+| 11/23      | TBD                             |                           |
 | 11/25      | *No lecture: Thanksgiving*      |                           |
-| 11/28      | contd.                          |                           |
-| 11/30      | contd.                          |                           |
+| 11/28      | TBD                             |                           |
+| 11/30      | TBD                             |                           |
 | 12/2       | Final Review                    |                           |
 | 12/7       | **Final**                       |                           |
 
