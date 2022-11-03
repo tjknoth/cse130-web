@@ -26,7 +26,7 @@ Lecture schedule is subject to change!
 | 10/31      | Environments and Closures       | [html][lec5]              |
 | 11/2       | contd.                          |                           |
 | 11/4       | contd.                          |                           |
-| 11/7       | Overloading & Typeclasses       | [html][lec6]              |
+| 11/7       | Overloading & Typeclasses       | [html][lec7]              |
 | 11/9       | contd.                          |                           |
 | 11/11      | *No lecture: Veteran's day*     |                           |
 | 11/14      | Monads                          |                           |
