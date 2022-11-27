@@ -7,11 +7,11 @@ headerImg: books.jpg
 ## The rest of the quarter
 
 * PA4 + 5 due next Tuesday 
-  * Will drop lowest PA
-  * Work with whoever you want 
-  * PA5: only BST.hs (85pts max)
-* Final next Wednesday
-  * On everything we've learned so far
+    * Will drop lowest PA
+    * Work with whoever you want 
+    * PA5: only BST.hs (85pts max)
+* Final next Wednesday 
+    * On everything we covered pre-strike
 
 Questions/comments/concerns?
 <br>
