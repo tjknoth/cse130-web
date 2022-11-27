@@ -4,6 +4,29 @@ date: 2019-06-5
 headerImg: books.jpg
 ---
 
+## The rest of the quarter
+
+* PA4 + 5 due next Tuesday 
+  * Will drop lowest PA
+  * Work with whoever you want 
+  * PA5: only BST.hs (85pts max)
+* Final next Wednesday
+  * On everything we've learned so far
+
+Questions/comments/concerns?
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
 ## The Mantra
 
 **Don't Repeat Yourself**

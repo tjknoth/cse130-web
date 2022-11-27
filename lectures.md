@@ -29,15 +29,15 @@ Lecture schedule is subject to change!
 | 11/7       | Overloading & Typeclasses       | [html][lec7]              |
 | 11/9       | contd.                          |                           |
 | 11/11      | *No lecture: Veteran's day*     |                           |
-| 11/14      | Monads                          |                           |
-| 11/16      | contd.                          |                           |
-| 11/18      | contd.                          |                           |
-| 11/21      | contd.                          |                           |
-| 11/23      | TBD                             |                           |
+| 11/14      |                                 |                           |
+| 11/16      |                                 |                           |
+| 11/18      |                                 |                           |
+| 11/21      |                                 |                           |
+| 11/23      |                                 |                           |
 | 11/25      | *No lecture: Thanksgiving*      |                           |
-| 11/28      | TBD                             |                           |
-| 11/30      | TBD                             |                           |
-| 12/2       | Final Review                    |                           |
+| 11/28      | Monads/review                   | [html][lec9]              |
+| 11/30      | Monads/review                   |                           |
+| 12/2       | Monads/review                   |                           |
 | 12/7       | **Final**                       |                           |
 
 
