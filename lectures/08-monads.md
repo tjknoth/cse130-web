@@ -12,8 +12,11 @@ headerImg: books.jpg
     * PA5: only BST.hs (85pts max)
 * Final next Wednesday 
     * On everything we covered pre-strike
+* I will respect TAs withholding labor. If you _need_ grades and they
+  aren't available, let me know and I'll make it happen.
 
 Questions/comments/concerns?
+
 <br>
 <br>
 <br>
