@@ -4,7 +4,7 @@ date: 2019-06-5
 headerImg: books.jpg
 ---
 
-## The rest of the quarter
+## The rest of the quarter: Grading and evaluation
 
 * PA4 + 5 due next Tuesday 
     * Will drop lowest PA
@@ -27,6 +27,29 @@ Questions/comments/concerns?
 <br>
 <br>
 <br>
+
+## The rest of the quarter: Content
+
+* Today: review via introduction to functors and exception handling
+* Wednesday: monads, briefly 
+* Friday: review (come prepared with questions)
+    * There are practice finals on the website now: do them and ask questions!
+
+Suggestions? What do you want to get out of this week?
+
+I will hold office hours one more time this week, and again on Monday
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 
 

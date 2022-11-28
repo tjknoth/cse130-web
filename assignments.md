@@ -25,7 +25,5 @@ pre-populated with starter code and a README file with all the instructions.
 - [Midterm Fa 19](/static/raw/130-midterm-fa19.pdf) ([solution](/static/raw/130-midterm-fa19-solution.pdf)),
   [Midterm Wi 19](/static/raw/130-midterm-wi19.pdf) ([solution](/static/raw/130-midterm-wi19-solution.pdf)).
 
-<!--
 - [Final Fa 19](/static/raw/130-final-fa19.pdf) ([solution](/static/raw/130-final-fa19-solution.pdf)),
   [Final Wi 19](/static/raw/130-final-wi19.pdf) ([solution](/static/raw/130-final-wi19-solution.pdf)).
---> 
