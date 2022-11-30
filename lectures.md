@@ -35,7 +35,7 @@ Lecture schedule is subject to change!
 | 11/21      |                                 |                           |
 | 11/23      |                                 |                           |
 | 11/25      | *No lecture: Thanksgiving*      |                           |
-| 11/28      | Monads/review                   | [html][lec8]              |
+| 11/28      | Monads/review                   | [html][lec8] [code](https://gist.github.com/tjknoth/2c141ba05e5e679ac13e14bd72ebd50a)  |
 | 11/30      | Monads/review                   |                           |
 | 12/2       | Monads/review                   |                           |
 | 12/7       | **Final**                       |                           |
